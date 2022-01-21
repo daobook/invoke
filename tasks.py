@@ -61,7 +61,7 @@ def integration(c, opts=None, pty=True):
 
 
 @task
-def coverage(c, report="term", opts=""):
+def coverage(c, report="term", opts="", codecov=False):
     """
     Run pytest in coverage mode. See `invocations.pytest.coverage` for details.
     """
@@ -69,7 +69,7 @@ def coverage(c, report="term", opts=""):
     # TODO: allow coverage() to just look up the nearby-by-namespace-attachment
     # test() instead of hardcoding its own test or doing it this way with an
     # arg.
-    return coverage_(c, report=report, opts=opts, tester=test)
+    return coverage_(c, report=report, opts=opts, tester=test, codecov=codecov)
 
 
 @task
