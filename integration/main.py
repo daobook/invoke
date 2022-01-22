@@ -82,9 +82,6 @@ class Main:
 
         @trap
         def invocable_via_python_dash_m(self):
-            # TODO: replace with pytest marker after pytest port
-            if sys.version_info < (2, 7):
-                skip()
             _output_eq(
                 "python -m invoke print-name --name mainline", "mainline\n"
             )
