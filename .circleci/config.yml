@@ -4,6 +4,18 @@ version: 2.1
 orbs:
   orb: invocations/orb@1.0.4
 
+
+jobs:
+  integration:
+    executor:
+      name: orb/default
+      version: "3.6"
+    steps:
+      - orb/setup
+      - run: inv integration
+      - orb/debug
+
+
 workflows:
   main:
     jobs:
@@ -13,6 +25,8 @@ workflows:
           name: Style check
       - orb/coverage:
           name: Test 3.6
+      - integration:
+          name: Integration tests
       - orb/test-release:
           name: Release test
       - orb/test:
