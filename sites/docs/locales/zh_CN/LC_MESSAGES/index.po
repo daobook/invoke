@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../index.rst:3
+msgid "Welcome to Invoke's documentation!"
+msgstr "欢迎来到 Invoke 的文档！"
+
+#: ../../index.rst:5
+msgid ""
+"This site covers Invoke's conceptual & API documentation. For basic info "
+"on what Invoke is, including its public changelog & how the project is "
+"maintained, please see `the main project website <http://pyinvoke.org>`_."
+msgstr ""
+"这个网站涵盖了 Invoke 的概念和 API 文档。"
+"关于什么是 Invoke 的基本信息，包括它的公开变化记录和项目的维护方式，请看 `主项目网站 <http://pyinvoke.org>`_。"
+
+#: ../../index.rst:10
+msgid "Getting started"
+msgstr "获得开始"
+
+#: ../../index.rst:12
+msgid ""
+"Many core ideas & API calls are explained in the tutorial/getting-started"
+" document:"
+msgstr ""
+"许多核心思想和 API 调用在教程/入门文件中都有解释："
+
+#: ../../index.rst:22
+msgid "The ``invoke`` CLI tool"
+msgstr "``invoke`` CLI 工具"
+
+#: ../../index.rst:24
+msgid ""
+"Details on the CLI interface to Invoke, available core flags, and tab "
+"completion options."
+msgstr ""
+"关于 Invoke 的 CLI 界面、可用的核心旗标和自动补全选项的详细信息。"
+
+#: ../../index.rst:32
+msgid "Concepts"
+msgstr "概念"
+
+#: ../../index.rst:34
+msgid "Dig deeper into specific topics:"
+msgstr "深入挖掘特定的主题："
+
+#: ../../index.rst:45
+msgid "API"
+msgstr ""
+
+#: ../../index.rst:47
+msgid ""
+"Know what you're looking for & just need API details? View our auto-"
+"generated API documentation:"
+msgstr ""
+"知道你在寻找什么，只是需要 API 的细节？查看我们自动生成的 API 文档："

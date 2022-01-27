@@ -15,3 +15,7 @@ autodoc_default_flags = ["members", "special-members"]
 html_theme_options["extra_nav_links"] = {
     "Main website": "http://www.pyinvoke.org"
 }
+
+locale_dirs = ['locales/']
+gettext_compact = False
+language = 'zh_CN'

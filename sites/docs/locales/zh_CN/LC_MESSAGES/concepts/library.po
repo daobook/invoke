@@ -1,0 +1,295 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../concepts/library.rst:3
+msgid "Using Invoke as a library"
+msgstr ""
+
+#: ../../concepts/library.rst:5
+msgid ""
+"While most of our documentation involves the user/CLI facing use cases of"
+" task management and command execution, Invoke was designed for its "
+"constituent parts to be usable independently by advanced users - either "
+"out of the box or with a minimum of extra work. CLI parsing, subprocess "
+"command execution, task organization, etc, are all written as broadly "
+"separated concerns."
+msgstr ""
+
+#: ../../concepts/library.rst:11
+msgid ""
+"This document outlines use cases already known to work (because "
+"downstream tools like `Fabric <http://fabfile.org>`_ are already "
+"utilizing them)."
+msgstr ""
+
+#: ../../concepts/library.rst:18
+msgid "Reusing Invoke's CLI module as a distinct binary"
+msgstr ""
+
+#: ../../concepts/library.rst:20
+msgid ""
+"A major use case is distribution of your own program using Invoke under "
+"the hood, bound to a different binary name, and usually setting a "
+"specific task :doc:`namespace </concepts/namespaces>` as the default. "
+"(This maps somewhat closely to things like ``argparse`` from the standard"
+" library.) In some cases, removing, replacing and/or adding core CLI "
+"flags is also desired."
+msgstr ""
+
+#: ../../concepts/library.rst:27
+msgid "Getting set up"
+msgstr ""
+
+#: ../../concepts/library.rst:29
+msgid ""
+"Say you want to distribute a test runner called ``tester`` offering two "
+"subcommands, ``unit`` and ``integration``, such that users could ``pip "
+"install tester`` and have access to commands like ``tester unit``, "
+"``tester integration``, or ``tester integration --fail-fast``."
+msgstr ""
+
+#: ../../concepts/library.rst:34
+msgid ""
+"First, as with any distinct Python package providing CLI 'binaries', "
+"you'd inform your ``setup.py`` of your entrypoint::"
+msgstr ""
+
+#: ../../concepts/library.rst:48
+msgid ""
+"This is just an example snippet and is not a fully valid ``setup.py``; if"
+" you don't know how Python packaging works, a good starting place is `the"
+" Python Packaging User's Guide <https://python-packaging-user-"
+"guide.readthedocs.io>`_."
+msgstr ""
+
+#: ../../concepts/library.rst:53
+msgid ""
+"Nothing here is specific to Invoke - it's a standard way of telling "
+"Python to install a ``tester`` script that executes the ``run`` method of"
+" a ``program`` object defined inside the module ``tester.main``."
+msgstr ""
+
+#: ../../concepts/library.rst:58
+msgid "Creating a ``Program``"
+msgstr ""
+
+#: ../../concepts/library.rst:60
+msgid ""
+"In our ``tester/main.py``, we start out importing Invoke's public CLI "
+"functionality::"
+msgstr ""
+
+#: ../../concepts/library.rst:65
+msgid ""
+"Then we define the ``program`` object we referenced in ``setup.py``, "
+"which is a simple `.Program` to do the heavy lifting, giving it our "
+"version number for starters::"
+msgstr ""
+
+#: ../../concepts/library.rst:71
+msgid ""
+"At this point, installing ``tester`` would give you the same "
+"functionality as Invoke's :doc:`built-in CLI tool </invoke>`, except "
+"named ``tester`` and exposing its own version number::"
+msgstr ""
+
+#: ../../concepts/library.rst:86
+msgid ""
+"This doesn't do us much good yet - there aren't any subcommands (and our "
+"users don't care about arbitrary 'tasks', so Invoke's own default "
+"``--help`` and ``--list`` output isn't a good fit)."
+msgstr ""
+
+#: ../../concepts/library.rst:91
+msgid "Specifying subcommands"
+msgstr ""
+
+#: ../../concepts/library.rst:93
+msgid ""
+"For ``tester`` to expose ``unit`` and ``integration`` subcommands, we "
+"need to define them, in a regular Invoke tasks module or :doc:`namespace "
+"</concepts/namespaces>`. For our example, we'll just create "
+"``tester/tasks.py`` (but as you'll see in a moment, this too is arbitrary"
+" and can be whatever you like)::"
+msgstr ""
+
+#: ../../concepts/library.rst:109
+msgid ""
+"As described in :doc:`/concepts/namespaces`, you can arrange this module "
+"however you want - the above snippet uses an implicit namespace for "
+"brevity's sake."
+msgstr ""
+
+#: ../../concepts/library.rst:114
+msgid ""
+"It's important to realize that there's nothing special about these "
+"\"subcommands\" - you could run them just as easily with vanilla Invoke, "
+"e.g. via ``invoke --collection=tester.tasks --list``."
+msgstr ""
+
+#: ../../concepts/library.rst:118
+msgid ""
+"Now the useful part: telling our custom `.Program` that this namespace of"
+" tasks should be used as the subcommands for ``tester``, via the "
+"``namespace`` kwarg::"
+msgstr ""
+
+#: ../../concepts/library.rst:126
+msgid "The result?"
+msgstr ""
+
+#: ../../concepts/library.rst:147
+msgid ""
+"Notice how the 'usage' line changed (to specify 'subcommands' instead of "
+"'tasks'); the list of specific subcommands is now printed as part of "
+"``--help``; and ``--list`` has been removed from the options."
+msgstr ""
+
+#: ../../concepts/library.rst:151
+msgid ""
+"You can enable :ref:`tab-completion<tab-completion>` for your distinct "
+"binary and subcommands."
+msgstr ""
+
+#: ../../concepts/library.rst:156
+msgid "Modifying core parser arguments"
+msgstr ""
+
+#: ../../concepts/library.rst:158
+msgid ""
+"A common need for this use case is tweaking the core parser arguments. "
+"`.Program` makes it easy: default core `Arguments <.Argument>` are "
+"returned by `.Program.core_args`. Extend this method's return value with "
+"``super`` and you're done::"
+msgstr ""
+
+#: ../../concepts/library.rst:179
+msgid ""
+"We don't recommend *omitting* any of the existing core arguments; a lot "
+"of basic functionality relies on their existence, even when left to "
+"default values."
+msgstr ""
+
+#: ../../concepts/library.rst:187
+msgid "Customizing the configuration system's defaults"
+msgstr ""
+
+#: ../../concepts/library.rst:189
+msgid ""
+"Besides the CLI-oriented content of the previous section, another area of"
+" functionality that frequently needs updating when redistributing an "
+"Invoke codebase (CLI or no CLI) is configuration. There are typically two"
+" concerns here:"
+msgstr ""
+
+#: ../../concepts/library.rst:194
+msgid ""
+"Configuration filenames and the env var prefix - crucial if you ever "
+"expect your users to use the configuration system;"
+msgstr ""
+
+#: ../../concepts/library.rst:196
+msgid ""
+"Default configuration values - less critical (most defaults aren't "
+"labeled with anything Invoke-specific) but still sometimes desirable."
+msgstr ""
+
+#: ../../concepts/library.rst:200
+msgid ""
+"Both of these involve subclassing `.Config` (and, if using the CLI "
+"machinery, informing your `.Program` to use that subclass instead of the "
+"default one.)"
+msgstr ""
+
+#: ../../concepts/library.rst:206
+msgid "Changing filenames and/or env var prefix"
+msgstr ""
+
+#: ../../concepts/library.rst:208
+msgid ""
+"By default, Invoke's config system looks for files like "
+"``/etc/invoke.yaml``, ``~/.invoke.json``, etc. If you're distributing "
+"client code named something else, like the ``Tester`` example earlier, "
+"you might instead want the config system to load ``/etc/tester.json`` or "
+"``$CWD/tester.py``."
+msgstr ""
+
+#: ../../concepts/library.rst:213
+msgid ""
+"Similarly, the environment variable config level looks for env vars like "
+"``INVOKE_RUN_ECHO``; you might prefer ``TESTER_RUN_ECHO``."
+msgstr ""
+
+#: ../../concepts/library.rst:216
+msgid "There are a few `.Config` attributes controlling these values:"
+msgstr ""
+
+#: ../../concepts/library.rst:218
+msgid ""
+"``prefix``: A generic, catchall prefix used directly as the file prefix, "
+"and used via all-caps as the env var prefix;"
+msgstr ""
+
+#: ../../concepts/library.rst:220
+msgid ""
+"``file_prefix``: For overriding just the filename prefix - otherwise, it "
+"defaults to the value of ``prefix``;"
+msgstr ""
+
+#: ../../concepts/library.rst:222
+msgid ""
+"``env_prefix``: For overriding just the env var prefix - as you might "
+"have guessed, it too defaults to the value of ``prefix``."
+msgstr ""
+
+#: ../../concepts/library.rst:225
+msgid "Continuing our 'Tester' example, you'd do something like this::"
+msgstr ""
+
+#: ../../concepts/library.rst:232
+msgid ""
+"Or, to seek ``tester.yaml`` as before, but ``TEST_RUN_ECHO`` instead of "
+"``TESTER_RUN_ECHO``::"
+msgstr ""
+
+#: ../../concepts/library.rst:240
+msgid "Modifying default config values"
+msgstr ""
+
+#: ../../concepts/library.rst:242
+msgid ""
+"Default config values are simple - they're just the return value of the "
+"staticmethod `.Config.global_defaults`, so override that and return "
+"whatever you like - ideally something based on the superclass' values, as"
+" many defaults are assumed to exist by the rest of the system. (The "
+"helper function `invoke.config.merge_dicts` can be useful here.)"
+msgstr ""
+
+#: ../../concepts/library.rst:248
+msgid ""
+"For example, say you want Tester to always echo shell commands by default"
+" when your codebase calls `.Context.run`::"
+msgstr ""
+
+#: ../../concepts/library.rst:267
+msgid ""
+"For reference, Invoke's own base defaults (the...default defaults, you "
+"could say) are documented at :ref:`default-values`."
+msgstr ""
+

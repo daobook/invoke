@@ -1,0 +1,302 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../getting-started.rst:3
+msgid "Getting started"
+msgstr "快速入门"
+
+#: ../../getting-started.rst:5
+msgid ""
+"This document presents a whirlwind tour of Invoke's feature set. Please "
+"see the links throughout for detailed conceptual & API docs. For "
+"installation help, see the project's `installation page "
+"<http://www.pyinvoke.org/installing.html>`_."
+msgstr ""
+"这份文档介绍了 Invoke 的功能集的旋风之旅。"
+"请参阅贯穿全文的链接，了解详细的概念和 API 文档。"
+"关于安装帮助，请看项目的 `安装页面 <http://www.pyinvoke.org/installing.html>`_。"
+
+#: ../../getting-started.rst:12
+msgid "Defining and running task functions"
+msgstr "定义和运行任务函数"
+
+#: ../../getting-started.rst:14
+msgid ""
+"The core use case for Invoke is setting up a collection of task functions"
+" and executing them. This is pretty easy -- all you need is to make a "
+"file called ``tasks.py`` importing the `.task` decorator and decorating "
+"one or more functions. You will also need to add an arbitrarily-named "
+"context argument (convention is to use ``c``, ``ctx`` or ``context``) as "
+"the first positional arg. Don't worry about using this context parameter "
+"yet."
+msgstr ""
+"Invoke 的核心用例是设置任务函数的集合并执行它们。"
+"这很容易 -- 你只需要做一个叫做 ``tasks.py`` 的文件，导入 `.task` 装饰器并装饰一个或多个函数。"
+"你还需要添加一个任意命名的上下文参数（惯例是使用 ``c``、``ctx`` 或 ``context``）作为第一个位置参数。"
+"先不要担心使用这个上下文参数。"
+
+#: ../../getting-started.rst:21
+msgid "Let's start with a dummy Sphinx docs building task::"
+msgstr "让我们从  dummy Sphinx 文档构建任务开始吧 ::"
+
+#: ../../getting-started.rst:29
+msgid ""
+"You can then execute that new task by telling Invoke's command line "
+"runner, ``invoke``, that you want it to run::"
+msgstr ""
+"然后你可以通过告诉 Invoke 的命令行运行器 ``invoke``，你想让它运行来执行这个新任务 ::"
+
+#: ../../getting-started.rst:35
+msgid "The function body can be any Python you want -- anything at all."
+msgstr "函数主体可以是你想要的任何 Python -- 任何东西。"
+
+#: ../../getting-started.rst:39
+msgid "Task parameters"
+msgstr "任务参数"
+
+#: ../../getting-started.rst:41
+msgid ""
+"Functions can have arguments, and thus so can tasks. By default, your "
+"task functions' args/kwargs are mapped automatically to both long and "
+"short CLI flags, as per :ref:`the CLI docs <task-arguments>`. For "
+"example, if we add a ``clean`` argument and give it a boolean default, it"
+" will show up as a set of toggle flags, ``--clean`` and ``-c``::"
+msgstr ""
+"函数可以有参数，因此任务也可以有参数。"
+"默认情况下，你的任务函数的 args/kwargs 会自动映射到长和短的 CLI 旗标上，根据 :ref:`CLI docs <task-arguments>`。"
+"例如，如果我们添加一个 ``clean`` 参数，并给它一个布尔默认值，它将显示为一组切换旗标，``--clean`` 和 ``-c`` ::"
+
+#: ../../getting-started.rst:53
+msgid "Invocations::"
+msgstr ""
+
+#: ../../getting-started.rst:58
+msgid ""
+"Naturally, other default argument values will allow giving string or "
+"integer values. Arguments with no default values are assumed to take "
+"strings, and can also be given as positional arguments. Take this "
+"incredibly contrived snippet for example::"
+msgstr ""
+"自然地，其他默认参数值将允许给出字符串或整数值。"
+"没有默认值的参数被假定为采取字符串，并且也可以作为位置参数给出。"
+"以这个令人难以置信的编造的片段为例 ::"
+
+#: ../../getting-started.rst:67
+msgid "It can be invoked in the following ways, all resulting in \"Hi Name!\"::"
+msgstr "它可以通过以下方式被调用，都会产生 \"Hi Name!\" ::"
+
+#: ../../getting-started.rst:76
+msgid "Adding metadata via `@task <.task>`"
+msgstr "通过 `@task <.task>` 添加元数据"
+
+#: ../../getting-started.rst:78
+msgid ""
+"`@task <.task>` can be used without any arguments, as above, but it's "
+"also a convenient vector for additional metadata about the task function "
+"it decorates. One common example is describing the task's arguments, via "
+"the ``help`` parameter (in addition to optionally giving task-level help "
+"via the docstring)::"
+msgstr ""
+"`@task <.task>` 可以在没有任何参数的情况下使用，如上所述，但它也是一个方便的矢量，用于描述它所装饰的任务函数的额外元数据。"
+"一个常见的例子是通过 ``help`` 参数来描述任务的参数（此外还可以通过 docstring 提供任务级别的帮助）::"
+
+#: ../../getting-started.rst:91
+msgid "This description will show up when invoking ``--help``::"
+msgstr "当调用 ``--help`` 时，该描述将显示出来 ::"
+
+#: ../../getting-started.rst:102
+msgid ""
+"More details on task parameterization and metadata can be found in "
+":doc:`/concepts/invoking-tasks` (for the command-line & parsing side of "
+"things) and in the `.task` API documentation (for the declaration side)."
+msgstr ""
+"关于任务参数化和元数据的更多细节可以在 :doc:`/concepts/invoking-tasks` （关于命令行和解析方面）和 `.task` API 文档（关于声明方面）找到。"
+
+#: ../../getting-started.rst:108
+msgid "Listing tasks"
+msgstr "列出任务"
+
+#: ../../getting-started.rst:110
+msgid ""
+"You'll sometimes want to see what tasks are available in a given "
+"``tasks.py`` -- ``invoke`` can be told to list them instead of executing "
+"something::"
+msgstr ""
+"你有时想看看在给定的 ``tasks.py`` 中有哪些任务 -- ``invoke`` 可以被告知列出它们，而不是执行什么 ::"
+
+#: ../../getting-started.rst:119
+msgid ""
+"This will also print the first line of each task’s docstring, if it has "
+"one. To see what else is available besides ``--list``, say ``invoke "
+"--help``."
+msgstr ""
+"这也将打印每个任务的文件串的第一行，如果它有的话。"
+"要想知道除了 ``--list`` 还有什么可用的，请说 ``invoke --help``。"
+
+#: ../../getting-started.rst:124
+msgid "Running shell commands"
+msgstr "运行 shell 命令"
+
+#: ../../getting-started.rst:126
+msgid ""
+"Many use cases for Invoke involve running local shell commands, similar "
+"to programs like Make or Rake. This is done via the `~.Context.run` "
+"function::"
+msgstr ""
+"Invoke 的许多用例涉及运行本地 shell 命令，类似于 Make 或 Rake 等程序。"
+"这是通过 `~.Context.run` 函数完成的 ::"
+
+#: ../../getting-started.rst:135
+msgid "You'll see the command's output in your terminal as it runs::"
+msgstr "在运行过程中，你会在你的终端看到该命令的输出 ::"
+
+#: ../../getting-started.rst:143
+msgid ""
+"`~.Context.run` has a number of arguments controlling its behavior, such "
+"as activation of pseudo-terminals for complex programs requiring them, "
+"suppression of exit-on-error behavior, hiding of subprocess' output "
+"(while still capturing it for later review), and more. See `its API docs "
+"<.Context.run>` for details."
+msgstr ""
+"`~.Context.run` 有许多参数控制它的行为，例如为需要伪终端的复杂程序激活伪终端，"
+"抑制错误时退出的行为，隐藏子进程的输出（同时仍然捕获它以便以后审查），等等。"
+"详见 `其 API 文档 <.Context.run>`。"
+
+#: ../../getting-started.rst:148
+msgid ""
+"`~.Context.run` always returns a useful `.Result` object providing access"
+" to the captured output, exit code, and other information."
+msgstr ""
+"`~.Context.run` 总是返回一个有用的 `.Result` 对象，提供访问捕获的输出、退出代码和其他信息。"
+
+#: ../../getting-started.rst:154
+msgid "Aside: what exactly is this 'context' arg anyway?"
+msgstr "旁白：这个 'context' 的说法到底是什么？"
+
+#: ../../getting-started.rst:156
+msgid ""
+"A common problem task runners face is transmission of \"global\" data - "
+"values loaded from :doc:`configuration files </concepts/configuration>` "
+"or :ref:`other configuration vectors <collection-configuration>`, given "
+"via CLI flags, generated in 'setup' tasks, etc."
+msgstr ""
+"任务运行者面临的一个常见问题是传输 \"global\" 数据 -- "
+"从 :doc:`配置文件 </concepts/configuration>` 或 :ref:`其他配置张量 <collection-configuration>` 加载的值，"
+"通过 CLI 旗标给出，在 'setup' 任务中生成，等等。"
+
+#: ../../getting-started.rst:161
+msgid ""
+"Some libraries (such as `Fabric <http://fabfile.org>`_ 1.x) implement "
+"this via module-level attributes, which makes testing difficult and error"
+" prone, limits concurrency, and increases implementation complexity."
+msgstr ""
+"一些库（如 `Fabric <http://fabfile.org>`_ 1.x）通过模块级的属性来实现，这使得测试困难和容易出错，限制了并发性，并增加了实施的复杂性。"
+
+#: ../../getting-started.rst:165
+msgid ""
+"Invoke encapsulates state in explicit `~.Context` objects, handed to "
+"tasks when they execute . The context is the primary API endpoint, "
+"offering methods which honor the current state (such as `.Context.run`) "
+"as well as access to that state itself."
+msgstr ""
+"Invoke 将状态封装在明确的 `~.Context` 对象中，在任务执行时交给它们。"
+"上下文是主要的 API 端点，提供尊重当前状态的方法（如 `.Context.run`），以及对该状态本身的访问。"
+
+#: ../../getting-started.rst:172
+msgid "Declaring pre-tasks"
+msgstr "声明预设任务"
+
+#: ../../getting-started.rst:174
+msgid ""
+"Tasks may be configured in a number of ways via the `.task` decorator. "
+"One of these is to select one or more other tasks you wish to always run "
+"prior to execution of your task, indicated by name."
+msgstr ""
+"任务可以通过 `.task` 装饰器以多种方式进行配置。"
+"其中之一是选择一个或多个你希望在执行你的任务之前始终运行的其他任务，用名称表示。"
+
+#: ../../getting-started.rst:178
+msgid ""
+"Let's expand our docs builder with a new cleanup task that runs before "
+"every build (but which, of course, can still be executed on its own)::"
+msgstr ""
+"让我们用新的清理任务来扩展文档构建器，该任务在每次构建前运行（当然，它仍然可以单独执行） ::"
+
+#: ../../getting-started.rst:191
+msgid "Now when you ``invoke build``, it will automatically run ``clean`` first."
+msgstr "现在当你 ``invoke build`` 时，它会自动先运行 ``clean``。"
+
+#: ../../getting-started.rst:194
+msgid ""
+"If you're not a fan of the implicit \"positional arguments are pre-run "
+"task names\" API, you can instead explicitly give the ``pre`` kwarg: "
+"``@task(pre=[clean])``."
+msgstr ""
+"如果你不喜欢隐式的 \"positional arguments are pre-run task names\" 的 API，"
+"你可以显式地给出 ``pre`` 的 kwarg：``@task(pre=[clean])`` 。"
+
+#: ../../getting-started.rst:198
+msgid "Details can be found in :ref:`how-tasks-run`."
+msgstr "详情可在 :ref:`how-tasks-run` 中找到。"
+
+#: ../../getting-started.rst:202
+msgid "Creating namespaces"
+msgstr "创建命名空间"
+
+#: ../../getting-started.rst:204
+msgid ""
+"Right now, our ``tasks.py`` is implicitly for documentation only, but "
+"maybe our project needs other non-doc things, like packaging/deploying, "
+"testing, etc. At that point, a single flat namespace isn't enough, so "
+"Invoke lets you easily build a :doc:`nested namespace "
+"<concepts/namespaces>`. Here's a quick example."
+msgstr ""
+"现在，我们的 ``tasks.py`` 隐含地只用于文档，但也许我们的项目需要其他非文档的东西，比如打包/部署、测试等等。"
+"在这一点上，一个单一的平面命名空间是不够的，所以 Invoke 让你轻松建立一个 :doc:`嵌套命名空间 <concepts/namespaces>`。"
+"这里有一个快速的例子。"
+
+#: ../../getting-started.rst:209
+msgid ""
+"Let's first rename our ``tasks.py`` to be ``docs.py``; no other changes "
+"are needed there. Then we create a new ``tasks.py``, and for the sake of "
+"brevity populate it with a new, truly top level task called ``deploy``."
+msgstr ""
+"首先让我们把 ``tasks.py`` 重命名为 ``docs.py``；那里不需要做其他改动。"
+"然后我们创建一个新的 ``tasks.py``，为了简洁起见，用一个新的、真正的顶级任务 ``deploy`` 来填充它"。
+
+#: ../../getting-started.rst:213
+msgid ""
+"Finally, we can use a new API member, the `.Collection` class, to bind "
+"this task and the ``docs`` module into a single explicit namespace.  When"
+" Invoke loads your task module, if a `.Collection` object bound as ``ns``"
+" or ``namespace`` exists it will get used for the root namespace::"
+msgstr ""
+"最后，我们可以使用新的 API 成员，`.Collection` 类，将这个任务和 ``docs`` 模块绑定到一个明确的命名空间。"
+"当 Invoke 加载你的任务模块时，如果 `.Collection` 对象作为 ``ns`` 或 ``namespace`` 绑定存在，它将被用于根命名空间 ::"
+
+#: ../../getting-started.rst:228
+msgid "The result::"
+msgstr "结果 ::"
+
+#: ../../getting-started.rst:237
+msgid ""
+"For a more detailed breakdown of how namespacing works, please see "
+":doc:`the docs <concepts/namespaces>`."
+msgstr ""
+"关于命名间距如何工作的更详细的分类，请参见 :doc:`文档 <concepts/namespaces>`。"

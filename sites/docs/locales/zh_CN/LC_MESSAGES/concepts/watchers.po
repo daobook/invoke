@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../concepts/watchers.rst:5
+msgid "Automatically responding to program output"
+msgstr ""
+
+#: ../../concepts/watchers.rst:8
+msgid "Background"
+msgstr ""
+
+#: ../../concepts/watchers.rst:10
+msgid ""
+"Command-line programs tend to be designed for interactive shells, which "
+"frequently manifests as waiting around for user input, or \"prompts\". "
+"Well-designed programs offer options for pre-empting such prompts, "
+"resulting in an easily automated workflow -- but with the rest, "
+"interactivity is unavoidable."
+msgstr ""
+
+#: ../../concepts/watchers.rst:16
+msgid ""
+"Thankfully, Invoke's `.Runner` class not only forwards your standard "
+"input to the running program (allowing you to manually respond to "
+"prompts) but it can also be configured to respond automatically on your "
+"behalf."
+msgstr ""
+
+#: ../../concepts/watchers.rst:21
+msgid "Basic use"
+msgstr ""
+
+#: ../../concepts/watchers.rst:23
+msgid ""
+"The mechanism for this automation is the ``watchers`` kwarg to the "
+"`.Runner.run` method (and its wrappers elsewhere, such as `.Context.run` "
+"and `invoke.run`), which is a list of `.StreamWatcher`-subclass instances"
+" configured to watch for patterns & respond accordingly. The simplest of "
+"these is `.Responder`, which just replies with its configured response "
+"every time its pattern is seen; others can be found in the :doc:`watchers"
+" module </api/watchers>`."
+msgstr ""
+
+#: ../../concepts/watchers.rst:32
+msgid ""
+"As with all other arguments to ``run``, you can also set the default set "
+"of watchers globally via :doc:`configuration files <configuration>`."
+msgstr ""
+
+#: ../../concepts/watchers.rst:35
+msgid ""
+"Take for example this program which expects a manual response to a yes/no"
+" prompt::"
+msgstr ""
+
+#: ../../concepts/watchers.rst:43
+msgid ""
+"You *could* call ``run(\"excitable-program\")``, manually watch for the "
+"prompt, and mash Y by hand. But if you instead supply a `.Responder` like"
+" so::"
+msgstr ""
+
+#: ../../concepts/watchers.rst:54
+msgid ""
+"Then `.Runner` passes the program's ``stdout`` and ``stderr`` through "
+"``responder``, which watches for ``\"Are you ready? [Y/n] \"`` and "
+"automatically writes ``y`` (plus ``\\n`` to simulate hitting "
+"Enter/Return) to the program's ``stdin``."
+msgstr ""
+
+#: ../../concepts/watchers.rst:60
+msgid ""
+"The pattern argument to `.Responder` is treated as a `regular expression "
+"<re>`, requiring more care (note how we had to escape our square-brackets"
+" in the above example) but providing more power as well."
+msgstr ""
+

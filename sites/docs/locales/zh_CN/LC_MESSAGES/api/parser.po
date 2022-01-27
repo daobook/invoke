@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../api/parser.rst:3
+msgid "``parser``"
+msgstr ""
+
+#: ../../api/parser.rst:5
+msgid ""
+"The command-line parsing framework is split up into a handful of sub-"
+"modules:"
+msgstr ""
+
+#: ../../api/parser.rst:7
+msgid "``parser.argument``"
+msgstr ""
+
+#: ../../api/parser.rst:8
+msgid "``parser.context`` (not to be confused with the top level ``context``!)"
+msgstr ""
+
+#: ../../api/parser.rst:9
+msgid "``parser.parser``"
+msgstr ""
+
+#: ../../api/parser.rst:11
+msgid "API docs for all are below."
+msgstr ""
+
