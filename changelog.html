@@ -1,0 +1,1652 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Changelog &#8212; Invoke  文档</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="prev" title="欢迎来到 Invike！" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="永久链接至标题">¶</a></h1>
+<section id="1.6.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.6.0">1.6.0</a> <span style="font-size: 75%;">2021-07-09</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/791">#791</a><span>:</span> Add a new <code class="docutils literal notranslate"><span class="pre">run.echo_format</span></code> configuration option allowing
+control over the format of echoed commands. It defaults to the previously
+hardcoded value (wrap in ANSI bold) and is thus backwards compatible. Thanks
+to David JM Emmett for the patch.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Document the <code class="docutils literal notranslate"><span class="pre">dry</span></code> keyword argument to <code class="docutils literal notranslate"><span class="pre">run</span></code>,
+which had been added in version 1.3 but only documented as a CLI flag; it
+does also work as a kwarg (and as a config option).</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> (Mostly) alphabetize the list of <code class="docutils literal notranslate"><span class="pre">run()</span></code> params in
+the runners API docs. Previously they were an unordered mess.</p></li>
+</ul>
+</section>
+<section id="1.5.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.5.1">1.5.1</a> <span style="font-size: 75%;">2021-07-09</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/751">#751</a><span>:</span> Don’t explode on empty-but-for-whitespace task docstrings. Thanks
+to Matt Hayden for the report &amp; initial patches.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Document the <code class="docutils literal notranslate"><span class="pre">dry</span></code> keyword argument to <code class="docutils literal notranslate"><span class="pre">run</span></code>,
+which had been added in version 1.3 but only documented as a CLI flag; it
+does also work as a kwarg (and as a config option).</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> (Mostly) alphabetize the list of <code class="docutils literal notranslate"><span class="pre">run()</span></code> params in
+the runners API docs. Previously they were an unordered mess.</p></li>
+</ul>
+</section>
+<section id="1.5.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.5.0">1.5.0</a> <span style="font-size: 75%;">2020-12-30</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Upgrade <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code> to wrap its methods in
+<code class="docutils literal notranslate"><span class="pre">Mock</span></code> objects if the <code class="docutils literal notranslate"><span class="pre">(unittest.)mock</span></code> library is importable. This makes
+testing Invoke-using codebases even easier.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/700">#700</a><span>:</span> Automatically populate the <code class="docutils literal notranslate"><span class="pre">command</span></code> attribute of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> objects returned by <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code>
+methods, with the command string triggering that result. Previously users had
+to do this by hand or otherwise suffered inaccurate result objects. Thanks to
+<code class="docutils literal notranslate"><span class="pre">&#64;SwampFalc</span></code> for the report &amp; initial patch.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/441">#441</a><span>:</span> Add a new <code class="docutils literal notranslate"><span class="pre">repeat</span></code> kwarg to <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code>
+which, when True (default: False) causes stored results for its methods to be
+yielded repeatedly instead of consumed. Feature request courtesy of
+<code class="docutils literal notranslate"><span class="pre">&#64;SwampFalc</span></code>.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code> now accepts a few quality-of-life
+shortcuts as keys and values in its <code class="docutils literal notranslate"><span class="pre">run</span></code>/<code class="docutils literal notranslate"><span class="pre">sudo</span></code> arguments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Keys may be compiled regular expression objects, as well as strings, and
+will match any calls whose commands match the regex.</p></li>
+<li><p>Values may be <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> as shorthand for otherwise empty
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> objects with exit codes of <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code>
+respectively.</p></li>
+<li><p>Values may also be strings, as shorthand for otherwise empty
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> objects with those strings given as the
+<code class="docutils literal notranslate"><span class="pre">stdout</span></code> argument.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code> now populates its
+<code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> exception instances (typically raised when a command
+is executed which had no pre-prepared result) with the command string that
+triggered them; this makes it much easier to tell what exactly in a test
+caused the error.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/197">#197</a><span>:</span> Allow subcollections to act as the default ‘tasks’ of their
+parent collections (via the new <code class="docutils literal notranslate"><span class="pre">default</span></code> kwarg to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">add_collection</span></code>). This means that nontrivial
+task trees can specify eg “use my test subcollection’s default task as the
+global default task” and similar. Thanks to Tye Wang for the request and
+initial patch.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/454">#454</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/577">#577</a>/<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/658">#658</a>, via
+<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/583">#583</a>/<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/681">#681</a>/<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/607">#607</a>) Allow any string-compatible object to
+be passed to <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.cd</span></code>, enabling use of eg
+<code class="docutils literal notranslate"><span class="pre">pathlib.Path</span></code> instances. Thanks to Jimm Domingo for the original report
+and Ludovico Bianchi, Mario César, and Floris Lambrechts for patches.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Immutable iterable result values handed to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code> would yield errors (due to the use of
+<code class="docutils literal notranslate"><span class="pre">pop()</span></code>). The offending logic has been retooled to be more iterator-focused
+and now works for tuples and etc.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/398">#398</a><span>:</span> (via <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/611">#611</a>/<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/580">#580</a>) Don’t silently ignore task
+help specifiers which don’t actually map to the decorated task’s arguments
+(eg <code class="docutils literal notranslate"><span class="pre">&#64;task(help={&quot;foo&quot;:</span> <span class="pre">&quot;help</span> <span class="pre">for</span> <span class="pre">foo&quot;})</span></code> wrapping a task without a <code class="docutils literal notranslate"><span class="pre">foo</span></code>
+argument). Reported by Sohaib Farooqi, with original patches by Hayden
+Flinner and Floris Lambrechts.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/409">#409</a><span>:</span> (via <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/611">#611</a>/<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/580">#580</a>) Don’t silently discard help
+text for task arguments whose names happen to contain underscores. Reported
+by <code class="docutils literal notranslate"><span class="pre">&#64;iago1460</span></code>, original patches by Hayden Flinner and Floris Lambrechts.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/586">#586</a><span>:</span> Explicitly strip out <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> (and for good
+measure, <code class="docutils literal notranslate"><span class="pre">.py[co]</span></code>, which previously we only stripped from the <code class="docutils literal notranslate"><span class="pre">tests/</span></code>
+folder) in our <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>, since at least some earlier releases
+erroneously included such. Credit to Martijn Pieters for the report and
+Floris Lambrechts for the patch.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Update the <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/testing.html#testing-user-code" title="(在 Invoke)"><span class="xref std std-ref">testing documentation</span></a> a
+bit: cleaned up existing examples and added new sections for the other
+updates in the 1.5 release.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Enhanced test coverage in a handful of modules whose coverage
+was under 90%.</p></li>
+</ul>
+</section>
+<section id="1.4.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.4.1">1.4.1</a> <span style="font-size: 75%;">2020-01-29</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/518">#518</a><span>:</span> Close pseudoterminals opened by the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Local</span></code> class
+during <code class="docutils literal notranslate"><span class="pre">run(...,</span> <span class="pre">pty=True)</span></code>. Previously, these were only closed
+incidentally at process shutdown, causing file descriptor leakage in
+long-running processes. Thanks to Jonathan Paulson for the report.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/660">#660</a><span>:</span> Fix an issue with <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> &amp; friends having intermittent
+problems at exit time (symptom was typically about the exit code value being
+<code class="docutils literal notranslate"><span class="pre">None</span></code> instead of an integer; often with an exception trace). Thanks to
+Frank Lazzarini for the report and to the numerous others who provided
+reproduction cases.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/586">#586</a><span>:</span> Explicitly strip out <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> (and for good
+measure, <code class="docutils literal notranslate"><span class="pre">.py[co]</span></code>, which previously we only stripped from the <code class="docutils literal notranslate"><span class="pre">tests/</span></code>
+folder) in our <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>, since at least some earlier releases
+erroneously included such. Credit to Martijn Pieters for the report and
+Floris Lambrechts for the patch.</p></li>
+</ul>
+</section>
+<section id="1.3.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.3.1">1.3.1</a> <span style="font-size: 75%;">2020-01-29</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/518">#518</a><span>:</span> Close pseudoterminals opened by the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Local</span></code> class
+during <code class="docutils literal notranslate"><span class="pre">run(...,</span> <span class="pre">pty=True)</span></code>. Previously, these were only closed
+incidentally at process shutdown, causing file descriptor leakage in
+long-running processes. Thanks to Jonathan Paulson for the report.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/660">#660</a><span>:</span> Fix an issue with <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> &amp; friends having intermittent
+problems at exit time (symptom was typically about the exit code value being
+<code class="docutils literal notranslate"><span class="pre">None</span></code> instead of an integer; often with an exception trace). Thanks to
+Frank Lazzarini for the report and to the numerous others who provided
+reproduction cases.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/586">#586</a><span>:</span> Explicitly strip out <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> (and for good
+measure, <code class="docutils literal notranslate"><span class="pre">.py[co]</span></code>, which previously we only stripped from the <code class="docutils literal notranslate"><span class="pre">tests/</span></code>
+folder) in our <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code>, since at least some earlier releases
+erroneously included such. Credit to Martijn Pieters for the report and
+Floris Lambrechts for the patch.</p></li>
+</ul>
+</section>
+<section id="1.4.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.4.0">1.4.0</a> <span style="font-size: 75%;">2020-01-03</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Never accompanied the top-level singleton <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> (which
+simply wraps an anonymous <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code>’s <code class="docutils literal notranslate"><span class="pre">run</span></code> method) with
+its logical sibling, <code class="xref py py-obj docutils literal notranslate"><span class="pre">sudo</span></code> - this has been remedied.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/682">#682</a><span>:</span> (originally reported as <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/194">#194</a>) Add asynchronous
+behavior to <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>:</p>
+<ul class="simple">
+<li><p>Basic asynchronicity, where the method returns as soon as the subprocess
+has started running, and that return value is an object with methods
+allowing access to the final result.</p></li>
+<li><p>“Disowning” subprocesses entirely, which not only returns immediately but
+also omits background threading, allowing the subprocesses to outlive
+Invoke’s own process.</p></li>
+</ul>
+<p>See the updated API docs for the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code> for details on the
+new <code class="docutils literal notranslate"><span class="pre">asynchronous</span></code> and <code class="docutils literal notranslate"><span class="pre">disown</span></code> kwargs enabling this behavior. Thanks to
+<code class="docutils literal notranslate"><span class="pre">&#64;MinchinWeb</span></code> for the original report.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> As part of feature work on <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/682">#682</a>, we noticed that the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> return value from <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> was
+inconsistent between dry-run and regular modes; for example, the dry-run
+version of the object lacked updated values for <code class="docutils literal notranslate"><span class="pre">hide</span></code>, <code class="docutils literal notranslate"><span class="pre">encoding</span></code> and
+<code class="docutils literal notranslate"><span class="pre">env</span></code>. This has been fixed.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/637">#637</a><span>:</span> A corner case in <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> caused
+overridden streams to be unused if those streams were also set to be hidden
+(eg <code class="docutils literal notranslate"><span class="pre">run(command,</span> <span class="pre">hide=True,</span> <span class="pre">out_stream=StringIO())</span></code> would result in no
+writes to the <code class="docutils literal notranslate"><span class="pre">StringIO</span></code> object).</p>
+<p>This has been fixed - hiding for a given stream is now ignored if that stream
+has been set to some non-<code class="docutils literal notranslate"><span class="pre">None</span></code> (and in the case of <code class="docutils literal notranslate"><span class="pre">in_stream</span></code>,
+non-<code class="docutils literal notranslate"><span class="pre">False</span></code>) value.</p>
+</li>
+</ul>
+</section>
+<section id="1.3.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.3.0">1.3.0</a> <span style="font-size: 75%;">2019-08-06</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Allow the configuration system to override which
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/executor.html#invoke.executor.Executor" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a> subclass to use when executing tasks (via an
+import-oriented string).</p>
+<p>Specifically, it’s now possible to alter execution by distributing such a
+subclass alongside, for example, a repository-local config file which sets
+<code class="docutils literal notranslate"><span class="pre">tasks.executor_class</span></code>; previously, this sort of thing required use of
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/library.html#reusing-as-a-binary" title="(在 Invoke)"><span class="xref std std-ref">custom binaries</span></a>.</p>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/539">#539</a><span>:</span> (via <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/645">#645</a>) Add support for command timeouts, i.e. the
+ability to add an upper bound on how long a call to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> may take to execute. Specifically:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">timeout</span></code> argument to <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">timeouts.command</span></code> config setting mapping to that argument.</p></li>
+<li><p>The <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/invoke.html#cmdoption-T" title="(在 Invoke)"><code class="xref std std-option docutils literal notranslate"><span class="pre">-T/--command-timeout</span></code></a> CLI flag.</p></li>
+</ul>
+<p>Thanks to Israel Fruchter for the request &amp; an early version of the patchset.</p>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/324">#324</a><span>:</span> Add basic dry-run support, in the form of a new
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/invoke.html#cmdoption-dry" title="(在 Invoke)"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dry</span></code></a> CLI option and matching <code class="docutils literal notranslate"><span class="pre">run.dry</span></code> config setting, which
+causes command runners (eg <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.run</span></code>) to:</p>
+<ul class="simple">
+<li><p>Act as if the <code class="docutils literal notranslate"><span class="pre">echo</span></code> option has been turned on, printing the
+command-to-be-run to stdout;</p></li>
+<li><p>Skip actual subprocess invocation (returning before any of that machinery
+starts running);</p></li>
+<li><p>Return a dummy <code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> object with ‘blank’ values (empty
+stdout/err strings, <code class="docutils literal notranslate"><span class="pre">0</span></code> exit code, etc).</p></li>
+</ul>
+<p>This allows quickly seeing what a given task or series of tasks might do,
+without actually running any shell commands (though naturally, any
+state-modifying Python code will still run).</p>
+<p>Thanks to Monty Hindman for the feature request and <code class="docutils literal notranslate"><span class="pre">&#64;thebjorn</span></code> for the
+initial patch.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/466">#466</a><span>:</span> Update the parsing and CLI-program mechanisms so that all
+core arguments may be given within task CLI contexts; previously this
+functionality only worked for the <code class="docutils literal notranslate"><span class="pre">--help</span></code> flag, and other core arguments
+given after task names (such as <code class="docutils literal notranslate"><span class="pre">--echo</span></code>) were silently ignored.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/557">#557</a><span>:</span> (with assist from <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/640">#640</a>) Fix the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">cd</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">prefix</span></code> context
+managers so that <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">cd</span></code> and <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">prefix</span></code> correctly revert their state
+manipulations after they exit, when exceptions occur. Thanks to Jon Walsh and
+Artur Puzio for their respective patches.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/552">#552</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/553">#553</a>) Add a new <code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code>
+method, <code class="xref py py-obj docutils literal notranslate"><span class="pre">close_proc_stdin</span></code>, and call it when standard
+input processing detects an EOF. Without this, subprocesses that read their
+stdin until EOF would block forever, hanging the program. Thanks to
+<code class="docutils literal notranslate"><span class="pre">&#64;plockc</span></code> for the report &amp; initial patch.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This fix only applies when <code class="docutils literal notranslate"><span class="pre">pty=False</span></code> (the default); PTYs complicate the
+situation greatly (but also mean the issue is less likely to occur).</p>
+</div>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/384">#384</a><span>:</span> (via <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/653">#653</a>) Modify config file loading so it detects
+missing-file IOErrors via their <code class="docutils literal notranslate"><span class="pre">errno</span></code> attribute instead of their string
+rendering (eg <code class="docutils literal notranslate"><span class="pre">&quot;No</span> <span class="pre">such</span> <span class="pre">file&quot;</span></code>). This should improve compatibility for
+non-English locales. Thanks to Patrick Massot for the report and Github user
+<code class="docutils literal notranslate"><span class="pre">&#64;cybiere</span></code> for the patch.</p></li>
+</ul>
+</section>
+<section id="1.2.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.2.0">1.2.0</a> <span style="font-size: 75%;">2018-09-13</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/301">#301</a><span>:</span> (via <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/414">#414</a>) Overhaul tab completion mechanisms so users
+can <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/invoke.html#print-completion-script" title="(在 Invoke)"><span class="xref std std-ref">print a completion script</span></a> which
+automatically matches the emitting binary’s configured names (compared to the
+previous hardcoded scripts, which only worked for <code class="docutils literal notranslate"><span class="pre">inv</span></code>/<code class="docutils literal notranslate"><span class="pre">invoke</span></code> by
+default). Thanks to Nicolas Höning for the foundational patchset.</p></li>
+</ul>
+</section>
+<section id="1.1.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.1.1">1.1.1</a> <span style="font-size: 75%;">2018-07-31</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/559">#559</a><span>:</span> (also <a class="reference external" href="https://github.com/fabric/fabric/issues/1812">fabric/fabric#1812</a>) Modify how
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code> performs stdin terminal mode changes, to avoid
+incorrect terminal state restoration when run concurrently (which could lead
+to things like terminal echo becoming disabled after the Python process
+exits).</p>
+<p>Thanks to Adam Jensen and Nick Timkovich for the detailed bug reports &amp;
+reproduction assistance.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/556">#556</a><span>:</span> (also <a class="reference external" href="https://github.com/fabric/fabric/issues/1823">fabric/fabric#1823</a>) Pre-emptively check for an
+error condition involving an unpicklable config file value (Python config
+files and imported module objects) and raise a useful exception instead of
+allowing a confusing <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> to bubble up later. Reported by Pham Cong
+Dinh.</p></li>
+</ul>
+</section>
+<section id="1.0.2">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.0.2">1.0.2</a> <span style="font-size: 75%;">2018-07-31</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/559">#559</a><span>:</span> (also <a class="reference external" href="https://github.com/fabric/fabric/issues/1812">fabric/fabric#1812</a>) Modify how
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code> performs stdin terminal mode changes, to avoid
+incorrect terminal state restoration when run concurrently (which could lead
+to things like terminal echo becoming disabled after the Python process
+exits).</p>
+<p>Thanks to Adam Jensen and Nick Timkovich for the detailed bug reports &amp;
+reproduction assistance.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/556">#556</a><span>:</span> (also <a class="reference external" href="https://github.com/fabric/fabric/issues/1823">fabric/fabric#1823</a>) Pre-emptively check for an
+error condition involving an unpicklable config file value (Python config
+files and imported module objects) and raise a useful exception instead of
+allowing a confusing <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> to bubble up later. Reported by Pham Cong
+Dinh.</p></li>
+</ul>
+</section>
+<section id="1.1.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.1.0">1.1.0</a> <span style="font-size: 75%;">2018-07-12</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/543">#543</a><span>:</span> Implemented support for using <code class="docutils literal notranslate"><span class="pre">INVOKE_RUNTIME_CONFIG</span></code> env
+var as an alternate method of supplying a runtime configuration file path
+(effectively, an env var based version of using the <code class="docutils literal notranslate"><span class="pre">-f</span></code>/<code class="docutils literal notranslate"><span class="pre">--config</span></code>
+option). Feature request via Kevin J. Qiu.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Add a <code class="docutils literal notranslate"><span class="pre">klass</span></code> kwarg to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> to allow
+extending codebases the ability to create their own variants on
+<code class="docutils literal notranslate"><span class="pre">&#64;task</span></code>/<code class="docutils literal notranslate"><span class="pre">Task</span></code>.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Remove overzealous argument checking in <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code>, instead just handing any extra kwargs into the task
+class constructor. The high level behavior for truly invalid kwargs is the
+same (<code class="docutils literal notranslate"><span class="pre">TypeError</span></code>) but now extending codebases can add kwargs to their
+versions of <code class="docutils literal notranslate"><span class="pre">&#64;task</span></code> without issue.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Refactor <code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code> internals slightly, exposing some
+previously internal logic as the <code class="docutils literal notranslate"><span class="pre">clone_data</span></code> method; this is useful for
+client codebases when extending <code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code> and friends.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Enhance <code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code> with a new method
+(<code class="docutils literal notranslate"><span class="pre">clone_data</span></code>) and new kwarg to an existing method (<code class="docutils literal notranslate"><span class="pre">clone</span></code> grew
+<code class="docutils literal notranslate"><span class="pre">with_</span></code>) to assist subclassers when extending.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Implemented some minor missing tests, such as testing
+the <code class="docutils literal notranslate"><span class="pre">INVOKE_DEBUG</span></code> low-level env var.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fix some test-suite-only failures preventing
+successful testing on Python 3.7 and PyPy3, and move them out of the ‘allowed
+failures’ test matrix quarantine now that they pass.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Apply the <a class="reference external" href="https://black.readthedocs.io/">black</a>
+code formatter to our codebase and our CI configuration.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fixed some inaccuracies in the API docs around
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/executor.html#invoke.executor.Executor" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a> and its <code class="docutils literal notranslate"><span class="pre">core</span></code> kwarg (was erroneously referring
+to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ParserContext</span></code> instead of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseResult</span></code>). Includes related cleaning-up of
+docstrings and tests.</p></li>
+</ul>
+</section>
+<section id="1.0.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.0.1">1.0.1</a> <span style="font-size: 75%;">2018-07-12</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> As part of solving <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/528">#528</a> we found a related bug, where
+unnamed subcollections also caused issues with <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--list</span>
+<span class="pre">--list-format=json</span></code>. Specifically, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.serialized</span></code> sorts subcollections by name,
+which is problematic when that name is <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is now fixed.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/528">#528</a><span>:</span> Around Invoke 0.23 we broke the ability to weave in subcollections
+via keyword arguments to <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>, though it primarily
+manifests as <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> related errors during <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--list</span></code>. This was
+unintentional and has been fixed. Report submitted by Tuukka Mustonen.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fix up the <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code> to reference dynamic
+class name instead of hardcoding <code class="docutils literal notranslate"><span class="pre">&quot;Call&quot;</span></code>; this allows subclasses’
+<code class="docutils literal notranslate"><span class="pre">__repr__</span></code> output to be correct instead of confusing.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/270">#270</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/551">#551</a>) <code class="docutils literal notranslate"><span class="pre">None</span></code> values in config levels (most
+commonly caused by empty configuration files) would raise <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>
+when <code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_dicts</span></code> was used to merge config levels together.
+This has been fixed. Thanks to Tyler Hoffman and Vlad Frolov for the reports.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Implemented some minor missing tests, such as testing
+the <code class="docutils literal notranslate"><span class="pre">INVOKE_DEBUG</span></code> low-level env var.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fix some test-suite-only failures preventing
+successful testing on Python 3.7 and PyPy3, and move them out of the ‘allowed
+failures’ test matrix quarantine now that they pass.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Apply the <a class="reference external" href="https://black.readthedocs.io/">black</a>
+code formatter to our codebase and our CI configuration.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fixed some inaccuracies in the API docs around
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/executor.html#invoke.executor.Executor" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a> and its <code class="docutils literal notranslate"><span class="pre">core</span></code> kwarg (was erroneously referring
+to <code class="xref py py-obj docutils literal notranslate"><span class="pre">ParserContext</span></code> instead of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseResult</span></code>). Includes related cleaning-up of
+docstrings and tests.</p></li>
+</ul>
+</section>
+<section id="1.0.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/1.0.0">1.0.0</a> <span style="font-size: 75%;">2018-05-09</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Updated <code class="xref py py-obj docutils literal notranslate"><span class="pre">Task</span></code> to mimic the wrapped function’s
+<code class="docutils literal notranslate"><span class="pre">__module__</span></code> attribute, allowing for better interaction with things like
+Sphinx autodoc that attempt to filter out imported objects from a module.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Added the <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/invoke.html#prompt-for-sudo-password" title="(在 Invoke)"><span class="xref std std-ref">–prompt-for-sudo-password</span></a> CLI option for getpass-based up-front prompting
+of a sensitive configuration value.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Tweaked the innards of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>/<code class="xref py py-obj docutils literal notranslate"><span class="pre">DataProxy</span></code> to prevent accessing
+properties &amp; other attributes’ values during <code class="docutils literal notranslate"><span class="pre">__setattr__</span></code> (the code in
+question only needed the names). This should have no noticeable effect on
+user code (besides a marginal speed increase) but fixed some minor test
+coverage issues.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Removed an old, unused and untested (but, regrettably,
+documented and public) method that doesn’t seem to be much use:
+<code class="docutils literal notranslate"><span class="pre">invoke.config.Config.paths</span></code>. Please reach out if you were actually using
+it and we may consider adding some form of it back.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is a backwards incompatible change if you were using <code class="docutils literal notranslate"><span class="pre">Config.paths</span></code>.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="0.23.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.23.0">0.23.0</a> <span style="font-size: 75%;">2018-04-29</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/33">#33</a><span>:</span> Overhaul task listing (formerly just a simple, boolean
+<code class="docutils literal notranslate"><span class="pre">--list</span></code>) to make life easier for users with nontrivial task trees:</p>
+<ul class="simple">
+<li><p>Limit display to a specific namespace by giving an optional argument to
+<code class="docutils literal notranslate"><span class="pre">--list</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">--list</span> <span class="pre">build</span></code>;</p></li>
+<li><p>Additional output formats besides the default (now known as <code class="docutils literal notranslate"><span class="pre">flat</span></code>) such
+as a nested view with <code class="docutils literal notranslate"><span class="pre">--list-format</span> <span class="pre">nested</span></code> or script-friendly output
+with <code class="docutils literal notranslate"><span class="pre">--list-format</span> <span class="pre">json</span></code>.</p></li>
+<li><p>The default <code class="docutils literal notranslate"><span class="pre">flat</span></code> format now sorts a bit differently - the previous
+algorithm would break up trees of tasks.</p></li>
+<li><p>Limit listing depth, so it’s easier to view only the first level or two
+(i.e. the overall namespaces) of a large tree, e.g. <code class="docutils literal notranslate"><span class="pre">--list</span> <span class="pre">--list-depth</span>
+<span class="pre">1</span></code>;</p></li>
+</ul>
+<p>Thanks to the many users who submitted various requests under this ticket’s
+umbrella, and to Dave Burkholder in particular for detailed use case analysis
+&amp; feedback.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> (partially re: <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/449">#449</a>) Update error message around
+missing positional arguments so it actually lists them. Includes a minor
+tweak to the API of <code class="xref py py-obj docutils literal notranslate"><span class="pre">ParserContext</span></code>, namely changing
+<code class="docutils literal notranslate"><span class="pre">needs_positional_arguments</span></code> (bool) to <code class="docutils literal notranslate"><span class="pre">missing_positional_arguments</span></code>
+(list).</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/516">#516</a><span>:</span> Remove the CLI parser ambiguity rule regarding flag-like
+tokens which are seen after an optional-value flag (e.g. <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">task</span>
+<span class="pre">--optionally-takes-a-value</span> <span class="pre">--some-other-flag</span></code>.) Previously, any flag-like
+value in such a spot was considered ambiguous and raised a
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">ParseError</span></code>. Now, the surrounding parse context is used
+to resolve the ambiguity, and no error is raised.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This behavior is backwards incompatible, but only if you had the minority
+case where users frequently <em>and erroneously</em> give otherwise-legitimate
+flag-like values to optional-value arguments, and you rely on the parse
+errors to notify them of their mistake. (If you don’t understand what this
+means, don’t worry, you almost certainly don’t need to care!)</p>
+</div>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Integer-type CLI arguments were not displaying placeholder
+text in <code class="docutils literal notranslate"><span class="pre">--help</span></code> output (i.e. they appeared as <code class="docutils literal notranslate"><span class="pre">--myint</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">--myint=INT</span></code>.) This has been fixed.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> had some minor bugs or
+oversights in how it responds to things like <code class="docutils literal notranslate"><span class="pre">repr()</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>; boolean
+behavior; how docstrings appear when created from a Python module; etc. All
+are now fixed. If you’re not sure whether this affects you, it does not :)</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Previously, some error conditions (such as invalid task or
+collection names being supplied by the user) printed to standard output,
+instead of standard error. Standard error seems more appropriate here, so
+this has been fixed.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is backwards incompatible if you were explicitly checking the standard
+output of the <code class="docutils literal notranslate"><span class="pre">inv[oke]</span></code> program for some of these error messages.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>If your code is manually raising or introspecting instances of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Exit</span></code>, note that its signature has changed from
+<code class="docutils literal notranslate"><span class="pre">Exit(code=0)</span></code> to <code class="docutils literal notranslate"><span class="pre">Exit(message=None,</span> <span class="pre">code=None)</span></code>. (Thus, this will
+only impact you if you were calling its constructor instead of raising the
+class object itself.)</p>
+</div>
+</li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/469">#469</a><span>:</span> Fix up the <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/library.html#customizing-config-defaults" title="(在 Invoke)"><span class="xref std std-ref">doc/example</span></a> re: subclassing <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>.
+Credit: <code class="docutils literal notranslate"><span class="pre">&#64;Aiky30</span></code>.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/433">#433</a><span>:</span> Add -dev and -nightly style Python versions to our
+Travis builds. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;SylvainDe</span></code> for the contribution.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Rename <code class="docutils literal notranslate"><span class="pre">invoke.platform</span></code> to <code class="docutils literal notranslate"><span class="pre">invoke.terminals</span></code>; it was
+inadvertently shadowing the <code class="docutils literal notranslate"><span class="pre">platform</span></code> standard library builtin module.
+This was not causing any bugs we are aware of, but it is still poor hygiene.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This change is technically backwards incompatible. We don’t expect many
+users import <code class="docutils literal notranslate"><span class="pre">invoke.platform</span></code> directly, but if you are, take note.</p>
+</div>
+</li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/515">#515</a><span>:</span> Ported the test suite from <a class="reference external" href="https://github.com/bitprophet/spec">spec</a> (<a class="reference external" href="https://nose.readthedocs.io">nose</a>) to <a class="reference external" href="https://github.com/bitprophet/pytest-relaxed">pytest-relaxed</a> (<a class="reference external" href="https://pytest.org">pytest</a>) as pytest basically won the test-runner war against
+nose &amp; has greater mindshare, more shiny toys, etc.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> (partially re: <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/33">#33</a>) Renamed the <code class="docutils literal notranslate"><span class="pre">--root</span></code> CLI flag to
+<code class="docutils literal notranslate"><span class="pre">--search-root</span></code>, partly for clarity (<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/33">#33</a> will be adding namespace
+display-root related flags, which would make <code class="docutils literal notranslate"><span class="pre">--root</span></code> ambiguous) and partly
+for consistency with the config option, which was already named
+<code class="docutils literal notranslate"><span class="pre">search_root</span></code>. (The short version of the flag, <code class="docutils literal notranslate"><span class="pre">-r</span></code>, is unchanged.)</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is a backwards incompatible change. To fix, simply use
+<code class="docutils literal notranslate"><span class="pre">--search-root</span></code> anywhere you were previously using <code class="docutils literal notranslate"><span class="pre">--root</span></code>.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="0.22.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.22.1">0.22.1</a> <span style="font-size: 75%;">2018-01-29</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/488">#488</a><span>:</span> Account for additional I/O related <code class="docutils literal notranslate"><span class="pre">OSError</span></code> error strings
+when attempting to capture only this specific subtype of error. This should
+fix some issues with less common libc implementations such as <code class="docutils literal notranslate"><span class="pre">musl</span></code> (as
+found on e.g. Alpine Linux.) Thanks to Rajitha Perera for the report.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/437">#437</a><span>:</span> When merging configuration levels together (which uses
+<a class="reference external" href="https://docs.python.org/2.7/library/copy.html#copy.copy" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy.copy</span></code></a> by default), pass file objects by reference so they don’t get
+closed. Catch &amp; patch by Paul Healy.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/342">#342</a><span>:</span> Accidentally hardcoded <code class="docutils literal notranslate"><span class="pre">Collection</span></code> instead of <code class="docutils literal notranslate"><span class="pre">cls</span></code> in
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.from_module</span></code> (an
+alternate constructor and therefore a classmethod.) This made it rather hard
+to properly subclass <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>. Report and initial
+patch courtesy of Luc Saffre.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/469">#469</a><span>:</span> Fix up the <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/library.html#customizing-config-defaults" title="(在 Invoke)"><span class="xref std std-ref">doc/example</span></a> re: subclassing <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>.
+Credit: <code class="docutils literal notranslate"><span class="pre">&#64;Aiky30</span></code>.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/433">#433</a><span>:</span> Add -dev and -nightly style Python versions to our
+Travis builds. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;SylvainDe</span></code> for the contribution.</p></li>
+</ul>
+</section>
+<section id="0.22.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.22.0">0.22.0</a> <span style="font-size: 75%;">2017-11-29</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Iterable-type CLI args were actually still somewhat broken &amp;
+were ‘eating’ values after themselves in the parser stream (thus e.g.
+preventing parsing of subsequent tasks or flags.) This has been fixed.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/407">#407</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/494">#494</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/67">#67</a>) Update the default value of
+the <code class="docutils literal notranslate"><span class="pre">run.shell</span></code> config value so that it reflects a Windows-appropriate
+value (specifically, the <code class="docutils literal notranslate"><span class="pre">COMSPEC</span></code> env var or a fallback of <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>) on
+Windows platforms. This prevents Windows users from being forced to always
+ship around configuration-level overrides.</p>
+<p>Thanks to Maciej ‘maQ’ Kusz for the original patchset, and to <code class="docutils literal notranslate"><span class="pre">&#64;thebjorn</span></code>
+and Garrett Jenkins for providing lots of feedback.</p>
+</li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/364">#364</a><span>:</span> Drop Python 2.6 and Python 3.3 support, as these versions now
+account for only very low percentages of the userbase and are unsupported (or
+about to be unsupported) by the rest of the ecosystem, including <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<p>This includes updating documentation &amp; packaging metadata as well as taking
+advantage of basic syntax additions like set literals/comprehensions (<code class="docutils literal notranslate"><span class="pre">{1,</span>
+<span class="pre">2,</span> <span class="pre">3}</span></code> instead of <code class="docutils literal notranslate"><span class="pre">set([1,</span> <span class="pre">2,</span> <span class="pre">3])</span></code>) and removing positional string
+argument specifiers (<code class="docutils literal notranslate"><span class="pre">&quot;{}&quot;.format(val)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">&quot;{0}&quot;.format(val)</span></code>).</p>
+</li>
+</ul>
+</section>
+<section id="0.21.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.21.0">0.21.0</a> <span style="font-size: 75%;">2017-09-18</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/132">#132</a><span>:</span> Implement ‘iterable’ and ‘incrementable’ CLI flags, allowing
+for invocations like <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">mytask</span> <span class="pre">--listy</span> <span class="pre">foo</span> <span class="pre">--listy</span> <span class="pre">bar</span></code> (resulting in a
+call like <code class="docutils literal notranslate"><span class="pre">mytask(listy=['foo',</span> <span class="pre">'bar'])</span></code>) or <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">mytask</span> <span class="pre">-vvv</span></code> (resulting
+in e.g. <code class="docutils literal notranslate"><span class="pre">mytask(verbose=3)</span></code>. Specifically, these require use of the new
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/invoking-tasks.html#iterable-flag-values" title="(在 Invoke)"><span class="xref std std-ref">iterable</span></a> and <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/invoking-tasks.html#incrementable-flag-values" title="(在 Invoke)"><span class="xref std std-ref">incrementable</span></a> arguments to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> - see
+those links to the conceptual docs for details.</p></li>
+</ul>
+</section>
+<section id="0.20.4">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.20.4">0.20.4</a> <span style="font-size: 75%;">2017-08-14</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> The behavior of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> when <code class="docutils literal notranslate"><span class="pre">lazy=True</span></code>
+didn’t match that described in the API docs, after the recent updates to its
+lifecycle. (Specifically, any config data given to the constructor was not
+visible in the resulting instance until <code class="docutils literal notranslate"><span class="pre">merge()</span></code> was explicitly called.)
+This has been fixed, along with other related minor issues.</p></li>
+</ul>
+</section>
+<section id="0.20.3">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.20.3">0.20.3</a> <span style="font-size: 75%;">2017-08-04</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/467">#467</a><span>:</span> (Arguably also a feature, but since it enables behavior users
+clearly found intuitive, we’re considering it a bug.) Split up the parsing
+machinery of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Program</span></code> and pushed the <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>-making out of <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/loader.html#invoke.loader.Loader" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Loader</span></code></a>. Combined, this allows us to honor the project-level
+config file <em>before</em> the second (task-oriented) CLI parsing step, instead of
+after.</p>
+<p>For example, this means you can turn off <code class="docutils literal notranslate"><span class="pre">auto_dash_names</span></code> in your
+per-project configs and not only in your system or user configs.</p>
+<p>Report again courtesy of Luke Orland.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is a backwards incompatible change <em>if</em> you were subclassing and
+overriding any of the affected methods in the <code class="docutils literal notranslate"><span class="pre">Program</span></code> or <code class="docutils literal notranslate"><span class="pre">Loader</span></code>
+classes.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="0.20.2">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.20.2">0.20.2</a> <span style="font-size: 75%;">2017-08-02</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/465">#465</a><span>:</span> The <code class="docutils literal notranslate"><span class="pre">tasks.auto_dash_names</span></code> config option added in <code class="docutils literal notranslate"><span class="pre">0.20.0</span></code>
+wasn’t being fully honored when set to <code class="docutils literal notranslate"><span class="pre">False</span></code>; this has been fixed. Thanks
+to Luke Orland for the report.</p></li>
+</ul>
+</section>
+<section id="0.20.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.20.1">0.20.1</a> <span style="font-size: 75%;">2017-07-27</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fix a broken <code class="docutils literal notranslate"><span class="pre">six.moves</span></code> import within <code class="docutils literal notranslate"><span class="pre">invoke.util</span></code>; was
+causing <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> in environments without an external copy of <code class="docutils literal notranslate"><span class="pre">six</span></code>
+installed.</p>
+<p>The dangers of one’s local and CI environments all pulling down packages that
+use <code class="docutils literal notranslate"><span class="pre">six</span></code>! It’s everywhere!</p>
+</li>
+</ul>
+</section>
+<section id="0.20.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.20.0">0.20.0</a> <span style="font-size: 75%;">2017-07-27</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/322">#322</a><span>:</span> Allow users to completely disable mirroring of stdin to
+subprocesses, by specifying <code class="docutils literal notranslate"><span class="pre">False</span></code> for the <code class="docutils literal notranslate"><span class="pre">run.in_stream</span></code> config
+setting and/or keyword argument.</p>
+<p>This can help prevent problems when running Invoke under systems that have no
+useful standard input and which otherwise defeat our pty/fileno related
+detection.</p>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/329">#329</a><span>:</span> All task and collection names now have underscores turned into
+dashes automatically, as task parameters have been for some time. This
+impacts <code class="docutils literal notranslate"><span class="pre">--list</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code>, and of course the parser. For details, see
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/namespaces.html#dashes-vs-underscores" title="(在 Invoke)"><span>Dashes vs underscores</span></a>.</p>
+<p>This behavior is controlled by a new config setting,
+<code class="docutils literal notranslate"><span class="pre">tasks.auto_dash_names</span></code>, which can be set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to go back to the
+classic behavior.</p>
+<p>Thanks to Alexander Artemenko for the initial feature request.</p>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/310">#310</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/455">#455</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/291">#291</a>) Allow configuring collection
+root directory &amp; module name via configuration files (previously, they were
+only configurable via CLI flags or generating a custom
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Program</span></code>.)</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> (required to support <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/310">#310</a> and <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/329">#329</a>) Break up the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> lifecycle some more, allowing it to gradually load
+configuration vectors; this allows the CLI machinery
+(<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/executor.html#invoke.executor.Executor" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a>) to honor configuration settings from config
+files which impact how CLI parsing and task loading behaves.</p>
+<p>Specifically, this adds more public <code class="docutils literal notranslate"><span class="pre">Config.load_*</span></code> methods, which in
+tandem with the <code class="docutils literal notranslate"><span class="pre">lazy</span></code> kwarg to <code class="docutils literal notranslate"><span class="pre">__init__</span></code> (formerly <code class="docutils literal notranslate"><span class="pre">defer_post_init</span></code>,
+see below) allow full control over exactly when each config level is loaded.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This change may be backwards incompatible if you were using or subclassing
+the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> class in any of the following ways:</p>
+<ul>
+<li><p>If you were passing <code class="docutils literal notranslate"><span class="pre">__init__</span></code> kwargs such as <code class="docutils literal notranslate"><span class="pre">project_home</span></code> or
+<code class="docutils literal notranslate"><span class="pre">runtime_path</span></code> and expecting those files to auto-load, they no longer
+do; you must explicitly call <code class="xref py py-obj docutils literal notranslate"><span class="pre">load_project</span></code> and/or
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">load_runtime</span></code> explicitly.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">defer_post_init</span></code> keyword argument to <code class="docutils literal notranslate"><span class="pre">Config.__init__</span></code> has been
+renamed to <code class="docutils literal notranslate"><span class="pre">lazy</span></code>, and controls whether system/user config files are
+auto-loaded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Config.post_init</span></code> has been removed, in favor of explicit/granular use
+of the <code class="docutils literal notranslate"><span class="pre">load_*</span></code> family of methods.</p></li>
+<li><p>All <code class="docutils literal notranslate"><span class="pre">load_*</span></code> methods now call <code class="docutils literal notranslate"><span class="pre">Config.merge</span></code> automatically by default
+(previously, merging was deferred to the end of most config related
+workflows.)</p>
+<p>This should only be a problem if your config contents are extremely large
+(it’s an entirely in-memory dict-traversal operation) and can be avoided
+by specifying <code class="docutils literal notranslate"><span class="pre">merge=False</span></code> to any such method. (Note that you must, at
+some point, call <code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code> in order for the config
+object to work normally!)</p>
+</li>
+</ul>
+</div>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Display of hidden subprocess output when a command
+execution failed (end-of-session output starting with <code class="docutils literal notranslate"><span class="pre">Encountered</span> <span class="pre">a</span> <span class="pre">bad</span>
+<span class="pre">command</span> <span class="pre">exit</span> <span class="pre">code!</span></code>) was liable to display encoding errors (e.g. <code class="docutils literal notranslate"><span class="pre">'ascii'</span>
+<span class="pre">codec</span> <span class="pre">can't</span> <span class="pre">encode</span> <span class="pre">character</span> <span class="pre">...</span></code>) when that output was not
+ASCII-compatible.</p>
+<p>This problem was previously solved for <em>non-hidden</em> (mirrored) subprocess
+output, but the fix (encode the data with the local encoding) had not been
+applied to exception display. Now it’s applied in both cases.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/396">#396</a><span>:</span> <code class="docutils literal notranslate"><span class="pre">Collection.add_task(task,</span> <span class="pre">aliases=('other',</span> <span class="pre">'names')</span></code> was
+listed in the conceptual documentation, but not implemented (technically, it
+was removed at some point and never reinstated.) It has been (re-)added and
+now exists. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;jenisys</span></code> for the report.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This technically changes argument order for <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.add_task</span></code>, so be aware if you were using
+positional arguments!</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="0.19.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.19.0">0.19.0</a> <span style="font-size: 75%;">2017-06-19</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Add <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext.set_result_for</span></code> to allow massaging a mock
+Context’s configured results after instantiation.</p></li>
+</ul>
+</section>
+<section id="0.18.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.18.1">0.18.1</a> <span style="font-size: 75%;">2017-06-07</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Update Context internals re: command execution &amp; configuration of
+runner subclasses, to work better in client libraries such as Fabric 2.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>If you were using the undocumented <code class="docutils literal notranslate"><span class="pre">runner</span></code> configuration value added
+in <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/446">#446</a>, it is now <code class="docutils literal notranslate"><span class="pre">runners.local</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This change modifies the internals of methods like
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">sudo</span></code>; users
+maintaining their own subclasses should be aware of possible breakage.</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="0.18.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.18.0">0.18.0</a> <span style="font-size: 75%;">2017-06-02</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/444">#444</a><span>:</span> Add support for being used as <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">invoke</span> <span class="pre">&lt;args&gt;</span></code> on
+Python 2.7 and up. Thanks to Pekka Klärck for the feature request.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/205">#205</a><span>:</span> Allow giving core flags like <code class="docutils literal notranslate"><span class="pre">--help</span></code> after tasks to trigger
+per-task help. Previously, only <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--help</span> <span class="pre">taskname</span></code> worked.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Tasks with their own <code class="docutils literal notranslate"><span class="pre">--help</span></code> flags won’t be able to leverage this
+feature - the parser will still interpret the flag as being per-task and
+not global. This may change in the future to simply throw an exception
+complaining about the ambiguity. (Feedback welcome.)</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/446">#446</a><span>:</span> Implement <code class="xref py py-obj docutils literal notranslate"><span class="pre">cd</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">prefix</span></code> context managers (as methods on the
+not-that-one-the-other-one <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> class.) These are based
+on similar functionality in Fabric 1.x. Credit: Ryan P Kilby.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/448">#448</a><span>:</span> Fix up some config-related tests that have been failing on
+Windows for some time. Thanks to Ryan P Kilby.</p></li>
+</ul>
+</section>
+<section id="0.17.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.17.0">0.17.0</a> <span style="font-size: 75%;">2017-05-05</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Add a <code class="docutils literal notranslate"><span class="pre">user</span></code> kwarg &amp; config parameter to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.sudo</span></code>, which corresponds roughly to
+<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-u</span> <span class="pre">&lt;user&gt;</span> <span class="pre">&lt;command&gt;</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/440">#440</a><span>:</span> Make sure to skip a call to <code class="docutils literal notranslate"><span class="pre">struct</span></code>/<code class="docutils literal notranslate"><span class="pre">ioctl</span></code> on Windows
+platforms; otherwise certain situations inside <code class="docutils literal notranslate"><span class="pre">run</span></code> calls would trigger
+import errors. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;chrisc11</span></code> for the report.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/425">#425</a><span>:</span> Fix <code class="docutils literal notranslate"><span class="pre">Inappropriate</span> <span class="pre">ioctl</span> <span class="pre">for</span> <span class="pre">device</span></code> errors (usually
+<code class="docutils literal notranslate"><span class="pre">OSError</span></code>) when running Invoke without a tty-attached stdin (i.e. when run
+under ‘headless’ continuous integration systems or simply as e.g. <code class="docutils literal notranslate"><span class="pre">inv</span>
+<span class="pre">sometask</span> <span class="pre">&lt;</span> <span class="pre">/dev/null</span></code> (redirected stdin.) Thanks to Javier Domingo Cansino
+for the report &amp; Tuukka Mustonen for troubleshooting assistance.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/439">#439</a><span>:</span> Avoid placing stdin into bytewise read mode when it looks
+like Invoke has been placed in the background by a shell’s job control
+system; doing so was causing the shell to pause the Invoke process (e.g. with
+a message like <code class="docutils literal notranslate"><span class="pre">suspended</span> <span class="pre">(tty</span> <span class="pre">output)</span></code>.) Reported by Tuukka Mustonen.</p></li>
+</ul>
+</section>
+<section id="0.16.3">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.16.3">0.16.3</a> <span style="font-size: 75%;">2017-04-18</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Even more setup.py related tomfoolery.</p></li>
+</ul>
+</section>
+<section id="0.16.2">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.16.2">0.16.2</a> <span style="font-size: 75%;">2017-04-18</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Deal with the fact that PyPI’s rendering of Restructured Text has no
+idea about our fancy new use of Sphinx’s doctest module. Sob.</p></li>
+</ul>
+</section>
+<section id="0.16.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.16.1">0.16.1</a> <span style="font-size: 75%;">2017-04-18</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fix a silly typo preventing proper rendering of the packaging
+<code class="docutils literal notranslate"><span class="pre">long_description</span></code> (causing an effectively blank PyPI description.)</p></li>
+</ul>
+</section>
+<section id="0.16.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.16.0">0.16.0</a> <span style="font-size: 75%;">2017-04-18</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">UnexpectedExit</span></code> objects now have a more useful <code class="docutils literal notranslate"><span class="pre">repr()</span></code>
+(and in the case of <code class="docutils literal notranslate"><span class="pre">UnexpectedExit</span></code>, a distinct <code class="docutils literal notranslate"><span class="pre">repr()</span></code> from their
+preexisting <code class="docutils literal notranslate"><span class="pre">str()</span></code>.)</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.sudo</span></code> no longer prompts
+the user when the configured sudo password is empty; thus, an empty sudo
+password and a <code class="docutils literal notranslate"><span class="pre">sudo</span></code> program configured to require one will result in an
+exception.</p>
+<p>The runtime prompting for a missing password was a temporary holdover from
+Fabric v1, and in retrospect is undesirable. We may add it back in as an
+opt-in behavior (probably via subclassing) in the future if anybody misses
+it.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><strong>This is a backwards incompatible change</strong>, if you were relying on
+<code class="docutils literal notranslate"><span class="pre">sudo()</span></code> prompting you for your password (vs configuring it). If you
+<em>were</em> doing that, you can simply switch to <code class="docutils literal notranslate"><span class="pre">run(&quot;sudo</span> <span class="pre">&lt;command&gt;&quot;)</span></code> and
+respond to the subprocess’ sudo prompt by hand instead.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Switched the order of the first two arguments of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config.__init__</span></code>, so that the <code class="docutils literal notranslate"><span class="pre">overrides</span></code>
+kwarg becomes the first positional argument.</p>
+<p>This supports the common use case of making a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>
+object that honors the system’s core/global defaults; previously, because
+<code class="docutils literal notranslate"><span class="pre">defaults</span></code> was the first argument, you’d end up replacing those core
+defaults instead of merging with them.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><strong>This is a backwards incompatible change</strong> if you were creating custom
+<code class="docutils literal notranslate"><span class="pre">Config</span></code> objects via positional, instead of keyword, arguments. It should
+have no effect otherwise.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/309">#309</a><span>:</span> Overhaul how task execution contexts/configs are handled, such
+that all contexts in a session now share the same config object, and thus
+user modifications are preserved between tasks. This has been done in a
+manner that should not break things like collection-based config (which may
+still differ from task to task.)</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><strong>This is a backwards incompatible change</strong> if you were relying on the
+post-0.12 behavior of cloning config objects between each task execution.
+Make sure to investigate if you find tasks affecting one another in
+unexpected ways!</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/418">#418</a><span>:</span> Enhance ability of client libraries to override config
+filename prefixes. This includes modifications to related functionality, such
+as how env var prefixes are configured.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><strong>This is a backwards incompatible change</strong> if:</p>
+<ul>
+<li><p>you were relying on the <code class="docutils literal notranslate"><span class="pre">env_prefix</span></code> keyword argument to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config.__init__</span></code>; it is now the
+<code class="docutils literal notranslate"><span class="pre">prefix</span></code> or <code class="docutils literal notranslate"><span class="pre">env_prefix</span></code> class attribute, depending.</p></li>
+<li><p>or the kwarg/attribute of the same name in <code class="xref py py-obj docutils literal notranslate"><span class="pre">Program.__init__</span></code>; you should now be subclassing
+<code class="docutils literal notranslate"><span class="pre">Config</span></code> and using its <code class="docutils literal notranslate"><span class="pre">env_prefix</span></code> attribute;</p></li>
+<li><p>or if you were relying on how standalone <code class="docutils literal notranslate"><span class="pre">Config</span></code> objects defaulted to
+having a <code class="docutils literal notranslate"><span class="pre">None</span></code> value for <code class="docutils literal notranslate"><span class="pre">env_prefix</span></code>, and thus loaded env vars
+without an <code class="docutils literal notranslate"><span class="pre">INVOKE_</span></code> style prefix.</p>
+<p>See new documentation for this functionality at
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/library.html#customizing-config-defaults" title="(在 Invoke)"><span>Customizing the configuration system’s defaults</span></a> for details.</p>
+</li>
+</ul>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/232">#232</a><span>:</span> Add support for <code class="docutils literal notranslate"><span class="pre">.yml</span></code>-suffixed config files (in addition to
+<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">.json</span></code> and <code class="docutils literal notranslate"><span class="pre">.py</span></code>.) Thanks to Matthias Lehmann for the
+original request &amp; Greg Back for an early patch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/430">#430</a><span>:</span> Fallback importing of PyYAML when Invoke has been installed
+without its vendor directory, was still trying to import the vendorized
+module names (e.g. <code class="docutils literal notranslate"><span class="pre">yaml2</span></code> or <code class="docutils literal notranslate"><span class="pre">yaml3</span></code> instead of simply <code class="docutils literal notranslate"><span class="pre">yaml</span></code>). This
+has been fixed, thanks to Athmane Madjoudj.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/432">#432</a><span>:</span> Tighten application of IO thread <code class="docutils literal notranslate"><span class="pre">join</span></code> timeouts (in <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>) to only happen when <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/351">#351</a> appears
+actually present. Otherwise, slow/overworked IO threads had a chance of being
+joined before truly reading all data from the subprocess’ pipe.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fixed some Python 2.6 incompatible string formatting that snuck
+in recently.</p></li>
+</ul>
+</section>
+<section id="0.15.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.15.0">0.15.0</a> <span style="font-size: 75%;">2017-02-14</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config.clone</span></code> grew a new <code class="docutils literal notranslate"><span class="pre">into</span></code>
+kwarg allowing client libraries with their own <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>
+subclasses to easily “upgrade” vanilla Invoke config objects into their local
+variety.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/421">#421</a><span>:</span> Updated <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config.clone</span></code> (and a few
+other related areas) to replace use of <a class="reference external" href="https://docs.python.org/2.7/library/copy.html#copy.deepcopy" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy.deepcopy</span></code></a> with a less-rigorous
+but also less-likely-to-explode recursive dict copier. This prevents
+frustrating <code class="docutils literal notranslate"><span class="pre">TypeErrors</span></code> while still preserving barriers between different
+tasks’ configuration values.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>’s internals got cleaned up
+somewhat; end users should not see much of a difference, but advanced
+users or authors of extension code may notice the following:</p>
+<ul class="simple">
+<li><p>Direct modification of config data (e.g. <code class="docutils literal notranslate"><span class="pre">myconfig.section.subsection.key</span>
+<span class="pre">=</span> <span class="pre">'value'</span></code> in user/task code) is now stored in its own config ‘level’/data
+structure; previously such modifications simply mutated the central,
+‘merged’ config cache. This makes it much easier to determine where a final
+observed value came from, and prevents accidental data loss.</p></li>
+<li><p>Ditto for deleted values.</p></li>
+<li><p>Merging/reconciliation of the config levels now happens automatically when
+data is loaded or modified, which not only simplifies the object’s
+lifecycle a bit but allows the previous change to function without
+requiring users to call <code class="docutils literal notranslate"><span class="pre">.merge()</span></code> after every modification.</p></li>
+</ul>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/413">#413</a><span>:</span> Update behavior of <code class="docutils literal notranslate"><span class="pre">DataProxy</span></code> (used within
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>) again, fixing two
+related issues:</p>
+<ul class="simple">
+<li><p>Creating new configuration keys via attribute access wasn’t possible: one
+had to do <code class="docutils literal notranslate"><span class="pre">config['foo']</span> <span class="pre">=</span> <span class="pre">'bar'</span></code> because <code class="docutils literal notranslate"><span class="pre">config.foo</span> <span class="pre">=</span> <span class="pre">'bar'</span></code> would
+set a real attribute instead of touching configuration.</p></li>
+<li><p>Supertypes’ attributes weren’t being considered during the “is this a real
+attribute on <code class="docutils literal notranslate"><span class="pre">self</span></code>?” test, leading to different behavior between a
+nested config-value-as-attribute and a top-level Context/Config one.</p></li>
+</ul>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fix configuration framework such that nested or dict-like
+config values may be compared with regular dicts. Previously, doing so caused
+an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> (as regular dicts lack a <code class="docutils literal notranslate"><span class="pre">.config</span></code>).</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/419">#419</a><span>:</span> Optional parser arguments had a few issues:</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/invoking-tasks.html#optional-values" title="(在 Invoke)"><span class="xref std std-ref">conceptual docs about CLI parsing</span></a> mentioned
+them, but didn’t actually show via example how to enable the feature,
+implying (incorrectly) that they were active always by default. An example
+has been added.</p></li>
+<li><p>Even when enabled, they did not function correctly when their default
+values were of type <code class="docutils literal notranslate"><span class="pre">bool</span></code>; in this situation, trying to give a value (vs
+just giving the flag name by itself) caused a parser error.  This has been
+fixed.</p></li>
+</ul>
+<p>Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;ouroboroscoding</span></code> for the report.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Configuration keys named <code class="docutils literal notranslate"><span class="pre">config</span></code> were inadvertently
+exposing the internal dict representation of the containing config object,
+instead of displaying the actual value stored in that key. (Thus, a set
+config of <code class="docutils literal notranslate"><span class="pre">mycontext.foo.bar.config</span></code> would act as if it was the key/value
+contents of the <code class="docutils literal notranslate"><span class="pre">mycontext.foo.bar</span></code> subtree.) This has been fixed.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Python 3’s hashing rules differ from Python 2, specifically:</p>
+<blockquote>
+<div><p>A class that overrides <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> and does not define <code class="docutils literal notranslate"><span class="pre">__hash__()</span></code> will
+have its <code class="docutils literal notranslate"><span class="pre">__hash__()</span></code> implicitly set to None.</p>
+</div></blockquote>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> (specifically, its foundational class
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">DataProxy</span></code>) only defined <code class="docutils literal notranslate"><span class="pre">__eq__</span></code> which,
+combined with the above behavior, meant that <code class="docutils literal notranslate"><span class="pre">Config</span></code> objects appeared to
+hash successfully on Python 2 but yielded <code class="docutils literal notranslate"><span class="pre">TypeErrors</span></code> on Python 3.</p>
+<p>This has been fixed by explicitly setting <code class="docutils literal notranslate"><span class="pre">__hash__</span> <span class="pre">=</span> <span class="pre">None</span></code> so that the
+objects do not hash on either interpreter (there are no good immutable
+attributes by which to define hashability).</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/426">#426</a><span>:</span> <code class="xref py py-obj docutils literal notranslate"><span class="pre">DataProxy</span></code> based classes like
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> didn’t
+like being <a class="reference external" href="https://docs.python.org/2.7/library/pickle.html#module-pickle" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pickled</span></code></a> or <a class="reference external" href="https://docs.python.org/2.7/library/copy.html#copy.copy" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copied</span></code></a> and threw
+<code class="docutils literal notranslate"><span class="pre">RecursionError</span></code>. This has been fixed.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/204">#204</a><span>:</span> (via <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/412">#412</a>) Fall back to globally-installed copies of
+our vendored dependencies, if the import from the <code class="docutils literal notranslate"><span class="pre">vendor</span></code> tree fails. In
+normal situations this won’t happen, but it allows advanced users or
+downstream maintainers to nuke <code class="docutils literal notranslate"><span class="pre">vendor/</span></code> and prefer explicitly installed
+packages of e.g. <code class="docutils literal notranslate"><span class="pre">six</span></code>, <code class="docutils literal notranslate"><span class="pre">pyyaml</span></code> or <code class="docutils literal notranslate"><span class="pre">fluidity</span></code>. Thanks to Athmane
+Madjoudj for the patch.</p></li>
+</ul>
+</section>
+<section id="0.14.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.14.0">0.14.0</a> <span style="font-size: 75%;">2016-12-05</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/369">#369</a><span>:</span> Overhaul the autoresponse functionality for <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> so
+it’s significantly more extensible, both for its own sake and as part of
+implementing <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/294">#294</a> (see its own changelog entry for details).</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is a backwards incompatible change: the <code class="docutils literal notranslate"><span class="pre">responses</span></code> kwarg to
+<code class="docutils literal notranslate"><span class="pre">run()</span></code> is now <code class="docutils literal notranslate"><span class="pre">watchers</span></code>, and accepts a list of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamWatcher</span></code> objects (such as
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Responder</span></code>) instead of a dict.</p>
+<p>If you were using <code class="docutils literal notranslate"><span class="pre">run(...,</span> <span class="pre">responses={'pattern':</span> <span class="pre">'response'}</span></code>
+previously, just update to instead use <code class="docutils literal notranslate"><span class="pre">run(...,</span>
+<span class="pre">watchers=[Responder('pattern',</span> <span class="pre">'response')])</span></code>.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/294">#294</a><span>:</span> Implement <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.sudo</span></code>, which
+wraps <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> inside a <code class="docutils literal notranslate"><span class="pre">sudo</span></code> command. It is capable
+of auto-responding to <code class="docutils literal notranslate"><span class="pre">sudo</span></code>’s password prompt with a configured password,
+and raises a specific exception (<code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthFailure</span></code>) if that
+password is rejected.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Update implementation of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> so it has
+default values for all parameters/attributes. This allows it to be more
+easily used when mocking <code class="docutils literal notranslate"><span class="pre">run</span></code> calls in client libraries’ tests.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is a backwards incompatible change if you are manually instantiating
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> objects with positional arguments: positional
+argument order has changed. (Compare the API docs between versions to see
+exactly how.)</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Add a <code class="xref py py-obj docutils literal notranslate"><span class="pre">MockContext</span></code> class for easier testing of
+user-written tasks and related client code. Includes adding a
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/testing.html#testing-user-code" title="(在 Invoke)"><span class="xref std std-ref">conceptual document on how to test Invoke-using code</span></a>.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/406">#406</a><span>:</span> Update handling of Ctrl-C/<code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code>, and
+subprocess exit status pass-through, to be more correct than before:</p>
+<ul>
+<li><p>Submit the interrupt byte sequence <code class="docutils literal notranslate"><span class="pre">\x03</span></code> to stdin of all subprocesses,
+instead of sending <code class="docutils literal notranslate"><span class="pre">SIGINT</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This results in behavior closer to that of truly pressing Ctrl-C when
+running subprocesses directly; for example, interactive programs like
+<code class="docutils literal notranslate"><span class="pre">vim</span></code> or <code class="docutils literal notranslate"><span class="pre">python</span></code> now behave normally instead of prematurely
+exiting.</p></li>
+<li><p>Of course, programs that would normally exit on Ctrl-C will still do
+so!</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The exit statuses of subprocesses run with <code class="docutils literal notranslate"><span class="pre">pty=True</span></code> are more rigorously
+checked (using <a class="reference external" href="https://docs.python.org/2.7/library/os.html#os.WIFEXITED" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.WIFEXITED</span></code></a> and friends), allowing us to surface the real
+exit values of interrupted programs instead of manually assuming exit code
+<code class="docutils literal notranslate"><span class="pre">130</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Typically, this will be exit code <code class="docutils literal notranslate"><span class="pre">-2</span></code>, but it is system dependent.</p></li>
+<li><p>Other, non-Ctrl-C-driven signal-related exits under PTYs should behave
+better now as well - previously they could appear to exit <code class="docutils literal notranslate"><span class="pre">0</span></code>!</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Non-subprocess-related <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> (i.e. those generated when
+running top level Python code outside of any <code class="docutils literal notranslate"><span class="pre">run</span></code> function calls)
+will now trigger exit code <code class="docutils literal notranslate"><span class="pre">1</span></code>, as that is how the Python interpreter
+typically behaves if you <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> it outside of a live
+REPL.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>These changes are <strong>backwards incompatible</strong> if you were relying on the
+“exits <code class="docutils literal notranslate"><span class="pre">130</span></code>” behavior added in version 0.13, or on the (incorrect)
+<code class="docutils literal notranslate"><span class="pre">SIGINT</span></code> method of killing pty-driven subprocesses on Ctrl-C.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Expose the (normalized) value of <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>’s
+<code class="docutils literal notranslate"><span class="pre">hide</span></code> parameter in its return-value <code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> objects.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fix a bug in <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config.clone</span></code> where
+it was instantiating a new <code class="docutils literal notranslate"><span class="pre">Config</span></code> instead of a member of the subclass.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Correctly raise <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> when unexpected keyword
+arguments are given to <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/58">#58</a><span>:</span> Work around bugs in <code class="docutils literal notranslate"><span class="pre">select()</span></code> when handling subprocess
+stream reads, which was causing poor behavior in many nontrivial interactive
+programs (such as <code class="docutils literal notranslate"><span class="pre">vim</span></code> and other fullscreen editors, <code class="docutils literal notranslate"><span class="pre">python</span></code> and other
+REPLs/shells, etc). Such programs should now be largely indistinguishable
+from their behavior when run directly from a user’s shell.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fix <code class="docutils literal notranslate"><span class="pre">DataProxy</span></code> (used within <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code>) so that real attributes and methods which are
+shadowed by configuration keys, aren’t proxied to the config during regular
+attribute get/set. (Such config keys are thus required to be accessed via
+dict-style only, or (on <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code>) via the explicit
+<code class="docutils literal notranslate"><span class="pre">.config</span></code> attribute.)</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/283">#283</a><span>:</span> Fix the concepts/library docs so the example of an explicit
+<code class="docutils literal notranslate"><span class="pre">namespace=</span></code> argument correctly shows wrapping an imported task module in a
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;zaiste</span></code> for the report.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/288">#288</a><span>:</span> Address a bug preventing reuse of Invoke as a custom
+binstub, by moving <code class="docutils literal notranslate"><span class="pre">--list</span></code> into the “core args” set of flags present on
+all Invoke-derived binstubs. Thanks to Jordon Mears for catch &amp; patch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/349">#349</a><span>:</span> Display the string representation of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">UnexpectedExit</span></code> when handling it inside of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Program</span></code> (including regular <code class="docutils literal notranslate"><span class="pre">inv</span></code>), if any output was
+hidden during the <code class="docutils literal notranslate"><span class="pre">run</span></code> that generated it.</p>
+<p>Previously, we only exited with the exception’s stored exit code, meaning
+failures of <code class="docutils literal notranslate"><span class="pre">run(...,</span> <span class="pre">hide=True)</span></code> commands were unexpectedly silent.
+(Library-style use of the codebase didn’t have this problem, since tracebacks
+aren’t muted.)</p>
+<p>While implementing this change, we also tweaked the overall display of
+<code class="docutils literal notranslate"><span class="pre">UnexpectedExit</span></code> so it’s a bit more consistent &amp; useful:</p>
+<ul class="simple">
+<li><p>noting “hey, you ran with <code class="docutils literal notranslate"><span class="pre">pty=True</span></code>, so there’s no stderr”;</p></li>
+<li><p>showing only the last 10 lines of captured output in the error message
+(users can, of course, always manually handle the error &amp; access the full
+thing if desired);</p></li>
+<li><p>only showing a given stream when it was not already printed to the user’s
+terminal (i.e. if <code class="docutils literal notranslate"><span class="pre">hide=False</span></code>, no captured output is shown in the error
+text; if <code class="docutils literal notranslate"><span class="pre">hide='stdout'</span></code>, only stdout is shown in the error text; etc.)</p></li>
+</ul>
+<p>Thanks to Patrick Massot for the original bug report.</p>
+</li>
+</ul>
+</section>
+<section id="0.13.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.13.0">0.13.0</a> <span style="font-size: 75%;">2016-06-09</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/67">#67</a><span>:</span> Added <code class="docutils literal notranslate"><span class="pre">shell</span></code> option to <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>,
+allowing control of the shell used when invoking commands. Previously,
+<code class="docutils literal notranslate"><span class="pre">pty=True</span></code> used <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code> and <code class="docutils literal notranslate"><span class="pre">pty=False</span></code> (the default) used
+<code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code>; the new unified default value is <code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>.</p>
+<p>Thanks to Jochen Breuer for the report.</p>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/259">#259</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/280">#280</a>) Allow updating (or replacing) subprocess
+shell environments, via the <code class="docutils literal notranslate"><span class="pre">env</span></code> and <code class="docutils literal notranslate"><span class="pre">replace_env</span></code> kwargs to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>. Thanks to Fotis Gimian for the report,
+<code class="docutils literal notranslate"><span class="pre">&#64;philtay</span></code> for an early version of the final patch, and Erich Heine &amp; Vlad
+Frolov for feedback.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/114">#114</a><span>:</span> Ripped off the band-aid and removed non-contextualized tasks
+as an option; all tasks must now be contextualized (defined as <code class="docutils literal notranslate"><span class="pre">def</span>
+<span class="pre">mytask(context,</span> <span class="pre">...)</span></code> - see <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/getting-started.html#defining-and-running-task-functions" title="(在 Invoke)"><span>定义和运行任务函数</span></a>) even
+if not using the context. This simplifies the implementation as well as
+users’ conceptual models. Thanks to Bay Grabowski for the patch.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is a backwards incompatible change!</p>
+</div>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/152">#152</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/251">#251</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/331">#331</a>) Correctly handle
+<code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> during <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>, re: both mirroring
+the interrupt signal to the subprocess <em>and</em> capturing the local exception
+within Invoke’s CLI handler (so there’s no messy traceback, just exiting with
+code <code class="docutils literal notranslate"><span class="pre">130</span></code>).</p>
+<p>Thanks to Peter Darrow for the report, and to Mika Eloranta &amp; Máté Farkas for
+early versions of the patchset.</p>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/351">#351</a><span>:</span> Protect against <code class="docutils literal notranslate"><span class="pre">run</span></code> deadlocks involving exceptions in
+I/O threads &amp; nontrivial amounts of unread data in the corresponding
+subprocess pipe(s). This situation should now always result in exceptions
+instead of hangs.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/350">#350</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/274">#274</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/241">#241</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/262">#262</a>,
+<a class="reference external" href="https://github.com/pyinvoke/invoke/issues/242">#242</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/321">#321</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/338">#338</a>) Clean up and reorganize
+encoding-related parts of the code to avoid some of the more common or
+egregious encode/decode errors surrounding clearly non-ASCII-compatible text.
+Bug reports, assistance, feedback and code examples courtesy of Paul Moore,
+Vlad Frolov, Christian Aichinger, Fotis Gimian, Daniel Nunes, and others.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/314">#314</a><span>:</span> (Partial fix.) Update <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> so source
+distributions include some missing project-management files (e.g. our
+internal <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code>). This makes unpacked sdists more useful for things
+like running the doc or build tasks.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/319">#319</a><span>:</span> Fixed an issue resulting from <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/255">#255</a> which
+caused problems with how we generate release wheels (notably, some releases
+such as 0.12.1 fail when installing from wheels on Python 2).</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>As part of this fix, the next release will distribute individual Python 2
+and Python 3 wheels instead of one ‘universal’ wheel. This change should be
+transparent to users.</p>
+</div>
+<p>Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;ojos</span></code> for the initial report and Frazer McLean for some
+particularly useful feedback.</p>
+</li>
+</ul>
+</section>
+<section id="0.12.2">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.12.2">0.12.2</a> <span style="font-size: 75%;">2016-02-07</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/303">#303</a><span>:</span> Make sure <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> waits for its IO worker threads to cleanly
+exit (such as allowing a <code class="docutils literal notranslate"><span class="pre">finally</span></code> block to revert TTY settings) when
+<code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> (or similar) aborts execution in the main thread.
+Thanks to Tony S Yu and Máté Farkas for the report.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/314">#314</a><span>:</span> (Partial fix.) Update <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> so source
+distributions include some missing project-management files (e.g. our
+internal <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code>). This makes unpacked sdists more useful for things
+like running the doc or build tasks.</p></li>
+</ul>
+</section>
+<section id="0.12.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.12.1">0.12.1</a> <span style="font-size: 75%;">2016-02-03</span></h2><ul>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/289">#289</a><span>:</span> Handful of issues, all fallout from <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/289">#289</a>, which failed to
+make it out the door for 0.12.0. More are on the way but these should address
+blockers for some users:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Windows support for the new stdin replication functionality (this was
+totally blocking Windows users, as reported in <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/302">#302</a> - sorry!);</p></li>
+<li><p>Stdin is now mirrored to stdout when no PTY is present, so you can see
+what you’re typing (plus a new <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> option and
+config param, <code class="docutils literal notranslate"><span class="pre">echo_stdin</span></code>, allowing user override of this behavior);</p></li>
+<li><p>Exposed the stdin read loop’s sleep time as <code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner.input_sleep</span></code>;</p></li>
+<li><p>Sped up some tests a bit.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/305">#305</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/306">#306</a>) Fix up some test-suite issues causing failures
+on Windows/Appveyor. Thanks to Paul Moore.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/308">#308</a><span>:</span> Earlier changes to TTY detection &amp; its use in determining features
+such as stdin pass-through, were insufficient to handle edge cases such as
+nested Invoke sessions or piped stdin to Invoke processes. This manifested as
+hangs and <code class="docutils literal notranslate"><span class="pre">OSError</span></code> messages about broken pipes.</p>
+<p>The issue has been fixed by overhauling all related code to use more specific
+and accurate checks (e.g. examining just <code class="docutils literal notranslate"><span class="pre">fileno</span></code> and/or just <code class="docutils literal notranslate"><span class="pre">isatty</span></code>).</p>
+<p>Thanks to Tuukka Mustonen and Máté Farkas for the report (and for enduring
+the subsequent flood of the project maintainer’s stream-of-consciousness
+ticket updates).</p>
+</li>
+</ul>
+</section>
+<section id="0.12.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.12.0">0.12.0</a> <span style="font-size: 75%;">2016-01-12</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/173">#173</a><span>:</span> Overhauled top level CLI functionality to allow reusing
+Invoke for distinct binaries, optionally with bundled task namespaces as
+subcommands. As a side effect, this functionality is now much more extensible
+to boot. Thanks to Erich Heine for feedback/suggestions during development.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This change is backwards incompatible if you imported anything from the
+<code class="docutils literal notranslate"><span class="pre">invoke.cli</span></code> module (which is now rearchitected as
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Program</span></code>). It should be transparent to everybody else.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/library.html#reusing-as-a-binary" title="(在 Invoke)"><span>Reusing Invoke’s CLI module as a distinct binary</span></a></p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/228">#228</a><span>:</span> (partial) Modified and expanded implementation of
+<a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/executor.html#invoke.executor.Executor" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Executor</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Task</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code> to
+make implementing task parameterization easier.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/289">#289</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/263">#263</a>) Implement <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/watchers.html#autoresponding" title="(在 Invoke)"><span class="xref std std-ref">autoresponding</span></a> for <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/68">#68</a><span>:</span> Disable Python’s bytecode caching by default, as it complicates
+our typical use case (frequently-changing .py files) and offers little
+benefit for human-facing startup times. Bytecode caching can be explicitly
+re-enabled by specifying <code class="docutils literal notranslate"><span class="pre">--write-pyc</span></code> at runtime. Thanks to Jochen Breuer
+for feature request and <code class="docutils literal notranslate"><span class="pre">&#64;brutus</span></code> for initial patchset.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fixed a bug in the parser where <code class="docutils literal notranslate"><span class="pre">invoke</span> <span class="pre">--takes-optional-arg</span>
+<span class="pre">avalue</span> <span class="pre">--anotherflag</span></code> was incorrectly considering <code class="docutils literal notranslate"><span class="pre">--anotherflag</span></code> to be an
+ambiguity error (as if <code class="docutils literal notranslate"><span class="pre">avalue</span></code> had not been given to
+<code class="docutils literal notranslate"><span class="pre">--takes-optional-arg</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/295">#295</a><span>:</span> Make sure that <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>’s <code class="docutils literal notranslate"><span class="pre">hide=True</span></code> also disables
+echoing. Otherwise, “hidden” helper <code class="docutils literal notranslate"><span class="pre">run</span></code> calls will still pollute output
+when run as e.g. <code class="docutils literal notranslate"><span class="pre">invoke</span> <span class="pre">--echo</span> <span class="pre">...</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/296">#296</a><span>:</span> Don’t mutate <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> on collection load if task’s
+parent directory is already on <code class="docutils literal notranslate"><span class="pre">sys.path</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/297">#297</a><span>:</span> Ignore leading and trailing underscores when turning task
+arguments into CLI flag names.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/257">#257</a><span>:</span> Fix a RecursionError under Python 3 due to lack of
+<code class="docutils literal notranslate"><span class="pre">__deepcopy__</span></code> on <code class="xref py py-obj docutils literal notranslate"><span class="pre">Call</span></code> objects. Thanks to Markus
+Zapke-Gründemann for initial report and Máté Farkas for the patch.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fix incorrect changelog URL in package metadata.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Removed the <code class="docutils literal notranslate"><span class="pre">-H</span></code> short flag, leaving just <code class="docutils literal notranslate"><span class="pre">--hide</span></code>. This was
+done to avoid conflicts with Fabric’s host-oriented <code class="docutils literal notranslate"><span class="pre">-H</span></code> flag. Favoritism
+is real! Apologies.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This change is backwards compatible if you used <code class="docutils literal notranslate"><span class="pre">-H</span></code>.</p>
+</div>
+</li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Removed official Python 3.2 support; sibling projects also did
+this recently, it’s simply not worth the annoyance given the userbase size.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/144">#144</a><span>:</span> Add code-coverage reporting to our CI builds (albeit <a class="reference external" href="https://codecov.io">CodeCov</a> instead of <a class="reference external" href="https://coveralls.io">coveralls.io</a>).
+Includes rejiggering our project-specific coverage-generating tasks. Thanks
+to David Baumgold for the original request/PR and to Justin Abrahms for the
+tipoff re: CodeCov.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/254">#254</a><span>:</span> Add an <code class="docutils literal notranslate"><span class="pre">exclude</span></code> option in our <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> so setuptools
+doesn’t try loading our vendored PyYAML’s Python 2 sub-package under Python 3
+(or vice versa - though all reports were from Python 3 users). Thanks to
+<code class="docutils literal notranslate"><span class="pre">&#64;yoshiya0503</span></code> for catch &amp; initial patch.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/265">#265</a><span>:</span> Update our Travis config to select its newer build
+infrastructure and also run on PyPy3. Thanks to Omer Katz.</p></li>
+</ul>
+</section>
+<section id="0.11.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.11.1">0.11.1</a> <span style="font-size: 75%;">2015-09-07</span></h2><ul class="simple">
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Fix incorrect changelog URL in package metadata.</p></li>
+</ul>
+</section>
+<section id="0.11.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.11.0">0.11.0</a> <span style="font-size: 75%;">2015-09-07</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/235">#235</a><span>:</span> Allow custom stream objects to be used in <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> calls,
+to be used instead of the defaults of <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code>/<code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This change required a major cleanup/rearchitecture of the command
+execution implementation. The vendored <code class="docutils literal notranslate"><span class="pre">pexpect</span></code> module has been
+completely removed and the API of the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code> class has
+changed dramatically (though <strong>the API for run() itself has not</strong>).</p>
+<p>Be aware there may be edge-case terminal behaviors which have changed or
+broken as a result of removing <code class="docutils literal notranslate"><span class="pre">pexpect</span></code>. Please report these as bugs! We
+expect to crib small bits of what <code class="docutils literal notranslate"><span class="pre">pexpect</span></code> does but need concrete test
+cases first.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Detect local controlling terminal size
+(<code class="xref py py-obj docutils literal notranslate"><span class="pre">pty_size</span></code>) and apply that information when creating
+pseudoterminals in <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> when <code class="docutils literal notranslate"><span class="pre">pty=True</span></code>.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span>:</span><span> </span> Add a <code class="docutils literal notranslate"><span class="pre">.command</span></code> attribute to <code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> to
+preserve the command executed for post-execution introspection.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/238">#238</a><span>:</span> (partial fix) Update the <code class="docutils literal notranslate"><span class="pre">zsh</span></code> completion script to
+account for use of the <code class="docutils literal notranslate"><span class="pre">--collection</span></code> core flag.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/239">#239</a><span>:</span> Completion erroneously presented core flags instead of
+per-task flags when both are present in the invocation being completed (e.g.
+<code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--debug</span> <span class="pre">my_task</span> <span class="pre">-&lt;tab&gt;</span></code>). This has been fixed.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/237">#237</a><span>:</span> Completion output lacked “inverse” flag names (e.g.
+<code class="docutils literal notranslate"><span class="pre">--no-myoption</span></code> as a boolean negative version of a defaulting-to-True
+boolean <code class="docutils literal notranslate"><span class="pre">myoption</span></code>). This has been corrected.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/234">#234</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/243">#243</a>) Preserve task-module load location when
+creating explicit collections with
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">from_module</span></code>; when this was not done,
+project-local config files were not loading correctly. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;brutus</span></code>
+and Jan Willems for initial report &amp; troubleshooting, and to Greg Back for
+identifying the fix.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Capture &amp; reraise exceptions generated by command execution I/O
+threads, in the main thread, as a <code class="xref py py-obj docutils literal notranslate"><span class="pre">ThreadException</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Correctly handle situations where <a class="reference external" href="https://docs.python.org/2.7/library/sys.html#sys.stdin" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sys.stdin</span></code></a> has been
+replaced with an object lacking <code class="docutils literal notranslate"><span class="pre">.fileno</span></code> (e.g., some advanced Python
+shells, headless code execution tools, etc). Previously, this situation
+resulted in an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Display stdout instead of stderr in the <code class="docutils literal notranslate"><span class="pre">repr()</span></code> of
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Failure</span></code> objects, when a pseudo-terminal was used.
+Previously, failure display focused on the stderr stream, which is always
+empty under pseudo-terminals.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Tweak README to reflect recent(-ish) changes in
+<code class="docutils literal notranslate"><span class="pre">pip</span></code> re: users who install the development version via <code class="docutils literal notranslate"><span class="pre">pip</span></code> instead of
+using git.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/224">#224</a><span>:</span> Add a completion script for the <code class="docutils literal notranslate"><span class="pre">fish</span></code> shell, courtesy of
+Jaime Marquínez Ferrándiz.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Additional rearranging of <code class="docutils literal notranslate"><span class="pre">run</span></code>/<code class="docutils literal notranslate"><span class="pre">Runner</span></code> related concerns
+for improved subclassing, organization, and use in other libraries,
+including:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Changed the name of the <code class="docutils literal notranslate"><span class="pre">runner</span></code> module to <code class="docutils literal notranslate"><span class="pre">runners</span></code>.</p></li>
+<li><p>Moved the top level <code class="docutils literal notranslate"><span class="pre">run</span></code> function from its original home in
+<code class="docutils literal notranslate"><span class="pre">invoke.runner</span></code> to <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/__init__.html#module-invoke" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.__init__</span></code></a>, to reflect the fact that
+it’s now simply a convenience wrapper around <code class="docutils literal notranslate"><span class="pre">Runner</span></code>.</p></li>
+<li><p>Tweaked the implementation of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code> so it can
+reference <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> objects (useful for anticipated
+subclasses).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>These are backwards incompatible changes if your code was doing any imports
+from the <code class="docutils literal notranslate"><span class="pre">invoke.runner</span></code> module (including especially
+<code class="docutils literal notranslate"><span class="pre">invoke.runner.run</span></code>, which is now only <code class="docutils literal notranslate"><span class="pre">invoke.run</span></code>). Function
+signatures have <strong>not</strong> changed.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="0.10.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.10.1">0.10.1</a> <span style="font-size: 75%;">2015-03-17</span></h2><ul class="simple">
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Tweak README to reflect recent(-ish) changes in
+<code class="docutils literal notranslate"><span class="pre">pip</span></code> re: users who install the development version via <code class="docutils literal notranslate"><span class="pre">pip</span></code> instead of
+using git.</p></li>
+</ul>
+</section>
+<section id="0.10.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.10.0">0.10.0</a> <span style="font-size: 75%;">2015-03-17</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/147">#147</a><span>:</span> Drastically overhaul/expand the configuration system to
+account for multiple configuration levels including (but not limited to) file
+paths, environment variables, and Python-level constructs (previously the
+only option). See <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/configuration.html#configuration" title="(在 Invoke)"><span>Configuration</span></a> for details. Thanks to Erich Heine for
+his copious feedback on this topic.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is technically a backwards incompatible change, though some existing
+user config-setting code may continue to work as-is. In addition, this
+system may see further updates before 1.0.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/219">#219</a><span>:</span> Fall back to non-PTY command execution in situations where
+<code class="docutils literal notranslate"><span class="pre">pty=True</span></code> but no PTY appears present. See <code class="xref py py-obj docutils literal notranslate"><span class="pre">Local</span></code> for
+details.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/104">#104</a><span>:</span> Add core CLI flag <code class="docutils literal notranslate"><span class="pre">--complete</span></code> to support shell tab
+completion scripts, and add some ‘blessed’ such scripts for bash (3 and 4)
+and zsh. Thanks to Ivan Malison and Andrew Roberts for providing discussion &amp;
+early patchsets.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/175">#175</a><span>:</span> <code class="docutils literal notranslate"><span class="pre">autoprint</span></code> did not function correctly for tasks stored
+in sub-collections; this has been fixed. Credit: Matthias Lehmann.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/180">#180</a><span>:</span> Empty invocation (e.g. just <code class="docutils literal notranslate"><span class="pre">invoke</span></code> with no flags or
+tasks, and when no default task is defined) no longer printed help output,
+instead complaining about the lack of default task. It now prints help again.
+Thanks to Brent O’Connor for the catch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/183">#183</a><span>:</span> Task docstrings whose first line started on the same line as
+the opening quote(s) were incorrectly presented in <code class="docutils literal notranslate"><span class="pre">invoke</span> <span class="pre">--help</span> <span class="pre">&lt;task&gt;</span></code>.
+This has been fixed by using <a class="reference external" href="https://docs.python.org/2.7/library/inspect.html#inspect.getdoc" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inspect.getdoc</span></code></a>. Thanks to Pekka Klärck for the
+catch &amp; suggested fix.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/191">#191</a><span>:</span> Bypass <code class="docutils literal notranslate"><span class="pre">pexpect</span></code>’s automatic command splitting to avoid
+issues running complex nested/quoted commands under a pty. Credit to
+<code class="docutils literal notranslate"><span class="pre">&#64;mijikai</span></code> for noticing the problem.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/201">#201</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/211">#211</a>) Replace the old, first-draft gross
+monkeypatched Popen code used for <code class="docutils literal notranslate"><span class="pre">invoke.runner.run</span></code> with a
+non-monkeypatched approach that works better on non-POSIX platforms like
+Windows, and also attempts to handle encoding and locale issues more
+gracefully (meaning: at all gracefully).</p>
+<p>Specifically, the new approach uses threading instead of <code class="docutils literal notranslate"><span class="pre">select.select</span></code>,
+and performs explicit encoding/decoding based on detected or explicitly
+expressed encodings.</p>
+<p>Major thanks to Paul Moore for an enormous amount of
+testing/experimentation/discussion, as well as the bulk of the code changes
+themselves.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>The top level <code class="docutils literal notranslate"><span class="pre">invoke.runner.run</span></code> function has had a minor signature
+change: the sixth positional argument used to be <code class="docutils literal notranslate"><span class="pre">runner</span></code> and is now
+<code class="docutils literal notranslate"><span class="pre">encoding</span></code> (with <code class="docutils literal notranslate"><span class="pre">runner</span></code> now being the seventh positional argument).</p>
+</div>
+</li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/215">#215</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/213">#213</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/214">#214</a>) Tweak tests &amp; configuration
+sections of the code to include Windows compatibility. Thanks to Paul Moore.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/212">#212</a><span>:</span> Implement basic linting support using <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, and apply
+formatting changes to satisfy said linting. As part of this shakeup, also
+changed all old-style (<code class="docutils literal notranslate"><span class="pre">%s</span></code>) string formatting to new-style (<code class="docutils literal notranslate"><span class="pre">{0}</span></code>).
+Thanks to Collin Anderson for the foundational patch.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Reorganize <code class="xref py py-obj docutils literal notranslate"><span class="pre">Runner</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Local</span></code> and
+<code class="docutils literal notranslate"><span class="pre">invoke.runner.run</span></code> for improved distribution of responsibilities &amp;
+downstream subclassing.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This includes backwards incompatible changes to the API signature of most
+members of the <code class="docutils literal notranslate"><span class="pre">invoke.runner</span></code> module, including <code class="docutils literal notranslate"><span class="pre">invoke.runner.run</span></code>.
+(However, in the case of <code class="docutils literal notranslate"><span class="pre">invoke.runner.run</span></code>, the changes are mostly in
+the later, optional keyword arguments.)</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="0.9.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.9.0">0.9.0</a> <span style="font-size: 75%;">2014-08-26</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/136">#136</a><span>:</span> Added the <code class="docutils literal notranslate"><span class="pre">autoprint</span></code> flag to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.tasks.Task</span></code>/<code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code>, allowing users to set up
+tasks which act as both subroutines &amp; “print a result” CLI tasks. Thanks to
+Matthias Lehmann for the original patch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span> Fixed a sub-case of the already-mostly-fixed <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/149">#149</a> so
+the error message works usefully even with no explicit collection name given.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/162">#162</a><span>:</span> Adjust platform-sensitive imports so Windows users don’t
+encounter import-time exceptions. Thanks to Paul Moore for the patch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/119">#119</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/162">#162</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/113">#113</a>) Better handle
+platform-sensitive operations such as pty size detection or use, either
+replacing with platform-specific implementations or raising useful
+exceptions. Thanks to Gabi Davar and (especially) Paul Moore, for feedback &amp;
+original versions of the final patchset.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/167">#167</a><span>:</span> Running the same task multiple times in one CLI session was
+horribly broken; it works now. Thanks to Erich Heine for the report.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/165">#165</a><span>:</span> Running <code class="docutils literal notranslate"><span class="pre">inv[oke]</span></code> with no task names on a collection
+containing a default task should (intuitively) have run that default task,
+but instead did nothing. This has been fixed.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/169">#169</a><span>:</span> Overhaul the Sphinx docs into two trees, one for main project
+info and one for versioned API docs.</p></li>
+</ul>
+</section>
+<section id="0.8.2">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.8.2">0.8.2</a> <span style="font-size: 75%;">2014-06-15</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/142">#142</a><span>:</span> The refactored Loader class failed to account for the behavior of
+<a class="reference external" href="https://docs.python.org/2.7/library/imp.html#imp.find_module" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">imp.find_module</span></code></a> when run against packages (vs modules) and was exploding at
+load time. This has been fixed. Thanks to David Baumgold for catch &amp; patch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/145">#145</a><span>:</span> Ensure a useful message is displayed (instead of a confusing
+exception) when listing empty task collections.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/149">#149</a><span>:</span> Print a useful message to stderr when Invoke can’t find the
+requested collection/tasks file, instead of displaying a traceback.</p></li>
+</ul>
+</section>
+<section id="0.8.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.8.1">0.8.1</a> <span style="font-size: 75%;">2014-06-09</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/140">#140</a><span>:</span> Revert incorrect changes to our <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> regarding detection
+of sub-packages such as the vendor tree &amp; the parser. Also add additional
+scripting to our Travis-CI config to catch this class of error in future.
+Thanks to Steven Loria and James Cox for the reports.</p></li>
+</ul>
+</section>
+<section id="0.8.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.8.0">0.8.0</a> <span style="font-size: 75%;">2014-06-08</span></h2><ul>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/125">#125</a><span>:</span> Improve output of Failure exceptions when printed.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/124">#124</a><span>:</span> Add a <code class="docutils literal notranslate"><span class="pre">--debug</span></code> flag to the core parser to enable easier
+debugging (on top of existing <code class="docutils literal notranslate"><span class="pre">INVOKE_DEBUG</span></code> env var.)</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/87">#87</a><span>:</span> (also <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/92">#92</a>) Rework the loader module such that recursive
+filesystem searching is implemented, and is used instead of searching
+<a class="reference external" href="https://docs.python.org/2.7/library/sys.html#sys.path" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sys.path</span></code></a>.</p>
+<p>This adds the behavior most users expect or are familiar with from Fabric 1
+or similar tools; and it avoids nasty surprise collisions with other
+installed packages containing files named <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code>.</p>
+<p>Thanks to Michael Hahn for the original report &amp; PR, and to Matt Iversen for
+providing the discovery algorithm used in the final version of this change.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This is technically a backwards incompatible change (reminder: we’re not
+at 1.0 yet!). You’ll only notice if you were relying on adding your tasks
+module to <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> and then calling Invoke elsewhere on the
+filesystem.</p>
+</div>
+</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/110">#110</a><span>:</span> Add task docstrings’ 1st lines to <code class="docutils literal notranslate"><span class="pre">--list</span></code> output. Thanks to
+Hiroki Kiyohara for the original PR (with assists from Robert Read and James
+Thigpen.)</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/115">#115</a><span>:</span> Make it easier to reuse Invoke’s primary CLI machinery in
+other (non-Invoke-distributed) bin-scripts. Thanks to Noah Kantrowitz.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/135">#135</a><span>:</span> (also bugs <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/120">#120</a>, <a class="reference external" href="https://github.com/pyinvoke/invoke/issues/123">#123</a>) Implement post-tasks to
+match pre-tasks, and allow control over the arguments passed to both (via
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.tasks.call</span></code>). For details, see <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/concepts/invoking-tasks.html#pre-post-tasks" title="(在 Invoke)"><span>Pre- and post-tasks</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>Pre-tasks were overhauled a moderate amount to implement this feature;
+they now require references to <strong>task objects</strong> instead of <strong>task
+names</strong>. This is a backwards incompatible change.</p>
+</div>
+</li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/127">#127</a><span>:</span> Fill in tasks’ exposed <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute with body name if
+explicit name not given.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/116">#116</a><span>:</span> Ensure nested config overrides play nicely with default
+tasks and pre-tasks.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/131">#131</a><span>:</span> Make sure one’s local tasks module is always first in
+<code class="docutils literal notranslate"><span class="pre">sys.path</span></code>, even if its parent directory was already somewhere else in
+<code class="docutils literal notranslate"><span class="pre">sys.path</span></code>. This ensures that local tasks modules never become hidden by
+third-party ones. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;crccheck</span></code> for the early report and to Dorian
+Puła for assistance fixing.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/121">#121</a><span>:</span> Add missing help output denoting inverse Boolean options
+(i.e. <code class="docutils literal notranslate"><span class="pre">--[no-]foo</span></code> for a <code class="docutils literal notranslate"><span class="pre">--foo</span></code> flag whose value defaults to true.)
+Thanks to Andrew Roberts for catch &amp; patch.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/128">#128</a><span>:</span> Positional arguments containing underscores were not
+exporting to the parser correctly; this has been fixed. Thanks to J. Javier
+Maestro for catch &amp; patch.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Refactor the <code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.runners.Runner</span></code> module to differentiate
+what it means to run a command in the abstract, from execution specifics. Top
+level API is unaffected.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/117">#117</a><span>:</span> Tidy up <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> a bit, including axing the (broken)
+<a class="reference external" href="https://docs.python.org/2.7/library/distutils.html#module-distutils" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">distutils</span></code></a> support. Thanks to Matt Iversen for the original PR &amp; followup
+discussion.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/118">#118</a><span>:</span> Update the bundled <code class="docutils literal notranslate"><span class="pre">six</span></code> plus other minor tweaks to support
+files. Thanks to Matt Iversen.</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/25">#25</a><span>:</span> Trim a bunch of time off the test suite by using mocking and
+other tools instead of dogfooding a bunch of subprocess spawns.</p></li>
+</ul>
+</section>
+<section id="0.7.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.7.0">0.7.0</a> <span style="font-size: 75%;">2014.01.28</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/107">#107</a><span>:</span> Update configuration merging behavior for more flexible reuse
+of imported task modules, such as parameterizing multiple copies of a module
+within a task tree.</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/108">#108</a><span>:</span> Update <code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.collection.Collection.from_module</span></code> to accept
+useful shorthand arguments for tweaking the <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.collection.Collection</span></code></a>
+objects it creates (e.g. name, configuration.)</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/109">#109</a><span>:</span> Add a <code class="docutils literal notranslate"><span class="pre">default</span></code> kwarg to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.collection.Collection.add_task</span></code> allowing per-collection control over
+default tasks.</p></li>
+</ul>
+</section>
+<section id="0.6.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.6.1">0.6.1</a> <span style="font-size: 75%;">2013.11.21</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/98">#98</a><span>:</span> <strong>BACKWARDS INCOMPATIBLE CHANGE!</strong> Configuration merging has been
+reversed so outer collections’ config settings override inner collections.
+This makes distributing reusable modules significantly less silly.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/96">#96</a><span>:</span> Tasks in subcollections which set explicit names (via e.g.
+<code class="docutils literal notranslate"><span class="pre">&#64;task(name='foo')</span></code>) were not having those names honored. This is fixed.
+Thanks to Omer Katz for the report.</p></li>
+</ul>
+</section>
+<section id="0.6.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.6.0">0.6.0</a> <span style="font-size: 75%;">2013.11.21</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/89">#89</a><span>:</span> Implemented configuration for distributed task modules: can set
+config options in <a class="reference external" href="/home/runner/work/invoke/invoke/sites/www/../docs/_build/api/collection.html#invoke.collection.Collection" title="(在 Invoke)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invoke.collection.Collection</span></code></a> objects and they are made
+available to contextualized tasks.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/86">#86</a><span>:</span> Task arguments named with an underscore broke the help feature;
+this is now fixed. Thanks to Stéphane Klein for the catch.</p></li>
+</ul>
+</section>
+<section id="0.5.1">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.5.1">0.5.1</a> <span style="font-size: 75%;">2013.09.15</span></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/83">#83</a><span>:</span> Fix a bug preventing underscored keyword arguments from working
+correctly as CLI flags (e.g. <code class="docutils literal notranslate"><span class="pre">mytask</span> <span class="pre">--my-arg</span></code> would not map back correctly
+to <code class="docutils literal notranslate"><span class="pre">mytask(my_arg=...)</span></code>.) Credit: <code class="docutils literal notranslate"><span class="pre">&#64;akitada</span></code>.</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/81">#81</a><span>:</span> Fall back to sane defaults for PTY sizes when autodetection gives
+insane results. Thanks to <code class="docutils literal notranslate"><span class="pre">&#64;akitada</span></code> for the patch.</p></li>
+</ul>
+</section>
+<section id="0.5.0">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/pyinvoke/invoke/tree/0.5.0">0.5.0</a> <span style="font-size: 75%;">2013.08.16</span></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/57">#57</a><span>:</span> Optional-value flags added - e.g. <code class="docutils literal notranslate"><span class="pre">--foo</span></code> tells the parser to
+set the <code class="docutils literal notranslate"><span class="pre">foo</span></code> option value to True; <code class="docutils literal notranslate"><span class="pre">--foo</span> <span class="pre">myval</span></code> sets the value to
+“myval”. The built-in <code class="docutils literal notranslate"><span class="pre">--help</span></code> option now leverages this feature for
+per-task help (e.g. <code class="docutils literal notranslate"><span class="pre">--help</span></code> displays global help, <code class="docutils literal notranslate"><span class="pre">--help</span> <span class="pre">mytask</span></code>
+displays help for <code class="docutils literal notranslate"><span class="pre">mytask</span></code> only.)</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/pyinvoke/invoke/issues/55">#55</a><span>:</span> A bug in our vendored copy of <code class="docutils literal notranslate"><span class="pre">pexpect</span></code> clashed with a
+Python 2-&gt;3 change in import behavior to prevent Invoke from running on
+Python 3 unless the <code class="docutils literal notranslate"><span class="pre">six</span></code> module was installed in one’s environment. This
+was fixed - our vendored <code class="docutils literal notranslate"><span class="pre">pexpect</span></code> now always loads its sibling vendored
+<code class="docutils literal notranslate"><span class="pre">six</span></code> correctly.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Invoke</a></h1>
+
+
+
+<p class="blurb">Pythonic task execution</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pyinvoke&repo=invoke&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://travis-ci.org/pyinvoke/invoke">
+    <img
+        alt="https://secure.travis-ci.org/pyinvoke/invoke.svg?branch=master"
+        src="https://secure.travis-ci.org/pyinvoke/invoke.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://codecov.io/github/pyinvoke/invoke">
+    <img
+    alt="https://codecov.io/github/pyinvoke/invoke/coverage.svg?branch=master"
+    src="https://codecov.io/github/pyinvoke/invoke/coverage.svg?branch=master"
+    />
+</a>
+</p>
+<h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prior-art.html">Prior art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://daobook.github.io/invoke/docs">Documentation</a></li>
+    
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+<h3 class="donation">Donate/support</h3>
+
+
+
+
+
+
+
+<p>
+Professionally-supported Invoke is available with the
+<a href="https://tidelift.com/subscription/pkg/pypi-invoke?utm_source=pypi-invoke&utm_medium=referral&utm_campaign=docs">Tidelift Subscription</a>.
+</p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022 Jeff Forcier.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/changelog.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18486793-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

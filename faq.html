@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Frequently asked questions &#8212; Invoke  文档</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="Installing" href="installing.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="frequently-asked-questions">
+<h1>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="永久链接至标题">¶</a></h1>
+<section id="general-project-questions">
+<h2>General project questions<a class="headerlink" href="#general-project-questions" title="永久链接至标题">¶</a></h2>
+<section id="why-was-invoke-split-off-from-the-fabric-project">
+<span id="invoke-split-from-fabric"></span><h3>Why was Invoke split off from the <a class="reference external" href="http://fabfile.org">Fabric</a> project?<a class="headerlink" href="#why-was-invoke-split-off-from-the-fabric-project" title="永久链接至标题">¶</a></h3>
+<p>Fabric (1.x and earlier) was a hybrid project implementing two feature sets:
+task execution (organization of task functions, execution of them via CLI, and
+local shell commands) and high level SSH actions (organization of
+servers/hosts, remote shell commands, and file transfer).</p>
+<p>For use cases requiring both feature sets, this arrangement worked well.
+However, over time it became clear many users only needed one or the other,
+with local-only users resenting heavy SSH/crypto install requirements, and
+remote-focused users struggling with API limitations caused by the hybrid
+codebase.</p>
+<p>When planning Fabric 2.x, having the “local” feature set as a standalone
+library made sense, and it seemed plausible to design the SSH component as a
+separate layer above. Thus, Invoke was created to focus exclusively on local
+and abstract concerns, leaving Fabric 2.x concerned only with servers and
+network commands.</p>
+<p>Fabric 2 leverages many parts of Invoke’s API, and allows (but does not
+require!) use of Invoke’s CLI features, allowing multiple use cases (build
+tool, high level SSH lib, hybrid build/orchestration tool) to coexist without
+negatively impacting each other.</p>
+</section>
+</section>
+<section id="defining-executing-tasks">
+<h2>Defining/executing tasks<a class="headerlink" href="#defining-executing-tasks" title="永久链接至标题">¶</a></h2>
+<section id="my-task-s-first-argument-isn-t-showing-up-in-help">
+<span id="bad-first-arg"></span><h3>My task’s first argument isn’t showing up in <code class="docutils literal notranslate"><span class="pre">--help</span></code>!<a class="headerlink" href="#my-task-s-first-argument-isn-t-showing-up-in-help" title="永久链接至标题">¶</a></h3>
+<p>This problem pops up if you forget to define an initial context argument for
+your task.</p>
+<p>For example, can you spot the problem in this sample task file?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">what</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>This task file doesn’t cause obvious errors when sanity-checking it with
+<code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--list</span></code> or <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--help</span></code>. However, <code class="docutils literal notranslate"><span class="pre">clean</span></code> forgot to set aside its
+first argument for the context - so Invoke is treating <code class="docutils literal notranslate"><span class="pre">what</span></code> as the context
+argument! This means it doesn’t show up in help output or other command-line
+parsing stages.</p>
+</section>
+<section id="the-command-line-says-my-task-s-first-argument-is-invalid">
+<h3>The command line says my task’s first argument is invalid!<a class="headerlink" href="#the-command-line-says-my-task-s-first-argument-is-invalid" title="永久链接至标题">¶</a></h3>
+<p>See <a class="reference internal" href="#bad-first-arg"><span class="std std-ref">My task’s first argument isn’t showing up in --help!</span></a> - it’s probably the same issue.</p>
+</section>
+</section>
+<section id="running-local-shell-commands-run">
+<h2>Running local shell commands (<code class="docutils literal notranslate"><span class="pre">run</span></code>)<a class="headerlink" href="#running-local-shell-commands-run" title="永久链接至标题">¶</a></h2>
+<section id="why-is-my-command-behaving-differently-under-invoke-versus-being-run-by-hand">
+<span id="program-behavior-ptys"></span><h3>Why is my command behaving differently under Invoke versus being run by hand?<a class="headerlink" href="#why-is-my-command-behaving-differently-under-invoke-versus-being-run-by-hand" title="永久链接至标题">¶</a></h3>
+<p>99% of the time, adding <code class="docutils literal notranslate"><span class="pre">pty=True</span></code> to your <code class="docutils literal notranslate"><span class="pre">run</span></code> call will make things work
+as you were expecting. Read on for why this is (and why <code class="docutils literal notranslate"><span class="pre">pty=True</span></code> is not the
+default).</p>
+<p>Command-line programs often change behavior depending on whether a controlling
+terminal is present; a common example is the use or disuse of colored output.
+When the recipient of your output is a human at a terminal, you may want to use
+color, tailor line length to match terminal width, etc.</p>
+<p>Conversely, when your output is being sent to another program (shell pipe, CI
+server, file, etc) color escape codes and other terminal-specific behaviors can
+result in unwanted garbage.</p>
+<p>Invoke’s use cases span both of the above - sometimes you only want data
+displayed directly, sometimes you only want to capture it as a string; often
+you want both. Because of this, there is no “correct” default behavior re: use
+of a pseudo-terminal - some large chunk of use cases will be inconvenienced
+either way.</p>
+<p>For use cases which don’t care, direct invocation without a pseudo-terminal is
+faster &amp; cleaner, so it is the default.</p>
+</section>
+<section id="calling-python-or-python-scripts-prints-all-the-output-at-the-end-of-the-run">
+<h3>Calling Python or Python scripts prints all the output at the end of the run!<a class="headerlink" href="#calling-python-or-python-scripts-prints-all-the-output-at-the-end-of-the-run" title="永久链接至标题">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>This is typically a problem under Python 3 only.</p>
+</div>
+<p>The symptom is easy to spot - you’re running a command that takes a few seconds
+or more to execute, it usually prints lines of text as it goes, but via
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> nothing appears to happen at first, and then all the output
+prints once it’s done executing.</p>
+<p>This is usually due to Python - the “inner” Python executable you’re invoking,
+not the one Invoke is running under - performing unwanted buffering of its
+output streams. It does this when it thinks it’s being called in a
+non-interactive fashion.</p>
+<p>The fix is to force Invoke to run the command in a pseudoterminal by
+saying <code class="docutils literal notranslate"><span class="pre">pty=True</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">run(&quot;python</span> <span class="pre">foo&quot;,</span> <span class="pre">pty=True)</span></code>).</p>
+<p>Alternately, since both Invoke and the inner command are Python, you could try
+loading the inner Python module directly in your Invoke-using code, and call
+whichever methods its command-line stub is using - instead of using
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code>. This can often have other benefits too.</p>
+</section>
+<section id="why-do-i-sometimes-see-err-stdin-is-not-a-tty">
+<span id="stdin-not-tty"></span><h3>Why do I sometimes see <code class="docutils literal notranslate"><span class="pre">err:</span> <span class="pre">stdin:</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">a</span> <span class="pre">tty</span></code>?<a class="headerlink" href="#why-do-i-sometimes-see-err-stdin-is-not-a-tty" title="永久链接至标题">¶</a></h3>
+<p>See <a class="reference internal" href="#program-behavior-ptys"><span class="std std-ref">Why is my command behaving differently under Invoke versus being run by hand?</span></a> - the same root cause (lack of a PTY by
+default) is probably what’s going on. In some cases (such as via the Fabric
+library) it’s happening because a shell’s login files are calling programs that
+require a PTY (e.g. <code class="docutils literal notranslate"><span class="pre">biff</span></code> or <code class="docutils literal notranslate"><span class="pre">mesg</span></code>) so make sure to look there if the
+actual foreground command doesn’t seem at fault.</p>
+</section>
+<section id="everything-just-exits-silently-after-i-run-a-command">
+<h3>Everything just exits silently after I run a command!<a class="headerlink" href="#everything-just-exits-silently-after-i-run-a-command" title="永久链接至标题">¶</a></h3>
+<p>Double check the command’s exit code! By default, receiving nonzero exit codes
+at the end of a <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> call will result in Invoke halting execution &amp;
+exiting with that same code. Some programs (pylint, Nagios check scripts,
+etc) use exit codes to indicate non-fatal status, which can be confusing.</p>
+<p>The solution here is to add <code class="docutils literal notranslate"><span class="pre">warn=True</span></code> to your <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> call,
+which disables the automatic exit behavior. Then you can check the result’s
+<code class="docutils literal notranslate"><span class="pre">.exited</span></code> attribute by hand to determine if it truly succeeded.</p>
+</section>
+<section id="the-auto-responder-functionality-isn-t-working-for-my-password-prompts">
+<h3>The auto-responder functionality isn’t working for my password prompts!<a class="headerlink" href="#the-auto-responder-functionality-isn-t-working-for-my-password-prompts" title="永久链接至标题">¶</a></h3>
+<p>Some programs write password prompts or other output <em>directly</em> to the local
+terminal (the operating-system-level TTY device), bypassing the usual
+stdout/stderr streams. For example, this is exactly what <a class="reference external" href="https://docs.python.org/2.7/library/getpass.html#getpass.getpass" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">the</span> <span class="pre">stdlib's</span> <span class="pre">getpass</span>
+<span class="pre">module</span></code></a> does, if you’re calling a program that happens to be
+written in Python.</p>
+<p>When this happens, we’re powerless, because all we get to see is the
+subprocess’ regular output streams. Thankfully, the solution is usually easy:
+just add <code class="docutils literal notranslate"><span class="pre">pty=True</span></code> to your <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> call. Forcing use of an explicit
+pseudo-terminal usually tricks these kinds of programs into writing prompts to
+stderr.</p>
+</section>
+<section id="i-m-getting-ioerror-inappropriate-ioctl-for-device-when-i-run-commands">
+<h3>I’m getting <code class="docutils literal notranslate"><span class="pre">IOError:</span> <span class="pre">Inappropriate</span> <span class="pre">ioctl</span> <span class="pre">for</span> <span class="pre">device</span></code> when I run commands!<a class="headerlink" href="#i-m-getting-ioerror-inappropriate-ioctl-for-device-when-i-run-commands" title="永久链接至标题">¶</a></h3>
+<p>This error typically means some code in your project or its dependencies has
+replaced one of the process streams (<code class="docutils literal notranslate"><span class="pre">sys.stdin</span></code>, <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> or
+<code class="docutils literal notranslate"><span class="pre">sys.stderr</span></code>) with an object that isn’t actually hooked up to a terminal, but
+which pretends that it is. For example, test runners or build systems often do
+this.</p>
+<p>99% of the time, this pops up for stdin only, in which case you may be able to
+work around it by specifying <code class="docutils literal notranslate"><span class="pre">in_stream=False</span></code> to <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> (note:
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, <strong>not</strong> <code class="docutils literal notranslate"><span class="pre">None</span></code>!)</p>
+<section id="gory-details">
+<h4>Gory details<a class="headerlink" href="#gory-details" title="永久链接至标题">¶</a></h4>
+<p>Technically, what’s happened is that the object handed to Invoke’s command
+executor as e.g. <code class="docutils literal notranslate"><span class="pre">run('command',</span> <span class="pre">in_stream=xxx)</span></code> (or <code class="docutils literal notranslate"><span class="pre">out_stream</span></code> or etc;
+and these all default to the <code class="docutils literal notranslate"><span class="pre">sys</span></code> members listed above) implements a
+<code class="docutils literal notranslate"><span class="pre">fileno</span></code> method that is not returning the ID of a real terminal file
+descriptor. Breaking the contract in this way is what’s leading Invoke to do
+things the OS doesn’t like.</p>
+<p>We’re always trying to make this detection smarter; if upgrading to the latest
+version of Invoke doesn’t fix the problem for you, please submit a bug report
+including details about the values and types of <code class="docutils literal notranslate"><span class="pre">sys.stdin/stdout/stderr</span></code>.
+Hopefully we’ll find another heuristic we can use!</p>
+</section>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Invoke</a></h1>
+
+
+
+<p class="blurb">Pythonic task execution</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pyinvoke&repo=invoke&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://travis-ci.org/pyinvoke/invoke">
+    <img
+        alt="https://secure.travis-ci.org/pyinvoke/invoke.svg?branch=master"
+        src="https://secure.travis-ci.org/pyinvoke/invoke.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://codecov.io/github/pyinvoke/invoke">
+    <img
+    alt="https://codecov.io/github/pyinvoke/invoke/coverage.svg?branch=master"
+    src="https://codecov.io/github/pyinvoke/invoke/coverage.svg?branch=master"
+    />
+</a>
+</p>
+<h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">常见问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-project-questions">General project questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-was-invoke-split-off-from-the-fabric-project">Why was Invoke split off from the Fabric project?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-executing-tasks">Defining/executing tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#my-task-s-first-argument-isn-t-showing-up-in-help">My task’s first argument isn’t showing up in <code class="docutils literal notranslate"><span class="pre">--help</span></code>!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-command-line-says-my-task-s-first-argument-is-invalid">The command line says my task’s first argument is invalid!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-local-shell-commands-run">Running local shell commands (<code class="docutils literal notranslate"><span class="pre">run</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-is-my-command-behaving-differently-under-invoke-versus-being-run-by-hand">Why is my command behaving differently under Invoke versus being run by hand?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calling-python-or-python-scripts-prints-all-the-output-at-the-end-of-the-run">Calling Python or Python scripts prints all the output at the end of the run!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#why-do-i-sometimes-see-err-stdin-is-not-a-tty">Why do I sometimes see <code class="docutils literal notranslate"><span class="pre">err:</span> <span class="pre">stdin:</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">a</span> <span class="pre">tty</span></code>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#everything-just-exits-silently-after-i-run-a-command">Everything just exits silently after I run a command!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-auto-responder-functionality-isn-t-working-for-my-password-prompts">The auto-responder functionality isn’t working for my password prompts!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-m-getting-ioerror-inappropriate-ioctl-for-device-when-i-run-commands">I’m getting <code class="docutils literal notranslate"><span class="pre">IOError:</span> <span class="pre">Inappropriate</span> <span class="pre">ioctl</span> <span class="pre">for</span> <span class="pre">device</span></code> when I run commands!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gory-details">Gory details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prior-art.html">Prior art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://daobook.github.io/invoke/docs">Documentation</a></li>
+    
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+<h3 class="donation">Donate/support</h3>
+
+
+
+
+
+
+
+<p>
+Professionally-supported Invoke is available with the
+<a href="https://tidelift.com/subscription/pkg/pypi-invoke?utm_source=pypi-invoke&utm_medium=referral&utm_campaign=docs">Tidelift Subscription</a>.
+</p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022 Jeff Forcier.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/faq.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18486793-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

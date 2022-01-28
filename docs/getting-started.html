@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>快速入门 &#8212; Invoke  文档</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="inv[oke] core usage" href="invoke.html" />
+    <link rel="prev" title="欢迎来到 Invoke 的文档！" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="getting-started">
+<h1>快速入门<a class="headerlink" href="#getting-started" title="永久链接至标题">¶</a></h1>
+<p>这份文档介绍了 Invoke 的功能集的旋风之旅。请参阅贯穿全文的链接，了解详细的概念和 API 文档。关于安装帮助，请看项目的 <a class="reference external" href="http://www.pyinvoke.org/installing.html">安装页面</a>。</p>
+<section id="defining-and-running-task-functions">
+<span id="id1"></span><h2>定义和运行任务函数<a class="headerlink" href="#defining-and-running-task-functions" title="永久链接至标题">¶</a></h2>
+<p>Invoke 的核心用例是设置任务函数的集合并执行它们。这很容易 – 你只需要做一个叫做 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> 的文件，导入 <code class="xref py py-obj docutils literal notranslate"><span class="pre">task</span></code> 装饰器并装饰一个或多个函数。你还需要添加一个任意命名的上下文参数（惯例是使用 <code class="docutils literal notranslate"><span class="pre">c</span></code>、<code class="docutils literal notranslate"><span class="pre">ctx</span></code> 或 <code class="docutils literal notranslate"><span class="pre">context</span></code>）作为第一个位置参数。先不要担心使用这个上下文参数。</p>
+<p>让我们从  dummy Sphinx 文档构建任务开始吧</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Building!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>然后你可以通过告诉 Invoke 的命令行运行器 <code class="docutils literal notranslate"><span class="pre">invoke</span></code>，你想让它运行来执行这个新任务</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke build
+Building!
+</pre></div>
+</div>
+<p>函数主体可以是你想要的任何 Python – 任何东西。</p>
+</section>
+<section id="task-parameters">
+<h2>任务参数<a class="headerlink" href="#task-parameters" title="永久链接至标题">¶</a></h2>
+<p>函数可以有参数，因此任务也可以有参数。默认情况下，你的任务函数的 args/kwargs 会自动映射到长和短的 CLI 旗标上，根据 <a class="reference internal" href="concepts/invoking-tasks.html#task-arguments"><span class="std std-ref">CLI docs</span></a>。例如，如果我们添加一个 <code class="docutils literal notranslate"><span class="pre">clean</span></code> 参数，并给它一个布尔默认值，它将显示为一组切换旗标，<code class="docutils literal notranslate"><span class="pre">--clean</span></code> 和 <code class="docutils literal notranslate"><span class="pre">-c</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">clean</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cleaning!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Building!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Invocations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke build -c
+$ invoke build --clean
+</pre></div>
+</div>
+<p>自然地，其他默认参数值将允许给出字符串或整数值。没有默认值的参数被假定为采取字符串，并且也可以作为位置参数给出。以这个令人难以置信的编造的片段为例</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">hi</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hi </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>它可以通过以下方式被调用，都会产生 “Hi Name!”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke hi Name
+$ invoke hi --name Name
+$ invoke hi --name=Name
+$ invoke hi -n Name
+$ invoke hi -nName
+</pre></div>
+</div>
+<section id="adding-metadata-via-task">
+<h3>通过 <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> 添加元数据<a class="headerlink" href="#adding-metadata-via-task" title="永久链接至标题">¶</a></h3>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> 可以在没有任何参数的情况下使用，如上所述，但它也是一个方便的矢量，用于描述它所装饰的任务函数的额外元数据。一个常见的例子是通过 <code class="docutils literal notranslate"><span class="pre">help</span></code> 参数来描述任务的参数（此外还可以通过 docstring 提供任务级别的帮助）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s2">&quot;Name of the person to say hi to.&quot;</span><span class="p">})</span>
+<span class="k">def</span> <span class="nf">hi</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Say hi to someone.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hi </span><span class="si">{}</span><span class="s2">!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>当调用 <code class="docutils literal notranslate"><span class="pre">--help</span></code> 时，该描述将显示出来</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke --help hi
+Usage: inv[oke] [--core-opts] hi [--options] [other tasks here ...]
+
+Docstring:
+  Say hi to someone.
+
+Options:
+  -n STRING, --name=STRING   Name of the person to say hi to.
+</pre></div>
+</div>
+<p>关于任务参数化和元数据的更多细节可以在 <a class="reference internal" href="concepts/invoking-tasks.html"><span class="doc">Invoking tasks</span></a> （关于命令行和解析方面）和 <code class="xref py py-obj docutils literal notranslate"><span class="pre">task</span></code> API 文档（关于声明方面）找到。</p>
+</section>
+</section>
+<section id="listing-tasks">
+<h2>列出任务<a class="headerlink" href="#listing-tasks" title="永久链接至标题">¶</a></h2>
+<p>你有时想看看在给定的 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> 中有哪些任务 – <code class="docutils literal notranslate"><span class="pre">invoke</span></code> 可以被告知列出它们，而不是执行什么</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke --list
+Available tasks:
+
+    build
+</pre></div>
+</div>
+<p>这也将打印每个任务的文件串的第一行，如果它有的话。要想知道除了 <code class="docutils literal notranslate"><span class="pre">--list</span></code> 还有什么可用的，请说 <code class="docutils literal notranslate"><span class="pre">invoke</span> <span class="pre">--help</span></code>。</p>
+</section>
+<section id="running-shell-commands">
+<h2>运行 shell 命令<a class="headerlink" href="#running-shell-commands" title="永久链接至标题">¶</a></h2>
+<p>Invoke 的许多用例涉及运行本地 shell 命令，类似于 Make 或 Rake 等程序。这是通过 <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> 函数完成的</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;sphinx-build docs docs/_build&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在运行过程中，你会在你的终端看到该命令的输出</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke build
+Running Sphinx v1.1.3
+loading pickled environment... done
+...
+build succeeded, 2 warnings.
+</pre></div>
+</div>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> 有许多参数控制它的行为，例如为需要伪终端的复杂程序激活伪终端，抑制错误时退出的行为，隐藏子进程的输出（同时仍然捕获它以便以后审查），等等。详见 <code class="xref py py-obj docutils literal notranslate"><span class="pre">其</span> <span class="pre">API</span> <span class="pre">文档</span></code>。</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> 总是返回一个有用的 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code> 对象，提供访问捕获的输出、退出代码和其他信息。</p>
+<section id="aside-what-exactly-is-this-context-arg-anyway">
+<span id="why-context"></span><h3>旁白：这个 ‘context’ 的说法到底是什么？<a class="headerlink" href="#aside-what-exactly-is-this-context-arg-anyway" title="永久链接至标题">¶</a></h3>
+<p>任务运行者面临的一个常见问题是传输 “global” 数据 – 从 <a class="reference internal" href="concepts/configuration.html"><span class="doc">配置文件</span></a> 或 <a class="reference internal" href="concepts/configuration.html#collection-configuration"><span class="std std-ref">其他配置张量</span></a> 加载的值，通过 CLI 旗标给出，在 ‘setup’ 任务中生成，等等。</p>
+<p>一些库（如 <a class="reference external" href="http://fabfile.org">Fabric</a> 1.x）通过模块级的属性来实现，这使得测试困难和容易出错，限制了并发性，并增加了实施的复杂性。</p>
+<p>Invoke 将状态封装在明确的 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> 对象中，在任务执行时交给它们。上下文是主要的 API 端点，提供尊重当前状态的方法（如 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.run</span></code>），以及对该状态本身的访问。</p>
+</section>
+</section>
+<section id="declaring-pre-tasks">
+<h2>声明预设任务<a class="headerlink" href="#declaring-pre-tasks" title="永久链接至标题">¶</a></h2>
+<p>任务可以通过 <code class="xref py py-obj docutils literal notranslate"><span class="pre">task</span></code> 装饰器以多种方式进行配置。其中之一是选择一个或多个你希望在执行你的任务之前始终运行的其他任务，用名称表示。</p>
+<p>让我们用新的清理任务来扩展文档构建器，该任务在每次构建前运行（当然，它仍然可以单独执行）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf docs/_build&quot;</span><span class="p">)</span>
+
+<span class="nd">@task</span><span class="p">(</span><span class="n">clean</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;sphinx-build docs docs/_build&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>现在当你 <code class="docutils literal notranslate"><span class="pre">invoke</span> <span class="pre">build</span></code> 时，它会自动先运行 <code class="docutils literal notranslate"><span class="pre">clean</span></code>。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>如果你不喜欢隐式的 “positional arguments are pre-run task names” 的 API，你可以显式地给出 <code class="docutils literal notranslate"><span class="pre">pre</span></code> 的 kwarg：<code class="docutils literal notranslate"><span class="pre">&#64;task(pre=[clean])</span></code> 。</p>
+</div>
+<p>详情可在 <a class="reference internal" href="concepts/invoking-tasks.html#how-tasks-run"><span class="std std-ref">How tasks run</span></a> 中找到。</p>
+</section>
+<section id="creating-namespaces">
+<h2>创建命名空间<a class="headerlink" href="#creating-namespaces" title="永久链接至标题">¶</a></h2>
+<p>现在，我们的 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> 隐含地只用于文档，但也许我们的项目需要其他非文档的东西，比如打包/部署、测试等等。在这一点上，一个单一的平面命名空间是不够的，所以 Invoke 让你轻松建立一个 <a class="reference internal" href="concepts/namespaces.html"><span class="doc">嵌套命名空间</span></a>。这里有一个快速的例子。</p>
+<p>首先让我们把 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> 重命名为 <code class="docutils literal notranslate"><span class="pre">docs.py</span></code>；那里不需要做其他改动。然后我们创建一个新的 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code>，为了简洁起见，用一个新的、真正的顶级任务 <code class="docutils literal notranslate"><span class="pre">deploy</span></code> 来填充它”</p>
+<p>最后，我们可以使用新的 API 成员，<a class="reference internal" href="api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> 类，将这个任务和 <code class="docutils literal notranslate"><span class="pre">docs</span></code> 模块绑定到一个明确的命名空间。当 Invoke 加载你的任务模块时，如果 <a class="reference internal" href="api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> 对象作为 <code class="docutils literal notranslate"><span class="pre">ns</span></code> 或 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> 绑定存在，它将被用于根命名空间</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">task</span>
+<span class="kn">import</span> <span class="nn">docs</span>
+
+<span class="nd">@task</span>
+<span class="k">def</span> <span class="nf">deploy</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;python setup.py sdist&quot;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;twine upload dist/*&quot;</span><span class="p">)</span>
+
+<span class="n">namespace</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">deploy</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>结果</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke --list
+Available tasks:
+
+    deploy
+    docs.build
+    docs.clean
+</pre></div>
+</div>
+<p>关于命名间距如何工作的更详细的分类，请参见 <a class="reference internal" href="concepts/namespaces.html"><span class="doc">文档</span></a>。</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Invoke</a></h1>
+
+
+
+<p class="blurb">Pythonic task execution</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=pyinvoke&repo=invoke&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://travis-ci.org/pyinvoke/invoke">
+    <img
+        alt="https://secure.travis-ci.org/pyinvoke/invoke.svg?branch=master"
+        src="https://secure.travis-ci.org/pyinvoke/invoke.svg?branch=master"
+    />
+</a>
+</p>
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://codecov.io/github/pyinvoke/invoke">
+    <img
+    alt="https://codecov.io/github/pyinvoke/invoke/coverage.svg?branch=master"
+    src="https://codecov.io/github/pyinvoke/invoke/coverage.svg?branch=master"
+    />
+</a>
+</p>
+<h3>导航</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">快速入门</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#defining-and-running-task-functions">定义和运行任务函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#task-parameters">任务参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listing-tasks">列出任务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-shell-commands">运行 shell 命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#declaring-pre-tasks">声明预设任务</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-namespaces">创建命名空间</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="invoke.html"><code class="docutils literal notranslate"><span class="pre">inv[oke]</span></code> core usage</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="concepts/configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/invoking-tasks.html">Invoking tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/library.html">Using Invoke as a library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/loading.html">Loading collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/namespaces.html">Constructing namespaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/testing.html">Testing Invoke-using codebases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/watchers.html">Automatically responding to program output</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/__init__.html"><code class="docutils literal notranslate"><span class="pre">__init__</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/collection.html"><code class="docutils literal notranslate"><span class="pre">collection</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/config.html"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/context.html"><code class="docutils literal notranslate"><span class="pre">context</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/exceptions.html"><code class="docutils literal notranslate"><span class="pre">exceptions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/executor.html"><code class="docutils literal notranslate"><span class="pre">executor</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/loader.html"><code class="docutils literal notranslate"><span class="pre">loader</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/parser.html"><code class="docutils literal notranslate"><span class="pre">parser</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/program.html"><code class="docutils literal notranslate"><span class="pre">program</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/runners.html"><code class="docutils literal notranslate"><span class="pre">runners</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/tasks.html"><code class="docutils literal notranslate"><span class="pre">tasks</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/terminals.html"><code class="docutils literal notranslate"><span class="pre">terminals</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/util.html"><code class="docutils literal notranslate"><span class="pre">util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/watchers.html"><code class="docutils literal notranslate"><span class="pre">watchers</span></code></a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://daobook.github.io/invoke">Main website</a></li>
+    
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="转向" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+<h3 class="donation">Donate/support</h3>
+
+
+
+
+
+
+
+<p>
+Professionally-supported Invoke is available with the
+<a href="https://tidelift.com/subscription/pkg/pypi-invoke?utm_source=pypi-invoke&utm_medium=referral&utm_campaign=docs">Tidelift Subscription</a>.
+</p>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022 Jeff Forcier.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/getting-started.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18486793-3']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
