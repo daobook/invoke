@@ -14,4 +14,4 @@ codecov==2.1.11
 certifi==2018.4.16
 # Gotta limit Sphinx to <1.7 for now, or releases blows up. (has to be done in
 # here since this file gets run by itself sometimes.)
-Sphinx>=1.4,<1.7
+Sphinx #>=1.4,<1.7

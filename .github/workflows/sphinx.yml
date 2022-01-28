@@ -41,7 +41,7 @@ jobs:
       - name: 👷‍ Install dependencies
         shell: bash
         run: |
-          pip install sphinx invoke invocations
+          pip install -r dev-requirements.txt
 
       - name: 🔧 Build HTML
         run: |
