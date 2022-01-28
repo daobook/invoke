@@ -19,5 +19,9 @@ intersphinx_mapping["docs"] = (target, None)
 
 # Sister-site links to documentation
 html_theme_options["extra_nav_links"] = {
-    "Documentation": "http://docs.pyinvoke.org"
+    "Documentation": "https://daobook.github.io/docs"
 }
+
+locale_dirs = ['locales/']
+gettext_compact = False
+language = 'zh_CN'

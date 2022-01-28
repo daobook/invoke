@@ -13,7 +13,7 @@ autodoc_default_flags = ["members", "special-members"]
 
 # Sister-site links to WWW
 html_theme_options["extra_nav_links"] = {
-    "Main website": "http://www.pyinvoke.org"
+    "Main website": "https://daobook.github.io/"
 }
 
 locale_dirs = ['locales/']

@@ -41,15 +41,15 @@ jobs:
       - name: 👷‍ Install dependencies
         shell: bash
         run: |
-          pip install sphinx
+          pip install sphinx invoke
 
       - name: 🔧 Build HTML
         run: |
-          cd sites/docs
-          make html
+          invoke sites
+          cp -rf sites/docs/_build/ sites/www/_build/docs
 
       - name: 🚀 Deploy to GitHub pages
         uses: peaceiris/actions-gh-pages@v3.6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: sites/docs/_build/html
+          publish_dir: sites/www/_build
