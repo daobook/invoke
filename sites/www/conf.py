@@ -19,7 +19,7 @@ intersphinx_mapping["docs"] = (target, None)
 
 # Sister-site links to documentation
 html_theme_options["extra_nav_links"] = {
-    "Documentation": "https://daobook.github.io/docs"
+    "Documentation": "https://daobook.github.io/invoke/docs"
 }
 
 locale_dirs = ['locales/']

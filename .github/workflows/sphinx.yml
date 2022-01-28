@@ -41,7 +41,7 @@ jobs:
       - name: 👷‍ Install dependencies
         shell: bash
         run: |
-          pip install sphinx invoke
+          pip install sphinx invoke invocations
 
       - name: 🔧 Build HTML
         run: |

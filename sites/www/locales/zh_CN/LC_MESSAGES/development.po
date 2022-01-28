@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-28 10:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../development.rst:3
+msgid "Development"
+msgstr ""
+
+#: ../../development.rst:6
+msgid "Obtaining a source checkout"
+msgstr ""
+
+#: ../../development.rst:8
+msgid ""
+"Our Git repository is maintained on Github at `pyinvoke/invoke`_. Please "
+"follow their instructions for cloning (or forking, then cloning, which is"
+" best if you intend to contribute back) the repository there."
+msgstr ""
+
+#: ../../development.rst:12
+msgid ""
+"Once downloaded, install the repo itself + its development dependencies "
+"by running ``pip install -r dev-requirements.txt``."
+msgstr ""
+
+#: ../../development.rst:17
+msgid "Submitting bug reports or patches"
+msgstr ""
+
+#: ../../development.rst:19
+msgid ""
+"We follow `contribution-guide.org`_ for all of our development - please "
+"`go there`_ for details on submitting patches, which branch(es) to work "
+"out of, and so on. Our issue tracker is on `our GitHub page`_."
+msgstr ""
+
+#: ../../development.rst:24
+msgid "Changelog location"
+msgstr ""
+
+#: ../../development.rst:26
+msgid ""
+"Invoke's changelog lives in ``sites/www/changelog.rst`` and is formatted "
+"using the `Releases <https://releases.readthedocs.io>`_ Sphinx plugin."
+msgstr ""
+
+#: ../../development.rst:30
+msgid "Running management tasks"
+msgstr ""
+
+#: ../../development.rst:32
+msgid ""
+"Invoke uses itself for project management and has a number of tasks you "
+"can see with ``inv --list``. Some specific tasks of note:"
+msgstr ""
+
+#: ../../development.rst:35
+msgid ""
+"``test`` and ``integration``: Runs the primary and integration test "
+"suites, respectively. (Most of the time you can ignore ``integration`` - "
+"it's mostly for use by CI systems or once-in-a-while sanity checks "
+"locally.)"
+msgstr ""
+
+#: ../../development.rst:39
+msgid ""
+"``www`` and ``docs`` (and their subtasks like ``docs.browse``): Builds "
+"the WWW site and the API docs, respectively."
+msgstr ""
+
+#: ../../development.rst:42
+msgid ""
+"Another good resource is to skim our ``.travis.yml`` file for the "
+"commands it executes - if submissions don't pass all of those commands to"
+" some degree, they won't pass Travis' CI builds either!"
+msgstr ""
+
