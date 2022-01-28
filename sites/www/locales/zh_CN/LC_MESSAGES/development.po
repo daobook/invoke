@@ -43,7 +43,7 @@ msgstr ""
 
 #: ../../development.rst:17
 msgid "Submitting bug reports or patches"
-msgstr ""
+msgstr "提交错误报告或补丁"
 
 #: ../../development.rst:19
 msgid ""
@@ -51,26 +51,30 @@ msgid ""
 "`go there`_ for details on submitting patches, which branch(es) to work "
 "out of, and so on. Our issue tracker is on `our GitHub page`_."
 msgstr ""
+"所有的开发都遵循 `contribution-guide.org`_ -- "
+"请去那里了解提交补丁的细节，哪个分支的工作，等等。我们的问题跟踪器在 `our GitHub page`_。"
 
 #: ../../development.rst:24
 msgid "Changelog location"
-msgstr ""
+msgstr "更新日志的位置"
 
 #: ../../development.rst:26
 msgid ""
 "Invoke's changelog lives in ``sites/www/changelog.rst`` and is formatted "
 "using the `Releases <https://releases.readthedocs.io>`_ Sphinx plugin."
 msgstr ""
+"Invoke 的更新日志在 ``sites/www/changelog.rst`` 中，并使用 `Releases <https://releases.readthedocs.io>`_ Sphinx 插件进行格式化。"
 
 #: ../../development.rst:30
 msgid "Running management tasks"
-msgstr ""
+msgstr "运行管理任务"
 
 #: ../../development.rst:32
 msgid ""
 "Invoke uses itself for project management and has a number of tasks you "
 "can see with ``inv --list``. Some specific tasks of note:"
 msgstr ""
+"Invoke 将自己用于项目管理，有许多任务，你可以用 ``inv --list`` 看到。一些值得注意的具体任务："
 
 #: ../../development.rst:35
 msgid ""
@@ -79,12 +83,15 @@ msgid ""
 "it's mostly for use by CI systems or once-in-a-while sanity checks "
 "locally.)"
 msgstr ""
+"``test`` 和 ``integration``：分别运行主测试和集成测试套件。"
+"（大多数情况下，你可以忽略 ``integration`` -- 它主要用于 CI 系统或本地偶尔的理智检查。）"
 
 #: ../../development.rst:39
 msgid ""
 "``www`` and ``docs`` (and their subtasks like ``docs.browse``): Builds "
 "the WWW site and the API docs, respectively."
 msgstr ""
+"``www`` 和 ``docs`` （以及它们的子任务，如 ``docs.browse``）：分别建立 WWW 站点和 API 文档。"
 
 #: ../../development.rst:42
 msgid ""
@@ -92,4 +99,5 @@ msgid ""
 "commands it executes - if submissions don't pass all of those commands to"
 " some degree, they won't pass Travis' CI builds either!"
 msgstr ""
-
+"另一个好的资源是略过我们的 ``.travis.yml`` 文件，看看它执行的命令 -- "
+"如果提交的文件在某种程度上没有通过所有这些命令，它们也不会通过 Travis 的 CI 构建！"
