@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Prior art &#8212; Invoke  文档</title>
+    <title>现有技术 &#8212; Invoke  文档</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,50 +35,26 @@
           <div class="body" role="main">
             
   <section id="prior-art">
-<h1>Prior art<a class="headerlink" href="#prior-art" title="永久链接至标题">¶</a></h1>
-<p>Why another task-running/subprocess-spawning Python library? As usual, the
-short answer is “there were already great 80-90% solutions out there, but none
-that fit our needs 100%.” Specifically:</p>
+<h1>现有技术<a class="headerlink" href="#prior-art" title="永久链接至标题">¶</a></h1>
+<p>为什么又是一个任务运行/子进程触发的 Python 库？像往常一样，简短的回答是：”现在已经有 80-90% 的优秀解决方案了，但没有一个能 100% 满足我们的需求。” 具体来说：</p>
 <ul>
-<li><p><strong>Multiple tasks at once</strong> - almost no other Python command-line oriented
-libraries allow for invocations like:</p>
+<li><p><strong>一次完成多个任务</strong> – 几乎没有其他面向 Python 命令行的库允许 invocations 像</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runner</span> <span class="o">--</span><span class="n">core</span><span class="o">-</span><span class="n">opts</span> <span class="n">task1</span> <span class="o">--</span><span class="n">task1</span><span class="o">-</span><span class="n">opts</span> <span class="n">task2</span> <span class="o">--</span><span class="n">task2</span><span class="o">-</span><span class="n">opts</span>
 </pre></div>
 </div>
-<p>and the few that do have half-baked implementations of the feature or are
-lacking in other ways.</p>
+<p>而为数不多的是对该功能的半生不熟的实现，或在其他方面有所欠缺。</p>
 </li>
-<li><p><strong>Ability to mirror and capture subprocess output simultaneously</strong> (in
-addition to everything flowing from that, like the ability to transparently
-auto-respond) - the standard library’s <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> can’t do this and most
-other tools choose one or the other, or have other tradeoffs such as not
-supporting (or <em>only</em> supporting!) pseudoterminals.</p></li>
-<li><p><strong>Simplicity</strong> - tools that try to do many things often suffer for it due to
-lack of focus. We wanted to build something clean and simple that just did
-one thing (ok…two things) well.</p></li>
-<li><p><strong>Customizability/control</strong> - Invoke was designed to work well with (and be a
-foundation for) other tools such as <a class="reference external" href="http://fabfile.org">Fabric</a>’s second
-version, and we felt that the work needed to adapt existing tools towards
-this goal would impede progress.</p></li>
+<li><p><strong>能够同时镜像和捕获子进程的输出</strong> （除了由此产生的一切，如透明的自动响应能力）– 标准库的 <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> 不能做到这一点，大多数其他工具选择一个或另一个，或有其他权衡，如不支持（或只支持！）伪终端。</p></li>
+<li><p><strong>简单性</strong> – 试图做很多事情的工具往往会因此受到影响，因为缺乏重点。我们想建立一些干净和简单的东西，只做一件事（好吧……两件事）就好。</p></li>
+<li><p><strong>可定制性/控制</strong> – Invoke 被设计为与其他工具（并成为其基础）很好地合作，如 <a class="reference external" href="http://fabfile.org">Fabric</a> 的第二个版本，我们认为为实现这一目标而调整现有工具所需的工作将阻碍进展。</p></li>
 </ul>
-<p>Some of the pre-existing solutions in this space in the Python world include:</p>
+<p>在 Python 世界中，这一领域的一些预先存在的解决方案包括：</p>
 <ul class="simple">
-<li><p><a class="reference external" href="http://packages.python.org/argh/index.html">Argh</a>: One of the more
-appealing options, but being built on argparse it doesn’t support the
-multi-task invocation we needed. Also has its own “prior art” list which is
-worth your time.</p></li>
-<li><p><a class="reference external" href="http://pypi.python.org/pypi/Baker/1.02">Baker</a>: Nice and simple, but
-unfortunately too much so for our needs.</p></li>
-<li><p><a class="reference external" href="http://paver.github.com/paver/">Paver</a>: Tries to do too much, clunky API,
-user-hostile error messages, multi-task feature existed but was lacking.</p></li>
-<li><p><a class="reference external" href="http://docs.python.org/library/argparse.html">Argparse</a>: The modern gold
-standard for CLI parsing (albeit without command execution). Unfortunately,
-we were unable to get multiple tasks working despite lots of experimentation.
-Multiple tasks with their own potentially overlapping argument names, simply
-doesn’t mesh with how <code class="docutils literal notranslate"><span class="pre">argparse</span></code> thinks about the command line.</p></li>
-<li><p><a class="reference external" href="https://github.com/pallets/click">Click</a>: is actually not pre-existing
-(Invoke’s first public releases predate Click by a number of years) but it
-deserves mention anyway, as it’s become popular in this particular niche.</p></li>
+<li><p><a class="reference external" href="http://packages.python.org/argh/index.html">Argh</a>： 这是一个比较吸引人的选择，但由于它是建立在 argparse 上的，所以不支持我们需要的多任务调用。它也有自己的 “prior art” 列表，值得你花点时间。</p></li>
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/Baker/1.02">Baker</a>：不错，很简单，但不幸的是，对我们的需求来说，太简单了。</p></li>
+<li><p><a class="reference external" href="http://paver.github.com/paver/">Paver</a>：试图做太多的事情，笨重的 API，用户讨厌的错误信息，多任务功能存在但缺乏。</p></li>
+<li><p><a class="reference external" href="http://docs.python.org/library/argparse.html">Argparse</a>：现代 CLI 解析的黄金标准（尽管没有命令执行）。不幸的是，尽管做了很多实验，我们还是无法让多个任务工作。多个任务的参数名称有可能重叠，这与 <code class="docutils literal notranslate"><span class="pre">argparse</span></code> 对命令行的思考方式不一致。</p></li>
+<li><p><a class="reference external" href="https://github.com/pallets/click">Click</a>:  实际上并不存在（Invoke 的第一次公开发布比 Click 早了好几年），但它还是值得一提，因为它在这个特殊的利基市场上已经很受欢迎。</p></li>
 </ul>
 </section>
 
@@ -137,7 +113,7 @@ deserves mention anyway, as it’s become popular in this particular niche.</p><
 <li class="toctree-l1"><a class="reference internal" href="faq.html">常见问题</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installing.html">安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">开发</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Prior art</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">现有技术</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
 

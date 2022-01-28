@@ -16,7 +16,7 @@
     <script src="_static/translations.js"></script>
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
-    <link rel="next" title="Prior art" href="prior-art.html" />
+    <link rel="next" title="现有技术" href="prior-art.html" />
     <link rel="prev" title="安装" href="installing.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -42,33 +42,23 @@
 <p>下载后，通过运行 <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">dev-requirements.txt</span></code> 来安装 repo 本身和它的开发依赖项。</p>
 </section>
 <section id="submitting-bug-reports-or-patches">
-<h2>Submitting bug reports or patches<a class="headerlink" href="#submitting-bug-reports-or-patches" title="永久链接至标题">¶</a></h2>
-<p>We follow <a class="reference external" href="http://contribution-guide.org">contribution-guide.org</a> for all of our development - please <a class="reference external" href="http://contribution-guide.org">go
-there</a> for details on submitting patches, which branch(es) to work out of,
-and so on. Our issue tracker is on <a class="reference external" href="https://github.com/pyinvoke/invoke">our GitHub page</a>.</p>
+<h2>提交错误报告或补丁<a class="headerlink" href="#submitting-bug-reports-or-patches" title="永久链接至标题">¶</a></h2>
+<p>所有的开发都遵循 <a class="reference external" href="http://contribution-guide.org">contribution-guide.org</a> – 请去那里了解提交补丁的细节，哪个分支的工作，等等。我们的问题跟踪器在 <a class="reference external" href="https://github.com/pyinvoke/invoke">our GitHub page</a>。</p>
 </section>
 <section id="changelog-location">
-<h2>Changelog location<a class="headerlink" href="#changelog-location" title="永久链接至标题">¶</a></h2>
-<p>Invoke’s changelog lives in <code class="docutils literal notranslate"><span class="pre">sites/www/changelog.rst</span></code> and is formatted
-using the <a class="reference external" href="https://releases.readthedocs.io">Releases</a> Sphinx plugin.</p>
+<h2>更新日志的位置<a class="headerlink" href="#changelog-location" title="永久链接至标题">¶</a></h2>
+<p>Invoke 的更新日志在 <code class="docutils literal notranslate"><span class="pre">sites/www/changelog.rst</span></code> 中，并使用 <a class="reference external" href="https://releases.readthedocs.io">Releases</a> Sphinx 插件进行格式化。</p>
 </section>
 <section id="running-management-tasks">
-<h2>Running management tasks<a class="headerlink" href="#running-management-tasks" title="永久链接至标题">¶</a></h2>
-<p>Invoke uses itself for project management and has a number of tasks you can
-see with <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--list</span></code>. Some specific tasks of note:</p>
+<h2>运行管理任务<a class="headerlink" href="#running-management-tasks" title="永久链接至标题">¶</a></h2>
+<p>Invoke 将自己用于项目管理，有许多任务，你可以用 <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">--list</span></code> 看到。一些值得注意的具体任务：</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">test</span></code> and <code class="docutils literal notranslate"><span class="pre">integration</span></code>: Runs the primary and integration test
-suites, respectively. (Most of the time you can ignore <code class="docutils literal notranslate"><span class="pre">integration</span></code> -
-it’s mostly for use by CI systems or once-in-a-while sanity checks
-locally.)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">www</span></code> and <code class="docutils literal notranslate"><span class="pre">docs</span></code> (and their subtasks like <code class="docutils literal notranslate"><span class="pre">docs.browse</span></code>): Builds
-the WWW site and the API docs, respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test</span></code> 和 <code class="docutils literal notranslate"><span class="pre">integration</span></code>：分别运行主测试和集成测试套件。（大多数情况下，你可以忽略 <code class="docutils literal notranslate"><span class="pre">integration</span></code> – 它主要用于 CI 系统或本地偶尔的理智检查。）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">www</span></code> 和 <code class="docutils literal notranslate"><span class="pre">docs</span></code> （以及它们的子任务，如 <code class="docutils literal notranslate"><span class="pre">docs.browse</span></code>）：分别建立 WWW 站点和 API 文档。</p></li>
 </ul>
 </div></blockquote>
-<p>Another good resource is to skim our <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file for the commands it
-executes - if submissions don’t pass all of those commands to some degree, they
-won’t pass Travis’ CI builds either!</p>
+<p>另一个好的资源是略过我们的 <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> 文件，看看它执行的命令 – 如果提交的文件在某种程度上没有通过所有这些命令，它们也不会通过 Travis 的 CI 构建！</p>
 </section>
 </section>
 
@@ -128,12 +118,12 @@ won’t pass Travis’ CI builds either!</p>
 <li class="toctree-l1"><a class="reference internal" href="installing.html">安装</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">开发</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#obtaining-a-source-checkout">获得源码签出</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#submitting-bug-reports-or-patches">Submitting bug reports or patches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#changelog-location">Changelog location</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-management-tasks">Running management tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submitting-bug-reports-or-patches">提交错误报告或补丁</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changelog-location">更新日志的位置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-management-tasks">运行管理任务</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="prior-art.html">Prior art</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prior-art.html">现有技术</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
 
