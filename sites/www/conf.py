@@ -14,12 +14,12 @@ releases_github_path = "pyinvoke/invoke"
 # under RTD.
 target = join(dirname(__file__), "..", "docs", "_build")
 if os.environ.get("READTHEDOCS") == "True":
-    target = "http://docs.pyinvoke.org/en/latest/"
+    target = "https://daobook.github.io/invoke"
 intersphinx_mapping["docs"] = (target, None)
 
 # Sister-site links to documentation
 html_theme_options["extra_nav_links"] = {
-    "Documentation": "https://daobook.github.io/invoke/docs"
+    "文档": "https://daobook.github.io/invoke/docs"
 }
 
 locale_dirs = ['locales/']
