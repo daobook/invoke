@@ -121,7 +121,7 @@ underscores turned to dashes on the CLI. Default: <code class="docutils literal 
 and used for task execution.</p>
 <p>Must be a fully-qualified dotted path of the form
 <code class="docutils literal notranslate"><span class="pre">module(.submodule...).class</span></code>, where all but <code class="docutils literal notranslate"><span class="pre">.class</span></code> will be handed
-to <a class="reference external" href="https://docs.python.org/2.7/library/importlib.html#importlib.import_module" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">importlib.import_module</span></code></a>, and <code class="docutils literal notranslate"><span class="pre">class</span></code> is expected to be an
+to <a class="reference external" href="https://docs.python.org/3/library/importlib.html#importlib.import_module" title="(在 Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">importlib.import_module</span></code></a>, and <code class="docutils literal notranslate"><span class="pre">class</span></code> is expected to be an
 attribute on that resulting module object.</p>
 <p>Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>, meaning to use the running <code class="xref py py-obj docutils literal notranslate"><span class="pre">Program</span></code> object’s
 <code class="docutils literal notranslate"><span class="pre">executor_class</span></code> attribute.</p>
@@ -290,7 +290,7 @@ constructors for the incoming value.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>For example, a <code class="docutils literal notranslate"><span class="pre">foobar</span></code> setting whose default value is the integer
-<code class="docutils literal notranslate"><span class="pre">1</span></code> will run all env var inputs through <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#int" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, and thus <code class="docutils literal notranslate"><span class="pre">FOOBAR=5</span></code>
+<code class="docutils literal notranslate"><span class="pre">1</span></code> will run all env var inputs through <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(在 Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, and thus <code class="docutils literal notranslate"><span class="pre">FOOBAR=5</span></code>
 will result in the Python value <code class="docutils literal notranslate"><span class="pre">5</span></code>, not <code class="docutils literal notranslate"><span class="pre">&quot;5&quot;</span></code>.</p></li>
 </ul>
 </div></blockquote>

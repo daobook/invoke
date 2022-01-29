@@ -102,7 +102,7 @@
 </section>
 <section id="the-auto-responder-functionality-isn-t-working-for-my-password-prompts">
 <h3>自动回复功能对我的密码提示不起作用！<a class="headerlink" href="#the-auto-responder-functionality-isn-t-working-for-my-password-prompts" title="永久链接至标题">¶</a></h3>
-<p>有些程序将密码提示或其他输出直接写到本地终端（操作系统级的TTY设备），绕过了通常的 stdout/stderr 流。例如，这正是 <a class="reference external" href="https://docs.python.org/2.7/library/getpass.html#getpass.getpass" title="(在 Python v2.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stdlib</span> <span class="pre">的</span> <span class="pre">getpass</span> <span class="pre">模块</span></code></a> 所做的，如果你正在调用一个恰好用 Python 编写的程序的话。</p>
+<p>有些程序将密码提示或其他输出直接写到本地终端（操作系统级的TTY设备），绕过了通常的 stdout/stderr 流。例如，这正是 <a class="reference external" href="https://docs.python.org/3/library/getpass.html#getpass.getpass" title="(在 Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stdlib</span> <span class="pre">的</span> <span class="pre">getpass</span> <span class="pre">模块</span></code></a> 所做的，如果你正在调用一个恰好用 Python 编写的程序的话。</p>
 <p>当这种情况发生时，我们无能为力，因为我们所能看到的只是子进程的常规输出流。值得庆幸的是，解决方案通常很简单：只要在你的 <code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code> 调用中加入 <code class="docutils literal notranslate"><span class="pre">pty=True</span></code>。强制使用一个明确的伪终端，通常会诱使这类程序向 stderr 写入提示信息</p>
 </section>
 <section id="i-m-getting-ioerror-inappropriate-ioctl-for-device-when-i-run-commands">
@@ -204,7 +204,7 @@
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="https://daobook.github.io/invoke/docs">Documentation</a></li>
+    <li class="toctree-l1"><a href="https://daobook.github.io/invoke/docs">文档</a></li>
     
 </ul>
 
