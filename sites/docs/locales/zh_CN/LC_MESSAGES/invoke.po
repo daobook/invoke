@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../invoke.rst:5
 msgid "``inv[oke]`` core usage"
-msgstr ""
+msgstr "``inv[oke]`` 核心用法"
 
 #: ../../invoke.rst:8
 msgid ""
@@ -28,14 +28,17 @@ msgid ""
 "<reusing-as-a-binary>`). For details on invoking user-specified tasks and"
 " other parser-related details, see :doc:`/concepts/invoking-tasks`."
 msgstr ""
+"这个页面记录了 ``invoke`` 的核心参数、选项和行为"
+"（其中包括 :ref:`基于 invoke 的自定义二进制文件 <reusing-as-a-binary>` 中的选项）。"
+"有关调用用户指定的任务和其他解析器相关的详细信息，请参见 :doc:`/concepts/invoking-tasks`。"
 
 #: ../../invoke.rst:15
 msgid "Core options and flags"
-msgstr ""
+msgstr "核心选项和旗标"
 
 #: ../../invoke.rst:17
 msgid "``invoke``'s usage looks like::"
-msgstr ""
+msgstr "``invoke`` 用法看起来像 ::"
 
 #: ../../invoke.rst:21
 msgid ""
@@ -44,6 +47,9 @@ msgid ""
 "specially looked for anywhere in the command line. (For parsing details, "
 "see :ref:`basic-cli-layout`.)"
 msgstr ""
+"所有核心选项和标志如下；几乎所有这些都必须在任何任务名称之前给出，"
+"其中一些（如 :option:`--help` ）是在命令行中的任何地方专门查找的。"
+"（有关解析的详细信息，请参见 :ref:`basic-cli-layout`。）"
 
 #: ../../invoke.rst:28
 msgid ""
