@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Configuration &#8212; Invoke  文档</title>
+    <title>配置 &#8212; Invoke  文档</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -35,28 +35,19 @@
           <div class="body" role="main">
             
   <section id="configuration">
-<span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="永久链接至标题">¶</a></h1>
+<span id="id1"></span><h1>配置<a class="headerlink" href="#configuration" title="永久链接至标题">¶</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h2>
-<p>Invoke offers a multifaceted configuration mechanism allowing you to configure
-both core behavior and that of your tasks, via a hierarchy of configuration
-files, environment variables, <a class="reference internal" href="namespaces.html"><span class="doc">task namespaces</span></a> and
-CLI flags.</p>
-<p>The end result of configuration seeking, loading, parsing &amp; merging is a
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> object, which behaves like a (nested) Python dictionary. Invoke
-references this object when it runs (determining the default behavior of
-methods like <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.run</span></code>) and exposes it to users’ tasks as
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.config</span></code> or as shorthand attribute access on the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> itself.</p>
+<h2>简介<a class="headerlink" href="#introduction" title="永久链接至标题">¶</a></h2>
+<p>invoke 提供了多方面的配置机制，通过配置文件、环境变量、<a class="reference internal" href="namespaces.html"><span class="doc">任务名称空间</span></a> 和 CLI 标志的层次结构，允许配置核心行为和任务的行为。</p>
+<p>配置查找、加载、解析和合并的最终结果是 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Config</span></code> 对象，它的行为类似于（嵌套的）Python 字典。当它运行时调用引用此对象（确定方法的默认行为，如 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.run</span></code>），并将它作为 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context.config</span></code> 暴露给用户的任务或作为 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Context</span></code> 上的快捷属性访问。</p>
 </section>
 <section id="the-configuration-hierarchy">
-<span id="config-hierarchy"></span><h2>The configuration hierarchy<a class="headerlink" href="#the-configuration-hierarchy" title="永久链接至标题">¶</a></h2>
-<p>In brief, the order in which configuration values override one another is as
-follows:</p>
+<span id="config-hierarchy"></span><h2>配置的层次结构<a class="headerlink" href="#the-configuration-hierarchy" title="永久链接至标题">¶</a></h2>
+<p>简而言之，配置值相互覆盖的顺序如下：</p>
 <ol class="arabic">
-<li><p><strong>Internal default values</strong> for behaviors which are controllable via
-configuration. See <a class="reference internal" href="#default-values"><span class="std std-ref">Default configuration values</span></a> for details.</p></li>
+<li><p>通过配置可以控制 <strong>内部默认行为值</strong>。详细信息请参见 <a class="reference internal" href="#default-values"><span class="std std-ref">Default configuration values</span></a>。</p></li>
 <li><p><strong>Collection-driven configurations</strong> defined in tasks modules via
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.configure</span></code>. (See <a class="reference internal" href="#collection-configuration"><span class="std std-ref">Collection-based configuration</span></a> below for
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.configure</span></code>. (See <a class="reference internal" href="#collection-configuration"><span class="std std-ref">基于 Collection 的配置</span></a> below for
 details.)</p>
 <blockquote>
 <div><ul class="simple">
@@ -316,19 +307,14 @@ their configuration layout or avoid using env vars for the setting in question.<
 </section>
 </section>
 <section id="collection-based-configuration">
-<span id="collection-configuration"></span><h2><a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>-based configuration<a class="headerlink" href="#collection-based-configuration" title="永久链接至标题">¶</a></h2>
-<p><a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> objects may contain a config mapping, set via
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.configure</span></code>, and (as per <a class="reference internal" href="#config-hierarchy"><span class="std std-ref">the hierarchy</span></a>)
-this typically forms the lowest level of configuration in the system.</p>
-<p>When collections are <a class="reference internal" href="namespaces.html"><span class="doc">nested</span></a>, configuration is
-merged ‘downwards’ by default: when conflicts arise, outer namespaces closer to
-the root will win, versus inner ones closer to the task being invoked.</p>
+<span id="collection-configuration"></span><h2>基于 <a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> 的配置<a class="headerlink" href="#collection-based-configuration" title="永久链接至标题">¶</a></h2>
+<p><a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> 对象可以包含配置映射，通过 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.configure</span></code> 来设置，并且（按照 <a class="reference internal" href="#config-hierarchy"><span class="std std-ref">层次结构</span></a>）这通常形成了系统中最低级别的配置。</p>
+<p>当集合是 <a class="reference internal" href="namespaces.html"><span class="doc">嵌套</span></a> 时，配置默认是 ‘向下’ 合并：当冲突出现时，相对于靠近被调用任务的内部命名空间，靠近根的外部命名空间将获胜。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>‘Inner’ tasks here are specifically those on the path from the root to the
-one housing the invoked task. ‘Sibling’ subcollections are ignored.</p>
+<p>这里的“内部”任务是指从根目录到被调用任务所在目录的路径上的任务。’Sibling’ 子集合将被忽略。</p>
 </div>
-<p>A quick example of what this means:</p>
+<p>举个简单的例子</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">task</span>
 
 <span class="c1"># This task &amp; collection could just as easily come from</span>
@@ -344,21 +330,18 @@ one housing the invoked task. ‘Sibling’ subcollections are ignored.</p>
 <span class="n">ns</span><span class="o">.</span><span class="n">configure</span><span class="p">({</span><span class="s1">&#39;conflicted&#39;</span><span class="p">:</span> <span class="s1">&#39;override value&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
-<p>The result of calling <code class="docutils literal notranslate"><span class="pre">inner.mytask</span></code>:</p>
+<p>调用 <code class="docutils literal notranslate"><span class="pre">inner.mytask</span></code> 的结果</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ inv inner.mytask
 override value
 </pre></div>
 </div>
 </section>
 <section id="example-of-real-world-config-use">
-<h2>Example of real-world config use<a class="headerlink" href="#example-of-real-world-config-use" title="永久链接至标题">¶</a></h2>
-<p>The previous sections had small examples within them; this section provides a
-more realistic-looking set of examples showing how the config system works.</p>
+<h2>真实世界配置使用的例子<a class="headerlink" href="#example-of-real-world-config-use" title="永久链接至标题">¶</a></h2>
+<p>前面的章节中有一些小例子；本节提供了一组看起来更真实的例子，展示了配置系统是如何工作的。</p>
 <section id="setup">
-<h3>Setup<a class="headerlink" href="#setup" title="永久链接至标题">¶</a></h3>
-<p>We’ll start out with semi-realistic tasks that hardcode their values, and build
-up to using the various configuration mechanisms. A small module for building
-<a class="reference external" href="http://sphinx-doc.org">Sphinx</a> docs might begin like this:</p>
+<h3>设置<a class="headerlink" href="#setup" title="永久链接至标题">¶</a></h3>
+<p>从硬编码其值的半现实的任务开始，然后使用各种配置机制进行构建。用于构建 <a class="reference external" href="http://sphinx-doc.org">Sphinx</a>  docs 的小模块可以这样开始</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
 
 <span class="nd">@task</span>
@@ -370,7 +353,7 @@ up to using the various configuration mechanisms. A small module for building
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;sphinx-build docs docs/_build&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then maybe you refactor the build target:</p>
+<p>然后重构构建目标</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;docs/_build&quot;</span>
 
 <span class="nd">@task</span>
@@ -382,7 +365,7 @@ up to using the various configuration mechanisms. A small module for building
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;sphinx-build docs </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>We can also allow runtime parameterization:</p>
+<p>还可以允许运行时参数化</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">default_target</span> <span class="o">=</span> <span class="s2">&quot;docs/_build&quot;</span>
 
 <span class="nd">@task</span>
@@ -394,16 +377,11 @@ up to using the various configuration mechanisms. A small module for building
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;sphinx-build docs </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>This task module works for a single set of users, but what if we want to allow
-reuse? Somebody may want to use this module with a different default target.
-Using the configuration data (made available via the context arg) to configure
-these settings is usually the better solution <a class="footnote-reference brackets" href="#id3" id="id2">1</a>.</p>
+<p>这个任务模块只适用于一组用户，但如果我们希望允许重用呢？有些人可能希望将此模块与另一个默认目标一起使用。使用配置数据（通过上下文参数提供）来配置这些设置通常是更好的解决方案。<a class="footnote-reference brackets" href="#id3" id="id2">1</a></p>
 </section>
 <section id="configuring-via-task-collection">
-<h3>Configuring via task collection<a class="headerlink" href="#configuring-via-task-collection" title="永久链接至标题">¶</a></h3>
-<p>The configuration <code class="xref py py-obj docutils literal notranslate"><span class="pre">setting</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">getting</span></code> APIs enable moving otherwise ‘hardcoded’ default values into
-a config structure which downstream users are free to redefine. Let’s apply
-this to our example. First we add an explicit namespace object:</p>
+<h3>任务 collection 配置<a class="headerlink" href="#configuring-via-task-collection" title="永久链接至标题">¶</a></h3>
+<p>配置 <code class="xref py py-obj docutils literal notranslate"><span class="pre">setting</span></code> 和 <code class="xref py py-obj docutils literal notranslate"><span class="pre">getting</span></code> 允许将其他的‘硬编码’默认值移动到配置结构中，下游用户可以自由地重新定义。让我们把这个应用到我们的例子中。首先，我们添加一个显式的命名空间对象</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">task</span>
 
 <span class="n">default_target</span> <span class="o">=</span> <span class="s2">&quot;docs/_build&quot;</span>
@@ -419,10 +397,7 @@ this to our example. First we add an explicit namespace object:</p>
 <span class="n">ns</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">clean</span><span class="p">,</span> <span class="n">build</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then we can move the default build target value into the collection’s default
-configuration, and refer to it via the context. At this point we also change
-our kwarg default value to be <code class="docutils literal notranslate"><span class="pre">None</span></code> so we can determine whether or not a
-runtime value was given.  The result:</p>
+<p>然后，可以将默认构建目标值移到集合的默认配置中，并通过上下文引用它。在这一点上，也将 kwarg 的默认值改为 <code class="docutils literal notranslate"><span class="pre">None</span></code>，这样就可以确定是否给出了一个运行时值。结果</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@task</span>
 <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -439,16 +414,11 @@ runtime value was given.  The result:</p>
 <span class="n">ns</span><span class="o">.</span><span class="n">configure</span><span class="p">({</span><span class="s1">&#39;sphinx&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="s2">&quot;docs/_build&quot;</span><span class="p">}})</span>
 </pre></div>
 </div>
-<p>The result isn’t significantly more complex than what we began with, and as
-we’ll see next, it’s now trivial for users to override your defaults in various
-ways.</p>
+<p>结果并不比我们开始时更复杂，正如我们接下来将看到的，现在用户以各种方式重写默认值是微不足道的。</p>
 </section>
 <section id="configuration-overriding">
-<h3>Configuration overriding<a class="headerlink" href="#configuration-overriding" title="永久链接至标题">¶</a></h3>
-<p>The lowest-level override is, of course, just modifying the local <a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>
-tree into which a distributed module has been imported. E.g. if the above
-module is distributed as <code class="docutils literal notranslate"><span class="pre">myproject.docs</span></code>, someone can define a <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code>
-that does this:</p>
+<h3>配置覆盖<a class="headerlink" href="#configuration-overriding" title="永久链接至标题">¶</a></h3>
+<p>当然，最低级别的覆盖只是修改本地 <a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> 树，其中导入了分布式模块。例如，如果上面的模块是作为 <code class="docutils literal notranslate"><span class="pre">myproject.docs</span></code> 分发的，可以定义 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> 来做这个</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">task</span>
 <span class="kn">from</span> <span class="nn">myproject</span> <span class="kn">import</span> <span class="n">docs</span>
 
@@ -461,33 +431,22 @@ that does this:</p>
 <span class="n">ns</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">mylocaltask</span><span class="p">,</span> <span class="n">docs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>And then they can add this to the bottom:</p>
+<p>然后把这个加到下面</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our docs live in &#39;built_docs&#39;, not &#39;docs/_build&#39;</span>
 <span class="n">ns</span><span class="o">.</span><span class="n">configure</span><span class="p">({</span><span class="s1">&#39;sphinx&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="s2">&quot;built_docs&quot;</span><span class="p">}})</span>
 </pre></div>
 </div>
-<p>Now we have a <code class="docutils literal notranslate"><span class="pre">docs</span></code> sub-namespace whose build target defaults to
-<code class="docutils literal notranslate"><span class="pre">built_docs</span></code> instead of <code class="docutils literal notranslate"><span class="pre">docs/_build</span></code>. Runtime users can still override
-this via flags (e.g. <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">docs.build</span> <span class="pre">--target='some/other/dir'</span></code>) just as
-before.</p>
-<p>If you prefer configuration files over in-Python tweaking of your namespace
-tree, that works just as well; instead of adding the line above to the previous
-snippet, instead drop this into a file next to <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> named
-<code class="docutils literal notranslate"><span class="pre">invoke.yaml</span></code>:</p>
+<p>现在有了 <code class="docutils literal notranslate"><span class="pre">docs</span></code> 子命名空间，它的构建目标默认为 <code class="docutils literal notranslate"><span class="pre">built_docs</span></code>，而不是 <code class="docutils literal notranslate"><span class="pre">docs/_build</span></code>。运行时用户仍然可以通过旗标（例如 <code class="docutils literal notranslate"><span class="pre">inv</span> <span class="pre">docs.build</span> <span class="pre">--target='some/other/dir'</span></code>）像以前一样构建。</p>
+<p>如果你更喜欢配置文件而不是在 python 中调整你的命名空间树，这也可以；不要把上面的代码添加到前面的代码片段中，而是把它放到 <code class="docutils literal notranslate"><span class="pre">tasks.py</span></code> 旁边的名为 <code class="docutils literal notranslate"><span class="pre">invoke.yaml</span></code> 的文件中</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="p">:</span>
     <span class="n">target</span><span class="p">:</span> <span class="n">built_docs</span>
 </pre></div>
 </div>
-<p>For this example, that sort of local-to-project conf file makes the most sense,
-but don’t forget that the <a class="reference internal" href="#config-hierarchy"><span class="std std-ref">config hierarchy</span></a> offers
-additional configuration methods which may be suitable depending on your needs.</p>
-<p class="rubric">Footnotes</p>
+<p>在这个例子中，那种 local-to-project 的配置文件是最有意义的，但是不要忘记 <a class="reference internal" href="#config-hierarchy"><span class="std std-ref">config hierarchy</span></a> 提供了额外的配置方法，根据你的需要可能是合适的。</p>
+<p class="rubric">脚注</p>
 <dl class="footnote brackets">
 <dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>Copying and modifying the file breaks code reuse; overriding the
-module-level <code class="docutils literal notranslate"><span class="pre">default_path</span></code> variable won’t play well with concurrency;
-wrapping the tasks with different default arguments works but is fragile
-and adds boilerplate.</p>
+<dd><p>复制和修改文件会破坏代码重用；重写模块级的 <code class="docutils literal notranslate"><span class="pre">default_path</span></code> 变量将不能很好地处理并发性；用不同的默认参数包装任务可以工作，但很脆弱，会增加样板文件。</p>
 </dd>
 </dl>
 </section>
@@ -551,14 +510,14 @@ and adds boilerplate.</p>
 <li class="toctree-l1"><a class="reference internal" href="../invoke.html"><code class="docutils literal notranslate"><span class="pre">inv[oke]</span></code> 核心用法</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-configuration-hierarchy">The configuration hierarchy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">配置</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-configuration-hierarchy">配置的层次结构</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#default-configuration-values">Default configuration values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration-files">Configuration files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#collection-based-configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code>-based configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-of-real-world-config-use">Example of real-world config use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collection-based-configuration">基于 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code> 的配置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-of-real-world-config-use">真实世界配置使用的例子</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="invoking-tasks.html">Invoking tasks</a></li>
