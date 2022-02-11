@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../concepts/configuration.rst:5
 msgid "Configuration"
-msgstr ""
+msgstr "配置"
 
 #: ../../concepts/configuration.rst:8
 msgid "Introduction"
-msgstr ""
+msgstr "简介"
 
 #: ../../concepts/configuration.rst:10
 msgid ""
@@ -32,6 +32,9 @@ msgid ""
 "configuration files, environment variables, :doc:`task namespaces "
 "</concepts/namespaces>` and CLI flags."
 msgstr ""
+"invoke 提供了多方面的配置机制，通过配置文件、环境变量、"
+":doc:`任务名称空间 </concepts/namespaces>` 和 CLI 标志的层次结构，"
+"允许配置核心行为和任务的行为。"
 
 #: ../../concepts/configuration.rst:15
 msgid ""
@@ -42,22 +45,28 @@ msgid ""
 "`.Context.config` or as shorthand attribute access on the `.Context` "
 "itself."
 msgstr ""
+"配置查找、加载、解析和合并的最终结果是 `.Config` 对象，"
+"它的行为类似于（嵌套的）Python 字典。"
+"当它运行时调用引用此对象（确定方法的默认行为，如 `.Context.run`），"
+"并将它作为 `.Context.config` 暴露给用户的任务或作为 `.Context` 上的快捷属性访问。"
 
 #: ../../concepts/configuration.rst:25
 msgid "The configuration hierarchy"
-msgstr ""
+msgstr "配置的层次结构"
 
 #: ../../concepts/configuration.rst:27
 msgid ""
 "In brief, the order in which configuration values override one another is"
 " as follows:"
 msgstr ""
+"简而言之，配置值相互覆盖的顺序如下："
 
 #: ../../concepts/configuration.rst:30
 msgid ""
 "**Internal default values** for behaviors which are controllable via "
 "configuration. See :ref:`default-values` for details."
 msgstr ""
+"通过配置可以控制 **内部默认行为值**。详细信息请参见 :ref:`default-values`。"
 
 #: ../../concepts/configuration.rst:32
 msgid ""
@@ -466,7 +475,7 @@ msgstr ""
 
 #: ../../concepts/configuration.rst:293
 msgid "`.Collection`-based configuration"
-msgstr ""
+msgstr "基于 `.Collection` 的配置"
 
 #: ../../concepts/configuration.rst:295
 msgid ""
@@ -475,6 +484,8 @@ msgid ""
 "hierarchy>`) this typically forms the lowest level of configuration in "
 "the system."
 msgstr ""
+"`.Collection` 对象可以包含配置映射，通过 `.Collection.configure` 来设置，"
+"并且（按照 :ref:`层次结构 <config-hierarchy>`）这通常形成了系统中最低级别的配置。"
 
 #: ../../concepts/configuration.rst:299
 msgid ""
@@ -483,24 +494,28 @@ msgid ""
 "closer to the root will win, versus inner ones closer to the task being "
 "invoked."
 msgstr ""
+"当集合是 :doc:`嵌套 </concepts/namespaces>` 时，"
+"配置默认是 '向下' 合并：当冲突出现时，相对于靠近被调用任务的内部命名空间，"
+"靠近根的外部命名空间将获胜。"
 
 #: ../../concepts/configuration.rst:304
 msgid ""
 "'Inner' tasks here are specifically those on the path from the root to "
 "the one housing the invoked task. 'Sibling' subcollections are ignored."
 msgstr ""
+"这里的“内部”任务是指从根目录到被调用任务所在目录的路径上的任务。'Sibling' 子集合将被忽略。"
 
 #: ../../concepts/configuration.rst:307
 msgid "A quick example of what this means::"
-msgstr ""
+msgstr "举个简单的例子 ::"
 
 #: ../../concepts/configuration.rst:323
 msgid "The result of calling ``inner.mytask``::"
-msgstr ""
+msgstr "调用 ``inner.mytask`` 的结果 ::"
 
 #: ../../concepts/configuration.rst:330
 msgid "Example of real-world config use"
-msgstr ""
+msgstr "真实世界配置使用的例子"
 
 #: ../../concepts/configuration.rst:332
 msgid ""
@@ -508,10 +523,11 @@ msgid ""
 "provides a more realistic-looking set of examples showing how the config "
 "system works."
 msgstr ""
+"前面的章节中有一些小例子；本节提供了一组看起来更真实的例子，展示了配置系统是如何工作的。"
 
 #: ../../concepts/configuration.rst:336
 msgid "Setup"
-msgstr ""
+msgstr "设置"
 
 #: ../../concepts/configuration.rst:338
 msgid ""
@@ -520,14 +536,16 @@ msgid ""
 "for building `Sphinx <http://sphinx-doc.org>`_ docs might begin like "
 "this::"
 msgstr ""
+"从硬编码其值的半现实的任务开始，然后使用各种配置机制进行构建。"
+"用于构建 `Sphinx <http://sphinx-doc.org>`_  docs 的小模块可以这样开始 ::"
 
 #: ../../concepts/configuration.rst:352
 msgid "Then maybe you refactor the build target::"
-msgstr ""
+msgstr "然后重构构建目标 ::"
 
 #: ../../concepts/configuration.rst:364
 msgid "We can also allow runtime parameterization::"
-msgstr ""
+msgstr "还可以允许运行时参数化 ::"
 
 #: ../../concepts/configuration.rst:376
 msgid ""
@@ -537,10 +555,13 @@ msgid ""
 "context arg) to configure these settings is usually the better solution "
 "[1]_."
 msgstr ""
+"这个任务模块只适用于一组用户，但如果我们希望允许重用呢？"
+"有些人可能希望将此模块与另一个默认目标一起使用。"
+"使用配置数据（通过上下文参数提供）来配置这些设置通常是更好的解决方案。[1]_"
 
 #: ../../concepts/configuration.rst:382
 msgid "Configuring via task collection"
-msgstr ""
+msgstr "任务 collection 配置"
 
 #: ../../concepts/configuration.rst:384
 msgid ""
@@ -550,6 +571,9 @@ msgid ""
 "redefine. Let's apply this to our example. First we add an explicit "
 "namespace object::"
 msgstr ""
+"配置 `setting <.Collection.configure>` 和 `getting <.Context.config>` "
+"允许将其他的‘硬编码’默认值移动到配置结构中，下游用户可以自由地重新定义。"
+"让我们把这个应用到我们的例子中。首先，我们添加一个显式的命名空间对象 ::"
 
 #: ../../concepts/configuration.rst:403
 msgid ""
@@ -558,6 +582,9 @@ msgid ""
 "also change our kwarg default value to be ``None`` so we can determine "
 "whether or not a runtime value was given.  The result::"
 msgstr ""
+"然后，可以将默认构建目标值移到集合的默认配置中，并通过上下文引用它。"
+"在这一点上，也将 kwarg 的默认值改为 ``None``，"
+"这样就可以确定是否给出了一个运行时值。结果 ::"
 
 #: ../../concepts/configuration.rst:423
 msgid ""
@@ -565,10 +592,11 @@ msgid ""
 "as we'll see next, it's now trivial for users to override your defaults "
 "in various ways."
 msgstr ""
+"结果并不比我们开始时更复杂，正如我们接下来将看到的，现在用户以各种方式重写默认值是微不足道的。"
 
 #: ../../concepts/configuration.rst:428
 msgid "Configuration overriding"
-msgstr ""
+msgstr "配置覆盖"
 
 #: ../../concepts/configuration.rst:430
 msgid ""
@@ -577,10 +605,12 @@ msgid ""
 "E.g. if the above module is distributed as ``myproject.docs``, someone "
 "can define a ``tasks.py`` that does this::"
 msgstr ""
+"当然，最低级别的覆盖只是修改本地 `.Collection` 树，其中导入了分布式模块。"
+"例如，如果上面的模块是作为 ``myproject.docs`` 分发的，可以定义 ``tasks.py`` 来做这个 ::"
 
 #: ../../concepts/configuration.rst:446
 msgid "And then they can add this to the bottom::"
-msgstr ""
+msgstr "然后把这个加到下面 ::"
 
 #: ../../concepts/configuration.rst:451
 msgid ""
@@ -589,6 +619,8 @@ msgid ""
 "override this via flags (e.g. ``inv docs.build "
 "--target='some/other/dir'``) just as before."
 msgstr ""
+"现在有了 ``docs`` 子命名空间，它的构建目标默认为 ``built_docs``，而不是 ``docs/_build``。"
+"运行时用户仍然可以通过旗标（例如 ``inv docs.build --target='some/other/dir'``）像以前一样构建。"
 
 #: ../../concepts/configuration.rst:456
 msgid ""
@@ -597,6 +629,9 @@ msgid ""
 " to the previous snippet, instead drop this into a file next to "
 "``tasks.py`` named ``invoke.yaml``::"
 msgstr ""
+"如果你更喜欢配置文件而不是在 python 中调整你的命名空间树，这也可以；"
+"不要把上面的代码添加到前面的代码片段中，"
+"而是把它放到 ``tasks.py`` 旁边的名为 ``invoke.yaml`` 的文件中 ::"
 
 #: ../../concepts/configuration.rst:464
 msgid ""
@@ -605,10 +640,13 @@ msgid ""
 "hierarchy>` offers additional configuration methods which may be suitable"
 " depending on your needs."
 msgstr ""
+"在这个例子中，那种 local-to-project 的配置文件是最有意义的，"
+"但是不要忘记 :ref:`config hierarchy <config-hierarchy>` 提供了额外的配置方法，"
+"根据你的需要可能是合适的。"
 
 #: ../../concepts/configuration.rst:470
 msgid "Footnotes"
-msgstr ""
+msgstr "脚注"
 
 #: ../../concepts/configuration.rst:472
 msgid ""
@@ -617,4 +655,5 @@ msgid ""
 "wrapping the tasks with different default arguments works but is fragile "
 "and adds boilerplate."
 msgstr ""
-
+"复制和修改文件会破坏代码重用；重写模块级的 ``default_path`` 变量将不能很好地处理并发性；"
+"用不同的默认参数包装任务可以工作，但很脆弱，会增加样板文件。"
