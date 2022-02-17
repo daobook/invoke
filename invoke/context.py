@@ -55,12 +55,12 @@ class Context(DataProxy):
         #: A list of commands to run (via "&&") before the main argument to any
         #: `run` or `sudo` calls. Note that the primary API for manipulating
         #: this list is `prefix`; see its docs for details.
-        command_prefixes = list()
+        command_prefixes = []
         self._set(command_prefixes=command_prefixes)
         #: A list of directories to 'cd' into before running commands with
         #: `run` or `sudo`; intended for management via `cd`, please see its
         #: docs for details.
-        command_cwds = list()
+        command_cwds = []
         self._set(command_cwds=command_cwds)
 
     @property
@@ -178,21 +178,7 @@ class Context(DataProxy):
         prompt = self.config.sudo.prompt
         password = kwargs.pop("password", self.config.sudo.password)
         user = kwargs.pop("user", self.config.sudo.user)
-        # TODO: allow subclassing for 'get the password' so users who REALLY
-        # want lazy runtime prompting can have it easily implemented.
-        # TODO: want to print a "cleaner" echo with just 'sudo <command>'; but
-        # hard to do as-is, obtaining config data from outside a Runner one
-        # holds is currently messy (could fix that), if instead we manually
-        # inspect the config ourselves that duplicates logic. NOTE: once we
-        # figure that out, there is an existing, would-fail-if-not-skipped test
-        # for this behavior in test/context.py.
-        # TODO: once that is done, though: how to handle "full debug" output
-        # exactly (display of actual, real full sudo command w/ -S and -p), in
-        # terms of API/config? Impl is easy, just go back to passing echo
-        # through to 'run'...
-        user_flags = ""
-        if user is not None:
-            user_flags = "-H -u {} ".format(user)
+        user_flags = "-H -u {} ".format(user) if user is not None else ""
         command = self._prefix_commands(command)
         cmd_str = "sudo -S -p '{}' {}{}".format(prompt, user_flags, command)
         watcher = FailingResponder(
@@ -240,8 +226,7 @@ class Context(DataProxy):
         `prefix` context manager.
         """
         prefixes = list(self.command_prefixes)
-        current_directory = self.cwd
-        if current_directory:
+        if current_directory := self.cwd:
             prefixes.insert(0, "cd {}".format(current_directory))
 
         return " && ".join(prefixes + [command])

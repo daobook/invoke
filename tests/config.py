@@ -27,7 +27,7 @@ TYPES = ("yaml", "yml", "json", "python")
 
 
 def _load(kwarg, type_, **kwargs):
-    path = join(CONFIGS_PATH, type_ + "/")
+    path = join(CONFIGS_PATH, f'{type_}/')
     kwargs[kwarg] = path
     return Config(**kwargs)
 
@@ -586,7 +586,7 @@ Valid real attributes: ['clear', 'clone', 'env_prefix', 'file_prefix', 'from_dat
             c = Config()
             assert c._project_path is None
             c.load_project()
-            assert list(c._project.keys()) == []
+            assert not list(c._project.keys())
             defaults = ["tasks", "run", "runners", "sudo", "timeouts"]
             assert set(c.keys()) == set(defaults)
 

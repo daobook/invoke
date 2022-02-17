@@ -43,8 +43,7 @@ def support_path():
 
 def load(name):
     with support_path():
-        imported = __import__(name)
-        return imported
+        return __import__(name)
 
 
 def support_file(subpath):

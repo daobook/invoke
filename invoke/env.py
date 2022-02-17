@@ -107,9 +107,7 @@ class Environment(object):
     def _cast(self, old, new_):
         if isinstance(old, bool):
             return new_ not in ("0", "")
-        elif isinstance(old, six.string_types):
-            return new_
-        elif old is None:
+        elif isinstance(old, six.string_types) or old is None:
             return new_
         elif isinstance(old, (list, tuple)):
             err = "Can't adapt an environment string into a {}!"

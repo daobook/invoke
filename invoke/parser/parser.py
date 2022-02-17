@@ -116,7 +116,6 @@ class Parser(object):
                     msg = "Splitting x=y expr {!r} into tokens {!r} and {!r}"
                     debug(msg.format(orig, token, value))
                     mutations.append((index + 1, value))
-                # Contiguous boolean short flags, e.g. -qv
                 elif not is_long_flag(token) and len(token) > 2:
                     full_token = token[:]
                     rest, token = token[2:], token[:2]
@@ -140,8 +139,7 @@ class Parser(object):
                             "Splitting multi-flag glob {!r} into {!r} and {!r}"
                         )  # noqa
                         debug(msg.format(orig, token, rest))
-                        for item in reversed(rest):
-                            mutations.append((index + 1, item))
+                        mutations.extend((index + 1, item) for item in reversed(rest))
             # Here, we've got some possible mutations queued up, and 'token'
             # may have been overwritten as well. Whether we apply those and
             # continue as-is, or roll it back, depends:
@@ -250,7 +248,6 @@ class ParseMachine(StateMachine):
         elif self.context and token in self.context.inverse_flags:
             debug("Saw inverse flag {!r}".format(token))
             self.switch_to_flag(token, inverse=True)
-        # Value for current flag
         elif self.waiting_for_flag_value:
             debug(
                 "We're waiting for a flag value so {!r} must be it?".format(
@@ -258,17 +255,12 @@ class ParseMachine(StateMachine):
                 )
             )  # noqa
             self.see_value(token)
-        # Positional args (must come above context-name check in case we still
-        # need a posarg and the user legitimately wants to give it a value that
-        # just happens to be a valid context name.)
         elif self.context and self.context.missing_positional_args:
             msg = "Context {!r} requires positional args, eating {!r}"
             debug(msg.format(self.context, token))
             self.see_positional_arg(token)
-        # New context
         elif token in self.contexts:
             self.see_context(token)
-        # Initial-context flag being given as per-task flag (e.g. --help)
         elif self.initial and token in self.initial.flags:
             debug("Saw (initial-context) flag {!r}".format(token))
             flag = self.initial.flags[token]
@@ -284,14 +276,12 @@ class ParseMachine(StateMachine):
                 # default-False 'dedupe') and it's up to us whether we actually
                 # put any in place.
                 self.switch_to_flag(token)
-        # Unknown
+        elif not self.ignore_unknown:
+            debug("Can't find context named {!r}, erroring".format(token))
+            self.error("No idea what {!r} is!".format(token))
         else:
-            if not self.ignore_unknown:
-                debug("Can't find context named {!r}, erroring".format(token))
-                self.error("No idea what {!r} is!".format(token))
-            else:
-                debug("Bottom-of-handle() see_unknown({!r})".format(token))
-                self.see_unknown(token)
+            debug("Bottom-of-handle() see_unknown({!r})".format(token))
+            self.see_unknown(token)
 
     def store_only(self, token):
         # Start off the unparsed list
@@ -360,11 +350,11 @@ class ParseMachine(StateMachine):
             return False
         # Otherwise, there *may* be ambiguity if 1 or more of the below tests
         # fail.
-        tests = []
-        # Unfilled posargs still exist?
-        tests.append(self.context and self.context.missing_positional_args)
-        # Value matches another valid task/context name?
-        tests.append(value in self.contexts)
+        tests = [
+            self.context and self.context.missing_positional_args,
+            value in self.contexts,
+        ]
+
         if any(tests):
             msg = "{!r} is ambiguous when given after an optional-value flag"
             raise ParseError(msg.format(value))

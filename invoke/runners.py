@@ -587,14 +587,11 @@ class Runner(object):
         # situations lack a useful exit code anyways, skipping this doesn't
         # really hurt any.
         exited = None if watcher_errors else self.returncode()
-        # TODO: as noted elsewhere, I kinda hate this. Consider changing
-        # generate_result()'s API in next major rev so we can tidy up.
-        result = self.generate_result(
+        return self.generate_result(
             **dict(
                 self.result_kwargs, stdout=stdout, stderr=stderr, exited=exited
             )
         )
-        return result
 
     def _thread_join_timeout(self, target):
         # Add a timeout to out/err thread joins when it looks like they're not
@@ -1223,7 +1220,7 @@ class Local(Runner):
                     # Some less common platforms phrase it this way
                     "I/O error",
                 )
-                if not any(error in stringified for error in io_errors):
+                if all(error not in stringified for error in io_errors):
                     raise
                 # The bad OSErrors happen after all expected output has
                 # appeared, so we return a falsey value, which triggers the
@@ -1303,39 +1300,36 @@ class Local(Runner):
 
     @property
     def process_is_finished(self):
-        if self.using_pty:
-            # NOTE:
-            # https://github.com/pexpect/ptyprocess/blob/4058faa05e2940662ab6da1330aa0586c6f9cd9c/ptyprocess/ptyprocess.py#L680-L687
-            # implies that Linux "requires" use of the blocking, non-WNOHANG
-            # version of this call. Our testing doesn't verify this, however,
-            # so...
-            # NOTE: It does appear to be totally blocking on Windows, so our
-            # issue #351 may be totally unsolvable there. Unclear.
-            pid_val, self.status = os.waitpid(self.pid, os.WNOHANG)
-            return pid_val != 0
-        else:
+        if not self.using_pty:
             return self.process.poll() is not None
+        # NOTE:
+        # https://github.com/pexpect/ptyprocess/blob/4058faa05e2940662ab6da1330aa0586c6f9cd9c/ptyprocess/ptyprocess.py#L680-L687
+        # implies that Linux "requires" use of the blocking, non-WNOHANG
+        # version of this call. Our testing doesn't verify this, however,
+        # so...
+        # NOTE: It does appear to be totally blocking on Windows, so our
+        # issue #351 may be totally unsolvable there. Unclear.
+        pid_val, self.status = os.waitpid(self.pid, os.WNOHANG)
+        return pid_val != 0
 
     def returncode(self):
-        if self.using_pty:
-            # No subprocess.returncode available; use WIFEXITED/WIFSIGNALED to
-            # determine whch of WEXITSTATUS / WTERMSIG to use.
-            # TODO: is it safe to just say "call all WEXITSTATUS/WTERMSIG and
-            # return whichever one of them is nondefault"? Probably not?
-            # NOTE: doing this in an arbitrary order should be safe since only
-            # one of the WIF* methods ought to ever return True.
-            code = None
-            if os.WIFEXITED(self.status):
-                code = os.WEXITSTATUS(self.status)
-            elif os.WIFSIGNALED(self.status):
-                code = os.WTERMSIG(self.status)
-                # Match subprocess.returncode by turning signals into negative
-                # 'exit code' integers.
-                code = -1 * code
-            return code
-            # TODO: do we care about WIFSTOPPED? Maybe someday?
-        else:
+        if not self.using_pty:
             return self.process.returncode
+        # No subprocess.returncode available; use WIFEXITED/WIFSIGNALED to
+        # determine whch of WEXITSTATUS / WTERMSIG to use.
+        # TODO: is it safe to just say "call all WEXITSTATUS/WTERMSIG and
+        # return whichever one of them is nondefault"? Probably not?
+        # NOTE: doing this in an arbitrary order should be safe since only
+        # one of the WIF* methods ought to ever return True.
+        code = None
+        if os.WIFEXITED(self.status):
+            code = os.WEXITSTATUS(self.status)
+        elif os.WIFSIGNALED(self.status):
+            code = os.WTERMSIG(self.status)
+            # Match subprocess.returncode by turning signals into negative
+            # 'exit code' integers.
+            code = -1 * code
+        return code
 
     def stop(self):
         # If we opened a PTY for child communications, make sure to close() it,

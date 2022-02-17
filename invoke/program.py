@@ -319,8 +319,7 @@ class Program(object):
         if "no-dedupe" in self.args and self.args["no-dedupe"].value:
             tasks["dedupe"] = False
         timeouts = {}
-        command = self.args["command-timeout"].value
-        if command:
+        if command := self.args["command-timeout"].value:
             timeouts["command"] = command
         # Handle "fill in config values at start of runtime", which for now is
         # just sudo password
@@ -489,16 +488,15 @@ class Program(object):
 
         # Print per-task help, if necessary
         if halp:
-            if halp in self.parser.contexts:
-                msg = "Saw --help <taskname>, printing per-task help & exiting"
-                debug(msg)
-                self.print_task_help(halp)
-                raise Exit
-            else:
+            if halp not in self.parser.contexts:
                 # TODO: feels real dumb to factor this out of Parser, but...we
                 # should?
                 raise ParseError("No idea what '{}' is!".format(halp))
 
+            msg = "Saw --help <taskname>, printing per-task help & exiting"
+            debug(msg)
+            self.print_task_help(halp)
+            raise Exit
         # Print discovered tasks if necessary
         list_root = self.args.list.value  # will be True or string
         self.list_format = self.args["list-format"].value
@@ -766,15 +764,14 @@ class Program(object):
                     print(self.leading_indent + line)
                 else:
                     print("")
-            print("")
         else:
-            print(self.leading_indent + "none")
-            print("")
+            print(f'{self.leading_indent}none')
+        print("")
         print("Options:")
         if tuples:
             self.print_columns(tuples)
         else:
-            print(self.leading_indent + "none")
+            print(f'{self.leading_indent}none')
             print("")
 
     def list_tasks(self):
@@ -801,7 +798,7 @@ class Program(object):
             ancestors = []
         pairs = []
         indent = len(ancestors) * self.indent
-        ancestor_path = ".".join(x for x in ancestors)
+        ancestor_path = ".".join(ancestors)
         for name, task in sorted(six.iteritems(coll.tasks)):
             is_default = name == coll.default
             # Start with just the name and just the aliases, no prefixes or
@@ -827,7 +824,7 @@ class Program(object):
                 # Make sure leading dots are present for subcollections if
                 # scoped display
                 if prefix and self.list_root:
-                    prefix = "." + prefix
+                    prefix = f'.{prefix}'
                 aliases = [prefix + alias for alias in aliases]
                 if is_default and ancestors:
                     aliases.insert(0, prefix)
@@ -897,10 +894,7 @@ class Program(object):
         root = self.list_root
         print("{}:\n".format(self.task_list_opener(extra=extra)))
         self.print_columns(pairs)
-        # TODO: worth stripping this out for nested? since it's signified with
-        # asterisk there? ugggh
-        default = self.scoped_collection.default
-        if default:
+        if default := self.scoped_collection.default:
             specific = ""
             if root:
                 specific = " '{}'".format(root)

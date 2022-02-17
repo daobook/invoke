@@ -13,9 +13,7 @@ pytestmark = pytest.mark.usefixtures("integration")
 
 @trap
 def _complete(invocation, collection=None, **kwargs):
-    colstr = ""
-    if collection:
-        colstr = "-c {}".format(collection)
+    colstr = "-c {}".format(collection) if collection else ""
     command = "inv --complete {0} -- inv {0} {1}".format(colstr, invocation)
     Program(**kwargs).run(command, exit=False)
     return sys.stdout.getvalue()

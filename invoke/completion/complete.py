@@ -56,30 +56,14 @@ def complete(names, core, initial_context, collection):
                     lambda x: x.startswith("--"), context.flag_names()
                 ):
                     print(name)
-            # Just a dash, completes with all flags
             elif tail == "-":
                 for name in context.flag_names():
                     print(name)
-            # Otherwise, it's something entirely invalid (a shortflag not
-            # recognized, or a java style flag like -foo) so return nothing
-            # (the shell will still try completing with files, but that doesn't
-            # hurt really.)
-            else:
-                pass
-        # Known flags complete w/ nothing or tasks, depending
+        elif context.flags[tail].takes_value:
+            debug("Found, and it takes a value, so no completion")
         else:
-            # Flags expecting values: do nothing, to let default (usually
-            # file) shell completion occur (which we actively want in this
-            # case.)
-            if context.flags[tail].takes_value:
-                debug("Found, and it takes a value, so no completion")
-                pass
-            # Not taking values (eg bools): print task names
-            else:
-                debug("Found, takes no value, printing task names")
-                print_task_names(collection)
-    # If not a flag, is either task name or a flag value, so just complete
-    # task names.
+            debug("Found, takes no value, printing task names")
+            print_task_names(collection)
     else:
         debug("Last token isn't flag-like, just printing task names")
         print_task_names(collection)

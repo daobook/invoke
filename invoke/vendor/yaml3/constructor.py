@@ -144,13 +144,13 @@ class BaseConstructor:
 
     @classmethod
     def add_constructor(cls, tag, constructor):
-        if not 'yaml_constructors' in cls.__dict__:
+        if 'yaml_constructors' not in cls.__dict__:
             cls.yaml_constructors = cls.yaml_constructors.copy()
         cls.yaml_constructors[tag] = constructor
 
     @classmethod
     def add_multi_constructor(cls, tag_prefix, multi_constructor):
-        if not 'yaml_multi_constructors' in cls.__dict__:
+        if 'yaml_multi_constructors' not in cls.__dict__:
             cls.yaml_multi_constructors = cls.yaml_multi_constructors.copy()
         cls.yaml_multi_constructors[tag_prefix] = multi_constructor
 
@@ -223,9 +223,7 @@ class SafeConstructor(BaseConstructor):
     def construct_yaml_int(self, node):
         value = self.construct_scalar(node)
         value = value.replace('_', '')
-        sign = +1
-        if value[0] == '-':
-            sign = -1
+        sign = -1 if value[0] == '-' else +1
         if value[0] in '+-':
             value = value[1:]
         if value == '0':
@@ -256,9 +254,7 @@ class SafeConstructor(BaseConstructor):
     def construct_yaml_float(self, node):
         value = self.construct_scalar(node)
         value = value.replace('_', '').lower()
-        sign = +1
-        if value[0] == '-':
-            sign = -1
+        sign = -1 if value[0] == '-' else +1
         if value[0] in '+-':
             value = value[1:]
         if value == '.inf':
@@ -530,15 +526,13 @@ class Constructor(SafeConstructor):
         return getattr(module, object_name)
 
     def construct_python_name(self, suffix, node):
-        value = self.construct_scalar(node)
-        if value:
+        if value := self.construct_scalar(node):
             raise ConstructorError("while constructing a Python name", node.start_mark,
                     "expected the empty value, but found %r" % value, node.start_mark)
         return self.find_python_name(suffix, node.start_mark)
 
     def construct_python_module(self, suffix, node):
-        value = self.construct_scalar(node)
-        if value:
+        if value := self.construct_scalar(node):
             raise ConstructorError("while constructing a Python module", node.start_mark,
                     "expected the empty value, but found %r" % value, node.start_mark)
         return self.find_python_module(suffix, node.start_mark)

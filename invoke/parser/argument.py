@@ -50,7 +50,7 @@ class Argument(object):
             raise TypeError(msg)
         if not (name or names):
             raise TypeError("An Argument must have at least one name.")
-        self.names = tuple(names if names else (name,))
+        self.names = tuple(names or (name,))
         self.kind = kind
         initial_value = None
         # Special case: list-type args start out as empty list, not None.
@@ -68,21 +68,16 @@ class Argument(object):
         self.attr_name = attr_name
 
     def __repr__(self):
-        nicks = ""
-        if self.nicknames:
-            nicks = " ({})".format(", ".join(self.nicknames))
-        flags = ""
+        nicks = " ({})".format(", ".join(self.nicknames)) if self.nicknames else ""
         if self.positional or self.optional:
             flags = " "
+        else:
+            flags = ""
         if self.positional:
             flags += "*"
         if self.optional:
             flags += "?"
-        # TODO: store this default value somewhere other than signature of
-        # Argument.__init__?
-        kind = ""
-        if self.kind != str:
-            kind = " [{}]".format(self.kind.__name__)
+        kind = " [{}]".format(self.kind.__name__) if self.kind != str else ""
         return "<{}: {}{}{}{}>".format(
             self.__class__.__name__, self.name, nicks, kind, flags
         )
@@ -161,6 +156,4 @@ class Argument(object):
 
         .. versionadded:: 1.3
         """
-        if self.kind is list:
-            return bool(self._value)
-        return self._value is not None
+        return bool(self._value) if self.kind is list else self._value is not None

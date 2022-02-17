@@ -113,16 +113,16 @@ class FunctionMaker(object):
                     allargs = list(self.args)
                     allshortargs = list(self.args)
                     if self.varargs:
-                        allargs.append('*' + self.varargs)
-                        allshortargs.append('*' + self.varargs)
+                        allargs.append(f'*{self.varargs}')
+                        allshortargs.append(f'*{self.varargs}')
                     elif self.kwonlyargs:
                         allargs.append('*')  # single star syntax
                     for a in self.kwonlyargs:
                         allargs.append('%s=None' % a)
                         allshortargs.append('%s=%s' % (a, a))
                     if self.varkw:
-                        allargs.append('**' + self.varkw)
-                        allshortargs.append('**' + self.varkw)
+                        allargs.append(f'**{self.varkw}')
+                        allshortargs.append(f'**{self.varkw}')
                     self.signature = ', '.join(allargs)
                     self.shortsignature = ', '.join(allshortargs)
                 self.dict = func.__dict__.copy()
@@ -213,7 +213,7 @@ class FunctionMaker(object):
             signature = None
             func = obj
         self = cls(func, name, signature, defaults, doc, module)
-        ibody = '\n'.join('    ' + line for line in body.splitlines())
+        ibody = '\n'.join(f'    {line}' for line in body.splitlines())
         return self.make('def %(name)s(%(signature)s):\n' + ibody,
                          evaldict, addsource, **attrs)
 
@@ -242,10 +242,7 @@ def decorator(caller, _func=None):
         doc = 'decorator(%s) converts functions/generators into ' \
             'factories of %s objects' % (caller.__name__, caller.__name__)
     elif inspect.isfunction(caller):
-        if caller.__name__ == '<lambda>':
-            name = '_lambda_'
-        else:
-            name = caller.__name__
+        name = '_lambda_' if caller.__name__ == '<lambda>' else caller.__name__
         doc = caller.__doc__
     else:  # assume caller is an object with a __call__ method
         name = caller.__class__.__name__.lower()
@@ -371,7 +368,7 @@ def dispatch_on(*dispatch_args):
             check(types)
 
             def dec(f):
-                check(getfullargspec(f).args, operator.lt, ' in ' + f.__name__)
+                check(getfullargspec(f).args, operator.lt, f' in {f.__name__}')
                 typemap[types] = f
                 return f
             return dec
@@ -381,10 +378,10 @@ def dispatch_on(*dispatch_args):
             An utility to introspect the dispatch algorithm
             """
             check(types)
-            lst = []
-            for anc in itertools.product(*ancestors(*types)):
-                lst.append(tuple(a.__name__ for a in anc))
-            return lst
+            return [
+                tuple(a.__name__ for a in anc)
+                for anc in itertools.product(*ancestors(*types))
+            ]
 
         def _dispatch(dispatch_args, *args, **kw):
             types = tuple(type(arg) for arg in dispatch_args)

@@ -741,7 +741,7 @@ Available tasks:
 {}
 
 """.format(
-                "\n".join("  " + x for x in lines)
+                "\n".join(f'  {x}' for x in lines)
             ).lstrip()
 
         def _list_eq(self, collection, listing):

@@ -122,7 +122,7 @@ class Collection_:
             assert diffname != self.c
             # And a sanity check that we didn't forget __ne__...cuz that
             # definitely happened at one point
-            assert not diffname == self.c
+            assert diffname != self.c
             # Same name, same tasks, different collections == not equal
             diffcols = self._meh()
             del diffcols.collections["submeh"]

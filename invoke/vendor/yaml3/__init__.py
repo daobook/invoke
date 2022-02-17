@@ -133,10 +133,7 @@ def serialize_all(nodes, stream=None, Dumper=Dumper,
     """
     getvalue = None
     if stream is None:
-        if encoding is None:
-            stream = io.StringIO()
-        else:
-            stream = io.BytesIO()
+        stream = io.StringIO() if encoding is None else io.BytesIO()
         getvalue = stream.getvalue
     dumper = Dumper(stream, canonical=canonical, indent=indent, width=width,
             allow_unicode=allow_unicode, line_break=line_break,
@@ -171,10 +168,7 @@ def dump_all(documents, stream=None, Dumper=Dumper,
     """
     getvalue = None
     if stream is None:
-        if encoding is None:
-            stream = io.StringIO()
-        else:
-            stream = io.BytesIO()
+        stream = io.StringIO() if encoding is None else io.BytesIO()
         getvalue = stream.getvalue
     dumper = Dumper(stream, default_style=default_style,
             default_flow_style=default_flow_style,

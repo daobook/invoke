@@ -445,9 +445,7 @@ class Collection(object):
         # None, etc.
         if not name:
             return name
-        from_, to = "_", "-"
-        if not self.auto_dash_names:
-            from_, to = "-", "_"
+        from_, to = ("-", "_") if not self.auto_dash_names else ("_", "-")
         replaced = []
         end = len(name) - 1
         for i, char in enumerate(name):
@@ -498,10 +496,11 @@ class Collection(object):
 
         .. versionadded:: 1.0
         """
-        ret = {}
-        # Our own tasks get no prefix, just go in as-is: {name: [aliases]}
-        for name, task in six.iteritems(self.tasks):
-            ret[name] = list(map(self.transform, task.aliases))
+        ret = {
+            name: list(map(self.transform, task.aliases))
+            for name, task in six.iteritems(self.tasks)
+        }
+
         # Subcollection tasks get both name + aliases prefixed
         for coll_name, coll in six.iteritems(self.collections):
             for task_name, aliases in six.iteritems(coll.task_names):

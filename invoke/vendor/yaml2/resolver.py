@@ -23,7 +23,7 @@ class BaseResolver(object):
         self.resolver_prefix_paths = []
 
     def add_implicit_resolver(cls, tag, regexp, first):
-        if not 'yaml_implicit_resolvers' in cls.__dict__:
+        if 'yaml_implicit_resolvers' not in cls.__dict__:
             cls.yaml_implicit_resolvers = cls.yaml_implicit_resolvers.copy()
         if first is None:
             first = [None]
@@ -44,7 +44,7 @@ class BaseResolver(object):
         # a mapping value that corresponds to a scalar key which content is
         # equal to the `index_check` value.  An integer `index_check` matches
         # against a sequence value with the index equal to `index_check`.
-        if not 'yaml_path_resolvers' in cls.__dict__:
+        if 'yaml_path_resolvers' not in cls.__dict__:
             cls.yaml_path_resolvers = cls.yaml_path_resolvers.copy()
         new_path = []
         for element in path:
@@ -117,12 +117,14 @@ class BaseResolver(object):
     def check_resolver_prefix(self, depth, path, kind,
             current_node, current_index):
         node_check, index_check = path[depth-1]
-        if isinstance(node_check, basestring):
-            if current_node.tag != node_check:
-                return
-        elif node_check is not None:
-            if not isinstance(current_node, node_check):
-                return
+        if (
+            isinstance(node_check, basestring)
+            and current_node.tag != node_check
+            or not isinstance(node_check, basestring)
+            and node_check is not None
+            and not isinstance(current_node, node_check)
+        ):
+            return
         if index_check is True and current_index is not None:
             return
         if (index_check is False or index_check is None)    \

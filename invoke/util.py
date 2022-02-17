@@ -241,11 +241,7 @@ class ExceptionHandlingThread(threading.Thread):
             # And log now, in case we never get to later (e.g. if executing
             # program is hung waiting for us to do something)
             msg = "Encountered exception {!r} in thread for {!r}"
-            # Name is either target function's dunder-name, or just "_run" if
-            # we were run subclass-wise.
-            name = "_run"
-            if "target" in self.kwargs:
-                name = self.kwargs["target"].__name__
+            name = self.kwargs["target"].__name__ if "target" in self.kwargs else "_run"
             debug(msg.format(self.exc_info[1], name))  # noqa
 
     def exception(self):

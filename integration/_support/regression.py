@@ -19,7 +19,7 @@ from invoke import task
 def check(c):
     count = 0
     failures = []
-    for _ in range(0, 1000):
+    for _ in range(1000):
         count += 1
         try:
             # 'ls' chosen as an arbitrary, fast-enough-for-looping but

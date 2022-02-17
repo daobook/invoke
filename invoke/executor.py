@@ -84,7 +84,7 @@ class Executor(object):
         .. versionadded:: 1.0
         """
         # Normalize input
-        debug("Examining top level tasks {!r}".format([x for x in tasks]))
+        debug("Examining top level tasks {!r}".format(list(tasks)))
         calls = self.normalize(tasks)
         debug("Tasks (now Calls) with kwargs: {!r}".format(calls))
         # Obtain copy of directly-given tasks since they should sometimes

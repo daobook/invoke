@@ -45,21 +45,15 @@ class AliasDict(dict):
         return names
 
     def _handle(self, key, value, single, multi, unaliased):
-        # Attribute existence test required to not blow up when deepcopy'd
-        if key in getattr(self, 'aliases', {}):
-            target = self.aliases[key]
-            # Single-string targets
-            if isinstance(target, six.string_types):
-                return single(self, target, value)
-            # Multi-string targets
-            else:
-                if multi:
-                    return multi(self, target, value)
-                else:
-                    for subkey in target:
-                        single(self, subkey, value)
-        else:
+        if key not in getattr(self, 'aliases', {}):
             return unaliased(self, key, value)
+        target = self.aliases[key]
+        if isinstance(target, six.string_types):
+            return single(self, target, value)
+        if multi:
+            return multi(self, target, value)
+        for subkey in target:
+            single(self, subkey, value)
 
     def _single(self, target):
         return isinstance(target, six.string_types)

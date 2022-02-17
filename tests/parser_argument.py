@@ -165,8 +165,7 @@ class Argument_:
             # of context (as with list-types above.)
             a.value = True
             assert a.value == 1
-            for _ in range(4):
-                a.value = True
+            a.value = True
             assert a.value == 5
 
     class value:

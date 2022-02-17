@@ -52,7 +52,7 @@ class CLIParsing:
         return self._parser().parse_argv(argstr.split())
 
     def _compare(self, invoke, flagname, value):
-        invoke = "my-task " + invoke
+        invoke = f'my-task {invoke}'
         result = self._parse(invoke)
         assert result[0].args[flagname].value == value
 

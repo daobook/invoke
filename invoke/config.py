@@ -27,9 +27,7 @@ else:
     import imp
 
     def load_source(name, path):
-        if not os.path.exists(path):
-            return {}
-        return vars(imp.load_source("mod", path))
+        return {} if not os.path.exists(path) else vars(imp.load_source("mod", path))
 
 
 class DataProxy(object):
@@ -123,15 +121,12 @@ class DataProxy(object):
             raise AttributeError(err)
 
     def __setattr__(self, key, value):
-        # Turn attribute-sets into config updates anytime we don't have a real
-        # attribute with the given name/key.
-        has_real_attr = key in dir(self)
-        if not has_real_attr:
+        if has_real_attr := key in dir(self):
+            super(DataProxy, self).__setattr__(key, value)
+        else:
             # Make sure to trigger our own __setitem__ instead of going direct
             # to our internal dict/cache
             self[key] = value
-        else:
-            super(DataProxy, self).__setattr__(key, value)
 
     def __iter__(self):
         # For some reason Python is ignoring our __hasattr__ when determining
@@ -442,14 +437,7 @@ class Config(DataProxy):
         # On Windows, which won't have /bin/bash, check for a set COMSPEC env
         # var (https://en.wikipedia.org/wiki/COMSPEC) or fallback to an
         # unqualified cmd.exe otherwise.
-        if WINDOWS:
-            shell = os.environ.get("COMSPEC", "cmd.exe")
-        # Else, assume Unix, most distros of which have /bin/bash available.
-        # TODO: consider an automatic fallback to /bin/sh for systems lacking
-        # /bin/bash; however users may configure run.shell quite easily, so...
-        else:
-            shell = "/bin/bash"
-
+        shell = os.environ.get("COMSPEC", "cmd.exe") if WINDOWS else "/bin/bash"
         return {
             # TODO: we document 'debug' but it's not truly implemented outside
             # of env var and CLI flag. If we honor it, we have to go around and
@@ -829,11 +817,7 @@ class Config(DataProxy):
 
         .. versionadded:: 1.0
         """
-        # 'Prefix' to match the other sets of attrs
-        project_prefix = None
-        if path is not None:
-            # Ensure the prefix is normalized to a directory-like path string
-            project_prefix = join(path, "")
+        project_prefix = join(path, "") if path is not None else None
         self._set(_project_prefix=project_prefix)
         # Path to loaded per-project config file, if any.
         self._set(_project_path=None)
@@ -890,13 +874,11 @@ class Config(DataProxy):
                 self._set(path, filepath)
                 self._set(found, True)
                 break
-            # Typically means 'no such file', so just note & skip past.
             except IOError as e:
-                if e.errno == 2:
-                    err = "Didn't see any {}, skipping."
-                    debug(err.format(filepath))
-                else:
+                if e.errno != 2:
                     raise
+                err = "Didn't see any {}, skipping."
+                debug(err.format(filepath))
         # Still None -> no suffixed paths were found, record this fact
         if getattr(self, path) is None:
             self._set(found, False)
@@ -1193,33 +1175,20 @@ def merge_dicts(base, updates):
         # Dict values whose keys also exist in 'base' -> recurse
         # (But only if both types are dicts.)
         if key in base:
-            if isinstance(value, dict):
-                if isinstance(base[key], dict):
-                    merge_dicts(base[key], value)
-                else:
-                    raise _merge_error(base[key], value)
-            else:
-                if isinstance(base[key], dict):
-                    raise _merge_error(base[key], value)
-                # Fileno-bearing objects are probably 'real' files which do not
-                # copy well & must be passed by reference. Meh.
-                elif hasattr(value, "fileno"):
-                    base[key] = value
-                else:
-                    base[key] = copy.copy(value)
-        # New values get set anew
-        else:
-            # Dict values get reconstructed to avoid being references to the
-            # updates dict, which can lead to nasty state-bleed bugs otherwise
-            if isinstance(value, dict):
-                base[key] = copy_dict(value)
-            # Fileno-bearing objects are probably 'real' files which do not
-            # copy well & must be passed by reference. Meh.
+            if isinstance(value, dict) and isinstance(base[key], dict):
+                merge_dicts(base[key], value)
+            elif isinstance(value, dict) or isinstance(base[key], dict):
+                raise _merge_error(base[key], value)
             elif hasattr(value, "fileno"):
                 base[key] = value
-            # Non-dict values just get set straight
             else:
                 base[key] = copy.copy(value)
+        elif isinstance(value, dict):
+            base[key] = copy_dict(value)
+        elif hasattr(value, "fileno"):
+            base[key] = value
+        else:
+            base[key] = copy.copy(value)
     return base
 
 

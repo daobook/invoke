@@ -132,17 +132,19 @@ class StateMachine(StateMachineBase):
         valid_transitions = list(filter(
           lambda transition: transition.is_valid_from(self._current_state_object),
           transitions))
-        if len(valid_transitions) == 0:
+        if not valid_transitions:
             raise InvalidTransition("Cannot %s from %s" % (
                 transitions[0].event, self.current_state))
         return valid_transitions
 
     def _check_guards(self, transitions):
-        allowed_transitions = []
-        for transition in transitions:
-            if transition.check_guard(self):
-                allowed_transitions.append(transition)
-        if len(allowed_transitions) == 0:
+        allowed_transitions = [
+            transition
+            for transition in transitions
+            if transition.check_guard(self)
+        ]
+
+        if not allowed_transitions:
             raise GuardNotSatisfied("Guard is not satisfied for this transition")
         elif len(allowed_transitions) > 1:
             raise ForkedTransition("More than one transition was allowed for this event")
@@ -195,11 +197,10 @@ class _Guard(object):
     def _evaluate(self, machine, item):
         if callable(item):
             return item(machine)
-        else:
-            guard = getattr(machine, item)
-            if callable(guard):
-                guard = guard()
-            return guard
+        guard = getattr(machine, item)
+        if callable(guard):
+            guard = guard()
+        return guard
 
 
 class _State(object):

@@ -70,11 +70,10 @@ class Failure(Exception):
             stdout = self.result.tail("stdout")
         if self.result.pty:
             stderr = " n/a (PTYs have no stderr)"
+        elif "stderr" not in self.result.hide:
+            stderr = already_printed
         else:
-            if "stderr" not in self.result.hide:
-                stderr = already_printed
-            else:
-                stderr = self.result.tail("stderr")
+            stderr = self.result.tail("stderr")
         return stdout, stderr
 
     def __repr__(self):
@@ -345,16 +344,12 @@ class ThreadException(Exception):
         self.exceptions = tuple(exceptions)
 
     def __str__(self):
-        details = []
-        for x in self.exceptions:
-            # Build useful display
-            detail = "Thread args: {}\n\n{}"
-            details.append(
-                detail.format(
+        # Build useful display
+        detail = "Thread args: {}\n\n{}"
+        details = [detail.format(
                     pformat(_printable_kwargs(x.kwargs)),
                     "\n".join(format_exception(x.type, x.value, x.traceback)),
-                )
-            )
+                ) for x in self.exceptions]
         args = (
             len(self.exceptions),
             ", ".join(x.type.__name__ for x in self.exceptions),
