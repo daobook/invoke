@@ -112,7 +112,7 @@ Available tasks:
 </div>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>“方便的装饰器 <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> 是另一种设置别名的方法（例如 <code class="docutils literal notranslate"><span class="pre">&#64;task(aliases=('foo',</span> <span class="pre">'bar'))</span></code>，这对于确保给定的任务总是有一些别名设置非常有用，无论它是如何添加到命名空间的。</p>
+<p>便捷的装饰器 <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> 是另一种设置别名的方法（例如 <code class="docutils literal notranslate"><span class="pre">&#64;task(aliases=('foo',</span> <span class="pre">'bar'))</span></code>，这对于确保给定的任务总是有一些别名设置非常有用，无论它是如何添加到命名空间的。</p>
 </div>
 </section>
 <section id="dashes-vs-underscores">
@@ -191,22 +191,13 @@ Available tasks:
 </section>
 <section id="importing-modules-as-collections">
 <h2>将模块作为集合导入<a class="headerlink" href="#importing-modules-as-collections" title="永久链接至标题">¶</a></h2>
-<p>A simple tactic which Invoke itself uses in the trivial, single-module
-case is to use <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.from_module</span></code> – a classmethod
-serving as an alternate <code class="docutils literal notranslate"><span class="pre">Collection</span></code> constructor which takes a Python module
-object as its first argument.</p>
-<p>Modules given to this method are scanned for <code class="docutils literal notranslate"><span class="pre">Task</span></code> instances, which are
-added to a new <code class="docutils literal notranslate"><span class="pre">Collection</span></code>. By default, this collection’s name is taken from
-the module name (the <code class="docutils literal notranslate"><span class="pre">__name__</span></code> attribute), though it can also be supplied
-explicitly.</p>
+<p>在简单的单模块情况下，Invoke 本身使用的简单策略是使用类方法 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.from_module</span></code>，作为另一个 <code class="docutils literal notranslate"><span class="pre">Collection</span></code> 构造函数，它接受 Python 模块对象作为第一个参数。</p>
+<p>给定方法的模块被扫描为 <code class="docutils literal notranslate"><span class="pre">Task</span></code> 实例，这些实例被添加到新的 <code class="docutils literal notranslate"><span class="pre">Collection</span></code>。默认情况下，该集合的名称取自模块名称（<code class="docutils literal notranslate"><span class="pre">__name__</span></code> 属性），但它也可以显式提供。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>As with the default task module, you can override this default loading
-behavior by declaring a <code class="docutils literal notranslate"><span class="pre">ns</span></code> or <code class="docutils literal notranslate"><span class="pre">namespace</span></code> <a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a> object at top
-level in the loaded module.</p>
+<p>和默认的任务模块一样，你可以通过声明 <code class="docutils literal notranslate"><span class="pre">ns</span></code> 或 <code class="docutils literal notranslate"><span class="pre">namespace</span></code> <a class="reference internal" href="../api/collection.html#invoke.collection.Collection" title="invoke.collection.Collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection</span></code></a>  来覆盖这个默认的加载行为。在被加载模块的顶层。</p>
 </div>
-<p>For example, let’s reorganize our earlier single-file example into a Python
-package with several submodules. First, <code class="docutils literal notranslate"><span class="pre">tasks/release.py</span></code>:</p>
+<p>例如，让我们将之前的单文件示例重组为一个带有几个子模块的 Python 包。首先，<code class="docutils literal notranslate"><span class="pre">tasks/release.py</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
 
 <span class="nd">@task</span>
@@ -214,7 +205,7 @@ package with several submodules. First, <code class="docutils literal notranslat
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;python setup.py sdist register upload&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>And <code class="docutils literal notranslate"><span class="pre">tasks/docs.py</span></code>:</p>
+<p>添加 <code class="docutils literal notranslate"><span class="pre">tasks/docs.py</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">task</span>
 
 <span class="nd">@task</span>
@@ -226,7 +217,7 @@ package with several submodules. First, <code class="docutils literal notranslat
     <span class="n">c</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf docs/_build&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Tying them together is <code class="docutils literal notranslate"><span class="pre">tasks/__init__.py</span></code>:</p>
+<p>把它们联系在一起 <code class="docutils literal notranslate"><span class="pre">tasks/__init__.py</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">invoke</span> <span class="kn">import</span> <span class="n">Collection</span>
 
 <span class="kn">import</span> <span class="nn">release</span><span class="o">,</span> <span class="nn">docs</span>
@@ -236,15 +227,13 @@ package with several submodules. First, <code class="docutils literal notranslat
 <span class="n">ns</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="n">Collection</span><span class="o">.</span><span class="n">from_module</span><span class="p">(</span><span class="n">docs</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>This form of the API is a little unwieldy in practice. Thankfully there’s a
-shortcut: <code class="docutils literal notranslate"><span class="pre">add_collection</span></code> will notice when handed a module object as its
-first argument and call <code class="docutils literal notranslate"><span class="pre">Collection.from_module</span></code> for you internally:</p>
+<p>这种形式的 API 在实践中有点笨拙。幸运的是，有快捷方式 <code class="docutils literal notranslate"><span class="pre">add_collection</span></code> 会注意到当传入模块对象作为它的第一个参数时，并在内部为你调用 <code class="docutils literal notranslate"><span class="pre">Collection.from_module</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">()</span>
 <span class="n">ns</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="n">release</span><span class="p">)</span>
 <span class="n">ns</span><span class="o">.</span><span class="n">add_collection</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Either way, the result:</p>
+<p>无论哪种方式，结果都是</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ invoke --list
 Available tasks:
 
@@ -255,7 +244,7 @@ Available tasks:
 </div>
 </section>
 <section id="default-tasks">
-<h2>Default tasks<a class="headerlink" href="#default-tasks" title="永久链接至标题">¶</a></h2>
+<h2>默认任务<a class="headerlink" href="#default-tasks" title="永久链接至标题">¶</a></h2>
 <p>Tasks may be declared as the default task to invoke for the collection they
 belong to, e.g. by giving <code class="docutils literal notranslate"><span class="pre">default=True</span></code> to <code class="xref py py-obj docutils literal notranslate"><span class="pre">&#64;task</span></code> (or to
 <code class="xref py py-obj docutils literal notranslate"><span class="pre">Collection.add_task</span></code>.) This is useful when you have a bunch of related tasks
@@ -462,7 +451,7 @@ argument if desired, which can be handy when building sub-collections.</p>
 <li class="toctree-l2"><a class="reference internal" href="#naming-your-tasks">命名你的任务</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nesting-collections">嵌套集合</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#importing-modules-as-collections">将模块作为集合导入</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#default-tasks">Default tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-tasks">默认任务</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mix-and-match">Mix and match</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#more-shortcuts">More shortcuts</a></li>
 </ul>
