@@ -148,8 +148,8 @@ msgid ""
 "ensuring a given task always has some aliases set no matter how it's "
 "added to a namespace."
 msgstr ""
-""方便的装饰器 `@task <.task>` 是另一种设置别名的方法"
-"（例如 ``@task(aliases=('foo', 'bar'))``，这对于确保给定的任务总是有一些别名设置非常有用，无论它是如何添加到命名空间的。"
+"便捷的装饰器 `@task <.task>` 是另一种设置别名的方法（例如 ``@task(aliases=('foo', 'bar'))``，"
+"这对于确保给定的任务总是有一些别名设置非常有用，无论它是如何添加到命名空间的。"
 
 #: ../../concepts/namespaces.rst:117
 msgid "Dashes vs underscores"
@@ -251,6 +251,8 @@ msgid ""
 "alternate ``Collection`` constructor which takes a Python module object "
 "as its first argument."
 msgstr ""
+"在简单的单模块情况下，Invoke 本身使用的简单策略是使用类方法 `.Collection.from_module`，"
+"作为另一个 ``Collection`` 构造函数，它接受 Python 模块对象作为第一个参数。"
 
 #: ../../concepts/namespaces.rst:215
 msgid ""
@@ -259,6 +261,8 @@ msgid ""
 "taken from the module name (the ``__name__`` attribute), though it can "
 "also be supplied explicitly."
 msgstr ""
+"给定方法的模块被扫描为 ``Task`` 实例，这些实例被添加到新的 ``Collection``。"
+"默认情况下，该集合的名称取自模块名称（``__name__`` 属性），但它也可以显式提供。"
 
 #: ../../concepts/namespaces.rst:221
 msgid ""
@@ -266,20 +270,23 @@ msgid ""
 "behavior by declaring a ``ns`` or ``namespace`` `.Collection` object at "
 "top level in the loaded module."
 msgstr ""
+"和默认的任务模块一样，你可以通过声明 ``ns`` 或 ``namespace`` `.Collection`  来覆盖这个默认的加载行为。"
+"在被加载模块的顶层。"
 
 #: ../../concepts/namespaces.rst:225
 msgid ""
 "For example, let's reorganize our earlier single-file example into a "
 "Python package with several submodules. First, ``tasks/release.py``::"
 msgstr ""
+"例如，让我们将之前的单文件示例重组为一个带有几个子模块的 Python 包。首先，``tasks/release.py``::"
 
 #: ../../concepts/namespaces.rst:234
 msgid "And ``tasks/docs.py``::"
-msgstr ""
+msgstr "添加 ``tasks/docs.py``::"
 
 #: ../../concepts/namespaces.rst:246
 msgid "Tying them together is ``tasks/__init__.py``::"
-msgstr ""
+msgstr "把它们联系在一起 ``tasks/__init__.py``::"
 
 #: ../../concepts/namespaces.rst:256
 msgid ""
@@ -288,14 +295,16 @@ msgid ""
 "as its first argument and call ``Collection.from_module`` for you "
 "internally::"
 msgstr ""
+"这种形式的 API 在实践中有点笨拙。"
+"幸运的是，有快捷方式 ``add_collection`` 会注意到当传入模块对象作为它的第一个参数时，并在内部为你调用 ``Collection.from_module``"
 
 #: ../../concepts/namespaces.rst:264
 msgid "Either way, the result::"
-msgstr ""
+msgstr "无论哪种方式，结果都是 ::"
 
 #: ../../concepts/namespaces.rst:275
 msgid "Default tasks"
-msgstr ""
+msgstr "默认任务"
 
 #: ../../concepts/namespaces.rst:277
 msgid ""
