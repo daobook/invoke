@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../concepts/invoking-tasks.rst:5
 msgid "Invoking tasks"
-msgstr ""
+msgstr "调用任务"
 
 #: ../../concepts/invoking-tasks.rst:7
 msgid ""

@@ -8,16 +8,483 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/context.rst:3
 msgid "``context``"
+msgstr ""
+
+#: invoke.context.Context:1 of
+msgid "Context-aware API wrapper & state-passing object."
+msgstr ""
+
+#: invoke.context.Context:3 of
+msgid ""
+"`.Context` objects are created during command-line parsing (or, if "
+"desired, by hand) and used to share parser and configuration state with "
+"executed tasks (see :ref:`why-context`)."
+msgstr ""
+
+#: invoke.context.Context:7 of
+msgid ""
+"Specifically, the class offers wrappers for core API calls (such as "
+"`.run`) which take into account CLI parser flags, configuration files, "
+"and/or changes made at runtime. It also acts as a proxy for its "
+"`~.Context.config` attribute - see that attribute's documentation for "
+"details."
+msgstr ""
+
+#: invoke.context.Context:12 of
+msgid ""
+"Instances of `.Context` may be shared between tasks when executing sub-"
+"tasks - either the same context the caller was given, or an altered copy "
+"thereof (or, theoretically, a brand new one)."
+msgstr ""
+
+#: ../../api/context.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.context.Context.__init__:1 of
+msgid ""
+"`.Config` object to use as the base configuration.  Defaults to an "
+"anonymous/default `.Config` instance."
+msgstr ""
+
+#: invoke.context.Context.__init__:2 of
+msgid "`.Config` object to use as the base configuration."
+msgstr ""
+
+#: invoke.context.Context.__init__:4 of
+msgid "Defaults to an anonymous/default `.Config` instance."
+msgstr ""
+
+#: invoke.context.Context.cd:1 of
+msgid "Context manager that keeps directory state when executing commands."
+msgstr ""
+
+#: invoke.context.Context.cd:3 of
+msgid ""
+"Any calls to `run`, `sudo`, within the wrapped block will implicitly have"
+" a string similar to ``\"cd <path> && \"`` prefixed in order to give the "
+"sense that there is actually statefulness involved."
+msgstr ""
+
+#: invoke.context.Context.cd:7 of
+msgid ""
+"Because use of `cd` affects all such invocations, any code making use of "
+"the `cwd` property will also be affected by use of `cd`."
+msgstr ""
+
+#: invoke.context.Context.cd:10 of
+msgid ""
+"Like the actual 'cd' shell builtin, `cd` may be called with relative "
+"paths (keep in mind that your default starting directory is your user's "
+"``$HOME``) and may be nested as well."
+msgstr ""
+
+#: invoke.context.Context.cd:14 of
+msgid ""
+"Below is a \"normal\" attempt at using the shell 'cd', which doesn't work"
+" since all commands are executed in individual subprocesses -- state is "
+"**not** kept between invocations of `run` or `sudo`::"
+msgstr ""
+
+#: invoke.context.Context.cd:21 of
+msgid ""
+"The above snippet will list the contents of the user's ``$HOME`` instead "
+"of ``/var/www``. With `cd`, however, it will work as expected::"
+msgstr ""
+
+#: invoke.context.Context.cd:27 of
+msgid "Finally, a demonstration (see inline comments) of nesting::"
+msgstr ""
+
+#: invoke.context.Context.cd:35 of
+msgid ""
+"Space characters will be escaped automatically to make dealing with such "
+"directory names easier."
+msgstr ""
+
+#: invoke.context.Context.cd:39 of
+msgid ""
+"Explicitly cast the ``path`` argument (the only argument) to a string; "
+"this allows any object defining ``__str__`` to be handed in (such as the "
+"various ``Path`` objects out there), and not just string literals."
+msgstr ""
+
+#: invoke.context.Context.cwd:1 of
+msgid "Return the current working directory, accounting for uses of `cd`."
+msgstr ""
+
+#: invoke.context.Context.prefix:1 of
+msgid "Prefix all nested `run`/`sudo` commands with given command plus ``&&``."
+msgstr ""
+
+#: invoke.context.Context.prefix:3 of
+msgid ""
+"Most of the time, you'll want to be using this alongside a shell script "
+"which alters shell state, such as ones which export or alter shell "
+"environment variables."
+msgstr ""
+
+#: invoke.context.Context.prefix:7 of
+msgid ""
+"For example, one of the most common uses of this tool is with the "
+"``workon`` command from `virtualenvwrapper "
+"<https://virtualenvwrapper.readthedocs.io/en/latest/>`_::"
+msgstr ""
+
+#: invoke.context.Context.prefix:14 of
+msgid "In the above snippet, the actual shell command run would be this::"
+msgstr ""
+
+#: invoke.context.Context.prefix:18 of
+msgid ""
+"This context manager is compatible with `cd`, so if your virtualenv "
+"doesn't ``cd`` in its ``postactivate`` script, you could do the "
+"following::"
+msgstr ""
+
+#: invoke.context.Context.prefix:27 of
+msgid "Which would result in executions like so::"
+msgstr ""
+
+#: invoke.context.Context.prefix:32 of
+msgid "Finally, as alluded to above, `prefix` may be nested if desired, e.g.::"
+msgstr ""
+
+#: invoke.context.Context.prefix:39 of
+msgid "The result::"
+msgstr ""
+
+#: invoke.context.Context.prefix:44 of
+msgid "Contrived, but hopefully illustrative."
+msgstr ""
+
+#: invoke.context.Context.run:1 invoke.context.MockContext.run:1 of
+msgid "Execute a local shell command, honoring config options."
+msgstr ""
+
+#: invoke.context.Context.run:3 invoke.context.MockContext.run:3 of
+msgid ""
+"Specifically, this method instantiates a `.Runner` subclass (according to"
+" the ``runner`` config option; default is `.Local`) and calls its "
+"``.run`` method with ``command`` and ``kwargs``."
+msgstr ""
+
+#: invoke.context.Context.run:7 invoke.context.MockContext.run:7 of
+msgid ""
+"See `.Runner.run` for details on ``command`` and the available keyword "
+"arguments."
+msgstr ""
+
+#: invoke.context.Context.sudo:1 invoke.context.MockContext.sudo:1 of
+msgid "Execute a shell command via ``sudo`` with password auto-response."
+msgstr ""
+
+#: invoke.context.Context.sudo:3 invoke.context.MockContext.sudo:3 of
+msgid "**Basics**"
+msgstr ""
+
+#: invoke.context.Context.sudo:5 invoke.context.MockContext.sudo:5 of
+msgid ""
+"This method is identical to `run` but adds a handful of convenient "
+"behaviors around invoking the ``sudo`` program. It doesn't do anything "
+"users could not do themselves by wrapping `run`, but the use case is too "
+"common to make users reinvent these wheels themselves."
+msgstr ""
+
+#: invoke.context.Context.sudo:11 invoke.context.MockContext.sudo:11 of
+msgid ""
+"If you intend to respond to sudo's password prompt by hand, just use "
+"``run(\"sudo command\")`` instead! The autoresponding features in this "
+"method will just get in your way."
+msgstr ""
+
+#: invoke.context.Context.sudo:15 invoke.context.MockContext.sudo:15 of
+msgid "Specifically, `sudo`:"
+msgstr ""
+
+#: invoke.context.Context.sudo:17 invoke.context.MockContext.sudo:17 of
+msgid ""
+"Places a `.FailingResponder` into the ``watchers`` kwarg (see "
+":doc:`/concepts/watchers`) which:"
+msgstr ""
+
+#: invoke.context.Context.sudo:20 invoke.context.MockContext.sudo:20 of
+msgid "searches for the configured ``sudo`` password prompt;"
+msgstr ""
+
+#: invoke.context.Context.sudo:21 invoke.context.MockContext.sudo:21 of
+msgid ""
+"responds with the configured sudo password (``sudo.password`` from the "
+":doc:`configuration </concepts/configuration>`);"
+msgstr ""
+
+#: invoke.context.Context.sudo:23 invoke.context.MockContext.sudo:23 of
+msgid ""
+"can tell when that response causes an authentication failure (e.g. if the"
+" system requires a password and one was not configured), and raises "
+"`.AuthFailure` if so."
+msgstr ""
+
+#: invoke.context.Context.sudo:27 invoke.context.MockContext.sudo:27 of
+msgid ""
+"Builds a ``sudo`` command string using the supplied ``command`` argument,"
+" prefixed by various flags (see below);"
+msgstr ""
+
+#: invoke.context.Context.sudo:29 invoke.context.MockContext.sudo:29 of
+msgid "Executes that command via a call to `run`, returning the result."
+msgstr ""
+
+#: invoke.context.Context.sudo:31 invoke.context.MockContext.sudo:31 of
+msgid "**Flags used**"
+msgstr ""
+
+#: invoke.context.Context.sudo:33 invoke.context.MockContext.sudo:33 of
+msgid "``sudo`` flags used under the hood include:"
+msgstr ""
+
+#: invoke.context.Context.sudo:35 invoke.context.MockContext.sudo:35 of
+msgid "``-S`` to allow auto-responding of password via stdin;"
+msgstr ""
+
+#: invoke.context.Context.sudo:36 invoke.context.MockContext.sudo:36 of
+msgid ""
+"``-p <prompt>`` to explicitly state the prompt to use, so we can be sure "
+"our auto-responder knows what to look for;"
+msgstr ""
+
+#: invoke.context.Context.sudo:38 invoke.context.MockContext.sudo:38 of
+msgid ""
+"``-u <user>`` if ``user`` is not ``None``, to execute the command as a "
+"user other than ``root``;"
+msgstr ""
+
+#: invoke.context.Context.sudo:40 invoke.context.MockContext.sudo:40 of
+msgid ""
+"When ``-u`` is present, ``-H`` is also added, to ensure the subprocess "
+"has the requested user's ``$HOME`` set properly."
+msgstr ""
+
+#: invoke.context.Context.sudo:43 invoke.context.MockContext.sudo:43 of
+msgid "**Configuring behavior**"
+msgstr ""
+
+#: invoke.context.Context.sudo:45 invoke.context.MockContext.sudo:45 of
+msgid "There are a couple of ways to change how this method behaves:"
+msgstr ""
+
+#: invoke.context.Context.sudo:47 invoke.context.MockContext.sudo:47 of
+msgid ""
+"Because it wraps `run`, it honors all `run` config parameters and keyword"
+" arguments, in the same way that `run` does."
+msgstr ""
+
+#: invoke.context.Context.sudo:50 invoke.context.MockContext.sudo:50 of
+msgid ""
+"Thus, invocations such as ``c.sudo('command', echo=True)`` are possible, "
+"and if a config layer (such as a config file or env var) specifies that "
+"e.g. ``run.warn = True``, that too will take effect under `sudo`."
+msgstr ""
+
+#: invoke.context.Context.sudo:55 invoke.context.MockContext.sudo:55 of
+msgid ""
+"`sudo` has its own set of keyword arguments (see below) and they are also"
+" all controllable via the configuration system, under the ``sudo.*`` "
+"tree."
+msgstr ""
+
+#: invoke.context.Context.sudo:59 invoke.context.MockContext.sudo:59 of
+msgid ""
+"Thus you could, for example, pre-set a sudo user in a config file; such "
+"as an ``invoke.json`` containing ``{\"sudo\": {\"user\": "
+"\"someuser\"}}``."
+msgstr ""
+
+#: invoke.context.Context.sudo:63 invoke.context.MockContext.sudo:63 of
+msgid "Runtime override for ``sudo.password``."
+msgstr ""
+
+#: invoke.context.Context.sudo:64 invoke.context.MockContext.sudo:64 of
+msgid "Runtime override for ``sudo.user``."
+msgstr ""
+
+#: invoke.context.MockContext:1 of
+msgid "A `.Context` whose methods' return values can be predetermined."
+msgstr ""
+
+#: invoke.context.MockContext:3 of
+msgid "Primarily useful for testing Invoke-using codebases."
+msgstr ""
+
+#: invoke.context.MockContext:6 of
+msgid ""
+"This class wraps its ``run``, etc methods in `unittest.mock.Mock` "
+"objects. This allows you to easily assert that the methods (still "
+"returning the values you prepare them with) were actually called."
+msgstr ""
+
+#: invoke.context.MockContext:11 of
+msgid ""
+"Methods not given `Results <.Result>` to yield will raise "
+"``NotImplementedError`` if called (since the alternative is to call the "
+"real underlying method - typically undesirable when mocking.)"
+msgstr ""
+
+#: invoke.context.MockContext:16 of
+msgid "Added ``Mock`` wrapping of ``run`` and ``sudo``."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:1 of
+msgid "Create a ``Context``-like object whose methods yield `.Result` objects."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:3 of
+msgid "A Configuration object to use. Identical in behavior to `.Context`."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:6 of
+msgid ""
+"A data structure indicating what `.Result` objects to return from calls "
+"to the instantiated object's `~.Context.run` method (instead of actually "
+"executing the requested shell command).  Specifically, this kwarg "
+"accepts:  - A single `.Result` object. - A boolean; if True, yields a "
+"`.Result` whose ``exited`` is ``0``,   and if False, ``1``. - An iterable"
+" of the above values, which will be returned on each   subsequent call to"
+" ``.run`` (the first item on the first call,   the second on the second "
+"call, etc). - A dict mapping command strings or compiled regexen to the "
+"above   values (including an iterable), allowing specific   call-and-"
+"response semantics instead of assuming a call order."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:7 of
+msgid ""
+"A data structure indicating what `.Result` objects to return from calls "
+"to the instantiated object's `~.Context.run` method (instead of actually "
+"executing the requested shell command)."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:11 of
+msgid "Specifically, this kwarg accepts:"
+msgstr ""
+
+#: invoke.context.MockContext.__init__:13 of
+msgid "A single `.Result` object."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:14 of
+msgid ""
+"A boolean; if True, yields a `.Result` whose ``exited`` is ``0``, and if "
+"False, ``1``."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:16 of
+msgid ""
+"An iterable of the above values, which will be returned on each "
+"subsequent call to ``.run`` (the first item on the first call, the second"
+" on the second call, etc)."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:19 of
+msgid ""
+"A dict mapping command strings or compiled regexen to the above values "
+"(including an iterable), allowing specific call-and-response semantics "
+"instead of assuming a call order."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:23 of
+msgid ""
+"Identical to ``run``, but whose values are yielded from calls to "
+"`~.Context.sudo`."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:27 of
+msgid ""
+"A flag determining whether results yielded by this class' methods repeat "
+"or are consumed.  For example, when a single result is indicated, it will"
+" normally only be returned once, causing ``NotImplementedError`` "
+"afterwards. But when ``repeat=True`` is given, that result is returned on"
+" every call, forever.  Similarly, iterable results are normally exhausted"
+" once, but when this setting is enabled, they are wrapped in "
+"`itertools.cycle`.  Default: ``True``."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:28 of
+msgid ""
+"A flag determining whether results yielded by this class' methods repeat "
+"or are consumed."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:31 of
+msgid ""
+"For example, when a single result is indicated, it will normally only be "
+"returned once, causing ``NotImplementedError`` afterwards. But when "
+"``repeat=True`` is given, that result is returned on every call, forever."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:36 of
+msgid ""
+"Similarly, iterable results are normally exhausted once, but when this "
+"setting is enabled, they are wrapped in `itertools.cycle`."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:39 of
+msgid "Default: ``True``."
+msgstr ""
+
+#: invoke.context.MockContext.__init__ of
+msgid "raises"
+msgstr ""
+
+#: invoke.context.MockContext.__init__:42 of
+msgid ""
+"``TypeError``, if the values given to ``run`` or other kwargs aren't of "
+"the expected types."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:45 of
+msgid "Added support for boolean and string result values."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:47 of
+msgid "Added support for regex dict keys."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:49 of
+msgid "Added the ``repeat`` keyword argument."
+msgstr ""
+
+#: invoke.context.MockContext.__init__:51 of
+msgid "Changed ``repeat`` default value from ``False`` to ``True``."
+msgstr ""
+
+#: invoke.context.MockContext.set_result_for:1 of
+msgid "Modify the stored mock results for given ``attname`` (e.g. ``run``)."
+msgstr ""
+
+#: invoke.context.MockContext.set_result_for:3 of
+msgid ""
+"This is similar to how one instantiates `MockContext` with a ``run`` or "
+"``sudo`` dict kwarg. For example, this::"
+msgstr ""
+
+#: invoke.context.MockContext.set_result_for:9 of
+msgid "is functionally equivalent to this::"
+msgstr ""
+
+#: invoke.context.MockContext.set_result_for:15 of
+msgid ""
+"`set_result_for` is mostly useful for modifying an already-instantiated "
+"`MockContext`, such as one created by test setup or helper methods."
 msgstr ""
 

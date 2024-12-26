@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/terminals.rst:3
 msgid "``terminals``"
@@ -35,5 +35,93 @@ msgstr ""
 msgid ""
 "This is its own module to abstract away what would otherwise be "
 "distracting logic-flow interruptions."
+msgstr ""
+
+#: ../../../docstring invoke.terminals.WINDOWS:1 of
+msgid "Whether or not the current platform appears to be Windows in nature."
+msgstr ""
+
+#: ../../../docstring invoke.terminals.WINDOWS:3 of
+msgid ""
+"Note that Cygwin's Python is actually close enough to \"real\" UNIXes "
+"that it doesn't need (or want!) to use PyWin32 -- so we only test for "
+"literal Win32 setups (vanilla Python, ActiveState etc) here."
+msgstr ""
+
+#: invoke.terminals.bytes_to_read:1 of
+msgid "Query stream ``input_`` to see how many bytes may be readable."
+msgstr ""
+
+#: invoke.terminals.bytes_to_read:4 of
+msgid ""
+"If we are unable to tell (e.g. if ``input_`` isn't a true file descriptor"
+" or isn't a valid TTY) we fall back to suggesting reading 1 byte only."
+msgstr ""
+
+#: ../../api/terminals.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.terminals.bytes_to_read:8 invoke.terminals.ready_for_reading:3 of
+msgid "Input stream object (file-like)."
+msgstr ""
+
+#: ../../api/terminals.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.terminals.bytes_to_read:10 of
+msgid "`int` number of bytes to read."
+msgstr ""
+
+#: invoke.terminals.character_buffered:1 of
+msgid "Force local terminal ``stream`` be character, not line, buffered."
+msgstr ""
+
+#: invoke.terminals.character_buffered:3 of
+msgid "Only applies to Unix-based systems; on Windows this is a no-op."
+msgstr ""
+
+#: invoke.terminals.pty_size:1 of
+msgid "Determine current local pseudoterminal dimensions."
+msgstr ""
+
+#: invoke.terminals.pty_size:3 of
+msgid ""
+"A ``(num_cols, num_rows)`` two-tuple describing PTY size. Defaults to "
+"``(80, 24)`` if unable to get a sensible result dynamically."
+msgstr ""
+
+#: invoke.terminals.ready_for_reading:1 of
+msgid "Test ``input_`` to determine whether a read action will succeed."
+msgstr ""
+
+#: invoke.terminals.ready_for_reading:5 of
+msgid "``True`` if a read should succeed, ``False`` otherwise."
+msgstr ""
+
+#: invoke.terminals.stdin_is_foregrounded_tty:1 of
+msgid "Detect if given stdin ``stream`` seems to be in the foreground of a TTY."
+msgstr ""
+
+#: invoke.terminals.stdin_is_foregrounded_tty:3 of
+msgid ""
+"Specifically, compares the current Python process group ID to that of the"
+" stream's file descriptor to see if they match; if they do not match, it "
+"is likely that the process has been placed in the background."
+msgstr ""
+
+#: invoke.terminals.stdin_is_foregrounded_tty:7 of
+msgid ""
+"This is used as a test to determine whether we should manipulate an "
+"active stdin so it runs in a character-buffered mode; touching the "
+"terminal in this way when the process is backgrounded, causes most shells"
+" to pause execution."
+msgstr ""
+
+#: invoke.terminals.stdin_is_foregrounded_tty:13 of
+msgid ""
+"Processes that aren't attached to a terminal to begin with, will always "
+"fail this test, as it starts with \"do you have a real ``fileno``?\"."
 msgstr ""
 

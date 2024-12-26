@@ -8,16 +8,648 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/config.rst:3
 msgid "``config``"
+msgstr ""
+
+#: ../../../docstring invoke.config.AmbiguousMergeError.__weakref__:1
+#: invoke.config.DataProxy.__weakref__:1 of
+msgid "list of weak references to the object"
+msgstr ""
+
+#: invoke.config.Config:1 of
+msgid "Invoke's primary configuration handling class."
+msgstr ""
+
+#: invoke.config.Config:3 of
+msgid ""
+"See :doc:`/concepts/configuration` for details on the configuration "
+"system this class implements, including the :ref:`configuration hierarchy"
+" <config-hierarchy>`. The rest of this class' documentation assumes "
+"familiarity with that document."
+msgstr ""
+
+#: invoke.config.Config:8 of
+msgid "**Access**"
+msgstr ""
+
+#: invoke.config.Config:10 of
+msgid "Configuration values may be accessed and/or updated using dict syntax::"
+msgstr ""
+
+#: invoke.config.Config:14 of
+msgid "or attribute syntax::"
+msgstr ""
+
+#: invoke.config.Config:18 of
+msgid ""
+"Nesting works the same way - dict config values are turned into objects "
+"which honor both the dictionary protocol and the attribute-access "
+"method::"
+msgstr ""
+
+#: invoke.config.Config:24 of
+msgid "**A note about attribute access and methods**"
+msgstr ""
+
+#: invoke.config.Config:26 of
+msgid ""
+"This class implements the entire dictionary protocol: methods such as "
+"``keys``, ``values``, ``items``, ``pop`` and so forth should all function"
+" as they do on regular dicts. It also implements new config-specific "
+"methods such as `load_system`, `load_collection`, `merge`, `clone`, etc."
+msgstr ""
+
+#: invoke.config.Config:32 of
+msgid ""
+"Accordingly, this means that if you have configuration options sharing "
+"names with these methods, you **must** use dictionary syntax (e.g. "
+"``myconfig['keys']``) to access the configuration data."
+msgstr ""
+
+#: invoke.config.Config:36 of
+msgid "**Lifecycle**"
+msgstr ""
+
+#: invoke.config.Config:38 of
+msgid "At initialization time, `.Config`:"
+msgstr ""
+
+#: invoke.config.Config:40 of
+msgid "creates per-level data structures;"
+msgstr ""
+
+#: invoke.config.Config:41 of
+msgid ""
+"stores any levels supplied to `__init__`, such as defaults or overrides, "
+"as well as the various config file paths/filename patterns;"
+msgstr ""
+
+#: invoke.config.Config:43 of
+msgid ""
+"and loads config files, if found (though typically this just means system"
+" and user-level files, as project and runtime files need more info before"
+" they can be found and loaded.)"
+msgstr ""
+
+#: invoke.config.Config:47 of
+msgid "This step can be skipped by specifying ``lazy=True``."
+msgstr ""
+
+#: invoke.config.Config:49 of
+msgid ""
+"At this point, `.Config` is fully usable - and because it pre-emptively "
+"loads some config files, those config files can affect anything that "
+"comes after, like CLI parsing or loading of task collections."
+msgstr ""
+
+#: invoke.config.Config:53 of
+msgid ""
+"In the CLI use case, further processing is done after instantiation, "
+"using the ``load_*`` methods such as `load_overrides`, `load_project`, "
+"etc:"
+msgstr ""
+
+#: invoke.config.Config:56 of
+msgid "the result of argument/option parsing is applied to the overrides level;"
+msgstr ""
+
+#: invoke.config.Config:57 of
+msgid ""
+"a project-level config file is loaded, as it's dependent on a loaded "
+"tasks collection;"
+msgstr ""
+
+#: invoke.config.Config:59 of
+msgid "a runtime config file is loaded, if its flag was supplied;"
+msgstr ""
+
+#: invoke.config.Config:60 of
+msgid "then, for each task being executed:"
+msgstr ""
+
+#: invoke.config.Config:62 of
+msgid ""
+"per-collection data is loaded (only possible now that we have collection "
+"& task in hand);"
+msgstr ""
+
+#: invoke.config.Config:64 of
+msgid ""
+"shell environment data is loaded (must be done at end of process due to "
+"using the rest of the config as a guide for interpreting env var names.)"
+msgstr ""
+
+#: invoke.config.Config:68 of
+msgid ""
+"At this point, the config object is handed to the task being executed, as"
+" part of its execution `.Context`."
+msgstr ""
+
+#: invoke.config.Config:71 of
+msgid ""
+"Any modifications made directly to the `.Config` itself after this point "
+"end up stored in their own (topmost) config level, making it easier to "
+"debug final values."
+msgstr ""
+
+#: invoke.config.Config:75 of
+msgid ""
+"Finally, any *deletions* made to the `.Config` (e.g. applications of "
+"dict-style mutators like ``pop``, ``clear`` etc) are also tracked in "
+"their own structure, allowing the config object to honor such method "
+"calls without mutating the underlying source data."
+msgstr ""
+
+#: invoke.config.Config:80 of
+msgid "**Special class attributes**"
+msgstr ""
+
+#: invoke.config.Config:82 of
+msgid ""
+"The following class-level attributes are used for low-level configuration"
+" of the config system itself, such as which file paths to load. They are "
+"primarily intended for overriding by subclasses."
+msgstr ""
+
+#: invoke.config.Config:86 of
+msgid ""
+"``prefix``: Supplies the default value for ``file_prefix`` (directly) and"
+" ``env_prefix`` (uppercased). See their descriptions for details. Its "
+"default value is ``\"invoke\"``."
+msgstr ""
+
+#: invoke.config.Config:89 of
+msgid ""
+"``file_prefix``: The config file 'basename' default (though it is not a "
+"literal basename; it can contain path parts if desired) which is appended"
+" to the configured values of ``system_prefix``, ``user_prefix``, etc, to "
+"arrive at the final (pre-extension) file paths."
+msgstr ""
+
+#: invoke.config.Config:94 of
+msgid ""
+"Thus, by default, a system-level config file path concatenates the "
+"``system_prefix`` of ``/etc/`` with the ``file_prefix`` of ``invoke`` to "
+"arrive at paths like ``/etc/invoke.json``."
+msgstr ""
+
+#: invoke.config.Config:98 invoke.config.Config:106 of
+msgid "Defaults to ``None``, meaning to use the value of ``prefix``."
+msgstr ""
+
+#: invoke.config.Config:100 of
+msgid ""
+"``env_prefix``: A prefix used (along with a joining underscore) to "
+"determine which environment variables are loaded as the env var "
+"configuration level. Since its default is the value of ``prefix`` "
+"capitalized, this means env vars like ``INVOKE_RUN_ECHO`` are sought by "
+"default."
+msgstr ""
+
+#: invoke.config.Config.__init__:1 of
+msgid "Creates a new config object."
+msgstr ""
+
+#: ../../api/config.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.config.Config.__init__:3 of
+msgid ""
+"A dict containing default (lowest level) config data. Default: "
+"`global_defaults`."
+msgstr ""
+
+#: invoke.config.Config.__init__:7 of
+msgid "A dict containing override-level config data. Default: ``{}``."
+msgstr ""
+
+#: invoke.config.Config.__init__:10 of
+msgid ""
+"Base path for the global config file location; combined with the prefix "
+"and file suffixes to arrive at final file path candidates.  Default: "
+"``/etc/`` (thus e.g. ``/etc/invoke.yaml`` or ``/etc/invoke.json``)."
+msgstr ""
+
+#: invoke.config.Config.__init__:11 of
+msgid ""
+"Base path for the global config file location; combined with the prefix "
+"and file suffixes to arrive at final file path candidates."
+msgstr ""
+
+#: invoke.config.Config.__init__:14 of
+msgid ""
+"Default: ``/etc/`` (thus e.g. ``/etc/invoke.yaml`` or "
+"``/etc/invoke.json``)."
+msgstr ""
+
+#: invoke.config.Config.__init__:17 of
+msgid ""
+"Like ``system_prefix`` but for the per-user config file. These variables "
+"are joined as strings, not via path-style joins, so they may contain "
+"partial file paths; for the per-user config file this often means a "
+"leading dot, to make the final result a hidden file on most systems.  "
+"Default: ``~/.`` (e.g. ``~/.invoke.yaml``)."
+msgstr ""
+
+#: invoke.config.Config.__init__:18 of
+msgid ""
+"Like ``system_prefix`` but for the per-user config file. These variables "
+"are joined as strings, not via path-style joins, so they may contain "
+"partial file paths; for the per-user config file this often means a "
+"leading dot, to make the final result a hidden file on most systems."
+msgstr ""
+
+#: invoke.config.Config.__init__:24 of
+msgid "Default: ``~/.`` (e.g. ``~/.invoke.yaml``)."
+msgstr ""
+
+#: invoke.config.Config.__init__:26 of
+msgid ""
+"Optional directory path of the currently loaded `.Collection` (as loaded "
+"by `.Loader`). When non-empty, will trigger seeking of per-project config"
+" files in this directory."
+msgstr ""
+
+#: invoke.config.Config.__init__:31 of
+msgid ""
+"Optional file path to a runtime configuration file.  Used to fill the "
+"penultimate slot in the config hierarchy. Should be a full file path to "
+"an existing file, not a directory path or a prefix."
+msgstr ""
+
+#: invoke.config.Config.__init__:32 of
+msgid "Optional file path to a runtime configuration file."
+msgstr ""
+
+#: invoke.config.Config.__init__:34 of
+msgid ""
+"Used to fill the penultimate slot in the config hierarchy. Should be a "
+"full file path to an existing file, not a directory path or a prefix."
+msgstr ""
+
+#: invoke.config.Config.__init__:38 of
+msgid ""
+"Whether to automatically load some of the lower config levels.  By "
+"default (``lazy=False``), ``__init__`` automatically calls `load_system` "
+"and `load_user` to load system and user config files, respectively.  For "
+"more control over what is loaded when, you can say ``lazy=True``, and no "
+"automatic loading is done.  .. note::     If you give ``defaults`` and/or"
+" ``overrides`` as ``__init__``     kwargs instead of waiting to use "
+"`load_defaults` or     `load_overrides` afterwards, those *will* still "
+"end up 'loaded'     immediately."
+msgstr ""
+
+#: invoke.config.Config.__init__:39 of
+msgid "Whether to automatically load some of the lower config levels."
+msgstr ""
+
+#: invoke.config.Config.__init__:41 of
+msgid ""
+"By default (``lazy=False``), ``__init__`` automatically calls "
+"`load_system` and `load_user` to load system and user config files, "
+"respectively."
+msgstr ""
+
+#: invoke.config.Config.__init__:45 of
+msgid ""
+"For more control over what is loaded when, you can say ``lazy=True``, and"
+" no automatic loading is done."
+msgstr ""
+
+#: invoke.config.Config.__init__:49 of
+msgid ""
+"If you give ``defaults`` and/or ``overrides`` as ``__init__`` kwargs "
+"instead of waiting to use `load_defaults` or `load_overrides` afterwards,"
+" those *will* still end up 'loaded' immediately."
+msgstr ""
+
+#: invoke.config.Config.clone:1 of
+msgid "Return a copy of this configuration object."
+msgstr ""
+
+#: invoke.config.Config.clone:3 of
+msgid ""
+"The new object will be identical in terms of configured sources and any "
+"loaded (or user-manipulated) data, but will be a distinct object with as "
+"little shared mutable state as possible."
+msgstr ""
+
+#: invoke.config.Config.clone:7 of
+msgid ""
+"Specifically, all `dict` values within the config are recursively "
+"recreated, with non-dict leaf values subjected to `copy.copy` (note: "
+"*not* `copy.deepcopy`, as this can cause issues with various objects such"
+" as compiled regexen or threading locks, often found buried deep within "
+"rich aggregates like API or DB clients)."
+msgstr ""
+
+#: invoke.config.Config.clone:13 of
+msgid ""
+"The only remaining config values that may end up shared between a config "
+"and its clone are thus those 'rich' objects that do not `copy.copy` "
+"cleanly, or compound non-dict objects (such as lists or tuples)."
+msgstr ""
+
+#: invoke.config.Config.clone:18 of
+msgid ""
+"A `.Config` subclass that the new clone should be \"upgraded\" to.  Used "
+"by client libraries which have their own `.Config` subclasses that e.g. "
+"define additional defaults; cloning \"into\" one of these subclasses "
+"ensures that any new keys/subtrees are added gracefully, without "
+"overwriting anything that may have been pre-defined.  Default: ``None`` "
+"(just clone into another regular `.Config`)."
+msgstr ""
+
+#: invoke.config.Config.clone:19 of
+msgid "A `.Config` subclass that the new clone should be \"upgraded\" to."
+msgstr ""
+
+#: invoke.config.Config.clone:21 of
+msgid ""
+"Used by client libraries which have their own `.Config` subclasses that "
+"e.g. define additional defaults; cloning \"into\" one of these subclasses"
+" ensures that any new keys/subtrees are added gracefully, without "
+"overwriting anything that may have been pre-defined."
+msgstr ""
+
+#: invoke.config.Config.clone:26 of
+msgid "Default: ``None`` (just clone into another regular `.Config`)."
+msgstr ""
+
+#: ../../api/config.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.config.Config.clone:28 of
+msgid "A `.Config`, or an instance of the class given to ``into``."
+msgstr ""
+
+#: invoke.config.Config.global_defaults:1 of
+msgid "Return the core default settings for Invoke."
+msgstr ""
+
+#: invoke.config.Config.global_defaults:3 of
+msgid ""
+"Generally only for use by `.Config` internals. For descriptions of these "
+"values, see :ref:`default-values`."
+msgstr ""
+
+#: invoke.config.Config.global_defaults:6 of
+msgid ""
+"Subclasses may choose to override this method, calling "
+"``Config.global_defaults`` and applying `.merge_dicts` to the result, to "
+"add to or modify these values."
+msgstr ""
+
+#: invoke.config.Config.load_collection:1 of
+msgid "Update collection-driven config data."
+msgstr ""
+
+#: invoke.config.Config.load_collection:3 of
+msgid ""
+"`.load_collection` is intended for use by the core task execution "
+"machinery, which is responsible for obtaining collection-driven data. See"
+" :ref:`collection-configuration` for details."
+msgstr ""
+
+#: invoke.config.Config.load_defaults:1 of
+msgid "Set or replace the 'defaults' configuration level, from ``data``."
+msgstr ""
+
+#: invoke.config.Config.load_defaults:3 of
+msgid "The config data to load as the defaults level."
+msgstr ""
+
+#: invoke.config.Config.load_defaults:5 invoke.config.Config.load_overrides:5
+#: invoke.config.Config.load_project:11 invoke.config.Config.load_runtime:7
+#: invoke.config.Config.load_system:6 invoke.config.Config.load_user:6 of
+msgid ""
+"Whether to merge the loaded data into the central config. Default: "
+"``True``."
+msgstr ""
+
+#: invoke.config.Config.load_defaults:9 invoke.config.Config.load_overrides:9
+#: invoke.config.Config.load_project:15 invoke.config.Config.load_runtime:11
+#: invoke.config.Config.load_system:10 invoke.config.Config.load_user:10 of
+msgid "``None``."
+msgstr ""
+
+#: invoke.config.Config.load_overrides:1 of
+msgid "Set or replace the 'overrides' configuration level, from ``data``."
+msgstr ""
+
+#: invoke.config.Config.load_overrides:3 of
+msgid "The config data to load as the overrides level."
+msgstr ""
+
+#: invoke.config.Config.load_project:1 of
+msgid "Load a project-level config file, if possible."
+msgstr ""
+
+#: invoke.config.Config.load_project:3 of
+msgid ""
+"Checks the configured ``_project_prefix`` value derived from the path "
+"given to `set_project_location`, which is typically set to the directory "
+"containing the loaded task collection."
+msgstr ""
+
+#: invoke.config.Config.load_project:7 of
+msgid ""
+"Thus, if one were to run the CLI tool against a tasks collection "
+"``/home/myuser/code/tasks.py``, `load_project` would seek out files like "
+"``/home/myuser/code/invoke.yml``."
+msgstr ""
+
+#: invoke.config.Config.load_runtime:1 of
+msgid "Load a runtime-level config file, if one was specified."
+msgstr ""
+
+#: invoke.config.Config.load_runtime:3 of
+msgid ""
+"When the CLI framework creates a `Config`, it sets ``_runtime_path``, "
+"which is a full path to the requested config file. This method attempts "
+"to load that file."
+msgstr ""
+
+#: invoke.config.Config.load_shell_env:1 of
+msgid "Load values from the shell environment."
+msgstr ""
+
+#: invoke.config.Config.load_shell_env:3 of
+msgid ""
+"`.load_shell_env` is intended for execution late in a `.Config` object's "
+"lifecycle, once all other sources (such as a runtime config file or per-"
+"collection configurations) have been loaded. Loading from the shell is "
+"not terrifically expensive, but must be done at a specific point in time "
+"to ensure the \"only known config keys are loaded from the env\" behavior"
+" works correctly."
+msgstr ""
+
+#: invoke.config.Config.load_shell_env:10 of
+msgid ""
+"See :ref:`env-vars` for details on this design decision and other info "
+"re: how environment variables are scanned and loaded."
+msgstr ""
+
+#: invoke.config.Config.load_system:1 of
+msgid "Load a system-level config file, if possible."
+msgstr ""
+
+#: invoke.config.Config.load_system:3 of
+msgid ""
+"Checks the configured ``_system_prefix`` path, which defaults to "
+"``/etc``, and will thus load files like ``/etc/invoke.yml``."
+msgstr ""
+
+#: invoke.config.Config.load_user:1 of
+msgid "Load a user-level config file, if possible."
+msgstr ""
+
+#: invoke.config.Config.load_user:3 of
+msgid ""
+"Checks the configured ``_user_prefix`` path, which defaults to ``~/.``, "
+"and will thus load files like ``~/.invoke.yml``."
+msgstr ""
+
+#: invoke.config.Config.merge:1 of
+msgid "Merge all config sources, in order."
+msgstr ""
+
+#: invoke.config.Config.set_project_location:1 of
+msgid "Set the directory path where a project-level config file may be found."
+msgstr ""
+
+#: invoke.config.Config.set_project_location:3 of
+msgid "Does not do any file loading on its own; for that, see `load_project`."
+msgstr ""
+
+#: invoke.config.Config.set_runtime_path:1 of
+msgid "Set the runtime config file path."
+msgstr ""
+
+#: invoke.config.DataProxy:1 of
+msgid "Helper class implementing nested dict+attr access for `.Config`."
+msgstr ""
+
+#: invoke.config.DataProxy:3 of
+msgid ""
+"Specifically, is used both for `.Config` itself, and to wrap any other "
+"dicts assigned as config values (recursively)."
+msgstr ""
+
+#: invoke.config.DataProxy:7 of
+msgid ""
+"All methods (of this object or in subclasses) must take care to "
+"initialize new attributes via ``self._set(name='value')``, or they'll run"
+" into recursion errors!"
+msgstr ""
+
+#: invoke.config.DataProxy.__delattr__:1 of
+msgid "Implement delattr(self, name)."
+msgstr ""
+
+#: invoke.config.DataProxy.__eq__:1 of
+msgid "Return self==value."
+msgstr ""
+
+#: invoke.config.DataProxy.__repr__:1 of
+msgid "Return repr(self)."
+msgstr ""
+
+#: invoke.config.DataProxy.__setattr__:1 of
+msgid "Implement setattr(self, name, value)."
+msgstr ""
+
+#: invoke.config.DataProxy.from_data:1 of
+msgid "Alternate constructor for 'baby' DataProxies used as sub-dict values."
+msgstr ""
+
+#: invoke.config.DataProxy.from_data:3 of
+msgid ""
+"Allows creating standalone DataProxy objects while also letting "
+"subclasses like `.Config` define their own ``__init__`` without muddling "
+"the two."
+msgstr ""
+
+#: invoke.config.DataProxy.from_data:7 of
+msgid ""
+"This particular DataProxy's personal data. Required, it's the Data being "
+"Proxied."
+msgstr ""
+
+#: invoke.config.DataProxy.from_data:11 of
+msgid ""
+"Optional handle on a root DataProxy/Config which needs notification on "
+"data updates."
+msgstr ""
+
+#: invoke.config.DataProxy.from_data:15 of
+msgid ""
+"Optional tuple describing the path of keys leading to this DataProxy's "
+"location inside the ``root`` structure. Required if ``root`` was given "
+"(and vice versa.)"
+msgstr ""
+
+#: invoke.config.copy_dict:1 of
+msgid "Return a fresh copy of ``source`` with as little shared state as possible."
+msgstr ""
+
+#: invoke.config.copy_dict:3 of
+msgid ""
+"Uses `merge_dicts` under the hood, with an empty ``base`` dict; see its "
+"documentation for details on behavior."
+msgstr ""
+
+#: invoke.config.excise:1 of
+msgid ""
+"Remove key pointed at by ``keypath`` from nested dict ``dict_``, if "
+"exists."
+msgstr ""
+
+#: invoke.config.merge_dicts:1 of
+msgid "Recursively merge dict ``updates`` into dict ``base`` (mutating ``base``.)"
+msgstr ""
+
+#: invoke.config.merge_dicts:3 of
+msgid "Values which are themselves dicts will be recursed into."
+msgstr ""
+
+#: invoke.config.merge_dicts:4 of
+msgid ""
+"Values which are a dict in one input and *not* a dict in the other input "
+"(e.g. if our inputs were ``{'foo': 5}`` and ``{'foo': {'bar': 5}}``) are "
+"irreconciliable and will generate an exception."
+msgstr ""
+
+#: invoke.config.merge_dicts:7 of
+msgid "Non-dict leaf values are run through `copy.copy` to avoid state bleed."
+msgstr ""
+
+#: invoke.config.merge_dicts:10 of
+msgid ""
+"This is effectively a lightweight `copy.deepcopy` which offers protection"
+" from mismatched types (dict vs non-dict) and avoids some core deepcopy "
+"problems (such as how it explodes on certain object types)."
+msgstr ""
+
+#: invoke.config.merge_dicts:15 of
+msgid ""
+"The value of ``base``, which is mostly useful for wrapper functions like "
+"`copy_dict`."
+msgstr ""
+
+#: invoke.config.obliterate:1 of
+msgid "Remove all (nested) keys mentioned in ``deletions``, from ``base``."
 msgstr ""
 

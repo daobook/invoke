@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/exceptions.rst:3
 msgid "``exceptions``"
@@ -31,5 +31,296 @@ msgid ""
 "in exceptions used for message-passing\" to simply \"we needed to express"
 " an error condition in a way easily told apart from other, truly "
 "unexpected errors\"."
+msgstr ""
+
+#: invoke.exceptions.AmbiguousEnvVar:1 of
+msgid "Raised when loading env var config keys has an ambiguous target."
+msgstr ""
+
+#: ../../../docstring invoke.exceptions.AmbiguousEnvVar.__weakref__:1
+#: invoke.exceptions.CollectionNotFound.__weakref__:1
+#: invoke.exceptions.Exit.__weakref__:1 invoke.exceptions.Failure.__weakref__:1
+#: invoke.exceptions.ParseError.__weakref__:1
+#: invoke.exceptions.PlatformError.__weakref__:1
+#: invoke.exceptions.SubprocessPipeError.__weakref__:1
+#: invoke.exceptions.ThreadException.__weakref__:1
+#: invoke.exceptions.UncastableEnvVar.__weakref__:1
+#: invoke.exceptions.UnknownFileType.__weakref__:1
+#: invoke.exceptions.UnpicklableConfigMember.__weakref__:1
+#: invoke.exceptions.WatcherError.__weakref__:1 of
+msgid "list of weak references to the object"
+msgstr ""
+
+#: invoke.exceptions.AuthFailure:1 of
+msgid "An authentication failure, e.g. due to an incorrect ``sudo`` password."
+msgstr ""
+
+#: invoke.exceptions.AuthFailure:4 of
+msgid ""
+"`.Result` objects attached to these exceptions typically lack exit code "
+"information, since the command was never fully executed - the exception "
+"was raised instead."
+msgstr ""
+
+#: invoke.exceptions.AuthFailure.__str__:1
+#: invoke.exceptions.CommandTimedOut.__str__:1
+#: invoke.exceptions.ThreadException.__str__:1
+#: invoke.exceptions.UnexpectedExit.__str__:1 of
+msgid "Return str(self)."
+msgstr ""
+
+#: invoke.exceptions.CommandTimedOut:1 of
+msgid "Raised when a subprocess did not exit within a desired timeframe."
+msgstr ""
+
+#: invoke.exceptions.CommandTimedOut.__repr__:1
+#: invoke.exceptions.Failure.__repr__:1 of
+msgid "Return repr(self)."
+msgstr ""
+
+#: invoke.exceptions.Exit:1 of
+msgid "Simple custom stand-in for SystemExit."
+msgstr ""
+
+#: invoke.exceptions.Exit:3 of
+msgid ""
+"Replaces scattered sys.exit calls, improves testability, allows one to "
+"catch an exit request without intercepting real SystemExits (typically an"
+" unfriendly thing to do, as most users calling `sys.exit` rather expect "
+"it to truly exit.)"
+msgstr ""
+
+#: invoke.exceptions.Exit:8 of
+msgid ""
+"Defaults to a non-printing, exit-0 friendly termination behavior if the "
+"exception is uncaught."
+msgstr ""
+
+#: invoke.exceptions.Exit:11 of
+msgid "If ``code`` (an int) given, that code is used to exit."
+msgstr ""
+
+#: invoke.exceptions.Exit:13 of
+msgid ""
+"If ``message`` (a string) given, it is printed to standard error, and the"
+" program exits with code ``1`` by default (unless overridden by also "
+"giving ``code`` explicitly.)"
+msgstr ""
+
+#: invoke.exceptions.Failure:1 of
+msgid "Exception subclass representing failure of a command execution."
+msgstr ""
+
+#: invoke.exceptions.Failure:3 of
+msgid ""
+"\"Failure\" may mean the command executed and the shell indicated an "
+"unusual result (usually, a non-zero exit code), or it may mean something "
+"else, like a ``sudo`` command which was aborted when the supplied "
+"password failed authentication."
+msgstr ""
+
+#: invoke.exceptions.Failure:8 of
+msgid "Two attributes allow introspection to determine the nature of the problem:"
+msgstr ""
+
+#: invoke.exceptions.Failure:10 of
+msgid ""
+"``result``: a `.Result` instance with info about the command being "
+"executed and, if it ran to completion, how it exited."
+msgstr ""
+
+#: invoke.exceptions.Failure:12 of
+msgid ""
+"``reason``: a wrapped exception instance if applicable (e.g. a "
+"`.StreamWatcher` raised `WatcherError`) or ``None`` otherwise, in which "
+"case, it's probably a `Failure` subclass indicating its own specific "
+"nature, such as `UnexpectedExit` or `CommandTimedOut`."
+msgstr ""
+
+#: invoke.exceptions.Failure:17 of
+msgid ""
+"This class is only rarely raised by itself; most of the time "
+"`.Runner.run` (or a wrapper of same, such as `.Context.sudo`) will raise "
+"a specific subclass like `UnexpectedExit` or `AuthFailure`."
+msgstr ""
+
+#: invoke.exceptions.Failure.streams_for_display:1 of
+msgid "Return stdout/err streams as necessary for error display."
+msgstr ""
+
+#: invoke.exceptions.Failure.streams_for_display:3 of
+msgid "Subject to the following rules:"
+msgstr ""
+
+#: invoke.exceptions.Failure.streams_for_display:5 of
+msgid ""
+"If a given stream was *not* hidden during execution, a placeholder is "
+"used instead, to avoid printing it twice."
+msgstr ""
+
+#: invoke.exceptions.Failure.streams_for_display:7 of
+msgid "Only the last 10 lines of stream text is included."
+msgstr ""
+
+#: invoke.exceptions.Failure.streams_for_display:8 of
+msgid ""
+"PTY-driven execution will lack stderr, and a specific message to this "
+"effect is returned instead of a stderr dump."
+msgstr ""
+
+#: ../../api/exceptions.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.exceptions.Failure.streams_for_display:11 of
+msgid "Two-tuple of stdout, stderr strings."
+msgstr ""
+
+#: invoke.exceptions.ParseError:1 of
+msgid "An error arising from the parsing of command-line flags/arguments."
+msgstr ""
+
+#: invoke.exceptions.ParseError:3 of
+msgid "Ambiguous input, invalid task names, invalid flags, etc."
+msgstr ""
+
+#: invoke.exceptions.PlatformError:1 of
+msgid "Raised when an illegal operation occurs for the current platform."
+msgstr ""
+
+#: invoke.exceptions.PlatformError:3 of
+msgid ""
+"E.g. Windows users trying to use functionality requiring the ``pty`` "
+"module."
+msgstr ""
+
+#: invoke.exceptions.PlatformError:6 of
+msgid "Typically used to present a clearer error message to the user."
+msgstr ""
+
+#: invoke.exceptions.ResponseNotAccepted:1 of
+msgid "A responder/watcher class noticed a 'bad' response to its submission."
+msgstr ""
+
+#: invoke.exceptions.ResponseNotAccepted:3 of
+msgid ""
+"Mostly used by `.FailingResponder` and subclasses, e.g. \"oh dear I "
+"autosubmitted a sudo password and it was incorrect.\""
+msgstr ""
+
+#: invoke.exceptions.SubprocessPipeError:1 of
+msgid "Some problem was encountered handling subprocess pipes (stdout/err/in)."
+msgstr ""
+
+#: invoke.exceptions.SubprocessPipeError:3 of
+msgid ""
+"Typically only for corner cases; most of the time, errors in this area "
+"are raised by the interpreter or the operating system, and end up wrapped"
+" in a `.ThreadException`."
+msgstr ""
+
+#: invoke.exceptions.ThreadException:1 of
+msgid "One or more exceptions were raised within background threads."
+msgstr ""
+
+#: invoke.exceptions.ThreadException:3 of
+msgid ""
+"The real underlying exceptions are stored in the `exceptions` attribute; "
+"see its documentation for data structure details."
+msgstr ""
+
+#: invoke.exceptions.ThreadException:7 of
+msgid ""
+"Threads which did not encounter an exception, do not contribute to this "
+"exception object and thus are not present inside `exceptions`."
+msgstr ""
+
+#: ../../../docstring invoke.exceptions.ThreadException.exceptions:1 of
+msgid ""
+"A tuple of `ExceptionWrappers <invoke.util.ExceptionWrapper>` containing "
+"the initial thread constructor kwargs (because `threading.Thread` "
+"subclasses should always be called with kwargs) and the caught exception "
+"for that thread as seen by `sys.exc_info` (so: type, value, traceback)."
+msgstr ""
+
+#: ../../../docstring invoke.exceptions.ThreadException.exceptions:7 of
+msgid "The ordering of this attribute is not well-defined."
+msgstr ""
+
+#: ../../../docstring invoke.exceptions.ThreadException.exceptions:10 of
+msgid ""
+"Thread kwargs which appear to be very long (e.g. IO buffers) will be "
+"truncated when printed, to avoid huge unreadable error display."
+msgstr ""
+
+#: invoke.exceptions.UncastableEnvVar:1 of
+msgid "Raised on attempted env var loads whose default values are too rich."
+msgstr ""
+
+#: invoke.exceptions.UncastableEnvVar:3 of
+msgid ""
+"E.g. trying to stuff ``MY_VAR=\"foo\"`` into ``{'my_var': ['uh', 'oh']}``"
+" doesn't make any sense until/if we implement some sort of transform "
+"option."
+msgstr ""
+
+#: invoke.exceptions.UnexpectedExit:1 of
+msgid "A shell command ran to completion but exited with an unexpected exit code."
+msgstr ""
+
+#: invoke.exceptions.UnexpectedExit:3 of
+msgid "Its string representation displays the following:"
+msgstr ""
+
+#: invoke.exceptions.UnexpectedExit:5 of
+msgid "Command executed;"
+msgstr ""
+
+#: invoke.exceptions.UnexpectedExit:6 of
+msgid "Exit code;"
+msgstr ""
+
+#: invoke.exceptions.UnexpectedExit:7 of
+msgid "The last 10 lines of stdout, if it was hidden;"
+msgstr ""
+
+#: invoke.exceptions.UnexpectedExit:8 of
+msgid ""
+"The last 10 lines of stderr, if it was hidden and non-empty (e.g. "
+"pty=False; when pty=True, stderr never happens.)"
+msgstr ""
+
+#: invoke.exceptions.UnknownFileType:1 of
+msgid "A config file of an unknown type was specified and cannot be loaded."
+msgstr ""
+
+#: invoke.exceptions.UnpicklableConfigMember:1 of
+msgid "A config file contained module objects, which can't be pickled/copied."
+msgstr ""
+
+#: invoke.exceptions.UnpicklableConfigMember:3 of
+msgid ""
+"We raise this more easily catchable exception instead of letting the "
+"(unclearly phrased) TypeError bubble out of the pickle module. (However, "
+"to avoid our own fragile catching of that error, we head it off by "
+"explicitly testing for module members.)"
+msgstr ""
+
+#: invoke.exceptions.WatcherError:1 of
+msgid "Generic parent exception class for `.StreamWatcher`-related errors."
+msgstr ""
+
+#: invoke.exceptions.WatcherError:3 of
+msgid ""
+"Typically, one of these exceptions indicates a `.StreamWatcher` noticed "
+"something anomalous in an output stream, such as an authentication "
+"response failure."
+msgstr ""
+
+#: invoke.exceptions.WatcherError:7 of
+msgid ""
+"`.Runner` catches these and attaches them to `.Failure` exceptions so "
+"they can be referenced by intermediate code and/or act as extra info for "
+"end users."
 msgstr ""
 

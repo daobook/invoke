@@ -8,17 +8,154 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/util.rst:3
 msgid "``util``"
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread:1 of
+msgid "Thread handler making it easier for parent to handle thread exceptions."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread:3 of
+msgid "Based in part on Fabric 1's ThreadHandler. See also Fabric GH issue #204."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread:5 of
+msgid ""
+"When used directly, can be used in place of a regular "
+"``threading.Thread``. If subclassed, the subclass must do one of:"
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread:8 of
+msgid "supply ``target`` to ``__init__``"
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread:9 of
+msgid "define ``_run()`` instead of ``run()``"
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread:11 of
+msgid ""
+"This is because this thread's entire point is to wrap behavior around the"
+" thread's execution; subclasses could not redefine ``run()`` without "
+"breaking that functionality."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.__init__:1 of
+msgid "Create a new exception-handling thread instance."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.__init__:3 of
+msgid ""
+"Takes all regular `threading.Thread` keyword arguments, via ``**kwargs`` "
+"for easier display of thread identity when raising captured exceptions."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.__repr__:1 of
+msgid "Return repr(self)."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.exception:1 of
+msgid "If an exception occurred, return an `.ExceptionWrapper` around it."
+msgstr ""
+
+#: ../../api/util.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.exception:3 of
+msgid ""
+"An `.ExceptionWrapper` managing the result of `sys.exc_info`, if an "
+"exception was raised during thread execution. If no exception occurred, "
+"returns ``None`` instead."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.is_dead:1 of
+msgid "Returns ``True`` if not alive and has a stored exception."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.is_dead:3 of
+msgid "Used to detect threads that have excepted & shut down."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.run:1 of
+msgid "Method representing the thread's activity."
+msgstr ""
+
+#: invoke.util.ExceptionHandlingThread.run:3 of
+msgid ""
+"You may override this method in a subclass. The standard run() method "
+"invokes the callable object passed to the object's constructor as the "
+"target argument, if any, with sequential and keyword arguments taken from"
+" the args and kwargs arguments, respectively."
+msgstr ""
+
+#: invoke.util.has_fileno:1 of
+msgid "Cleanly determine whether ``stream`` has a useful ``.fileno()``."
+msgstr ""
+
+#: invoke.util.has_fileno:4 of
+msgid ""
+"This function helps determine if a given file-like object can be used "
+"with various terminal-oriented modules and functions such as `select`, "
+"`termios`, and `tty`. For most of those, a fileno is all that is "
+"required; they'll function even if ``stream.isatty()`` is ``False``."
+msgstr ""
+
+#: ../../api/util.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.util.has_fileno:9 invoke.util.isatty:13 of
+msgid "A file-like object."
+msgstr ""
+
+#: invoke.util.has_fileno:11 of
+msgid ""
+"``True`` if ``stream.fileno()`` returns an integer, ``False`` otherwise "
+"(this includes when ``stream`` lacks a ``fileno`` method)."
+msgstr ""
+
+#: invoke.util.helpline:1 of
+msgid "Yield an object's first docstring line, or None if there was no docstring."
+msgstr ""
+
+#: invoke.util.isatty:1 of
+msgid "Cleanly determine whether ``stream`` is a TTY."
+msgstr ""
+
+#: invoke.util.isatty:3 of
+msgid ""
+"Specifically, first try calling ``stream.isatty()``, and if that fails "
+"(e.g. due to lacking the method entirely) fallback to `os.isatty`."
+msgstr ""
+
+#: invoke.util.isatty:7 of
+msgid ""
+"Most of the time, we don't actually care about true TTY-ness, but merely "
+"whether the stream seems to have a fileno (per `has_fileno`). However, in"
+" some cases (notably the use of `pty.fork` to present a local "
+"pseudoterminal) we need to tell if a given stream has a valid fileno but "
+"*isn't* tied to an actual terminal. Thus, this function."
+msgstr ""
+
+#: invoke.util.isatty:15 of
+msgid ""
+"A boolean depending on the result of calling ``.isatty()`` and/or "
+"`os.isatty`."
+msgstr ""
+
+#: invoke.util.task_name_sort_key:1 of
+msgid "Return key tuple for use sorting dotted task names, via e.g. `sorted`."
 msgstr ""
 
 #: invoke.util.ExceptionWrapper:1 of

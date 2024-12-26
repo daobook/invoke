@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/loader.rst:3
 msgid "``loader``"
@@ -23,6 +23,64 @@ msgstr ""
 
 #: invoke.loader.Loader:1 of
 msgid "Abstract class defining how to find/import a session's base `.Collection`."
+msgstr ""
+
+#: invoke.loader.FilesystemLoader.__init__:1 invoke.loader.Loader.__init__:1 of
+msgid "Set up a new loader with some `.Config`."
+msgstr ""
+
+#: ../../api/loader.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.loader.FilesystemLoader.__init__:3 invoke.loader.Loader.__init__:3 of
+msgid ""
+"An explicit `.Config` to use; it is referenced for loading-related config"
+" options. Defaults to an anonymous ``Config()`` if none is given."
+msgstr ""
+
+#: invoke.loader.FilesystemLoader.find:1 invoke.loader.Loader.find:1 of
+msgid "Implementation-specific finder method seeking collection ``name``."
+msgstr ""
+
+#: invoke.loader.FilesystemLoader.find:3 invoke.loader.Loader.find:3 of
+msgid ""
+"Must return a ModuleSpec valid for use by `importlib`, which is typically"
+" a name string followed by the contents of the 3-tuple returned by "
+"`importlib.module_from_spec` (``name``, ``loader``, ``origin``.)"
+msgstr ""
+
+#: invoke.loader.FilesystemLoader.find:8 invoke.loader.Loader.find:8 of
+msgid "For a sample implementation, see `.FilesystemLoader`."
+msgstr ""
+
+#: invoke.loader.Loader.load:1 of
+msgid "Load and return collection module identified by ``name``."
+msgstr ""
+
+#: invoke.loader.Loader.load:3 of
+msgid ""
+"This method requires a working implementation of `.find` in order to "
+"function."
+msgstr ""
+
+#: invoke.loader.Loader.load:6 of
+msgid ""
+"In addition to importing the named module, it will add the module's "
+"parent directory to the front of `sys.path` to provide normal Python "
+"import behavior (i.e. so the loaded module may load local-to-it modules "
+"or packages.)"
+msgstr ""
+
+#: ../../api/loader.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.loader.Loader.load:11 of
+msgid ""
+"Two-tuple of ``(module, directory)`` where ``module`` is the collection-"
+"containing Python module object, and ``directory`` is the string path to "
+"the directory the module was found in."
 msgstr ""
 
 #: invoke.loader.FilesystemLoader:1 of

@@ -8,16 +8,145 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/watchers.rst:3
 msgid "``watchers``"
+msgstr ""
+
+#: invoke.watchers.FailingResponder:1 of
+msgid "Variant of `Responder` which is capable of detecting incorrect responses."
+msgstr ""
+
+#: invoke.watchers.FailingResponder:3 of
+msgid ""
+"This class adds a ``sentinel`` parameter to ``__init__``, and its "
+"``submit`` will raise `.ResponseNotAccepted` if it detects that sentinel "
+"value in the stream."
+msgstr ""
+
+#: invoke.watchers.FailingResponder.__init__:1
+#: invoke.watchers.Responder.__init__:1 of
+msgid "Imprint this `Responder` with necessary parameters."
+msgstr ""
+
+#: ../../api/watchers.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.watchers.FailingResponder.__init__:3
+#: invoke.watchers.Responder.__init__:3 of
+msgid ""
+"A raw string (e.g. ``r\"\\[sudo\\] password for .*:\"``) which will be "
+"turned into a regular expression."
+msgstr ""
+
+#: invoke.watchers.FailingResponder.__init__:7
+#: invoke.watchers.Responder.__init__:7 of
+msgid ""
+"The string to submit to the subprocess' stdin when ``pattern`` is "
+"detected."
+msgstr ""
+
+#: invoke.watchers.FailingResponder.submit:1 invoke.watchers.Responder.submit:1
+#: invoke.watchers.StreamWatcher.submit:1 of
+msgid "Act on ``stream`` data, potentially returning responses."
+msgstr ""
+
+#: invoke.watchers.FailingResponder.submit:3 invoke.watchers.Responder.submit:3
+#: invoke.watchers.StreamWatcher.submit:3 of
+msgid "All data read on this stream since the beginning of the session."
+msgstr ""
+
+#: ../../api/watchers.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.watchers.FailingResponder.submit:6 invoke.watchers.Responder.submit:6
+#: invoke.watchers.StreamWatcher.submit:6 of
+msgid "An iterable of ``str`` (which may be empty)."
+msgstr ""
+
+#: invoke.watchers.Responder:1 of
+msgid "A parameterizable object that submits responses to specific patterns."
+msgstr ""
+
+#: invoke.watchers.Responder:3 of
+msgid ""
+"Commonly used to implement password auto-responds for things like "
+"``sudo``."
+msgstr ""
+
+#: invoke.watchers.Responder.pattern_matches:1 of
+msgid "Generic \"search for pattern in stream, using index\" behavior."
+msgstr ""
+
+#: invoke.watchers.Responder.pattern_matches:3 of
+msgid ""
+"Used here and in some subclasses that want to track multiple patterns "
+"concurrently."
+msgstr ""
+
+#: invoke.watchers.Responder.pattern_matches:6 of
+msgid "The same data passed to ``submit``."
+msgstr ""
+
+#: invoke.watchers.Responder.pattern_matches:7 of
+msgid "The pattern to search for."
+msgstr ""
+
+#: invoke.watchers.Responder.pattern_matches:8 of
+msgid "The name of the index attribute to use."
+msgstr ""
+
+#: invoke.watchers.Responder.pattern_matches:9 of
+msgid "An iterable of string matches."
+msgstr ""
+
+#: invoke.watchers.StreamWatcher:1 of
+msgid "A class whose subclasses may act on seen stream data from subprocesses."
+msgstr ""
+
+#: invoke.watchers.StreamWatcher:3 of
+msgid ""
+"Subclasses must exhibit the following API; see `Responder` for a concrete"
+" example."
+msgstr ""
+
+#: invoke.watchers.StreamWatcher:6 of
+msgid ""
+"``__init__`` is completely up to each subclass, though as usual, "
+"subclasses *of* subclasses should be careful to make use of `super` where"
+" appropriate."
+msgstr ""
+
+#: invoke.watchers.StreamWatcher:9 of
+msgid ""
+"`submit` must accept the entire current contents of the stream being "
+"watched, as a string, and may optionally return an iterable of strings "
+"(or act as a generator iterator, i.e. multiple calls to ``yield "
+"<string>``), which will each be written to the subprocess' standard "
+"input."
+msgstr ""
+
+#: invoke.watchers.StreamWatcher:16 of
+msgid ""
+"`StreamWatcher` subclasses exist in part to enable state tracking, such "
+"as detecting when a submitted password didn't work & erroring (or "
+"prompting a user, or etc). Such bookkeeping isn't easily achievable with "
+"simple callback functions."
+msgstr ""
+
+#: invoke.watchers.StreamWatcher:22 of
+msgid ""
+"`StreamWatcher` subclasses `threading.local` so that its instances can be"
+" used to 'watch' both subprocess stdout and stderr in separate threads."
 msgstr ""
 

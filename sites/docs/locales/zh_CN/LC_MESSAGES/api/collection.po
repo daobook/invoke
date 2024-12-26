@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/collection.rst:3
 msgid "``collection``"
@@ -23,5 +23,283 @@ msgstr ""
 
 #: invoke.collection.Collection:1 of
 msgid "A collection of executable tasks. See :doc:`/concepts/namespaces`."
+msgstr ""
+
+#: invoke.collection.Collection.__eq__:1 of
+msgid "Return self==value."
+msgstr ""
+
+#: invoke.collection.Collection.__getitem__:1 of
+msgid "Returns task named ``name``. Honors aliases and subcollections."
+msgstr ""
+
+#: invoke.collection.Collection.__getitem__:3 of
+msgid ""
+"If this collection has a default task, it is returned when ``name`` is "
+"empty or ``None``. If empty input is given and no task has been selected "
+"as the default, ValueError will be raised."
+msgstr ""
+
+#: invoke.collection.Collection.__getitem__:7 of
+msgid ""
+"Tasks within subcollections should be given in dotted form, e.g. "
+"'foo.bar'. Subcollection default tasks will be returned on the "
+"subcollection's name."
+msgstr ""
+
+#: invoke.collection.Collection.__repr__:1 of
+msgid "Return repr(self)."
+msgstr ""
+
+#: invoke.collection.Collection.add_collection:1 of
+msgid "Add `.Collection` ``coll`` as a sub-collection of this one."
+msgstr ""
+
+#: ../../api/collection.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.collection.Collection.add_collection:3 of
+msgid "The `.Collection` to add."
+msgstr ""
+
+#: invoke.collection.Collection.add_collection:5 of
+msgid ""
+"The name to attach the collection as. Defaults to the collection's own "
+"internal name."
+msgstr ""
+
+#: invoke.collection.Collection.add_collection:9 of
+msgid ""
+"Whether this sub-collection('s default task-or-collection) should be the "
+"default invocation of the parent collection."
+msgstr ""
+
+#: invoke.collection.Collection.add_collection:14 of
+msgid "Added the ``default`` parameter."
+msgstr ""
+
+#: invoke.collection.Collection.add_task:1 of
+msgid "Add `.Task` ``task`` to this collection."
+msgstr ""
+
+#: invoke.collection.Collection.add_task:3 of
+msgid "The `.Task` object to add to this collection."
+msgstr ""
+
+#: invoke.collection.Collection.add_task:5 of
+msgid ""
+"Optional string name to bind to (overrides the task's own self-defined "
+"``name`` attribute and/or any Python identifier (i.e. ``.func_name``.)"
+msgstr ""
+
+#: invoke.collection.Collection.add_task:10 of
+msgid ""
+"Optional iterable of additional names to bind the task as, on top of the "
+"primary name. These will be used in addition to any aliases the task "
+"itself declares internally."
+msgstr ""
+
+#: invoke.collection.Collection.add_task:15 of
+msgid "Whether this task should be the collection default."
+msgstr ""
+
+#: invoke.collection.Collection.configuration:1 of
+msgid "Obtain merged configuration values from collection & children."
+msgstr ""
+
+#: invoke.collection.Collection.configuration:3 of
+msgid ""
+"(Optional) Task name/path, identical to that used for "
+"`~.Collection.__getitem__` (e.g. may be dotted for nested tasks, etc.) "
+"Used to decide which path to follow in the collection tree when merging "
+"config values."
+msgstr ""
+
+#: ../../api/collection.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.collection.Collection.configuration:9 of
+msgid "A `dict` containing configuration values."
+msgstr ""
+
+#: invoke.collection.Collection.configure:1 of
+msgid "(Recursively) merge ``options`` into the current `.configuration`."
+msgstr ""
+
+#: invoke.collection.Collection.configure:3 of
+msgid ""
+"Options configured this way will be available to all tasks. It is "
+"recommended to use unique keys to avoid potential clashes with other "
+"config options"
+msgstr ""
+
+#: invoke.collection.Collection.configure:7 of
+msgid ""
+"For example, if you were configuring a Sphinx docs build target "
+"directory, it's better to use a key like ``'sphinx.target'`` than simply "
+"``'target'``."
+msgstr ""
+
+#: invoke.collection.Collection.configure:11 of
+msgid "An object implementing the dictionary protocol."
+msgstr ""
+
+#: invoke.collection.Collection.configure:12 of
+msgid "``None``."
+msgstr ""
+
+#: invoke.collection.Collection.from_module:1 of
+msgid "Return a new `.Collection` created from ``module``."
+msgstr ""
+
+#: invoke.collection.Collection.from_module:3 of
+msgid ""
+"Inspects ``module`` for any `.Task` instances and adds them to a new "
+"`.Collection`, returning it. If any explicit namespace collections exist "
+"(named ``ns`` or ``namespace``) a copy of that collection object is "
+"preferentially loaded instead."
+msgstr ""
+
+#: invoke.collection.Collection.from_module:8 of
+msgid ""
+"When the implicit/default collection is generated, it will be named after"
+" the module's ``__name__`` attribute, or its last dotted section if it's "
+"a submodule. (I.e. it should usually map to the actual ``.py`` filename.)"
+msgstr ""
+
+#: invoke.collection.Collection.from_module:13 of
+msgid ""
+"Explicitly given collections will only be given that module-derived name "
+"if they don't already have a valid ``.name`` attribute."
+msgstr ""
+
+#: invoke.collection.Collection.from_module:16 of
+msgid ""
+"If the module has a docstring (``__doc__``) it is copied onto the "
+"resulting `.Collection` (and used for display in help, list etc output.)"
+msgstr ""
+
+#: invoke.collection.Collection.from_module:20 of
+msgid ""
+"A string, which if given will override any automatically derived "
+"collection name (or name set on the module's root namespace, if it has "
+"one.)"
+msgstr ""
+
+#: invoke.collection.Collection.from_module:25 of
+msgid ""
+"Used to set config options on the newly created `.Collection` before "
+"returning it (saving you a call to `.configure`.)  If the imported module"
+" had a root namespace object, ``config`` is merged on top of it (i.e. "
+"overriding any conflicts.)"
+msgstr ""
+
+#: invoke.collection.Collection.from_module:26 of
+msgid ""
+"Used to set config options on the newly created `.Collection` before "
+"returning it (saving you a call to `.configure`.)"
+msgstr ""
+
+#: invoke.collection.Collection.from_module:29 of
+msgid ""
+"If the imported module had a root namespace object, ``config`` is merged "
+"on top of it (i.e. overriding any conflicts.)"
+msgstr ""
+
+#: invoke.collection.Collection.from_module:32 of
+msgid ""
+"Identical to the same-named kwarg from the regular class constructor - "
+"should be the path where the module was found."
+msgstr ""
+
+#: invoke.collection.Collection.from_module:37 of
+msgid ""
+"Identical to the same-named kwarg from the regular class constructor - "
+"determines whether emitted names are auto-dashed."
+msgstr ""
+
+#: invoke.collection.Collection.serialized:1 of
+msgid "Return an appropriate-for-serialization version of this object."
+msgstr ""
+
+#: invoke.collection.Collection.serialized:3 of
+msgid ""
+"See the documentation for `.Program` and its ``json`` task listing "
+"format; this method is the driver for that functionality."
+msgstr ""
+
+#: invoke.collection.Collection.subcollection_from_path:1 of
+msgid "Given a ``path`` to a subcollection, return that subcollection."
+msgstr ""
+
+#: invoke.collection.Collection.task_names:1 of
+msgid "Return all task identifiers for this collection as a one-level dict."
+msgstr ""
+
+#: invoke.collection.Collection.task_names:3 of
+msgid ""
+"Specifically, a dict with the primary/\"real\" task names as the key, and"
+" any aliases as a list value."
+msgstr ""
+
+#: invoke.collection.Collection.task_names:6 of
+msgid ""
+"It basically collapses the namespace tree into a single easily-scannable "
+"collection of invocation strings, and is thus suitable for things like "
+"flat-style task listings or transformation into parser contexts."
+msgstr ""
+
+#: invoke.collection.Collection.task_with_config:1 of
+msgid "Return task named ``name`` plus its configuration dict."
+msgstr ""
+
+#: invoke.collection.Collection.task_with_config:3 of
+msgid ""
+"E.g. in a deeply nested tree, this method returns the `.Task`, and a "
+"configuration dict created by merging that of this `.Collection` and any "
+"nested `Collections <.Collection>`, up through the one actually holding "
+"the `.Task`."
+msgstr ""
+
+#: invoke.collection.Collection.task_with_config:8 of
+msgid "See `~.Collection.__getitem__` for semantics of the ``name`` argument."
+msgstr ""
+
+#: invoke.collection.Collection.task_with_config:10 of
+msgid "Two-tuple of (`.Task`, `dict`)."
+msgstr ""
+
+#: invoke.collection.Collection.to_contexts:1 of
+msgid "Returns all contained tasks and subtasks as a list of parser contexts."
+msgstr ""
+
+#: invoke.collection.Collection.to_contexts:3 of
+msgid ""
+"Passed on to each task's ``get_arguments()`` method. See the config "
+"option by the same name for details."
+msgstr ""
+
+#: invoke.collection.Collection.to_contexts:8 of
+msgid "Added the ``ignore_unknown_help`` kwarg."
+msgstr ""
+
+#: invoke.collection.Collection.transform:1 of
+msgid "Transform ``name`` with the configured auto-dashes behavior."
+msgstr ""
+
+#: invoke.collection.Collection.transform:3 of
+msgid ""
+"If the collection's ``auto_dash_names`` attribute is ``True`` (default), "
+"all non leading/trailing underscores are turned into dashes. "
+"(Leading/trailing underscores tend to get stripped elsewhere in the "
+"stack.)"
+msgstr ""
+
+#: invoke.collection.Collection.transform:8 of
+msgid ""
+"If it is ``False``, the inverse is applied - all dashes are turned into "
+"underscores."
 msgstr ""
 

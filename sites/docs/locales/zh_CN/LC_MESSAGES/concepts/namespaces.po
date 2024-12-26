@@ -88,7 +88,7 @@ msgid ""
 "<.task>` (i.e. at definition time) or `.Collection.add_task` (i.e. at "
 "binding/attachment time)."
 msgstr ""
-""默认情况下，任务的函数名被用作它的命名空间标识符，但是你可以通过给 `@task <.task>` ``name`` 参数来覆盖它"
+"默认情况下，任务的函数名被用作它的命名空间标识符，但是你可以通过给 `@task <.task>` ``name`` 参数来覆盖它"
 "（例如，在定义的时候）或者 `.Collection.add_task` （即在 binding/attachment 时）。"
 
 #: ../../concepts/namespaces.rst:61
@@ -314,6 +314,8 @@ msgid ""
 " tasks in a namespace but one of them is the most commonly used, and maps"
 " well to the namespace as a whole."
 msgstr ""
+"任务可以被声明为其所属集合的默认任务，例如通过将 ``default=True`` 传递给 `@task <.task>`（或传递给 `.Collection.add_task`）。"
+"当你在一个命名空间中有一堆相关任务，但其中一个是最常用的，并且与整个命名空间很好地映射时，这非常有用。"
 
 #: ../../concepts/namespaces.rst:283
 msgid ""
@@ -322,6 +324,8 @@ msgid ""
 "things like ``invoke docs`` as a shortcut to ``invoke docs.build``. This "
 "is easy to do::"
 msgstr ""
+"例如，一直在实验的文档子模块中，``build`` 任务作为默认任务是合理的，"
+"因此可以使用 ``invoke docs`` 作为 ``invoke docs.build`` 的快捷方式。这很容易实现::"
 
 #: ../../concepts/namespaces.rst:291
 msgid ""
@@ -329,10 +333,12 @@ msgid ""
 "output of ``--list``, highlighting the fact that ``docs.build`` can be "
 "invoked as ``docs`` if desired::"
 msgstr ""
+"当导入到根命名空间时（如上所示），"
+"这会改变 ``--list`` 的输出，突出显示 ``docs.build`` 可以根据需要作为 ``docs`` 调用的事实::"
 
 #: ../../concepts/namespaces.rst:303
 msgid "Default subcollections"
-msgstr ""
+msgstr "默认子集合"
 
 #: ../../concepts/namespaces.rst:305
 msgid ""
@@ -341,26 +347,30 @@ msgid ""
 "parent collection, and that subcollection's own default task (or sub-"
 "subcollection!) will be invoked as the default for the parent."
 msgstr ""
+"从 1.5 版本开始，此功能还扩展到子集合："
+"当将子集合添加到其父集合时，可以将其指定为默认集合，并且该子集合的默认任务（或子子集合！）将作为父集合的默认任务被调用。"
 
 #: ../../concepts/namespaces.rst:310
 msgid ""
 "An example probably makes that clearer. Here's a tiny inline task tree "
 "with two subcollections, each with their own default task::"
 msgstr ""
+"举个例子可能会更清楚。这里有一个包含两个子集合的小型内联任务树，每个子集合都有自己的默认任务::"
 
 #: ../../concepts/namespaces.rst:331
 msgid ""
 "Then we tie those into one top level collection, setting the ``build`` "
 "subcollection as the overall default::"
 msgstr ""
+"然后将这些子集合整合到一个顶层集合中，将 ``build`` 子集合设置为整体默认集合::"
 
 #: ../../concepts/namespaces.rst:338
 msgid "The result is that ``build.all`` becomes the absolute default task::"
-msgstr ""
+msgstr "结果是 ``build.all`` 成为绝对默认任务::"
 
 #: ../../concepts/namespaces.rst:344
 msgid "Mix and match"
-msgstr ""
+msgstr "混合和匹配"
 
 #: ../../concepts/namespaces.rst:346
 msgid ""
@@ -368,6 +378,7 @@ msgid ""
 "know the basic tools of ``add_task`` and ``add_collection``, use whatever"
 " approach best fits your needs."
 msgstr ""
+"你不仅限于上述具体策略——既然你已经了解了 ``add_task`` 和 ``add_collection`` 的基本工具，请使用最适合你需求的方法。"
 
 #: ../../concepts/namespaces.rst:350
 msgid ""
@@ -377,10 +388,12 @@ msgid ""
 "doesn't mean we must use ``add_collection`` -- we could instead import "
 "the task itself and use ``add_task`` directly::"
 msgstr ""
+"例如，假设你希望将内容组织到子模块中，但为了方便起见，希望将 ``release.release`` ‘提升’回顶层。"
+"仅仅因为它存储在一个模块中并不意味着我们必须使用 ``add_collection``——我们可以直接导入任务本身并使用 ``add_task``::"
 
 #: ../../concepts/namespaces.rst:376
 msgid "More shortcuts"
-msgstr ""
+msgstr "更多快捷方式"
 
 #: ../../concepts/namespaces.rst:378
 msgid ""
@@ -388,12 +401,15 @@ msgid ""
 "needs are simple enough -- `.Collection`'s constructor will take unknown "
 "arguments and build the namespace from their values as appropriate::"
 msgstr ""
+"最后，如果你的需求足够简单，"
+"你甚至可以跳过 ``add_collection`` 和 ``add_task``——`.Collection` 的构造函数会接受未知参数，并根据它们的值适当地构建命名空间::"
 
 #: ../../concepts/namespaces.rst:389
 msgid ""
 "Notice how we gave both a task object (``release.release``) and a module "
 "containing tasks (``docs``). The result is identical to the above::"
 msgstr ""
+"请注意，既提供了一个任务对象（``release.release``），也提供了一个包含任务的模块（``docs``）。结果与上述相同::"
 
 #: ../../concepts/namespaces.rst:399
 msgid ""
@@ -401,10 +417,11 @@ msgid ""
 "arguments do in the ``add_*`` methods. Naturally, both can be mixed "
 "together as well::"
 msgstr ""
+"如果以关键字参数的形式提供，这些关键字的作用类似于 ``add_*`` 方法中的 ``name`` 参数。当然，两者也可以混合使用::"
 
 #: ../../concepts/namespaces.rst:414
 msgid ""
 "You can still name these ``Collection`` objects with a leading string "
 "argument if desired, which can be handy when building sub-collections."
 msgstr ""
-
+"如果需要，你仍然可以使用前导字符串参数为这些 ``Collection`` 对象命名，这在构建子集合时非常方便。"

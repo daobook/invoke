@@ -8,18 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../concepts/library.rst:3
 msgid "Using Invoke as a library"
-msgstr ""
+msgstr "将 Invoke 作为库使用"
 
 #: ../../concepts/library.rst:5
 msgid ""
@@ -30,17 +30,21 @@ msgid ""
 "command execution, task organization, etc, are all written as broadly "
 "separated concerns."
 msgstr ""
+"虽然大部分文档涉及面向用户/CLI 的任务管理和命令执行用例，"
+"但 Invoke 的设计使其组成部分可以被高级用户独立使用——无论是开箱即用还是只需最少的额外工作。"
+"CLI 解析、子进程命令执行、任务组织等都是作为广泛分离的关注点编写的。"
 
 #: ../../concepts/library.rst:11
 msgid ""
 "This document outlines use cases already known to work (because "
-"downstream tools like `Fabric <http://fabfile.org>`_ are already "
+"downstream tools like `Fabric <https://fabfile.org>`_ are already "
 "utilizing them)."
 msgstr ""
+"本文档概述了已知可行的用例（因为像 `Fabric <https://fabfile.org>`_ 这样的下游工具已经在使用它们）。"
 
 #: ../../concepts/library.rst:18
 msgid "Reusing Invoke's CLI module as a distinct binary"
-msgstr ""
+msgstr "将 Invoke 的 CLI 模块重用作独立的二进制文件"
 
 #: ../../concepts/library.rst:20
 msgid ""
@@ -51,10 +55,13 @@ msgid ""
 " library.) In some cases, removing, replacing and/or adding core CLI "
 "flags is also desired."
 msgstr ""
+"主要用例是分发你自己的程序，该程序在底层使用 Invoke，"
+"绑定到不同的二进制名称，并且通常设置特定的任务 :doc:`命名空间 </concepts/namespaces>` 作为默认值。"
+"（这在某种程度上类似于标准库中的 ``argparse``。）在某些情况下，还需要删除、替换和/或添加核心 CLI 标志。"
 
 #: ../../concepts/library.rst:27
 msgid "Getting set up"
-msgstr ""
+msgstr "设置"
 
 #: ../../concepts/library.rst:29
 msgid ""
@@ -63,12 +70,15 @@ msgid ""
 "install tester`` and have access to commands like ``tester unit``, "
 "``tester integration``, or ``tester integration --fail-fast``."
 msgstr ""
+"假设你想分发名为 ``tester`` 的测试运行器，提供两个子命令 ``unit`` 和 ``integration``，这样用户可以 ``pip install tester`` "
+"并访问诸如 ``tester unit``、``tester integration`` 或 ``tester integration --fail-fast`` 等命令。"
 
 #: ../../concepts/library.rst:34
 msgid ""
 "First, as with any distinct Python package providing CLI 'binaries', "
 "you'd inform your ``setup.py`` of your entrypoint::"
 msgstr ""
+"首先，与任何提供 CLI ‘二进制文件’的独立 Python 包一样，你需要在 ``setup.py`` 中告知你的入口点::"
 
 #: ../../concepts/library.rst:48
 msgid ""
@@ -77,6 +87,8 @@ msgid ""
 " Python Packaging User's Guide <https://python-packaging-user-"
 "guide.readthedocs.io>`_."
 msgstr ""
+"这只是示例片段，并不是完全有效的 ``setup.py``；如果你不了解 Python 打包的工作原理，"
+"好的起点是 `Python 打包用户指南 <https://python-packaging-user-guide.readthedocs.io>`_。"
 
 #: ../../concepts/library.rst:53
 msgid ""
@@ -84,16 +96,19 @@ msgid ""
 "Python to install a ``tester`` script that executes the ``run`` method of"
 " a ``program`` object defined inside the module ``tester.main``."
 msgstr ""
+"这里的内容并不是 Invoke 特有的——它是一种标准的方式，告诉 Python 安装 ``tester`` 脚本，"
+"该脚本执行 ``tester.main`` 模块中定义的 ``program`` 对象的 ``run`` 方法。"
 
 #: ../../concepts/library.rst:58
 msgid "Creating a ``Program``"
-msgstr ""
+msgstr "创建 ``Program``"
 
 #: ../../concepts/library.rst:60
 msgid ""
 "In our ``tester/main.py``, we start out importing Invoke's public CLI "
 "functionality::"
 msgstr ""
+"在 ``tester/main.py`` 中，首先导入 Invoke 的公共 CLI 功能::"
 
 #: ../../concepts/library.rst:65
 msgid ""
@@ -101,6 +116,7 @@ msgid ""
 "which is a simple `.Program` to do the heavy lifting, giving it our "
 "version number for starters::"
 msgstr ""
+"然后定义在 ``setup.py`` 中引用的 ``program`` 对象，它是简单的 `.Program` 来承担繁重的工作，首先给它版本号::"
 
 #: ../../concepts/library.rst:71
 msgid ""
@@ -108,6 +124,8 @@ msgid ""
 "functionality as Invoke's :doc:`built-in CLI tool </invoke>`, except "
 "named ``tester`` and exposing its own version number::"
 msgstr ""
+"此时，安装 ``tester`` 将提供与 Invoke 的 :doc:`内置 CLI 工具 </invoke>` 相同的功能，"
+"只是命名为 ``tester`` 并暴露其自己的版本号::"
 
 #: ../../concepts/library.rst:86
 msgid ""
@@ -115,10 +133,12 @@ msgid ""
 "users don't care about arbitrary 'tasks', so Invoke's own default "
 "``--help`` and ``--list`` output isn't a good fit)."
 msgstr ""
+"这目前对没有太大帮助——还没有任何子命令（而且用户不关心任意的‘任务’，"
+"因此 Invoke 自己的默认 ``--help`` 和 ``--list`` 输出并不合适）。"
 
 #: ../../concepts/library.rst:91
 msgid "Specifying subcommands"
-msgstr ""
+msgstr "指定子命令"
 
 #: ../../concepts/library.rst:93
 msgid ""
@@ -128,6 +148,9 @@ msgid ""
 "``tester/tasks.py`` (but as you'll see in a moment, this too is arbitrary"
 " and can be whatever you like)::"
 msgstr ""
+"为了让 ``tester`` 暴露 ``unit`` 和 ``integration`` 子命令，需要在常规的 Invoke 任务模块或 "
+":doc:`命名空间 </concepts/namespaces>` 中定义它们。"
+"对于示例，将创建 ``tester/tasks.py`` （但正如你稍后将看到的，这也是任意的，可以是任何你喜欢的名称）::"
 
 #: ../../concepts/library.rst:109
 msgid ""
@@ -135,6 +158,7 @@ msgid ""
 "however you want - the above snippet uses an implicit namespace for "
 "brevity's sake."
 msgstr ""
+"如 :doc:`/concepts/namespaces` 中所述，你可以随意安排这个模块——上面的代码片段为了简洁起见使用了隐式命名空间。"
 
 #: ../../concepts/library.rst:114
 msgid ""
@@ -142,6 +166,8 @@ msgid ""
 "\"subcommands\" - you could run them just as easily with vanilla Invoke, "
 "e.g. via ``invoke --collection=tester.tasks --list``."
 msgstr ""
+"重要的是要意识到这些‘子命令’并没有什么特别之处——你可以像使用普通 Invoke 一样轻松地运行它们，"
+"例如通过 ``invoke --collection=tester.tasks --list``。"
 
 #: ../../concepts/library.rst:118
 msgid ""
@@ -149,10 +175,11 @@ msgid ""
 " tasks should be used as the subcommands for ``tester``, via the "
 "``namespace`` kwarg::"
 msgstr ""
+"现在是有用的部分：通过 ``namespace`` 关键字参数告诉我们的自定义 `.Program`，这个任务命名空间应该用作 ``tester`` 的子命令::"
 
 #: ../../concepts/library.rst:126
 msgid "The result?"
-msgstr ""
+msgstr "结果？"
 
 #: ../../concepts/library.rst:147
 msgid ""
@@ -292,4 +319,11 @@ msgid ""
 "For reference, Invoke's own base defaults (the...default defaults, you "
 "could say) are documented at :ref:`default-values`."
 msgstr ""
+
+#~ msgid ""
+#~ "This document outlines use cases already"
+#~ " known to work (because downstream "
+#~ "tools like `Fabric <http://fabfile.org>`_ are"
+#~ " already utilizing them)."
+#~ msgstr ""
 

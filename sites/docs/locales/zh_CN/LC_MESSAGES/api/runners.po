@@ -8,16 +8,1336 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/runners.rst:3
 msgid "``runners``"
+msgstr ""
+
+#: invoke.runners.Runner:1 of
+msgid "Partially-abstract core command-running API."
+msgstr ""
+
+#: invoke.runners.Runner:3 of
+msgid ""
+"This class is not usable by itself and must be subclassed, implementing a"
+" number of methods such as `start`, `wait` and `returncode`. For a "
+"subclass implementation example, see the source code for `.Local`."
+msgstr ""
+
+#: invoke.runners.Local.__init__:1 invoke.runners.Runner.__init__:1 of
+msgid "Create a new runner with a handle on some `.Context`."
+msgstr ""
+
+#: ../../api/runners.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.runners.Local.__init__:3 invoke.runners.Runner.__init__:3 of
+msgid ""
+"a `.Context` instance, used to transmit default options and provide "
+"access to other contextualized information (e.g. a remote-oriented "
+"`.Runner` might want a `.Context` subclass holding info about hostnames "
+"and ports.)  .. note::     The `.Context` given to `.Runner` instances "
+"**must** contain     default config values for the `.Runner` class in "
+"question. At a     minimum, this means values for each of the default"
+"     `.Runner.run` keyword arguments such as ``echo`` and ``warn``."
+msgstr ""
+
+#: invoke.runners.Local.__init__:4 invoke.runners.Runner.__init__:4 of
+msgid ""
+"a `.Context` instance, used to transmit default options and provide "
+"access to other contextualized information (e.g. a remote-oriented "
+"`.Runner` might want a `.Context` subclass holding info about hostnames "
+"and ports.)"
+msgstr ""
+
+#: invoke.runners.Local.__init__:10 invoke.runners.Runner.__init__:10 of
+msgid ""
+"The `.Context` given to `.Runner` instances **must** contain default "
+"config values for the `.Runner` class in question. At a minimum, this "
+"means values for each of the default `.Runner.run` keyword arguments such"
+" as ``echo`` and ``warn``."
+msgstr ""
+
+#: ../../api/runners.rst
+msgid "抛出"
+msgstr ""
+
+#: invoke.runners.Local.__init__:15 invoke.runners.Runner.__init__:15 of
+msgid "if not all expected default values are found in ``context``."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.context:1 of
+msgid "The `.Context` given to the same-named argument of `__init__`."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.program_finished:1 of
+msgid "A `threading.Event` signaling program completion."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.program_finished:3 of
+msgid ""
+"Typically set after `wait` returns. Some IO mechanisms rely on this to "
+"know when to exit an infinite read loop."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.read_chunk_size:1 of
+msgid "How many bytes (at maximum) to read per iteration of stream reads."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.input_sleep:1 of
+msgid ""
+"How many seconds to sleep on each iteration of the stdin read loop and "
+"other otherwise-fast loops."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.warned_about_pty_fallback:1 of
+msgid "Whether pty fallback warning has been emitted."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Runner.watchers:1 of
+msgid ""
+"A list of `.StreamWatcher` instances for use by `respond`. Is filled in "
+"at runtime by `run`."
+msgstr ""
+
+#: invoke.runners.Runner.run:1 of
+msgid "Execute ``command``, returning an instance of `Result` once complete."
+msgstr ""
+
+#: invoke.runners.Runner.run:3 of
+msgid ""
+"By default, this method is synchronous (it only returns once the "
+"subprocess has completed), and allows interactive keyboard communication "
+"with the subprocess."
+msgstr ""
+
+#: invoke.runners.Runner.run:7 of
+msgid ""
+"It can instead behave asynchronously (returning early & requiring "
+"interaction with the resulting object to manage subprocess lifecycle) if "
+"you specify ``asynchronous=True``. Furthermore, you can completely "
+"disassociate the subprocess from Invoke's control (allowing it to persist"
+" on its own after Python exits) by saying ``disown=True``. See the per-"
+"kwarg docs below for details on both of these."
+msgstr ""
+
+#: invoke.runners.Runner.run:15 of
+msgid ""
+"All kwargs will default to the values found in this instance's "
+"`~.Runner.context` attribute, specifically in its configuration's ``run``"
+" subtree (e.g. ``run.echo`` provides the default value for the ``echo`` "
+"keyword, etc). The base default values are described in the parameter "
+"list below."
+msgstr ""
+
+#: invoke.runners.Runner.run:21 of
+msgid "The shell command to execute."
+msgstr ""
+
+#: invoke.runners.Runner.run:23 of
+msgid ""
+"When set to ``True`` (default ``False``), enables asynchronous behavior, "
+"as follows:  - Connections to the controlling terminal are disabled, "
+"meaning you   will not see the subprocess output and it will not respond "
+"to   your keyboard input - similar to ``hide=True`` and   "
+"``in_stream=False`` (though explicitly given   ``(out|err|in)_stream`` "
+"file-like objects will still be honored   as normal). - `.run` returns "
+"immediately after starting the subprocess, and its   return value becomes"
+" an instance of `Promise` instead of   `Result`. - `Promise` objects are "
+"primarily useful for their `~Promise.join`   method, which blocks until "
+"the subprocess exits (similar to   threading APIs) and either returns a "
+"final `~Result` or raises an   exception, just as a synchronous ``run`` "
+"would.      - As with threading and similar APIs, users of       "
+"``asynchronous=True`` should make sure to ``join`` their       `Promise` "
+"objects to prevent issues with interpreter       shutdown.     - One easy"
+" way to handle such cleanup is to use the `Promise`       as a context "
+"manager - it will automatically ``join`` at the       exit of the context"
+" block.  .. versionadded:: 1.4"
+msgstr ""
+
+#: invoke.runners.Runner.run:24 of
+msgid ""
+"When set to ``True`` (default ``False``), enables asynchronous behavior, "
+"as follows:"
+msgstr ""
+
+#: invoke.runners.Runner.run:27 of
+msgid ""
+"Connections to the controlling terminal are disabled, meaning you will "
+"not see the subprocess output and it will not respond to your keyboard "
+"input - similar to ``hide=True`` and ``in_stream=False`` (though "
+"explicitly given ``(out|err|in)_stream`` file-like objects will still be "
+"honored as normal)."
+msgstr ""
+
+#: invoke.runners.Runner.run:33 of
+msgid ""
+"`.run` returns immediately after starting the subprocess, and its return "
+"value becomes an instance of `Promise` instead of `Result`."
+msgstr ""
+
+#: invoke.runners.Runner.run:36 of
+msgid ""
+"`Promise` objects are primarily useful for their `~Promise.join` method, "
+"which blocks until the subprocess exits (similar to threading APIs) and "
+"either returns a final `~Result` or raises an exception, just as a "
+"synchronous ``run`` would."
+msgstr ""
+
+#: invoke.runners.Runner.run:41 of
+msgid ""
+"As with threading and similar APIs, users of ``asynchronous=True`` should"
+" make sure to ``join`` their `Promise` objects to prevent issues with "
+"interpreter shutdown."
+msgstr ""
+
+#: invoke.runners.Runner.run:45 of
+msgid ""
+"One easy way to handle such cleanup is to use the `Promise` as a context "
+"manager - it will automatically ``join`` at the exit of the context "
+"block."
+msgstr ""
+
+#: invoke.runners.Runner.run:51 of
+msgid ""
+"When set to ``True`` (default ``False``), returns immediately like "
+"``asynchronous=True``, but does not perform any background work related "
+"to that subprocess (it is completely ignored). This allows subprocesses "
+"using shell backgrounding or similar techniques (e.g. trailing ``&``, "
+"``nohup``) to persist beyond the lifetime of the Python process running "
+"Invoke.  .. note::     If you're unsure whether you want this or "
+"``asynchronous``, you     probably want ``asynchronous``!  Specifically, "
+"``disown=True`` has the following behaviors:  - The return value is "
+"``None`` instead of a `Result` or subclass. - No I/O worker threads are "
+"spun up, so you will have no access to   the subprocess' stdout/stderr, "
+"your stdin will not be forwarded,   ``(out|err|in)_stream`` will be "
+"ignored, and features like   ``watchers`` will not function. - No exit "
+"code is checked for, so you will not receive any errors   if the "
+"subprocess fails to exit cleanly. - ``pty=True`` may not function "
+"correctly (subprocesses may not run   at all; this seems to be a "
+"potential bug in Python's   ``pty.fork``) unless your command line "
+"includes tools such as   ``nohup`` or (the shell builtin) ``disown``.  .."
+" versionadded:: 1.4"
+msgstr ""
+
+#: invoke.runners.Runner.run:52 of
+msgid ""
+"When set to ``True`` (default ``False``), returns immediately like "
+"``asynchronous=True``, but does not perform any background work related "
+"to that subprocess (it is completely ignored). This allows subprocesses "
+"using shell backgrounding or similar techniques (e.g. trailing ``&``, "
+"``nohup``) to persist beyond the lifetime of the Python process running "
+"Invoke."
+msgstr ""
+
+#: invoke.runners.Runner.run:60 of
+msgid ""
+"If you're unsure whether you want this or ``asynchronous``, you probably "
+"want ``asynchronous``!"
+msgstr ""
+
+#: invoke.runners.Runner.run:63 of
+msgid "Specifically, ``disown=True`` has the following behaviors:"
+msgstr ""
+
+#: invoke.runners.Runner.run:65 of
+msgid "The return value is ``None`` instead of a `Result` or subclass."
+msgstr ""
+
+#: invoke.runners.Runner.run:66 of
+msgid ""
+"No I/O worker threads are spun up, so you will have no access to the "
+"subprocess' stdout/stderr, your stdin will not be forwarded, "
+"``(out|err|in)_stream`` will be ignored, and features like ``watchers`` "
+"will not function."
+msgstr ""
+
+#: invoke.runners.Runner.run:70 of
+msgid ""
+"No exit code is checked for, so you will not receive any errors if the "
+"subprocess fails to exit cleanly."
+msgstr ""
+
+#: invoke.runners.Runner.run:72 of
+msgid ""
+"``pty=True`` may not function correctly (subprocesses may not run at all;"
+" this seems to be a potential bug in Python's ``pty.fork``) unless your "
+"command line includes tools such as ``nohup`` or (the shell builtin) "
+"``disown``."
+msgstr ""
+
+#: invoke.runners.Runner.run:79 of
+msgid ""
+"Whether to dry-run instead of truly invoking the given command. See "
+":option:`--dry` (which flips this on globally) for details on this "
+"behavior.  .. versionadded:: 1.3"
+msgstr ""
+
+#: invoke.runners.Runner.run:80 of
+msgid ""
+"Whether to dry-run instead of truly invoking the given command. See "
+":option:`--dry` (which flips this on globally) for details on this "
+"behavior."
+msgstr ""
+
+#: invoke.runners.Runner.run:86 of
+msgid ""
+"Controls whether `.run` prints the command string to local stdout prior "
+"to executing it. Default: ``False``.  .. note::     ``hide=True`` will "
+"override ``echo=True`` if both are given."
+msgstr ""
+
+#: invoke.runners.Runner.run:87 of
+msgid ""
+"Controls whether `.run` prints the command string to local stdout prior "
+"to executing it. Default: ``False``."
+msgstr ""
+
+#: invoke.runners.Runner.run:91 of
+msgid "``hide=True`` will override ``echo=True`` if both are given."
+msgstr ""
+
+#: invoke.runners.Runner.run:93 of
+msgid ""
+"A string, which when passed to Python's inbuilt ``.format`` method, will "
+"change the format of the output when ``run.echo`` is set to true.  "
+"Currently, only ``{command}`` is supported as a parameter.  Defaults to "
+"printing the full command string in ANSI-escaped bold."
+msgstr ""
+
+#: invoke.runners.Runner.run:94 of
+msgid ""
+"A string, which when passed to Python's inbuilt ``.format`` method, will "
+"change the format of the output when ``run.echo`` is set to true."
+msgstr ""
+
+#: invoke.runners.Runner.run:98 of
+msgid "Currently, only ``{command}`` is supported as a parameter."
+msgstr ""
+
+#: invoke.runners.Runner.run:100 of
+msgid "Defaults to printing the full command string in ANSI-escaped bold."
+msgstr ""
+
+#: invoke.runners.Runner.run:102 of
+msgid ""
+"Whether to write data from ``in_stream`` back to ``out_stream``.  In "
+"other words, in normal interactive usage, this parameter controls whether"
+" Invoke mirrors what you type back to your terminal.  By default (when "
+"``None``), this behavior is triggered by the following:      * Not using "
+"a pty to run the subcommand (i.e. ``pty=False``),       as ptys natively "
+"echo stdin to stdout on their own;     * And when the controlling "
+"terminal of Invoke itself (as per       ``in_stream``) appears to be a "
+"valid terminal device or TTY.       (Specifically, when "
+"`~invoke.util.isatty` yields a ``True``       result when given "
+"``in_stream``.)        .. note::           This property tends to be "
+"``False`` when piping another           program's output into an Invoke "
+"session, or when running           Invoke within another program (e.g. "
+"running Invoke from           itself).  If both of those properties are "
+"true, echoing will occur; if either is false, no echoing will be "
+"performed.  When not ``None``, this parameter will override that auto-"
+"detection and force, or disable, echoing."
+msgstr ""
+
+#: invoke.runners.Runner.run:103 of
+msgid "Whether to write data from ``in_stream`` back to ``out_stream``."
+msgstr ""
+
+#: invoke.runners.Runner.run:105 of
+msgid ""
+"In other words, in normal interactive usage, this parameter controls "
+"whether Invoke mirrors what you type back to your terminal."
+msgstr ""
+
+#: invoke.runners.Runner.run:109 of
+msgid "By default (when ``None``), this behavior is triggered by the following:"
+msgstr ""
+
+#: invoke.runners.Runner.run:112 of
+msgid ""
+"Not using a pty to run the subcommand (i.e. ``pty=False``), as ptys "
+"natively echo stdin to stdout on their own;"
+msgstr ""
+
+#: invoke.runners.Runner.run:114 of
+msgid ""
+"And when the controlling terminal of Invoke itself (as per ``in_stream``)"
+" appears to be a valid terminal device or TTY. (Specifically, when "
+"`~invoke.util.isatty` yields a ``True`` result when given ``in_stream``.)"
+msgstr ""
+
+#: invoke.runners.Runner.run:120 of
+msgid ""
+"This property tends to be ``False`` when piping another program's output "
+"into an Invoke session, or when running Invoke within another program "
+"(e.g. running Invoke from itself)."
+msgstr ""
+
+#: invoke.runners.Runner.run:125 of
+msgid ""
+"If both of those properties are true, echoing will occur; if either is "
+"false, no echoing will be performed."
+msgstr ""
+
+#: invoke.runners.Runner.run:128 of
+msgid ""
+"When not ``None``, this parameter will override that auto-detection and "
+"force, or disable, echoing."
+msgstr ""
+
+#: invoke.runners.Runner.run:131 of
+msgid ""
+"Override auto-detection of which encoding the subprocess is using for its"
+" stdout/stderr streams (which defaults to the return value of "
+"`default_encoding`)."
+msgstr ""
+
+#: invoke.runners.Runner.run:136 of
+msgid ""
+"Same as ``out_stream``, except for standard error, and defaulting to "
+"``sys.stderr``."
+msgstr ""
+
+#: invoke.runners.Runner.run:140 of
+msgid ""
+"By default, subprocesses receive a copy of Invoke's own environment (i.e."
+" ``os.environ``). Supply a dict here to update that child environment.  "
+"For example, ``run('command', env={'PYTHONPATH': "
+"'/some/virtual/env/maybe'})`` would modify the ``PYTHONPATH`` env var, "
+"with the rest of the child's env looking identical to the parent.  .. "
+"seealso:: ``replace_env`` for changing 'update' to 'replace'."
+msgstr ""
+
+#: invoke.runners.Runner.run:141 of
+msgid ""
+"By default, subprocesses receive a copy of Invoke's own environment (i.e."
+" ``os.environ``). Supply a dict here to update that child environment."
+msgstr ""
+
+#: invoke.runners.Runner.run:145 of
+msgid ""
+"For example, ``run('command', env={'PYTHONPATH': "
+"'/some/virtual/env/maybe'})`` would modify the ``PYTHONPATH`` env var, "
+"with the rest of the child's env looking identical to the parent."
+msgstr ""
+
+#: invoke.runners.Runner.run:150 of
+msgid "``replace_env`` for changing 'update' to 'replace'."
+msgstr ""
+
+#: invoke.runners.Runner.run:152 of
+msgid ""
+"Controls auto-fallback behavior re: problems offering a pty when "
+"``pty=True``. Whether this has any effect depends on the specific "
+"`Runner` subclass being invoked. Default: ``True``."
+msgstr ""
+
+#: invoke.runners.Runner.run:157 of
+msgid ""
+"Allows the caller to disable ``run``'s default behavior of copying the "
+"subprocess' stdout and stderr to the controlling terminal. Specify "
+"``hide='out'`` (or ``'stdout'``) to hide only the stdout stream, "
+"``hide='err'`` (or ``'stderr'``) to hide only stderr, or ``hide='both'`` "
+"(or ``True``) to hide both streams.  The default value is ``None``, "
+"meaning to print everything; ``False`` will also disable hiding.  .. "
+"note::     Stdout and stderr are always captured and stored in the     "
+"``Result`` object, regardless of ``hide``'s value.  .. note::     "
+"``hide=True`` will also override ``echo=True`` if both are     given "
+"(either as kwargs or via config/CLI)."
+msgstr ""
+
+#: invoke.runners.Runner.run:158 of
+msgid ""
+"Allows the caller to disable ``run``'s default behavior of copying the "
+"subprocess' stdout and stderr to the controlling terminal. Specify "
+"``hide='out'`` (or ``'stdout'``) to hide only the stdout stream, "
+"``hide='err'`` (or ``'stderr'``) to hide only stderr, or ``hide='both'`` "
+"(or ``True``) to hide both streams."
+msgstr ""
+
+#: invoke.runners.Runner.run:164 of
+msgid ""
+"The default value is ``None``, meaning to print everything; ``False`` "
+"will also disable hiding."
+msgstr ""
+
+#: invoke.runners.Runner.run:168 of
+msgid ""
+"Stdout and stderr are always captured and stored in the ``Result`` "
+"object, regardless of ``hide``'s value."
+msgstr ""
+
+#: invoke.runners.Runner.run:172 of
+msgid ""
+"``hide=True`` will also override ``echo=True`` if both are given (either "
+"as kwargs or via config/CLI)."
+msgstr ""
+
+#: invoke.runners.Runner.run:175 of
+msgid ""
+"A file-like stream object to used as the subprocess' standard input. If "
+"``None`` (the default), ``sys.stdin`` will be used.  If ``False``, will "
+"disable stdin mirroring entirely (though other functionality which writes"
+" to the subprocess' stdin, such as autoresponding, will still function.) "
+"Disabling stdin mirroring can help when ``sys.stdin`` is a misbehaving "
+"non-stream object, such as under test harnesses or headless command "
+"runners."
+msgstr ""
+
+#: invoke.runners.Runner.run:176 of
+msgid ""
+"A file-like stream object to used as the subprocess' standard input. If "
+"``None`` (the default), ``sys.stdin`` will be used."
+msgstr ""
+
+#: invoke.runners.Runner.run:179 of
+msgid ""
+"If ``False``, will disable stdin mirroring entirely (though other "
+"functionality which writes to the subprocess' stdin, such as "
+"autoresponding, will still function.) Disabling stdin mirroring can help "
+"when ``sys.stdin`` is a misbehaving non-stream object, such as under test"
+" harnesses or headless command runners."
+msgstr ""
+
+#: invoke.runners.Runner.run:185 of
+msgid ""
+"A file-like stream object to which the subprocess' standard output should"
+" be written. If ``None`` (the default), ``sys.stdout`` will be used."
+msgstr ""
+
+#: invoke.runners.Runner.run:190 of
+msgid ""
+"By default, ``run`` connects directly to the invoked process and reads "
+"its stdout/stderr streams. Some programs will buffer (or even behave) "
+"differently in this situation compared to using an actual terminal or "
+"pseudoterminal (pty). To use a pty instead of the default behavior, "
+"specify ``pty=True``.  .. warning::     Due to their nature, ptys have a "
+"single output stream, so the     ability to tell stdout apart from stderr"
+" is **not possible**     when ``pty=True``. As such, all output will "
+"appear on     ``out_stream`` (see below) and be captured into the "
+"``stdout``     result attribute. ``err_stream`` and ``stderr`` will "
+"always be     empty when ``pty=True``."
+msgstr ""
+
+#: invoke.runners.Runner.run:191 of
+msgid ""
+"By default, ``run`` connects directly to the invoked process and reads "
+"its stdout/stderr streams. Some programs will buffer (or even behave) "
+"differently in this situation compared to using an actual terminal or "
+"pseudoterminal (pty). To use a pty instead of the default behavior, "
+"specify ``pty=True``."
+msgstr ""
+
+#: invoke.runners.Runner.run:198 of
+msgid ""
+"Due to their nature, ptys have a single output stream, so the ability to "
+"tell stdout apart from stderr is **not possible** when ``pty=True``. As "
+"such, all output will appear on ``out_stream`` (see below) and be "
+"captured into the ``stdout`` result attribute. ``err_stream`` and "
+"``stderr`` will always be empty when ``pty=True``."
+msgstr ""
+
+#: invoke.runners.Runner.run:205 of
+msgid ""
+"When ``True``, causes the subprocess to receive the dictionary given to "
+"``env`` as its entire shell environment, instead of updating a copy of "
+"``os.environ`` (which is the default behavior). Default: ``False``."
+msgstr ""
+
+#: invoke.runners.Runner.run:211 of
+msgid ""
+"Which shell binary to use. Default: ``/bin/bash`` (on Unix; ``COMSPEC`` "
+"or ``cmd.exe`` on Windows.)"
+msgstr ""
+
+#: invoke.runners.Runner.run:215 of
+msgid ""
+"Cause the runner to submit an interrupt to the subprocess and raise "
+"`.CommandTimedOut`, if the command takes longer than ``timeout`` seconds "
+"to execute. Defaults to ``None``, meaning no timeout.  .. versionadded:: "
+"1.3"
+msgstr ""
+
+#: invoke.runners.Runner.run:216 of
+msgid ""
+"Cause the runner to submit an interrupt to the subprocess and raise "
+"`.CommandTimedOut`, if the command takes longer than ``timeout`` seconds "
+"to execute. Defaults to ``None``, meaning no timeout."
+msgstr ""
+
+#: invoke.runners.Runner.run:222 of
+msgid ""
+"Whether to warn and continue, instead of raising `.UnexpectedExit`, when "
+"the executed command exits with a nonzero status. Default: ``False``.  .."
+" note::     This setting has no effect on exceptions, which will still be"
+"     raised, typically bundled in `.ThreadException` objects if they     "
+"were raised by the IO worker threads.      Similarly, `.WatcherError` "
+"exceptions raised by     `.StreamWatcher` instances will also ignore this"
+" setting, and     will usually be bundled inside `.Failure` objects (in "
+"order to     preserve the execution context).      Ditto "
+"`.CommandTimedOut` - basically, anything that prevents a     command from"
+" actually getting to \"exited with an exit code\"     ignores this flag."
+msgstr ""
+
+#: invoke.runners.Runner.run:223 of
+msgid ""
+"Whether to warn and continue, instead of raising `.UnexpectedExit`, when "
+"the executed command exits with a nonzero status. Default: ``False``."
+msgstr ""
+
+#: invoke.runners.Runner.run:228 of
+msgid ""
+"This setting has no effect on exceptions, which will still be raised, "
+"typically bundled in `.ThreadException` objects if they were raised by "
+"the IO worker threads."
+msgstr ""
+
+#: invoke.runners.Runner.run:232 of
+msgid ""
+"Similarly, `.WatcherError` exceptions raised by `.StreamWatcher` "
+"instances will also ignore this setting, and will usually be bundled "
+"inside `.Failure` objects (in order to preserve the execution context)."
+msgstr ""
+
+#: invoke.runners.Runner.run:237 of
+msgid ""
+"Ditto `.CommandTimedOut` - basically, anything that prevents a command "
+"from actually getting to \"exited with an exit code\" ignores this flag."
+msgstr ""
+
+#: invoke.runners.Runner.run:241 of
+msgid ""
+"A list of `.StreamWatcher` instances which will be used to scan the "
+"program's ``stdout`` or ``stderr`` and may write into its ``stdin`` "
+"(typically ``bytes`` objects) in response to patterns or other "
+"heuristics.  See :doc:`/concepts/watchers` for details on this "
+"functionality.  Default: ``[]``."
+msgstr ""
+
+#: invoke.runners.Runner.run:242 of
+msgid ""
+"A list of `.StreamWatcher` instances which will be used to scan the "
+"program's ``stdout`` or ``stderr`` and may write into its ``stdin`` "
+"(typically ``bytes`` objects) in response to patterns or other "
+"heuristics."
+msgstr ""
+
+#: invoke.runners.Runner.run:247 of
+msgid "See :doc:`/concepts/watchers` for details on this functionality."
+msgstr ""
+
+#: invoke.runners.Runner.run:249 of
+msgid "Default: ``[]``."
+msgstr ""
+
+#: ../../api/runners.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.runners.Runner.run:251 of
+msgid "`Result`, or a subclass thereof."
+msgstr ""
+
+#: invoke.runners.Runner.run of
+msgid "raises"
+msgstr ""
+
+#: invoke.runners.Runner.run:255 of
+msgid ""
+"`.UnexpectedExit`, if the command exited nonzero and ``warn`` was "
+"``False``."
+msgstr ""
+
+#: invoke.runners.Runner.run:259 of
+msgid ""
+"`.Failure`, if the command didn't even exit cleanly, e.g. if a "
+"`.StreamWatcher` raised `.WatcherError`."
+msgstr ""
+
+#: invoke.runners.Runner.run:263 of
+msgid ""
+"`.ThreadException` (if the background I/O threads encountered exceptions "
+"other than `.WatcherError`)."
+msgstr ""
+
+#: invoke.runners.Runner.make_promise:1 of
+msgid "Return a `Promise` allowing async control of the rest of lifecycle."
+msgstr ""
+
+#: invoke.runners.Runner.create_io_threads:1 of
+msgid "Create and return a dictionary of IO thread worker objects."
+msgstr ""
+
+#: invoke.runners.Runner.create_io_threads:3 of
+msgid ""
+"Caller is expected to handle persisting and/or starting the wrapped "
+"threads."
+msgstr ""
+
+#: invoke.runners.Runner.generate_result:1 of
+msgid "Create & return a suitable `Result` instance from the given ``kwargs``."
+msgstr ""
+
+#: invoke.runners.Runner.generate_result:3 of
+msgid ""
+"Subclasses may wish to override this in order to manipulate things or "
+"generate a `Result` subclass (e.g. ones containing additional metadata "
+"besides the default)."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:1 of
+msgid "Iteratively read & decode bytes from a subprocess' out/err stream."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:3 of
+msgid ""
+"A literal reader function/partial, wrapping the actual stream object in "
+"question, which takes a number of bytes to read, and returns that many "
+"bytes (or ``None``).  ``reader`` should be a reference to either "
+"`read_proc_stdout` or `read_proc_stderr`, which perform the actual, "
+"platform/library specific read calls."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:4 of
+msgid ""
+"A literal reader function/partial, wrapping the actual stream object in "
+"question, which takes a number of bytes to read, and returns that many "
+"bytes (or ``None``)."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:8 of
+msgid ""
+"``reader`` should be a reference to either `read_proc_stdout` or "
+"`read_proc_stderr`, which perform the actual, platform/library specific "
+"read calls."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:12 of
+msgid ""
+"A generator yielding strings.  Specifically, each resulting string is the"
+" result of decoding `read_chunk_size` bytes read from the subprocess' "
+"out/err stream."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:13 of
+msgid "A generator yielding strings."
+msgstr ""
+
+#: invoke.runners.Runner.read_proc_output:15 of
+msgid ""
+"Specifically, each resulting string is the result of decoding "
+"`read_chunk_size` bytes read from the subprocess' out/err stream."
+msgstr ""
+
+#: invoke.runners.Runner.write_our_output:1 of
+msgid "Write ``string`` to ``stream``."
+msgstr ""
+
+#: invoke.runners.Runner.write_our_output:3 of
+msgid ""
+"Also calls ``.flush()`` on ``stream`` to ensure that real terminal "
+"streams don't buffer."
+msgstr ""
+
+#: invoke.runners.Runner.write_our_output:6 of
+msgid ""
+"A file-like stream object, mapping to the ``out_stream`` or "
+"``err_stream`` parameters of `run`."
+msgstr ""
+
+#: invoke.runners.Runner.write_our_output:10 of
+msgid "A Unicode string object."
+msgstr ""
+
+#: invoke.runners.Local.close_proc_stdin:3
+#: invoke.runners.Runner.close_proc_stdin:3
+#: invoke.runners.Runner.handle_stdin:19 invoke.runners.Runner.handle_stdout:12
+#: invoke.runners.Runner.respond:10 invoke.runners.Runner.send_interrupt:11
+#: invoke.runners.Runner.wait:3 invoke.runners.Runner.write_our_output:12
+#: invoke.runners.Runner.write_proc_stdin:5 of
+msgid "``None``."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdout:1 of
+msgid "Read process' stdout, storing into a buffer & printing/parsing."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdout:3 of
+msgid ""
+"Intended for use as a thread target. Only terminates when all stdout from"
+" the subprocess has been read."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdout:6 of
+msgid "The capture buffer shared with the main thread."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdout:7 of
+msgid "Whether or not to replay data into ``output``."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdout:8 of
+msgid "Output stream (file-like object) to write data into when not hiding."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stderr:1 of
+msgid "Read process' stderr, storing into a buffer & printing/parsing."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stderr:3 of
+msgid ""
+"Identical to `handle_stdout` except for the stream read from; see its "
+"docstring for API details."
+msgstr ""
+
+#: invoke.runners.Runner.read_our_stdin:1 of
+msgid "Read & decode bytes from a local stdin stream."
+msgstr ""
+
+#: invoke.runners.Runner.read_our_stdin:3 of
+msgid ""
+"Actual stream object to read from. Maps to ``in_stream`` in `run`, so "
+"will often be ``sys.stdin``, but might be any stream-like object."
+msgstr ""
+
+#: invoke.runners.Runner.read_our_stdin:8 of
+msgid ""
+"A Unicode string, the result of decoding the read bytes (this might be "
+"the empty string if the pipe has closed/reached EOF); or ``None`` if "
+"stdin wasn't ready for reading yet."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:1 of
+msgid "Read local stdin, copying into process' stdin as necessary."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:3 of
+msgid "Intended for use as a thread target."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:6 of
+msgid ""
+"Because real terminal stdin streams have no well-defined \"end\", if such"
+" a stream is detected (based on existence of a callable ``.fileno()``) "
+"this method will wait until `program_finished` is set, before "
+"terminating."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:11 of
+msgid ""
+"When the stream doesn't appear to be from a terminal, the same semantics "
+"as `handle_stdout` are used - the stream is simply ``read()`` from until "
+"it returns an empty value."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:15 of
+msgid "Stream (file-like object) from which to read."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:16 of
+msgid "Stream (file-like object) to which echoing may occur."
+msgstr ""
+
+#: invoke.runners.Runner.handle_stdin:17 of
+msgid "User override option for stdin-stdout echoing."
+msgstr ""
+
+#: invoke.runners.Runner.should_echo_stdin:1 of
+msgid "Determine whether data read from ``input_`` should echo to ``output``."
+msgstr ""
+
+#: invoke.runners.Runner.should_echo_stdin:3 of
+msgid "Used by `handle_stdin`; tests attributes of ``input_`` and ``output``."
+msgstr ""
+
+#: invoke.runners.Runner.should_echo_stdin:5 of
+msgid "Input stream (file-like object)."
+msgstr ""
+
+#: invoke.runners.Runner.should_echo_stdin:6 of
+msgid "Output stream (file-like object)."
+msgstr ""
+
+#: invoke.runners.Runner.should_echo_stdin:7 of
+msgid "A ``bool``."
+msgstr ""
+
+#: invoke.runners.Runner.respond:1 of
+msgid "Write to the program's stdin in response to patterns in ``buffer_``."
+msgstr ""
+
+#: invoke.runners.Runner.respond:3 of
+msgid ""
+"The patterns and responses are driven by the `.StreamWatcher` instances "
+"from the ``watchers`` kwarg of `run` - see :doc:`/concepts/watchers` for "
+"a conceptual overview."
+msgstr ""
+
+#: invoke.runners.Runner.respond:7 of
+msgid "The capture buffer for this thread's particular IO stream."
+msgstr ""
+
+#: invoke.runners.Runner.generate_env:1 of
+msgid "Return a suitable environment dict based on user input & behavior."
+msgstr ""
+
+#: invoke.runners.Runner.generate_env:3 of
+msgid "Dict supplying overrides or full env, depending."
+msgstr ""
+
+#: invoke.runners.Runner.generate_env:4 of
+msgid ""
+"Whether ``env`` updates, or is used in place of, the value of "
+"`os.environ`."
+msgstr ""
+
+#: invoke.runners.Runner.generate_env:8 of
+msgid "A dictionary of shell environment vars."
+msgstr ""
+
+#: invoke.runners.Local.should_use_pty:1 invoke.runners.Runner.should_use_pty:1
+#: of
+msgid "Should execution attempt to use a pseudo-terminal?"
+msgstr ""
+
+#: invoke.runners.Local.should_use_pty:3 invoke.runners.Runner.should_use_pty:3
+#: of
+msgid "Whether the user explicitly asked for a pty."
+msgstr ""
+
+#: invoke.runners.Local.should_use_pty:5 invoke.runners.Runner.should_use_pty:5
+#: of
+msgid ""
+"Whether falling back to non-pty execution should be allowed, in "
+"situations where ``pty=True`` but a pty could not be allocated."
+msgstr ""
+
+#: invoke.runners.Runner.has_dead_threads:1 of
+msgid "Detect whether any IO threads appear to have terminated unexpectedly."
+msgstr ""
+
+#: invoke.runners.Runner.has_dead_threads:3 of
+msgid ""
+"Used during process-completion waiting (in `wait`) to ensure we don't "
+"deadlock our child process if our IO processing threads have "
+"errored/died."
+msgstr ""
+
+#: invoke.runners.Runner.has_dead_threads:7 of
+msgid ""
+"``True`` if any threads appear to have terminated with an exception, "
+"``False`` otherwise."
+msgstr ""
+
+#: invoke.runners.Runner.wait:1 of
+msgid "Block until the running command appears to have exited."
+msgstr ""
+
+#: invoke.runners.Runner.write_proc_stdin:1 of
+msgid "Write encoded ``data`` to the running process' stdin."
+msgstr ""
+
+#: invoke.runners.Runner.write_proc_stdin:3 of
+msgid "A Unicode string."
+msgstr ""
+
+#: invoke.runners.Runner.decode:1 of
+msgid "Decode some ``data`` bytes, returning Unicode."
+msgstr ""
+
+#: invoke.runners.Local.process_is_finished:1
+#: invoke.runners.Runner.process_is_finished:1 of
+msgid "Determine whether our subprocess has terminated."
+msgstr ""
+
+#: invoke.runners.Local.process_is_finished:4
+#: invoke.runners.Runner.process_is_finished:4 of
+msgid ""
+"The implementation of this method should be nonblocking, as it is used "
+"within a query/poll loop."
+msgstr ""
+
+#: invoke.runners.Local.process_is_finished:7
+#: invoke.runners.Runner.process_is_finished:7 of
+msgid "``True`` if the subprocess has finished running, ``False`` otherwise."
+msgstr ""
+
+#: invoke.runners.Local.start:1 invoke.runners.Runner.start:1 of
+msgid "Initiate execution of ``command`` (via ``shell``, with ``env``)."
+msgstr ""
+
+#: invoke.runners.Local.start:3 invoke.runners.Runner.start:3 of
+msgid ""
+"Typically this means use of a forked subprocess or requesting start of "
+"execution on a remote system."
+msgstr ""
+
+#: invoke.runners.Local.start:6 invoke.runners.Runner.start:6 of
+msgid ""
+"In most cases, this method will also set subclass-specific member "
+"variables used in other methods such as `wait` and/or `returncode`."
+msgstr ""
+
+#: invoke.runners.Local.start:9 invoke.runners.Runner.start:9 of
+msgid "Command string to execute."
+msgstr ""
+
+#: invoke.runners.Local.start:12 invoke.runners.Runner.start:12 of
+msgid "Shell to use when executing ``command``."
+msgstr ""
+
+#: invoke.runners.Local.start:15 invoke.runners.Runner.start:15 of
+msgid "Environment dict used to prep shell environment."
+msgstr ""
+
+#: invoke.runners.Runner.start_timer:1 of
+msgid "Start a timer to `kill` our subprocess after ``timeout`` seconds."
+msgstr ""
+
+#: invoke.runners.Local.read_proc_stdout:1
+#: invoke.runners.Runner.read_proc_stdout:1 of
+msgid "Read ``num_bytes`` from the running process' stdout stream."
+msgstr ""
+
+#: invoke.runners.Local.read_proc_stderr:3
+#: invoke.runners.Local.read_proc_stdout:3
+#: invoke.runners.Runner.read_proc_stderr:3
+#: invoke.runners.Runner.read_proc_stdout:3 of
+msgid "Number of bytes to read at maximum."
+msgstr ""
+
+#: invoke.runners.Local.read_proc_stderr:5
+#: invoke.runners.Local.read_proc_stdout:5
+#: invoke.runners.Runner.read_proc_stderr:5
+#: invoke.runners.Runner.read_proc_stdout:5 of
+msgid "A string/bytes object."
+msgstr ""
+
+#: invoke.runners.Local.read_proc_stderr:1
+#: invoke.runners.Runner.read_proc_stderr:1 of
+msgid "Read ``num_bytes`` from the running process' stderr stream."
+msgstr ""
+
+#: invoke.runners.Local.close_proc_stdin:1
+#: invoke.runners.Runner.close_proc_stdin:1 of
+msgid "Close running process' stdin."
+msgstr ""
+
+#: invoke.runners.Runner.default_encoding:1 of
+msgid "Return a string naming the expected encoding of subprocess streams."
+msgstr ""
+
+#: invoke.runners.Runner.default_encoding:3 of
+msgid "This return value should be suitable for use by encode/decode methods."
+msgstr ""
+
+#: invoke.runners.Runner.send_interrupt:1 of
+msgid "Submit an interrupt signal to the running subprocess."
+msgstr ""
+
+#: invoke.runners.Runner.send_interrupt:3 of
+msgid ""
+"In almost all implementations, the default behavior is what will be "
+"desired: submit ```` to the subprocess' stdin pipe. However, we leave "
+"this as a public method in case this default needs to be augmented or "
+"replaced."
+msgstr ""
+
+#: invoke.runners.Runner.send_interrupt:8 of
+msgid "The locally-sourced ``KeyboardInterrupt`` causing the method call."
+msgstr ""
+
+#: invoke.runners.Local.returncode:1 invoke.runners.Runner.returncode:1 of
+msgid "Return the numeric return/exit code resulting from command execution."
+msgstr ""
+
+#: invoke.runners.Local.returncode:3 invoke.runners.Runner.returncode:3 of
+msgid ""
+"`int`, if any reasonable return code could be determined, or ``None`` in "
+"corner cases where that was not possible."
+msgstr ""
+
+#: invoke.runners.Local.stop:1 invoke.runners.Runner.stop:1 of
+msgid "Perform final cleanup, if necessary."
+msgstr ""
+
+#: invoke.runners.Local.stop:3 invoke.runners.Runner.stop:3 of
+msgid ""
+"This method is called within a ``finally`` clause inside the main `run` "
+"method. Depending on the subclass, it may be a no-op, or it may do things"
+" such as close network connections or open files."
+msgstr ""
+
+#: invoke.runners.Local.stop:7 invoke.runners.Runner.stop:7 of
+msgid "``None``"
+msgstr ""
+
+#: invoke.runners.Local.kill:1 invoke.runners.Runner.kill:1 of
+msgid "Forcibly terminate the subprocess."
+msgstr ""
+
+#: invoke.runners.Local.kill:3 invoke.runners.Runner.kill:3 of
+msgid "Typically only used by the timeout functionality."
+msgstr ""
+
+#: invoke.runners.Local.kill:5 invoke.runners.Runner.kill:5 of
+msgid ""
+"This is often a \"best-effort\" attempt, e.g. remote subprocesses often "
+"must settle for simply shutting down the local side of the network "
+"connection and hoping the remote end eventually gets the message."
+msgstr ""
+
+#: invoke.runners.Runner.timed_out:1 of
+msgid "Returns ``True`` if the subprocess stopped because it timed out."
+msgstr ""
+
+#: ../../../docstring invoke.runners.Result.__weakref__:1
+#: invoke.runners.Runner.__weakref__:1 of
+msgid "list of weak references to the object"
+msgstr ""
+
+#: invoke.runners.Local:1 of
+msgid "Execute a command on the local system in a subprocess."
+msgstr ""
+
+#: invoke.runners.Local:4 of
+msgid ""
+"When Invoke itself is executed without a controlling terminal (e.g. when "
+"``sys.stdin`` lacks a useful ``fileno``), it's not possible to present a "
+"handle on our PTY to local subprocesses. In such situations, `Local` will"
+" fallback to behaving as if ``pty=False`` (on the theory that degraded "
+"execution is better than none at all) as well as printing a warning to "
+"stderr."
+msgstr ""
+
+#: invoke.runners.Local:11 of
+msgid "To disable this behavior, say ``fallback=False``."
+msgstr ""
+
+#: invoke.runners.Result:1 of
+msgid "A container for information about the result of a command execution."
+msgstr ""
+
+#: invoke.runners.Result:3 of
+msgid "All params are exposed as attributes of the same name and type."
+msgstr ""
+
+#: invoke.runners.Result:5 of
+msgid "The subprocess' standard output."
+msgstr ""
+
+#: invoke.runners.Result:8 of
+msgid ""
+"Same as ``stdout`` but containing standard error (unless the process was "
+"invoked via a pty, in which case it will be empty; see `.Runner.run`.)"
+msgstr ""
+
+#: invoke.runners.Result:13 of
+msgid "The string encoding used by the local shell environment."
+msgstr ""
+
+#: invoke.runners.Result:16 of
+msgid "The command which was executed."
+msgstr ""
+
+#: invoke.runners.Result:19 of
+msgid "The shell binary used for execution."
+msgstr ""
+
+#: invoke.runners.Result:22 of
+msgid ""
+"The shell environment used for execution. (Default is the empty dict, "
+"``{}``, not ``None`` as displayed in the signature.)"
+msgstr ""
+
+#: invoke.runners.Result:26 of
+msgid ""
+"An integer representing the subprocess' exit/return code.  .. note::     "
+"This may be ``None`` in situations where the subprocess did not run     "
+"to completion, such as when auto-responding failed or a timeout was     "
+"reached."
+msgstr ""
+
+#: invoke.runners.Result:27 of
+msgid "An integer representing the subprocess' exit/return code."
+msgstr ""
+
+#: invoke.runners.Result:30 of
+msgid ""
+"This may be ``None`` in situations where the subprocess did not run to "
+"completion, such as when auto-responding failed or a timeout was reached."
+msgstr ""
+
+#: invoke.runners.Result:34 of
+msgid ""
+"A boolean describing whether the subprocess was invoked with a pty or "
+"not; see `.Runner.run`."
+msgstr ""
+
+#: invoke.runners.Result:38 of
+msgid ""
+"A tuple of stream names (none, one or both of ``('stdout', 'stderr')``) "
+"which were hidden from the user when the generating command executed; "
+"this is a normalized value derived from the ``hide`` parameter of "
+"`.Runner.run`.  For example, ``run('command', hide='stdout')`` will yield"
+" a `Result` where ``result.hide == ('stdout',)``; ``hide=True`` or "
+"``hide='both'`` results in ``result.hide == ('stdout', 'stderr')``; and "
+"``hide=False`` (the default) generates ``result.hide == ()`` (the empty "
+"tuple.)"
+msgstr ""
+
+#: invoke.runners.Result:39 of
+msgid ""
+"A tuple of stream names (none, one or both of ``('stdout', 'stderr')``) "
+"which were hidden from the user when the generating command executed; "
+"this is a normalized value derived from the ``hide`` parameter of "
+"`.Runner.run`."
+msgstr ""
+
+#: invoke.runners.Result:44 of
+msgid ""
+"For example, ``run('command', hide='stdout')`` will yield a `Result` "
+"where ``result.hide == ('stdout',)``; ``hide=True`` or ``hide='both'`` "
+"results in ``result.hide == ('stdout', 'stderr')``; and ``hide=False`` "
+"(the default) generates ``result.hide == ()`` (the empty tuple.)"
+msgstr ""
+
+#: invoke.runners.Result:50 of
+msgid ""
+"`Result` objects' truth evaluation is equivalent to their `.ok` "
+"attribute's value. Therefore, quick-and-dirty expressions like the "
+"following are possible::"
+msgstr ""
+
+#: invoke.runners.Result:59 of
+msgid ""
+"However, remember `Zen of Python #2 <http://zen-of-python.info/explicit-"
+"is-better-than-implicit.html#2>`_."
+msgstr ""
+
+#: invoke.runners.Result.return_code:1 of
+msgid "An alias for ``.exited``."
+msgstr ""
+
+#: invoke.runners.Result.__str__:1 of
+msgid "Return str(self)."
+msgstr ""
+
+#: invoke.runners.Result.__repr__:1 of
+msgid "Return repr(self)."
+msgstr ""
+
+#: invoke.runners.Result.ok:1 of
+msgid "A boolean equivalent to ``exited == 0``."
+msgstr ""
+
+#: invoke.runners.Result.failed:1 of
+msgid "The inverse of ``ok``."
+msgstr ""
+
+#: invoke.runners.Result.failed:3 of
+msgid ""
+"I.e., ``True`` if the program exited with a nonzero return code, and "
+"``False`` otherwise."
+msgstr ""
+
+#: invoke.runners.Result.tail:1 of
+msgid "Return the last ``count`` lines of ``stream``, plus leading whitespace."
+msgstr ""
+
+#: invoke.runners.Result.tail:3 of
+msgid "Name of some captured stream attribute, eg ``\"stdout\"``."
+msgstr ""
+
+#: invoke.runners.Result.tail:5 of
+msgid "Number of lines to preserve."
+msgstr ""
+
+#: invoke.runners.Promise:1 of
+msgid "A promise of some future `Result`, yielded from asynchronous execution."
+msgstr ""
+
+#: invoke.runners.Promise:3 of
+msgid ""
+"This class' primary API member is `join`; instances may also be used as "
+"context managers, which will automatically call `join` when the block "
+"exits. In such cases, the context manager yields ``self``."
+msgstr ""
+
+#: invoke.runners.Promise:7 of
+msgid ""
+"`Promise` also exposes copies of many `Result` attributes, specifically "
+"those that derive from `~Runner.run` kwargs and not the result of command"
+" execution. For example, ``command`` is replicated here, but ``stdout`` "
+"is not."
+msgstr ""
+
+#: invoke.runners.Promise.__init__:1 of
+msgid "Create a new promise."
+msgstr ""
+
+#: invoke.runners.Promise.__init__:3 of
+msgid ""
+"An in-flight `Runner` instance making this promise.  Must already have "
+"started the subprocess and spun up IO threads."
+msgstr ""
+
+#: invoke.runners.Promise.__init__:4 of
+msgid "An in-flight `Runner` instance making this promise."
+msgstr ""
+
+#: invoke.runners.Promise.__init__:6 of
+msgid "Must already have started the subprocess and spun up IO threads."
+msgstr ""
+
+#: invoke.runners.Promise.join:1 of
+msgid "Block until associated subprocess exits, returning/raising the result."
+msgstr ""
+
+#: invoke.runners.Promise.join:3 of
+msgid ""
+"This acts identically to the end of a synchronously executed ``run``, "
+"namely that:"
+msgstr ""
+
+#: invoke.runners.Promise.join:6 of
+msgid "various background threads (such as IO workers) are themselves joined;"
+msgstr ""
+
+#: invoke.runners.Promise.join:8 of
+msgid "if the subprocess exited normally, a `Result` is returned;"
+msgstr ""
+
+#: invoke.runners.Promise.join:9 of
+msgid ""
+"in any other case (unforeseen exceptions, IO sub-thread "
+"`.ThreadException`, `.Failure`, `.WatcherError`) the relevant exception "
+"is raised here."
+msgstr ""
+
+#: invoke.runners.Promise.join:13 of
+msgid ""
+"See `~Runner.run` docs, or those of the relevant classes, for further "
+"details."
+msgstr ""
+
+#: invoke.runners.default_encoding:1 of
+msgid "Obtain apparent interpreter-local default text encoding."
+msgstr ""
+
+#: invoke.runners.default_encoding:3 of
+msgid ""
+"Often used as a baseline in situations where we must use SOME encoding "
+"for unknown-but-presumably-text bytes, and the user has not specified an "
+"override."
 msgstr ""
 

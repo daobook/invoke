@@ -8,18 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../concepts/testing.rst:5
 msgid "Testing Invoke-using codebases"
-msgstr ""
+msgstr "测试使用 Invoke 的代码库"
 
 #: ../../concepts/testing.rst:7
 msgid ""
@@ -27,10 +27,11 @@ msgid ""
 " focused on CLI tasks, and others applicable to more generic/refactored "
 "setups."
 msgstr ""
+"测试使用 Invoke 的代码库的策略；一些适用于专注于 CLI 任务的代码，另一些适用于更通用/重构的设置。"
 
 #: ../../concepts/testing.rst:12
 msgid "Subclass & modify Invoke 'internals'"
-msgstr ""
+msgstr "子类化并修改 Invoke 的‘内部’组件"
 
 #: ../../concepts/testing.rst:14
 msgid ""
@@ -42,10 +43,13 @@ msgid ""
 "inject test-friendly values or mocks. Be sure to look over the :ref:`API "
 "documentation <api>`!"
 msgstr ""
+"简短的序言：大多数用户会发现后续的方法适用，但高级用户应注意，Invoke 的设计使其本身易于测试。"
+"这意味着在许多情况下，甚至 Invoke 的‘内部’组件也暴露为低/无共享责任的、公开记录的类，"
+"可以被子类化和修改以注入测试友好的值或模拟对象。请务必查看 :ref:`API 文档 <api>`！"
 
 #: ../../concepts/testing.rst:23
 msgid "Use `.MockContext`"
-msgstr ""
+msgstr "使用 `.MockContext`"
 
 #: ../../concepts/testing.rst:25
 msgid ""
@@ -78,14 +82,10 @@ msgid ""
 msgstr ""
 
 #: ../../concepts/testing.rst:64
-msgid ""
-"Here's another \"platform sensitive\" task, being tested with the "
-"assumption that the test environment has some flavor of ``mock`` "
-"installed (here we'll pretend it's Python 3.6 or later, and also use some"
-" f-strings for brevity)::"
+msgid "Here's another \"platform sensitive\" task::"
 msgstr ""
 
-#: ../../concepts/testing.rst:79
+#: ../../concepts/testing.rst:77
 msgid ""
 "The test code (again, which presumes that eg ``MockContext.run`` is now a"
 " ``Mock`` wrapper) relies primarily on 'last call' assertions "
@@ -94,11 +94,11 @@ msgid ""
 "respond to multiple possible commands, using a dict value::"
 msgstr ""
 
-#: ../../concepts/testing.rst:107
+#: ../../concepts/testing.rst:105
 msgid "Boolean mock results"
 msgstr ""
 
-#: ../../concepts/testing.rst:109
+#: ../../concepts/testing.rst:107
 msgid ""
 "You may have noticed the above example uses a handful of 'empty' "
 "`.Result` objects; these stand in for \"succeeded, but otherwise had no "
@@ -106,7 +106,7 @@ msgid ""
 "code of ``0`` and empty strings for stdout/stderr)."
 msgstr ""
 
-#: ../../concepts/testing.rst:114
+#: ../../concepts/testing.rst:112
 msgid ""
 "This is relatively common - think \"interrogative\" commands where the "
 "caller only cares for a boolean result, or times when a command is called"
@@ -115,15 +115,15 @@ msgid ""
 "blank Results with exit codes of ``0`` or ``1`` respectively."
 msgstr ""
 
-#: ../../concepts/testing.rst:120
+#: ../../concepts/testing.rst:118
 msgid "The example tests then look like this::"
 msgstr ""
 
-#: ../../concepts/testing.rst:144
+#: ../../concepts/testing.rst:142
 msgid "String mock results"
 msgstr ""
 
-#: ../../concepts/testing.rst:146
+#: ../../concepts/testing.rst:144
 msgid ""
 "Another convenient shorthand is using string values, which are "
 "interpreted to be the stdout of the resulting `.Result`. This only really"
@@ -132,21 +132,21 @@ msgid ""
 " is a common enough use case that we implemented it anyway."
 msgstr ""
 
-#: ../../concepts/testing.rst:152
+#: ../../concepts/testing.rst:150
 msgid "By example, let's modify an earlier example where we cared about stdout::"
 msgstr ""
 
-#: ../../concepts/testing.rst:165
+#: ../../concepts/testing.rst:163
 msgid ""
 "As with everything else in this document, this tactic can be applied to "
 "iterators or mappings as well as individual values."
 msgstr ""
 
-#: ../../concepts/testing.rst:169
+#: ../../concepts/testing.rst:167
 msgid "Regular expression command matching"
 msgstr ""
 
-#: ../../concepts/testing.rst:171
+#: ../../concepts/testing.rst:169
 msgid ""
 "The dict form of `.MockContext` kwarg can accept regular expression "
 "objects as keys, in addition to strings; ideal for situations where you "
@@ -154,7 +154,7 @@ msgid ""
 "or want to write out the entire thing."
 msgstr ""
 
-#: ../../concepts/testing.rst:176
+#: ../../concepts/testing.rst:174
 msgid ""
 "Imagine you're writing a function to run package management commands on a"
 " few different Linux distros and you're trying to test its error "
@@ -163,7 +163,7 @@ msgid ""
 "when it encounters a problem::"
 msgstr ""
 
-#: ../../concepts/testing.rst:197
+#: ../../concepts/testing.rst:195
 msgid ""
 "A bit contrived - there are a bunch of other ways to organize this exact "
 "test code so you don't truly need the regex - but hopefully it's clear "
@@ -171,11 +171,11 @@ msgid ""
 "it."
 msgstr ""
 
-#: ../../concepts/testing.rst:202
+#: ../../concepts/testing.rst:200
 msgid "Repeated results"
 msgstr ""
 
-#: ../../concepts/testing.rst:204
+#: ../../concepts/testing.rst:202
 msgid ""
 "By default, the values in these mock structures are consumed, causing "
 "`.MockContext` to raise ``NotImplementedError`` afterwards (as it does "
@@ -183,18 +183,18 @@ msgid ""
 "assumption that most code under test will run a given command once."
 msgstr ""
 
-#: ../../concepts/testing.rst:209
+#: ../../concepts/testing.rst:207
 msgid ""
 "If your situation doesn't match this, give ``repeat=True`` to the "
 "constructor, and you'll see values repeat indefinitely instead (or in "
 "cycles, for iterables)."
 msgstr ""
 
-#: ../../concepts/testing.rst:215
+#: ../../concepts/testing.rst:213
 msgid "Expect `Results <.Result>`"
 msgstr ""
 
-#: ../../concepts/testing.rst:217
+#: ../../concepts/testing.rst:215
 msgid ""
 "The core Invoke subprocess methods like `~.Context.run` all return "
 "`.Result` objects - which (as seen above) can be readily instantiated by "
@@ -202,27 +202,27 @@ msgid ""
 " or standard error)."
 msgstr ""
 
-#: ../../concepts/testing.rst:221
+#: ../../concepts/testing.rst:219
 msgid ""
 "This means that well-organized code can be even easier to test and "
 "doesn't require as much use of `.MockContext`."
 msgstr ""
 
-#: ../../concepts/testing.rst:224
+#: ../../concepts/testing.rst:222
 msgid "An iteration on the initial `.MockContext`-using example above::"
 msgstr ""
 
-#: ../../concepts/testing.rst:239
+#: ../../concepts/testing.rst:237
 msgid ""
 "With the logic encapsulated in a subroutine, you can just unit test that "
 "function by itself, deferring testing of the task or its context::"
 msgstr ""
 
-#: ../../concepts/testing.rst:253
+#: ../../concepts/testing.rst:251
 msgid "Avoid mocking dependency code paths altogether"
 msgstr ""
 
-#: ../../concepts/testing.rst:255
+#: ../../concepts/testing.rst:253
 msgid ""
 "This is more of a general software engineering tactic, but the natural "
 "endpoint of the above code examples would be where your primary logic "
@@ -232,11 +232,21 @@ msgid ""
 "solely for where your code interfaces with Invoke."
 msgstr ""
 
-#: ../../concepts/testing.rst:262
+#: ../../concepts/testing.rst:260
 msgid "Another minor tweak to the task code::"
 msgstr ""
 
-#: ../../concepts/testing.rst:277
+#: ../../concepts/testing.rst:275
 msgid "And the tests::"
 msgstr ""
+
+#~ msgid ""
+#~ "Here's another \"platform sensitive\" task,"
+#~ " being tested with the assumption "
+#~ "that the test environment has some "
+#~ "flavor of ``mock`` installed (here we'll"
+#~ " pretend it's Python 3.6 or later,"
+#~ " and also use some f-strings for "
+#~ "brevity)::"
+#~ msgstr ""
 

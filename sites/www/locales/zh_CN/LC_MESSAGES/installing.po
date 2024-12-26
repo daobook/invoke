@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-28 10:29+0800\n"
+"POT-Creation-Date: 2024-12-26 09:25+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: xinetzone <735613050@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../installing.rst:3
 msgid "Installing"
@@ -28,35 +28,34 @@ msgstr "基本安装"
 #: ../../installing.rst:8
 msgid ""
 "The recommended way to get Invoke is to **install the latest stable "
-"release** via `pip <http://pip-installer.org>`_::"
+"release** via `pip <https://pip.pypa.io>`_::"
 msgstr ""
-"获得 Invoke 的推荐方法是通过 `pip <http://pip-installer.org>`_ 安装最新的稳定版 ::"
+"推荐获取 Invoke 的方式是通过 `pip <https://pip.pypa.io>`_ **安装最新的稳定版本** ::"
 
 #: ../../installing.rst:13
 msgid ""
-"We currently support **Python 2.7** and **Python 3.4+**. Users still on "
-"Python 2.6 or older, or 3.3 or older, are urged to upgrade."
+"We currently support **Python 3.6+**. Users still on Python 3.5 or older "
+"are urged to upgrade."
 msgstr ""
-"我们目前支持 **Python 2.7** 和 **Python 3.4+**。仍然使用 Python 2.6 或更早的版本，或 3.3 或更早的版本的用户，被敦促升级。"
+"目前支持 **Python 3.6 及以上版本**。仍在使用 Python 3.5 或更早版本的用户建议尽快升级。"
 
 #: ../../installing.rst:16
 msgid ""
 "As long as you have a supported Python interpreter, **there are no other "
 "dependencies**.  Invoke is pure-Python, and contains copies of its few "
 "dependencies within its source tree."
-msgstr ""
-"只要你有支持的 Python 解释器，就没有其他依赖性。Invoke 是纯 Python 的，在它的源码树中包含了少数依赖的副本。"
+msgstr "只要你有支持的 Python 解释器，就没有其他依赖性。Invoke 是纯 Python 的，在它的源码树中包含了少数依赖的副本。"
 
 #: ../../installing.rst:21
 msgid ""
-"See `this blog post <http://bitprophet.org/blog/2012/06/07/on-"
+"See `this blog post <https://bitprophet.org/blog/2012/06/07/on-"
 "vendorizing/>`_ for background on our decision to vendorize dependencies."
 msgstr ""
-"请参阅 `这篇博文 <http://bitprophet.org/blog/2012/06/07/on-vendorizing/>`_，了解我们决定将依赖关系供应商化的背景。"
+"参见 `博客 <https://bitprophet.org/blog/2012/06/07/on-vendorizing/>`_ 了解决定将依赖项内嵌到项目中的背景。"
 
 #: ../../installing.rst:26
 msgid ""
 ":doc:`development` for details on source control checkouts / unstable "
 "versions."
-msgstr ""
-":doc:`development`，了解源码控制检查/不稳定版本的细节。"
+msgstr ":doc:`development`，了解源码控制检查/不稳定版本的细节。"
+

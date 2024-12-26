@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../concepts/configuration.rst:5
 msgid "Configuration"
@@ -32,9 +32,8 @@ msgid ""
 "configuration files, environment variables, :doc:`task namespaces "
 "</concepts/namespaces>` and CLI flags."
 msgstr ""
-"invoke 提供了多方面的配置机制，通过配置文件、环境变量、"
-":doc:`任务名称空间 </concepts/namespaces>` 和 CLI 标志的层次结构，"
-"允许配置核心行为和任务的行为。"
+"invoke 提供了多方面的配置机制，通过配置文件、环境变量、:doc:`任务名称空间 </concepts/namespaces>` 和 CLI"
+" 标志的层次结构，允许配置核心行为和任务的行为。"
 
 #: ../../concepts/configuration.rst:15
 msgid ""
@@ -45,10 +44,9 @@ msgid ""
 "`.Context.config` or as shorthand attribute access on the `.Context` "
 "itself."
 msgstr ""
-"配置查找、加载、解析和合并的最终结果是 `.Config` 对象，"
-"它的行为类似于（嵌套的）Python 字典。"
-"当它运行时调用引用此对象（确定方法的默认行为，如 `.Context.run`），"
-"并将它作为 `.Context.config` 暴露给用户的任务或作为 `.Context` 上的快捷属性访问。"
+"配置查找、加载、解析和合并的最终结果是 `.Config` 对象，它的行为类似于（嵌套的）Python "
+"字典。当它运行时调用引用此对象（确定方法的默认行为，如 `.Context.run`），并将它作为 `.Context.config` "
+"暴露给用户的任务或作为 `.Context` 上的快捷属性访问。"
 
 #: ../../concepts/configuration.rst:25
 msgid "The configuration hierarchy"
@@ -58,15 +56,13 @@ msgstr "配置的层次结构"
 msgid ""
 "In brief, the order in which configuration values override one another is"
 " as follows:"
-msgstr ""
-"简而言之，配置值相互覆盖的顺序如下："
+msgstr "简而言之，配置值相互覆盖的顺序如下："
 
 #: ../../concepts/configuration.rst:30
 msgid ""
 "**Internal default values** for behaviors which are controllable via "
 "configuration. See :ref:`default-values` for details."
-msgstr ""
-"通过配置可以控制 **内部默认行为值**。详细信息请参见 :ref:`default-values`。"
+msgstr "通过配置可以控制 **内部默认行为值**。详细信息请参见 :ref:`default-values`。"
 
 #: ../../concepts/configuration.rst:32
 msgid ""
@@ -74,12 +70,14 @@ msgid ""
 "`.Collection.configure`. (See :ref:`collection-configuration` below for "
 "details.)"
 msgstr ""
+"通过 `.Collection.configure` 在任务模块中定义的 **集合驱动的配置**。（详情请参阅下文 :ref"
+":`collection-configuration`。）”"
 
 #: ../../concepts/configuration.rst:36
 msgid ""
 "Sub-collections' configurations get merged into the top level collection "
 "and the final result forms the basis of the overall configuration setup."
-msgstr ""
+msgstr "子集合的配置会被合并到顶层集合中，最终结果构成整体配置设置的基础。"
 
 #: ../../concepts/configuration.rst:39
 msgid ""
@@ -87,12 +85,14 @@ msgid ""
 "``/etc/invoke.yaml``. (See :ref:`config-files` for details on this and "
 "the other config-file entries.)"
 msgstr ""
+"存储在 ``/etc/`` 中的 **系统级配置文件**，例如 "
+"``/etc/invoke.yaml``。（有关此条目及其他配置文件条目的详细信息，请参阅 :ref:`config-files`。）”"
 
 #: ../../concepts/configuration.rst:42
 msgid ""
 "**User-level configuration file** found in the running user's home "
 "directory, e.g. ``~/.invoke.yaml``."
-msgstr ""
+msgstr "位于运行用户主目录中的 **用户级配置文件**，例如 ``~/.invoke.yaml``。"
 
 #: ../../concepts/configuration.rst:44
 msgid ""
@@ -102,10 +102,13 @@ msgid ""
 " </concepts/loading>`), this might be "
 "``/home/user/myproject/invoke.yaml``."
 msgstr ""
+"位于顶层 ``tasks.py`` 旁边的 **项目级配置文件**。例如，如果你的 Invoke 运行加载了 "
+"``/home/user/myproject/tasks.py``（请参阅关于 :doc:`加载过程 </concepts/loading>` "
+"的文档），那么该配置文件可能是 ``/home/user/myproject/invoke.yaml``。"
 
 #: ../../concepts/configuration.rst:48
 msgid "**Environment variables** found in the invoking shell environment."
-msgstr ""
+msgstr "存在于调用 shell 环境中的 **环境变量**。"
 
 #: ../../concepts/configuration.rst:50
 msgid ""
@@ -113,6 +116,8 @@ msgid ""
 "environment namespace owned wholly by Invoke, so we must rely on slightly"
 " verbose prefixing instead - see :ref:`env-vars` for details."
 msgstr ""
+"这些配置不像其他配置那样具有严格的层次结构，而且 shell 环境的命名空间并不完全由 Invoke "
+"控制，因此必须依赖稍微冗长的前缀来区分——详情请参阅 :ref:`env-vars`。"
 
 #: ../../concepts/configuration.rst:54
 msgid ""
@@ -120,18 +125,21 @@ msgid ""
 "``inv -f /random/path/to/config_file.yaml``. This path may also be set "
 "via the ``INVOKE_RUNTIME_CONFIG`` env var."
 msgstr ""
+"**运行时配置文件**，其路径通过 :option:`-f` 指定，例如 ``inv -f "
+"/random/path/to/config_file.yaml``。此路径也可以通过 ``INVOKE_RUNTIME_CONFIG`` "
+"环境变量设置。"
 
 #: ../../concepts/configuration.rst:57
 msgid "**Command-line flags** for certain core settings, such as :option:`-e`."
-msgstr ""
+msgstr "某些核心设置的 **命令行标志**，例如 :option:`-e`。"
 
 #: ../../concepts/configuration.rst:58
 msgid "**Modifications made by user code** at runtime."
-msgstr ""
+msgstr "**用户代码在运行时进行的修改**。"
 
 #: ../../concepts/configuration.rst:64
 msgid "Default configuration values"
-msgstr ""
+msgstr "默认配置值"
 
 #: ../../concepts/configuration.rst:66
 msgid ""
@@ -139,6 +147,8 @@ msgid ""
 "itself uses to control behaviors such as `.Context.run`'s ``echo`` and "
 "``pty`` flags, task deduplication, and so forth."
 msgstr ""
+"以下是 Invoke 自身使用的所有配置值和/或部分，用于控制行为如 `.Context.run` 的 ``echo`` 和 ``pty`` "
+"标志、任务去重等。"
 
 #: ../../concepts/configuration.rst:71
 msgid ""
@@ -146,6 +156,8 @@ msgid ""
 "specifically as the return value of `.Config.global_defaults`; see its "
 "API docs for more details."
 msgstr ""
+"这些值的存储位置在 `.Config` 类中，具体是 `.Config.global_defaults` 的返回值；请参阅其 API "
+"文档以获取更多详细信息。"
 
 #: ../../concepts/configuration.rst:75
 msgid ""
@@ -155,16 +167,21 @@ msgid ""
 "on `.Config` and `.Context` objects using attribute syntax, which looks "
 "nearly identical: ``c.foo.bar``."
 msgstr ""
+"为了方便起见，使用点语法来引用嵌套的设置名称，例如 ``foo.bar`` 指的是（在 Python 配置上下文中） ``{'foo': "
+"{'bar': <value here>}}``。通常，这些设置可以使用属性语法在 `.Config` 和 `.Context` "
+"对象上读取或设置，其形式几乎完全相同：``c.foo.bar``。"
 
 #: ../../concepts/configuration.rst:81
 msgid "The ``tasks`` config tree holds settings relating to task execution."
-msgstr ""
+msgstr "``tasks`` 配置树保存与任务执行相关的设置。"
 
 #: ../../concepts/configuration.rst:83
 msgid ""
 "``tasks.dedupe`` controls :ref:`deduping` and defaults to ``True``. It "
 "can also be overridden at runtime via :option:`--no-dedupe`."
 msgstr ""
+"``tasks.dedupe`` 控制 :ref:`deduping`，默认值为 ``True``。也可以在运行时通过 :option"
+":`--no-dedupe` 覆盖。"
 
 #: ../../concepts/configuration.rst:85
 msgid ""
@@ -172,6 +189,8 @@ msgid ""
 " underscores turned to dashes on the CLI. Default: ``True``. See also "
 ":ref:`dashes-vs-underscores`."
 msgstr ""
+"``tasks.auto_dash_names`` 控制 CLI 中任务和集合名称中的下划线是否转换为破折号。默认值为 ``True``。另请参阅"
+" :ref:`dashes-vs-underscores`。"
 
 #: ../../concepts/configuration.rst:88
 msgid ""
@@ -179,12 +198,14 @@ msgid ""
 ":ref:`collection discovery <collection-discovery>`, and defaults to "
 "``\"tasks\"``."
 msgstr ""
+"``tasks.collection_name`` 控制通过 :ref:`collection discovery <collection-"
+"discovery>` 寻找的 Python 导入名称，默认值为 ``\"tasks\"``。"
 
 #: ../../concepts/configuration.rst:91
 msgid ""
 "``tasks.executor_class`` allows users to override the class instantiated "
 "and used for task execution."
-msgstr ""
+msgstr "``tasks.executor_class`` 允许用户覆盖用于任务执行的实例化和使用的类。"
 
 #: ../../concepts/configuration.rst:94
 msgid ""
@@ -193,12 +214,14 @@ msgid ""
 "to `importlib.import_module`, and ``class`` is expected to be an "
 "attribute on that resulting module object."
 msgstr ""
+"必须是形式 ``module(.submodule...).class`` 的完全限定路径，除了 ``.class`` 之外的所有部分都将传递给 "
+"`importlib.import_module`，并且 ``class`` 是该结果模块对象上的属性。"
 
 #: ../../concepts/configuration.rst:99
 msgid ""
 "Defaults to ``None``, meaning to use the running `.Program` object's "
 "``executor_class`` attribute."
-msgstr ""
+msgstr "默认值为 ``None``，意味着使用正在运行的 `.Program` 对象的 ``executor_class`` 属性。"
 
 #: ../../concepts/configuration.rst:103
 msgid ""
@@ -207,16 +230,30 @@ msgid ""
 "own default executor class (which your use of this setting will "
 "override!) and assume certain behaviors stemming from that."
 msgstr ""
+"小心使用此设置，因为它与 :ref:`custom program binaries <reusing-as-a-binary>` "
+"一起使用时可能会产生问题。自定义程序可能指定自己的默认执行器类（你的此设置将覆盖它！），并假设某些行为源于该类。"
 
 #: ../../concepts/configuration.rst:108
+msgid ""
+"``tasks.ignore_unknown_help`` (default: ``False``) lets users disable "
+"\"help keys were supplied for nonexistent arguments\" errors. Normally, "
+"Invoke assumes such a situation implies a typo in the ``help`` argument "
+"to ``@task``, but sometimes users have good reasons for this."
+msgstr ""
+"``tasks.ignore_unknown_help``（默认值：``False``）允许用户禁用‘为不存在的参数提供了帮助键’的错误。"
+"通常情况下，Invoke 会认为这种情况意味着 ``@task`` 的 ``help`` 参数中存在拼写错误，但有时用户有充分的理由这样做。"
+
+#: ../../concepts/configuration.rst:112
 msgid ""
 "``tasks.search_root`` allows overriding the default :ref:`collection "
 "discovery <collection-discovery>` root search location. It defaults to "
 "``None``, which indicates to use the executing process' current working "
 "directory."
 msgstr ""
+"``tasks.search_root`` 允许覆盖默认的 :ref:`collection discovery <collection-"
+"discovery>` 根搜索位置。默认值为 ``None``，表示使用正在执行进程的当前工作目录。"
 
-#: ../../concepts/configuration.rst:113
+#: ../../concepts/configuration.rst:117
 msgid ""
 "The ``run`` tree controls the behavior of `.Runner.run`. Each member of "
 "this tree (such as ``run.echo`` or ``run.pty``) maps directly to a "
@@ -224,47 +261,56 @@ msgid ""
 "docstring for details on what these settings do & what their default "
 "values are."
 msgstr ""
+"``run`` 树控制 `.Runner.run` 的行为。此树中的每个成员（例如 ``run.echo`` 或 "
+"``run.pty``）直接映射到具有相同名称的 `.Runner.run` 关键字参数；请参阅该方法的文档字符串，了解这些设置的功能及其默认值。"
 
-#: ../../concepts/configuration.rst:117
+#: ../../concepts/configuration.rst:121
 msgid ""
 "The ``runners`` tree controls _which_ runner classes map to which "
 "execution contexts; if you're using Invoke by itself, this will only tend"
 " to have a single member, ``runners.local``. Client libraries may extend "
 "it with additional key/value pairs, such as ``runners.remote``."
 msgstr ""
+"``runners`` 树控制哪个运行器类映射到哪个执行上下文；如果你单独使用 "
+"Invoke，这通常只会有一个成员，``runners.local``。客户端库可能会用额外的键/值对扩展它，例如 "
+"``runners.remote``。"
 
-#: ../../concepts/configuration.rst:121
+#: ../../concepts/configuration.rst:125
 msgid "The ``sudo`` tree controls the behavior of `.Context.sudo`:"
-msgstr ""
+msgstr "``sudo`` 树控制 `.Context.sudo` 的行为："
 
-#: ../../concepts/configuration.rst:123
+#: ../../concepts/configuration.rst:127
 msgid ""
 "``sudo.password`` controls the autoresponse password submitted to sudo's "
 "password prompt. Default: ``None``."
-msgstr ""
+msgstr "``sudo.password`` 控制提交给 sudo 密码提示的自动响应密码。默认值为 ``None``。"
 
-#: ../../concepts/configuration.rst:127
+#: ../../concepts/configuration.rst:131
 msgid ""
 "While it's possible to store this setting, like any other, in "
 ":doc:`configuration files </concepts/configuration>` -- doing so is "
 "inherently insecure. We highly recommend filling this config value in at "
 "runtime from a secrets management system of some kind."
 msgstr ""
+"虽然可以像其他设置一样将此设置存储在 :doc:`配置文件 </concepts/configuration>` "
+"中——但这样做本质上是不安全的。强烈建议在运行时通过某种密钥管理系统来填充此配置值。"
 
-#: ../../concepts/configuration.rst:132
+#: ../../concepts/configuration.rst:136
 msgid ""
 "``sudo.prompt`` holds the sudo password prompt text, which is both "
 "supplied to ``sudo -p``, and searched for when performing :doc:`auto-"
 "response </concepts/watchers>`. Default: ``[sudo] password:``."
 msgstr ""
+"``sudo.prompt`` 保存了 sudo 密码提示文本，该文本既会传递给 ``sudo -p``，也会在执行 :doc:`自动响应 "
+"</concepts/watchers>` 时被搜索。默认值为 ``[sudo] password:``。"
 
-#: ../../concepts/configuration.rst:136
+#: ../../concepts/configuration.rst:140
 msgid ""
 "A top level config setting, ``debug``, controls whether debug-level "
 "output is logged; it defaults to ``False``."
-msgstr ""
+msgstr "顶层配置设置 ``debug`` 控制是否记录调试级别的输出；其默认值为 ``False``。"
 
-#: ../../concepts/configuration.rst:139
+#: ../../concepts/configuration.rst:143
 msgid ""
 "``debug`` can be toggled via the :option:`-d` CLI flag, which enables "
 "debugging after CLI parsing runs. It can also be toggled via the "
@@ -272,84 +318,94 @@ msgid ""
 "is honored from the start of execution and is thus useful for "
 "troubleshooting parsing and/or config loading."
 msgstr ""
+"``debug`` 可以通过 :option:`-d` CLI 标志切换，该标志在 CLI 解析完成后启用调试。它也可以通过 "
+"``INVOKE_DEBUG`` 环境变量切换——与常规环境变量不同，该变量从执行开始时即生效，因此可用于排查解析和/或配置加载问题。"
 
-#: ../../concepts/configuration.rst:145
+#: ../../concepts/configuration.rst:149
 msgid ""
 "A small config tree, ``timeouts``, holds various kinds of timeout "
 "controls. At present, for Invoke, this only holds a ``command`` subkey, "
 "which controls subprocess execution timeouts."
 msgstr ""
+"小的配置树 ``timeouts`` 保存了各种超时控制。目前，对于 Invoke 来说，它仅包含 ``command`` "
+"子键，用于控制子进程执行的超时时间。"
 
-#: ../../concepts/configuration.rst:149
+#: ../../concepts/configuration.rst:153
 msgid ""
 "Client code often adds more to this tree, and Invoke itself may add more "
 "in the future as well."
-msgstr ""
+msgstr "客户端代码经常向此树添加更多内容，Invoke 本身也可能会在未来添加更多内容。"
 
-#: ../../concepts/configuration.rst:156
+#: ../../concepts/configuration.rst:160
 msgid "Configuration files"
-msgstr ""
+msgstr "配置文件"
 
-#: ../../concepts/configuration.rst:159
+#: ../../concepts/configuration.rst:163
 msgid "Loading"
-msgstr ""
+msgstr "加载"
 
-#: ../../concepts/configuration.rst:161
+#: ../../concepts/configuration.rst:165
 msgid ""
 "For each configuration file location mentioned in the previous section, "
 "we search for files ending in ``.yaml``, ``.yml``, ``.json`` or ``.py`` "
 "(**in that order!**), load the first one we find, and ignore any others "
 "that might exist."
 msgstr ""
+"对于前面提到的每个配置文件位置，会搜索以 ``.yaml``、``.yml``、``.json`` 或 ``.py`` "
+"结尾的文件（**按此顺序！**），加载找到的第一个文件，并忽略可能存在的其他文件。"
 
-#: ../../concepts/configuration.rst:165
+#: ../../concepts/configuration.rst:169
 msgid ""
 "For example, if Invoke is run on a system containing both "
 "``/etc/invoke.yml`` *and* ``/etc/invoke.json``, **only the YAML file will"
 " be loaded**. This helps keep things simple, both conceptually and in the"
 " implementation."
 msgstr ""
+"例如，如果在包含 ``/etc/invoke.yml`` *和* ``/etc/invoke.json`` 的系统上运行 "
+"Invoke，**只会加载 YAML 文件**。这有助于在概念和实现上保持简洁。"
 
-#: ../../concepts/configuration.rst:170
+#: ../../concepts/configuration.rst:174
 msgid "Format"
-msgstr ""
+msgstr "格式"
 
-#: ../../concepts/configuration.rst:172
+#: ../../concepts/configuration.rst:176
 msgid ""
 "Invoke's configuration allows arbitrary nesting, and thus so do our "
 "config file formats. All three of the below examples result in a "
 "configuration equivalent to ``{'debug': True, 'run': {'echo': True}}``:"
 msgstr ""
+"Invoke 的配置允许任意嵌套，因此配置文件格式也允许任意嵌套。以下三个示例都将产生与 ``{'debug': True, 'run': "
+"{'echo': True}}`` 等效的配置："
 
-#: ../../concepts/configuration.rst:176
+#: ../../concepts/configuration.rst:180
 msgid "**YAML**"
 msgstr ""
 
-#: ../../concepts/configuration.rst:184
+#: ../../concepts/configuration.rst:188
 msgid "**JSON**"
 msgstr ""
 
-#: ../../concepts/configuration.rst:195
+#: ../../concepts/configuration.rst:199
 msgid "**Python**::"
 msgstr ""
 
-#: ../../concepts/configuration.rst:202
+#: ../../concepts/configuration.rst:206
 msgid "For further details, see these languages' own documentation."
-msgstr ""
+msgstr "有关这些语言的详细信息，请参阅它们各自的文档。"
 
-#: ../../concepts/configuration.rst:208
+#: ../../concepts/configuration.rst:212
 msgid "Environment variables"
-msgstr ""
+msgstr "环境变量"
 
-#: ../../concepts/configuration.rst:210
+#: ../../concepts/configuration.rst:214
 msgid ""
 "Environment variables are a bit different from other configuration-"
 "setting methods, since they don't provide a clean way to nest "
 "configuration keys, and are also implicitly shared amongst the entire "
 "system's installed application base."
-msgstr ""
+msgstr "环境变量与其他配置设置方法有所不同，因为它们无法提供一种干净的方式来嵌套配置键，并且它们也隐含地在整个系统的已安装应用程序基中共享。"
 
-#: ../../concepts/configuration.rst:215
+#: ../../concepts/configuration.rst:219
 msgid ""
 "In addition, due to implementation concerns, env vars must be pre-"
 "determined by the levels below them in the config hierarchy (in other "
@@ -358,101 +414,103 @@ msgid ""
 "must first declare a ``foobar`` setting in a configuration file or in "
 "your task collections."
 msgstr ""
+"此外，由于实现上的考虑，环境变量必须由配置层次结构中位于它们下方的层级预先确定（换句话说——环境变量只能用于覆盖现有的配置值）。如果你需要 "
+"Invoke 理解 ``FOOBAR`` 环境变量，你必须首先在配置文件或任务集合中声明一个 ``foobar`` 设置。"
 
-#: ../../concepts/configuration.rst:222
+#: ../../concepts/configuration.rst:226
 msgid "Basic rules"
-msgstr ""
+msgstr "基本规则"
 
-#: ../../concepts/configuration.rst:224
+#: ../../concepts/configuration.rst:228
 msgid ""
 "To mitigate the shell namespace problem, we simply prefix all our env "
 "vars with ``INVOKE_``."
-msgstr ""
+msgstr "为了避免 shell 命名空间问题，简单地将所有环境变量前缀为 ``INVOKE_``。"
 
-#: ../../concepts/configuration.rst:227
+#: ../../concepts/configuration.rst:231
 msgid ""
 "Nesting is performed via underscore separation, so a setting that looks "
 "like e.g. ``{'run': {'echo': True}}`` at the Python level becomes "
 "``INVOKE_RUN_ECHO=1`` in a typical shell. See :ref:`env-var-nesting` "
 "below for more on this."
 msgstr ""
+"嵌套通过下划线分隔符进行，因此像 ``{'run': {'echo': True}}`` 这样的 Python 级别设置在典型的 shell "
+"中变为 ``INVOKE_RUN_ECHO=1``。更多信息请参见 :ref:`env-var-nesting`。"
 
-#: ../../concepts/configuration.rst:233
+#: ../../concepts/configuration.rst:237
 msgid "Type casting"
-msgstr ""
+msgstr "类型转换"
 
-#: ../../concepts/configuration.rst:235
+#: ../../concepts/configuration.rst:239
 msgid ""
 "Since env vars can only be used to override existing settings, the "
 "previous value of a given setting is used as a guide in casting the "
 "strings we get back from the shell:"
-msgstr ""
+msgstr "由于环境变量只能用于覆盖现有设置，因此给定设置的先前值会被用作指导，以将从 shell 获取的字符串转换为相应的类型："
 
-#: ../../concepts/configuration.rst:239
+#: ../../concepts/configuration.rst:243
 msgid ""
-"If the current value is a string or Unicode object, it is replaced with "
-"the value from the environment, with no casting whatsoever;"
+"If the current value is a Unicode string, it is replaced with the value "
+"from the environment, with no casting whatsoever;"
 msgstr ""
+"如果当前值是 Unicode 字符串，则直接替换为环境变量中的值，不进行任何类型转换；"
 
-#: ../../concepts/configuration.rst:242
-msgid ""
-"Depending on interpreter and environment, this means that a setting "
-"defaulting to a non-Unicode string type (eg a ``str`` on Python 2) may "
-"end up replaced with a Unicode string, or vice versa. This is intentional"
-" as it prevents users from accidentally limiting themselves to non-"
-"Unicode strings."
-msgstr ""
-
-#: ../../concepts/configuration.rst:248
+#: ../../concepts/configuration.rst:245
 msgid ""
 "If the current value is ``None``, it too is replaced with the string from"
 " the environment;"
-msgstr ""
+msgstr "如果当前值为 ``None``，它也会用环境变量中的字符串替换。"
 
-#: ../../concepts/configuration.rst:250
+#: ../../concepts/configuration.rst:247
 msgid ""
 "Booleans are set as follows: ``0`` and the empty value/string (e.g. "
 "``SETTING=``, or ``unset SETTING``, or etc) evaluate to ``False``, and "
 "any other value evaluates to ``True``."
 msgstr ""
+"布尔值的设置如下：``0`` 和空值/空字符串（例如 ``SETTING=``，或 ``unset SETTING``，或其他类似情况）会被评估为"
+" ``False``，而任何其他值会被评估为 ``True``。"
 
-#: ../../concepts/configuration.rst:253
+#: ../../concepts/configuration.rst:250
 msgid "Lists and tuples are currently unsupported and will raise an exception;"
-msgstr ""
+msgstr "列表和元组当前不受支持，会引发异常。"
 
-#: ../../concepts/configuration.rst:255
+#: ../../concepts/configuration.rst:252
 msgid ""
 "In the future we may implement convenience transformations, such as "
 "splitting on commas to form a list; however since users can always "
 "perform such operations themselves, it may not be a high priority."
-msgstr ""
+msgstr "在未来可能会实现一些便利的转换，例如使用逗号拆分以形成列表；但由于用户可以随时执行这些操作，因此它可能不是高优先级。"
 
-#: ../../concepts/configuration.rst:259
+#: ../../concepts/configuration.rst:256
 msgid ""
 "All other types - integers, longs, floats, etc - are simply used as "
 "constructors for the incoming value."
-msgstr ""
+msgstr "所有其他类型（整数、长整数、浮点数等）都用作传入值的构造函数。"
 
-#: ../../concepts/configuration.rst:262
+#: ../../concepts/configuration.rst:259
 msgid ""
 "For example, a ``foobar`` setting whose default value is the integer "
 "``1`` will run all env var inputs through `int`, and thus ``FOOBAR=5`` "
 "will result in the Python value ``5``, not ``\"5\"``."
 msgstr ""
+"例如，默认值为整数 ``1`` 的 ``foobar`` 设置会通过 `int` 处理所有环境变量输入，因此 ``FOOBAR=5`` 将导致 "
+"Python 值为 ``5``，而不是 ``\"5\"``。"
 
-#: ../../concepts/configuration.rst:269
+#: ../../concepts/configuration.rst:266
 msgid "Nesting vs underscored names"
-msgstr ""
+msgstr "嵌套 vs 下划线命名"
 
-#: ../../concepts/configuration.rst:271
+#: ../../concepts/configuration.rst:268
 msgid ""
 "Since environment variable keys are single strings, we must use some form"
 " of string parsing to allow access to nested configuration settings. As "
 "mentioned above, in basic use cases this just means using an underscore "
 "character: ``{'run': {'echo': True}}`` becomes ``INVOKE_RUN_ECHO=1``."
 msgstr ""
+"由于环境变量键是单个字符串，因此必须使用某种字符串解析来允许访问嵌套的配置设置。如上所述，在基本用例中这仅仅意味着使用下划线字符：``{'run':"
+" {'echo': True}}`` 变成 ``INVOKE_RUN_ECHO=1``。"
 
-#: ../../concepts/configuration.rst:276
+#: ../../concepts/configuration.rst:273
 msgid ""
 "However, ambiguity is introduced when the settings names themselves "
 "contain underscores: is ``INVOKE_FOO_BAR=baz`` equivalent to ``{'foo': "
@@ -461,8 +519,11 @@ msgid ""
 "in config files, we look at the current state of the config to determine "
 "the answer."
 msgstr ""
+"然而，当设置名称本身包含下划线时，会引入歧义：``INVOKE_FOO_BAR=baz`` 是等同于 ``{'foo': {'bar': "
+"'baz'}}``，还是等同于 ``{'foo_bar': 'baz'}``？幸运的是，由于环境变量只能用于修改在 Python "
+"级别或配置文件中声明的设置，可以通过查看配置的当前状态来确定答案。"
 
-#: ../../concepts/configuration.rst:282
+#: ../../concepts/configuration.rst:279
 msgid ""
 "There is still a corner case where *both* possible interpretations exist "
 "as valid config paths (e.g. ``{'foo': {'bar': 'default'}, 'foo_bar': "
@@ -472,98 +533,96 @@ msgid ""
 "counseling users to modify their configuration layout or avoid using env "
 "vars for the setting in question."
 msgstr ""
+"仍然存在一种极端情况，即*两种*可能的解释都作为有效的配置路径存在（例如 ``{'foo': {'bar': 'default'}, "
+"'foo_bar': 'otherdefault'}``）。在这种情况下，我们遵循 `Python 之禅 <http://zen-of-"
+"python.info/in-the-face-of-ambiguity-refuse-the-temptation-to-"
+"guess.html#12>`_，拒绝猜测；相反，会引发错误，建议用户修改其配置布局或避免使用环境变量来设置相关值。"
 
-#: ../../concepts/configuration.rst:293
+#: ../../concepts/configuration.rst:290
 msgid "`.Collection`-based configuration"
 msgstr "基于 `.Collection` 的配置"
 
-#: ../../concepts/configuration.rst:295
+#: ../../concepts/configuration.rst:292
 msgid ""
 "`.Collection` objects may contain a config mapping, set via "
 "`.Collection.configure`, and (as per :ref:`the hierarchy <config-"
 "hierarchy>`) this typically forms the lowest level of configuration in "
 "the system."
 msgstr ""
-"`.Collection` 对象可以包含配置映射，通过 `.Collection.configure` 来设置，"
-"并且（按照 :ref:`层次结构 <config-hierarchy>`）这通常形成了系统中最低级别的配置。"
+"`.Collection` 对象可以包含配置映射，通过 `.Collection.configure` 来设置，并且（按照 :ref:`层次结构 "
+"<config-hierarchy>`）这通常形成了系统中最低级别的配置。"
 
-#: ../../concepts/configuration.rst:299
+#: ../../concepts/configuration.rst:296
 msgid ""
 "When collections are :doc:`nested </concepts/namespaces>`, configuration "
 "is merged 'downwards' by default: when conflicts arise, outer namespaces "
 "closer to the root will win, versus inner ones closer to the task being "
 "invoked."
 msgstr ""
-"当集合是 :doc:`嵌套 </concepts/namespaces>` 时，"
-"配置默认是 '向下' 合并：当冲突出现时，相对于靠近被调用任务的内部命名空间，"
-"靠近根的外部命名空间将获胜。"
+"当集合是 :doc:`嵌套 </concepts/namespaces>` 时，配置默认是 '向下' "
+"合并：当冲突出现时，相对于靠近被调用任务的内部命名空间，靠近根的外部命名空间将获胜。"
 
-#: ../../concepts/configuration.rst:304
+#: ../../concepts/configuration.rst:301
 msgid ""
 "'Inner' tasks here are specifically those on the path from the root to "
 "the one housing the invoked task. 'Sibling' subcollections are ignored."
-msgstr ""
-"这里的“内部”任务是指从根目录到被调用任务所在目录的路径上的任务。'Sibling' 子集合将被忽略。"
+msgstr "这里的“内部”任务是指从根目录到被调用任务所在目录的路径上的任务。'Sibling' 子集合将被忽略。"
 
-#: ../../concepts/configuration.rst:307
+#: ../../concepts/configuration.rst:304
 msgid "A quick example of what this means::"
 msgstr "举个简单的例子 ::"
 
-#: ../../concepts/configuration.rst:323
+#: ../../concepts/configuration.rst:320
 msgid "The result of calling ``inner.mytask``::"
 msgstr "调用 ``inner.mytask`` 的结果 ::"
 
-#: ../../concepts/configuration.rst:330
+#: ../../concepts/configuration.rst:327
 msgid "Example of real-world config use"
 msgstr "真实世界配置使用的例子"
 
-#: ../../concepts/configuration.rst:332
+#: ../../concepts/configuration.rst:329
 msgid ""
 "The previous sections had small examples within them; this section "
 "provides a more realistic-looking set of examples showing how the config "
 "system works."
-msgstr ""
-"前面的章节中有一些小例子；本节提供了一组看起来更真实的例子，展示了配置系统是如何工作的。"
+msgstr "前面的章节中有一些小例子；本节提供了一组看起来更真实的例子，展示了配置系统是如何工作的。"
 
-#: ../../concepts/configuration.rst:336
+#: ../../concepts/configuration.rst:333
 msgid "Setup"
 msgstr "设置"
 
-#: ../../concepts/configuration.rst:338
+#: ../../concepts/configuration.rst:335
 msgid ""
 "We'll start out with semi-realistic tasks that hardcode their values, and"
 " build up to using the various configuration mechanisms. A small module "
 "for building `Sphinx <http://sphinx-doc.org>`_ docs might begin like "
 "this::"
 msgstr ""
-"从硬编码其值的半现实的任务开始，然后使用各种配置机制进行构建。"
-"用于构建 `Sphinx <http://sphinx-doc.org>`_  docs 的小模块可以这样开始 ::"
+"从硬编码其值的半现实的任务开始，然后使用各种配置机制进行构建。用于构建 `Sphinx <http://sphinx-doc.org>`_  "
+"docs 的小模块可以这样开始 ::"
 
-#: ../../concepts/configuration.rst:352
+#: ../../concepts/configuration.rst:349
 msgid "Then maybe you refactor the build target::"
 msgstr "然后重构构建目标 ::"
 
-#: ../../concepts/configuration.rst:364
+#: ../../concepts/configuration.rst:361
 msgid "We can also allow runtime parameterization::"
 msgstr "还可以允许运行时参数化 ::"
 
-#: ../../concepts/configuration.rst:376
+#: ../../concepts/configuration.rst:373
 msgid ""
 "This task module works for a single set of users, but what if we want to "
 "allow reuse? Somebody may want to use this module with a different "
 "default target. Using the configuration data (made available via the "
 "context arg) to configure these settings is usually the better solution "
 "[1]_."
-msgstr ""
-"这个任务模块只适用于一组用户，但如果我们希望允许重用呢？"
-"有些人可能希望将此模块与另一个默认目标一起使用。"
-"使用配置数据（通过上下文参数提供）来配置这些设置通常是更好的解决方案。[1]_"
+msgstr "这个任务模块只适用于一组用户，但如果我们希望允许重用呢？有些人可能希望将此模块与另一个默认目标一起使用。使用配置数据（通过上下文参数提供）来配置这些设置通常是更好的解决方案。[1]_"
 
-#: ../../concepts/configuration.rst:382
+#: ../../concepts/configuration.rst:379
 msgid "Configuring via task collection"
 msgstr "任务 collection 配置"
 
-#: ../../concepts/configuration.rst:384
+#: ../../concepts/configuration.rst:381
 msgid ""
 "The configuration `setting <.Collection.configure>` and `getting "
 "<.Context.config>` APIs enable moving otherwise 'hardcoded' default "
@@ -572,88 +631,101 @@ msgid ""
 "namespace object::"
 msgstr ""
 "配置 `setting <.Collection.configure>` 和 `getting <.Context.config>` "
-"允许将其他的‘硬编码’默认值移动到配置结构中，下游用户可以自由地重新定义。"
-"让我们把这个应用到我们的例子中。首先，我们添加一个显式的命名空间对象 ::"
+"允许将其他的‘硬编码’默认值移动到配置结构中，下游用户可以自由地重新定义。让我们把这个应用到我们的例子中。首先，我们添加一个显式的命名空间对象 "
+"::"
 
-#: ../../concepts/configuration.rst:403
+#: ../../concepts/configuration.rst:400
 msgid ""
 "Then we can move the default build target value into the collection's "
 "default configuration, and refer to it via the context. At this point we "
 "also change our kwarg default value to be ``None`` so we can determine "
 "whether or not a runtime value was given.  The result::"
 msgstr ""
-"然后，可以将默认构建目标值移到集合的默认配置中，并通过上下文引用它。"
-"在这一点上，也将 kwarg 的默认值改为 ``None``，"
-"这样就可以确定是否给出了一个运行时值。结果 ::"
+"然后，可以将默认构建目标值移到集合的默认配置中，并通过上下文引用它。在这一点上，也将 kwarg 的默认值改为 "
+"``None``，这样就可以确定是否给出了一个运行时值。结果 ::"
 
-#: ../../concepts/configuration.rst:423
+#: ../../concepts/configuration.rst:420
 msgid ""
 "The result isn't significantly more complex than what we began with, and "
 "as we'll see next, it's now trivial for users to override your defaults "
 "in various ways."
-msgstr ""
-"结果并不比我们开始时更复杂，正如我们接下来将看到的，现在用户以各种方式重写默认值是微不足道的。"
+msgstr "结果并不比我们开始时更复杂，正如我们接下来将看到的，现在用户以各种方式重写默认值是微不足道的。"
 
-#: ../../concepts/configuration.rst:428
+#: ../../concepts/configuration.rst:425
 msgid "Configuration overriding"
 msgstr "配置覆盖"
 
-#: ../../concepts/configuration.rst:430
+#: ../../concepts/configuration.rst:427
 msgid ""
 "The lowest-level override is, of course, just modifying the local "
 "`.Collection` tree into which a distributed module has been imported. "
 "E.g. if the above module is distributed as ``myproject.docs``, someone "
 "can define a ``tasks.py`` that does this::"
 msgstr ""
-"当然，最低级别的覆盖只是修改本地 `.Collection` 树，其中导入了分布式模块。"
-"例如，如果上面的模块是作为 ``myproject.docs`` 分发的，可以定义 ``tasks.py`` 来做这个 ::"
+"当然，最低级别的覆盖只是修改本地 `.Collection` 树，其中导入了分布式模块。例如，如果上面的模块是作为 "
+"``myproject.docs`` 分发的，可以定义 ``tasks.py`` 来做这个 ::"
 
-#: ../../concepts/configuration.rst:446
+#: ../../concepts/configuration.rst:443
 msgid "And then they can add this to the bottom::"
 msgstr "然后把这个加到下面 ::"
 
-#: ../../concepts/configuration.rst:451
+#: ../../concepts/configuration.rst:448
 msgid ""
 "Now we have a ``docs`` sub-namespace whose build target defaults to "
 "``built_docs`` instead of ``docs/_build``. Runtime users can still "
 "override this via flags (e.g. ``inv docs.build "
 "--target='some/other/dir'``) just as before."
 msgstr ""
-"现在有了 ``docs`` 子命名空间，它的构建目标默认为 ``built_docs``，而不是 ``docs/_build``。"
-"运行时用户仍然可以通过旗标（例如 ``inv docs.build --target='some/other/dir'``）像以前一样构建。"
+"现在有了 ``docs`` 子命名空间，它的构建目标默认为 ``built_docs``，而不是 "
+"``docs/_build``。运行时用户仍然可以通过旗标（例如 ``inv docs.build "
+"--target='some/other/dir'``）像以前一样构建。"
 
-#: ../../concepts/configuration.rst:456
+#: ../../concepts/configuration.rst:453
 msgid ""
 "If you prefer configuration files over in-Python tweaking of your "
 "namespace tree, that works just as well; instead of adding the line above"
 " to the previous snippet, instead drop this into a file next to "
 "``tasks.py`` named ``invoke.yaml``::"
 msgstr ""
-"如果你更喜欢配置文件而不是在 python 中调整你的命名空间树，这也可以；"
-"不要把上面的代码添加到前面的代码片段中，"
-"而是把它放到 ``tasks.py`` 旁边的名为 ``invoke.yaml`` 的文件中 ::"
+"如果你更喜欢配置文件而不是在 python 中调整你的命名空间树，这也可以；不要把上面的代码添加到前面的代码片段中，而是把它放到 "
+"``tasks.py`` 旁边的名为 ``invoke.yaml`` 的文件中 ::"
 
-#: ../../concepts/configuration.rst:464
+#: ../../concepts/configuration.rst:461
 msgid ""
 "For this example, that sort of local-to-project conf file makes the most "
 "sense, but don't forget that the :ref:`config hierarchy <config-"
 "hierarchy>` offers additional configuration methods which may be suitable"
 " depending on your needs."
 msgstr ""
-"在这个例子中，那种 local-to-project 的配置文件是最有意义的，"
-"但是不要忘记 :ref:`config hierarchy <config-hierarchy>` 提供了额外的配置方法，"
-"根据你的需要可能是合适的。"
+"在这个例子中，那种 local-to-project 的配置文件是最有意义的，但是不要忘记 :ref:`config hierarchy "
+"<config-hierarchy>` 提供了额外的配置方法，根据你的需要可能是合适的。"
 
-#: ../../concepts/configuration.rst:470
+#: ../../concepts/configuration.rst:467
 msgid "Footnotes"
 msgstr "脚注"
 
-#: ../../concepts/configuration.rst:472
+#: ../../concepts/configuration.rst:469
 msgid ""
 "Copying and modifying the file breaks code reuse; overriding the module-"
 "level ``default_path`` variable won't play well with concurrency; "
 "wrapping the tasks with different default arguments works but is fragile "
 "and adds boilerplate."
 msgstr ""
-"复制和修改文件会破坏代码重用；重写模块级的 ``default_path`` 变量将不能很好地处理并发性；"
-"用不同的默认参数包装任务可以工作，但很脆弱，会增加样板文件。"
+"复制和修改文件会破坏代码重用；重写模块级的 ``default_path`` "
+"变量将不能很好地处理并发性；用不同的默认参数包装任务可以工作，但很脆弱，会增加样板文件。"
+
+#~ msgid ""
+#~ "Depending on interpreter and environment, "
+#~ "this means that a setting defaulting "
+#~ "to a non-Unicode string type (eg"
+#~ " a ``str`` on Python 2) may end"
+#~ " up replaced with a Unicode string,"
+#~ " or vice versa. This is intentional"
+#~ " as it prevents users from "
+#~ "accidentally limiting themselves to non-"
+#~ "Unicode strings."
+#~ msgstr ""
+#~ "根据解释器和环境的不同，这意味着默认值为非 Unicode 字符串类型（例如 Python "
+#~ "2 中的 ``str``）的设置可能会被替换为 Unicode "
+#~ "字符串，反之亦然。这是有意为之，因为它可以防止用户意外地将自己限制在非 Unicode 字符串中。"
+

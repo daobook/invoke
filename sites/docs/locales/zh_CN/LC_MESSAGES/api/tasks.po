@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/tasks.rst:3
 msgid "``tasks``"
@@ -25,5 +25,305 @@ msgstr ""
 msgid ""
 "This module contains the core `.Task` class & convenience decorators used"
 " to generate new tasks."
+msgstr ""
+
+#: invoke.tasks.Call:1 of
+msgid "Represents a call/execution of a `.Task` with given (kw)args."
+msgstr ""
+
+#: invoke.tasks.Call:3 of
+msgid ""
+"Similar to `~functools.partial` with some added functionality (such as "
+"the delegation to the inner task, and optional tracking of the name it's "
+"being called by.)"
+msgstr ""
+
+#: invoke.tasks.Call.__eq__:1 invoke.tasks.Task.__eq__:1 of
+msgid "Return self==value."
+msgstr ""
+
+#: invoke.tasks.Call.__init__:1 of
+msgid "Create a new `.Call` object."
+msgstr ""
+
+#: ../../api/tasks.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.tasks.Call.__init__:3 of
+msgid "The `.Task` object to be executed."
+msgstr ""
+
+#: invoke.tasks.Call.__init__:5 of
+msgid ""
+"The name the task is being called as, e.g. if it was called by an alias "
+"or other rebinding. Defaults to ``None``, aka, the task was referred to "
+"by its default name."
+msgstr ""
+
+#: invoke.tasks.Call.__init__:10 of
+msgid "Positional arguments to call with, if any. Default: ``None``."
+msgstr ""
+
+#: invoke.tasks.Call.__init__:13 of
+msgid "Keyword arguments to call with, if any. Default: ``None``."
+msgstr ""
+
+#: invoke.tasks.Call.__repr__:1 invoke.tasks.Task.__repr__:1 of
+msgid "Return repr(self)."
+msgstr ""
+
+#: ../../../docstring invoke.tasks.Call.__weakref__:1
+#: invoke.tasks.Task.__weakref__:1 of
+msgid "list of weak references to the object"
+msgstr ""
+
+#: invoke.tasks.Call.clone:1 of
+msgid "Return a standalone copy of this Call."
+msgstr ""
+
+#: invoke.tasks.Call.clone:3 of
+msgid "Useful when parameterizing task executions."
+msgstr ""
+
+#: invoke.tasks.Call.clone:5 of
+msgid "A subclass to generate instead of the current class. Optional."
+msgstr ""
+
+#: invoke.tasks.Call.clone:8 of
+msgid ""
+"A dict of additional keyword arguments to use when creating the new "
+"clone; typically used when cloning ``into`` a subclass that has extra "
+"args on top of the base class. Optional.  .. note::     This dict is used"
+" to ``.update()`` the original object's data     (the return value from "
+"its `clone_data`), so in the event of     a conflict, values in ``with_``"
+" will win out."
+msgstr ""
+
+#: invoke.tasks.Call.clone:9 of
+msgid ""
+"A dict of additional keyword arguments to use when creating the new "
+"clone; typically used when cloning ``into`` a subclass that has extra "
+"args on top of the base class. Optional."
+msgstr ""
+
+#: invoke.tasks.Call.clone:14 of
+msgid ""
+"This dict is used to ``.update()`` the original object's data (the return"
+" value from its `clone_data`), so in the event of a conflict, values in "
+"``with_`` will win out."
+msgstr ""
+
+#: invoke.tasks.Call.clone:19 of
+msgid "Added the ``with_`` kwarg."
+msgstr ""
+
+#: invoke.tasks.Call.clone_data:1 of
+msgid "Return keyword args suitable for cloning this call into another."
+msgstr ""
+
+#: invoke.tasks.Call.make_context:1 of
+msgid "Generate a `.Context` appropriate for this call, with given config."
+msgstr ""
+
+#: invoke.tasks.Task:1 of
+msgid "Core object representing an executable task & its argument specification."
+msgstr ""
+
+#: invoke.tasks.Task:3 of
+msgid ""
+"For the most part, this object is a clearinghouse for all of the data "
+"that may be supplied to the `@task <invoke.tasks.task>` decorator, such "
+"as ``name``, ``aliases``, ``positional`` etc, which appear as attributes."
+msgstr ""
+
+#: invoke.tasks.Task:7 of
+msgid ""
+"In addition, instantiation copies some introspection/documentation "
+"friendly metadata off of the supplied ``body`` object, such as "
+"``__doc__``, ``__name__`` and ``__module__``, allowing it to \"appear "
+"as\" ``body`` for most intents and purposes."
+msgstr ""
+
+#: invoke.tasks.Task.__call__:1 of
+msgid "Call self as a function."
+msgstr ""
+
+#: invoke.tasks.Task.__hash__:1 of
+msgid "Return hash(self)."
+msgstr ""
+
+#: invoke.tasks.Task.argspec:1 of
+msgid "Returns a modified `inspect.Signature` based on that of ``body``."
+msgstr ""
+
+#: ../../api/tasks.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.tasks.Task.argspec:3 of
+msgid ""
+"an `inspect.Signature` matching that of ``body``, but with the initial "
+"context argument removed."
+msgstr ""
+
+#: ../../api/tasks.rst
+msgid "抛出"
+msgstr ""
+
+#: invoke.tasks.Task.argspec:6 of
+msgid "if the task lacks an initial positional `.Context` argument."
+msgstr ""
+
+#: invoke.tasks.Task.argspec:10 of
+msgid ""
+"Changed from returning a two-tuple of ``(arg_names, spec_dict)`` to "
+"returning an `inspect.Signature`."
+msgstr ""
+
+#: invoke.tasks.Task.get_arguments:1 of
+msgid "Return a list of Argument objects representing this task's signature."
+msgstr ""
+
+#: invoke.tasks.Task.get_arguments:3 of
+msgid ""
+"Controls whether unknown help flags cause errors. See the config option "
+"by the same name for details."
+msgstr ""
+
+#: invoke.tasks.Task.get_arguments:8 of
+msgid "Added the ``ignore_unknown_help`` kwarg."
+msgstr ""
+
+#: invoke.tasks.call:1 of
+msgid "Describes execution of a `.Task`, typically with pre-supplied arguments."
+msgstr ""
+
+#: invoke.tasks.call:3 of
+msgid ""
+"Useful for setting up :ref:`pre/post task invocations <parameterizing-"
+"pre-post-tasks>`. It's actually just a convenient wrapper around the "
+"`.Call` class, which may be used directly instead if desired."
+msgstr ""
+
+#: invoke.tasks.call:7 of
+msgid ""
+"For example, here's two build-like tasks that both refer to a ``setup`` "
+"pre-task, one with no baked-in argument values (and thus no need to use "
+"`.call`), and one that toggles a boolean flag::"
+msgstr ""
+
+#: invoke.tasks.call:26 of
+msgid ""
+"Please see the constructor docs for `.Call` for details - this function's"
+" ``args`` and ``kwargs`` map directly to the same arguments as in that "
+"method."
+msgstr ""
+
+#: invoke.tasks.task:1 of
+msgid "Marks wrapped callable object as a valid Invoke task."
+msgstr ""
+
+#: invoke.tasks.task:3 of
+msgid ""
+"May be called without any parentheses if no extra options need to be "
+"specified. Otherwise, the following keyword arguments are allowed in the "
+"parenthese'd form:"
+msgstr ""
+
+#: invoke.tasks.task:7 of
+msgid ""
+"``name``: Default name to use when binding to a `.Collection`. Useful for"
+" avoiding Python namespace issues (i.e. when the desired CLI level name "
+"can't or shouldn't be used as the Python level name.)"
+msgstr ""
+
+#: invoke.tasks.task:10 of
+msgid ""
+"``aliases``: Specify one or more aliases for this task, allowing it to be"
+" invoked as multiple different names. For example, a task named "
+"``mytask`` with a simple ``@task`` wrapper may only be invoked as "
+"``\"mytask\"``. Changing the decorator to be "
+"``@task(aliases=['myothertask'])`` allows invocation as ``\"mytask\"`` "
+"*or* ``\"myothertask\"``."
+msgstr ""
+
+#: invoke.tasks.task:15 of
+msgid ""
+"``positional``: Iterable overriding the parser's automatic \"args with no"
+" default value are considered positional\" behavior. If a list of arg "
+"names, no args besides those named in this iterable will be considered "
+"positional. (This means that an empty list will force all arguments to be"
+" given as explicit flags.)"
+msgstr ""
+
+#: invoke.tasks.task:20 of
+msgid ""
+"``optional``: Iterable of argument names, declaring those args to have "
+":ref:`optional values <optional-values>`. Such arguments may be given as "
+"value-taking options (e.g. ``--my-arg=myvalue``, wherein the task is "
+"given ``\"myvalue\"``) or as Boolean flags (``--my-arg``, resulting in "
+"``True``)."
+msgstr ""
+
+#: invoke.tasks.task:25 of
+msgid ""
+"``iterable``: Iterable of argument names, declaring them to :ref:`build "
+"iterable values <iterable-flag-values>`."
+msgstr ""
+
+#: invoke.tasks.task:27 of
+msgid ""
+"``incrementable``: Iterable of argument names, declaring them to "
+":ref:`increment their values <incrementable-flag-values>`."
+msgstr ""
+
+#: invoke.tasks.task:29 of
+msgid ""
+"``default``: Boolean option specifying whether this task should be its "
+"collection's default task (i.e. called if the collection's own name is "
+"given.)"
+msgstr ""
+
+#: invoke.tasks.task:32 of
+msgid ""
+"``auto_shortflags``: Whether or not to automatically create short flags "
+"from task options; defaults to True."
+msgstr ""
+
+#: invoke.tasks.task:34 of
+msgid ""
+"``help``: Dict mapping argument names to their help strings. Will be "
+"displayed in ``--help`` output. For arguments containing underscores "
+"(which are transformed into dashes on the CLI by default), either the "
+"dashed or underscored version may be supplied here."
+msgstr ""
+
+#: invoke.tasks.task:38 of
+msgid ""
+"``pre``, ``post``: Lists of task objects to execute prior to, or after, "
+"the wrapped task whenever it is executed."
+msgstr ""
+
+#: invoke.tasks.task:40 of
+msgid ""
+"``autoprint``: Boolean determining whether to automatically print this "
+"task's return value to standard output when invoked directly via the CLI."
+" Defaults to False."
+msgstr ""
+
+#: invoke.tasks.task:43 of
+msgid "``klass``: Class to instantiate/return. Defaults to `.Task`."
+msgstr ""
+
+#: invoke.tasks.task:45 of
+msgid ""
+"If any non-keyword arguments are given, they are taken as the value of "
+"the ``pre`` kwarg for convenience's sake. (It is an error to give both "
+"``*args`` and ``pre`` at the same time.)"
+msgstr ""
+
+#: invoke.tasks.task:50 of
+msgid "Added the ``klass`` keyword argument."
 msgstr ""
 

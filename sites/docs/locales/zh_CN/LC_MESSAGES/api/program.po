@@ -8,16 +8,419 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/program.rst:3
 msgid "``program``"
+msgstr ""
+
+#: invoke.program.Program:1 of
+msgid "Manages top-level CLI invocation, typically via ``setup.py`` entrypoints."
+msgstr ""
+
+#: invoke.program.Program:3 of
+msgid ""
+"Designed for distributing Invoke task collections as standalone programs,"
+" but also used internally to implement the ``invoke`` program itself."
+msgstr ""
+
+#: invoke.program.Program:7 of
+msgid ""
+":ref:`reusing-as-a-binary` for a tutorial/walkthrough of this "
+"functionality."
+msgstr ""
+
+#: invoke.program.Program.__init__:1 of
+msgid "Create a new, parameterized `.Program` instance."
+msgstr ""
+
+#: ../../api/program.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.program.Program.__init__:3 of
+msgid "The program's version, e.g. ``\"0.1.0\"``. Defaults to ``\"unknown\"``."
+msgstr ""
+
+#: invoke.program.Program.__init__:6 of
+msgid ""
+"A `.Collection` to use as this program's subcommands.  If ``None`` (the "
+"default), the program will behave like ``invoke``, seeking a nearby task "
+"namespace with a `.Loader` and exposing arguments such as "
+":option:`--list` and :option:`--collection` for inspecting or selecting "
+"specific namespaces.  If given a `.Collection` object, will use it as if "
+"it had been handed to :option:`--collection`. Will also update the parser"
+" to remove references to tasks and task-related options, and display the "
+"subcommands in ``--help`` output. The result will be a program that has a"
+" static set of subcommands."
+msgstr ""
+
+#: invoke.program.Program.__init__:7 of
+msgid "A `.Collection` to use as this program's subcommands."
+msgstr ""
+
+#: invoke.program.Program.__init__:9 of
+msgid ""
+"If ``None`` (the default), the program will behave like ``invoke``, "
+"seeking a nearby task namespace with a `.Loader` and exposing arguments "
+"such as :option:`--list` and :option:`--collection` for inspecting or "
+"selecting specific namespaces."
+msgstr ""
+
+#: invoke.program.Program.__init__:14 of
+msgid ""
+"If given a `.Collection` object, will use it as if it had been handed to "
+":option:`--collection`. Will also update the parser to remove references "
+"to tasks and task-related options, and display the subcommands in "
+"``--help`` output. The result will be a program that has a static set of "
+"subcommands."
+msgstr ""
+
+#: invoke.program.Program.__init__:20 of
+msgid ""
+"The program's name, as displayed in ``--version`` output.  If ``None`` "
+"(default), is a capitalized version of the first word in the ``argv`` "
+"handed to `.run`. For example, when invoked from a binstub installed as "
+"``foobar``, it will default to ``Foobar``."
+msgstr ""
+
+#: invoke.program.Program.__init__:21 of
+msgid "The program's name, as displayed in ``--version`` output."
+msgstr ""
+
+#: invoke.program.Program.__init__:23 of
+msgid ""
+"If ``None`` (default), is a capitalized version of the first word in the "
+"``argv`` handed to `.run`. For example, when invoked from a binstub "
+"installed as ``foobar``, it will default to ``Foobar``."
+msgstr ""
+
+#: invoke.program.Program.__init__:27 of
+msgid ""
+"Descriptive lowercase binary name string used in help text.  For example,"
+" Invoke's own internal value for this is ``inv[oke]``, denoting that it "
+"is installed as both ``inv`` and ``invoke``. As this is purely text "
+"intended for help display, it may be in any format you wish, though it "
+"should match whatever you've put into your ``setup.py``'s "
+"``console_scripts`` entry.  If ``None`` (default), uses the first word in"
+" ``argv`` verbatim (as with ``name`` above, except not capitalized)."
+msgstr ""
+
+#: invoke.program.Program.__init__:28 of
+msgid "Descriptive lowercase binary name string used in help text."
+msgstr ""
+
+#: invoke.program.Program.__init__:30 of
+msgid ""
+"For example, Invoke's own internal value for this is ``inv[oke]``, "
+"denoting that it is installed as both ``inv`` and ``invoke``. As this is "
+"purely text intended for help display, it may be in any format you wish, "
+"though it should match whatever you've put into your ``setup.py``'s "
+"``console_scripts`` entry."
+msgstr ""
+
+#: invoke.program.Program.__init__:36 of
+msgid ""
+"If ``None`` (default), uses the first word in ``argv`` verbatim (as with "
+"``name`` above, except not capitalized)."
+msgstr ""
+
+#: invoke.program.Program.__init__:39 of
+msgid ""
+"List of binary name strings, for use in completion scripts.  This list "
+"ensures that the shell completion scripts generated by :option:`--print-"
+"completion-script` instruct the shell to use that completion for all of "
+"this program's installed names.  For example, Invoke's internal default "
+"for this is ``[\"inv\", \"invoke\"]``.  If ``None`` (the default), the "
+"first word in ``argv`` (in the invocation of :option:`--print-completion-"
+"script`) is used in a single-item list."
+msgstr ""
+
+#: invoke.program.Program.__init__:40 of
+msgid "List of binary name strings, for use in completion scripts."
+msgstr ""
+
+#: invoke.program.Program.__init__:42 of
+msgid ""
+"This list ensures that the shell completion scripts generated by :option"
+":`--print-completion-script` instruct the shell to use that completion "
+"for all of this program's installed names."
+msgstr ""
+
+#: invoke.program.Program.__init__:46 of
+msgid ""
+"For example, Invoke's internal default for this is ``[\"inv\", "
+"\"invoke\"]``."
+msgstr ""
+
+#: invoke.program.Program.__init__:49 of
+msgid ""
+"If ``None`` (the default), the first word in ``argv`` (in the invocation "
+"of :option:`--print-completion-script`) is used in a single-item list."
+msgstr ""
+
+#: invoke.program.Program.__init__:53 of
+msgid ""
+"The `.Loader` subclass to use when loading task collections.  Defaults to"
+" `.FilesystemLoader`."
+msgstr ""
+
+#: invoke.program.Program.__init__:54 of
+msgid "The `.Loader` subclass to use when loading task collections."
+msgstr ""
+
+#: invoke.program.Program.__init__:56 of
+msgid "Defaults to `.FilesystemLoader`."
+msgstr ""
+
+#: invoke.program.Program.__init__:58 of
+msgid ""
+"The `.Executor` subclass to use when executing tasks.  Defaults to "
+"`.Executor`; may also be overridden at runtime by the :ref:`configuration"
+" system <default-values>` and its ``tasks.executor_class`` setting "
+"(anytime that setting is not ``None``)."
+msgstr ""
+
+#: invoke.program.Program.__init__:59 of
+msgid "The `.Executor` subclass to use when executing tasks."
+msgstr ""
+
+#: invoke.program.Program.__init__:61 of
+msgid ""
+"Defaults to `.Executor`; may also be overridden at runtime by the "
+":ref:`configuration system <default-values>` and its "
+"``tasks.executor_class`` setting (anytime that setting is not ``None``)."
+msgstr ""
+
+#: invoke.program.Program.__init__:66 of
+msgid ""
+"The `.Config` subclass to use for the base config object.  Defaults to "
+"`.Config`."
+msgstr ""
+
+#: invoke.program.Program.__init__:67 of
+msgid "The `.Config` subclass to use for the base config object."
+msgstr ""
+
+#: invoke.program.Program.__init__:69 of
+msgid "Defaults to `.Config`."
+msgstr ""
+
+#: invoke.program.Program.__init__:71 of
+msgid "Added the ``binary_names`` argument."
+msgstr ""
+
+#: ../../../docstring invoke.program.Program.__weakref__:1 of
+msgid "list of weak references to the object"
+msgstr ""
+
+#: invoke.program.Program.args:1 of
+msgid "Obtain core program args from ``self.core`` parse result."
+msgstr ""
+
+#: invoke.program.Program.binary:1 of
+msgid "Derive program's help-oriented binary name(s) from init args & argv."
+msgstr ""
+
+#: invoke.program.Program.binary_names:1 of
+msgid "Derive program's completion-oriented binary name(s) from args & argv."
+msgstr ""
+
+#: invoke.program.Program.called_as:1 of
+msgid "Returns the program name we were actually called as."
+msgstr ""
+
+#: invoke.program.Program.called_as:3 of
+msgid ""
+"Specifically, this is the (Python's os module's concept of a) basename of"
+" the first argument in the parsed argument vector."
+msgstr ""
+
+#: invoke.program.Program.core_args:1 of
+msgid "Return default core `.Argument` objects, as a list."
+msgstr ""
+
+#: invoke.program.Program.create_config:1 of
+msgid "Instantiate a `.Config` (or subclass, depending) for use in task exec."
+msgstr ""
+
+#: invoke.program.Program.create_config:3 of
+msgid ""
+"This Config is fully usable but will lack runtime-derived data like "
+"project & runtime config files, CLI arg overrides, etc. That data is "
+"added later in `update_config`. See `.Config` docstring for lifecycle "
+"details."
+msgstr ""
+
+#: ../../api/program.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.program.Program.create_config:8 of
+msgid "``None``; sets ``self.config`` instead."
+msgstr ""
+
+#: invoke.program.Program.execute:1 of
+msgid "Hand off data & tasks-to-execute specification to an `.Executor`."
+msgstr ""
+
+#: invoke.program.Program.execute:4 of
+msgid ""
+"Client code just wanting a different `.Executor` subclass can just set "
+"``executor_class`` in `.__init__`, or override ``tasks.executor_class`` "
+"anywhere in the :ref:`config system <default-values>` (which may allow "
+"you to avoid using a custom Program entirely)."
+msgstr ""
+
+#: invoke.program.Program.initial_context:1 of
+msgid "The initial parser context, aka core program flags."
+msgstr ""
+
+#: invoke.program.Program.initial_context:3 of
+msgid ""
+"The specific arguments contained therein will differ depending on whether"
+" a bundled namespace was specified in `.__init__`."
+msgstr ""
+
+#: invoke.program.Program.load_collection:1 of
+msgid "Load a task collection based on parsed core args, or die trying."
+msgstr ""
+
+#: invoke.program.Program.name:1 of
+msgid "Derive program's human-readable name based on `.binary`."
+msgstr ""
+
+#: invoke.program.Program.normalize_argv:1 of
+msgid "Massages ``argv`` into a useful list of strings."
+msgstr ""
+
+#: invoke.program.Program.normalize_argv:3 of
+msgid "**If None** (the default), uses `sys.argv`."
+msgstr ""
+
+#: invoke.program.Program.normalize_argv:5 of
+msgid "**If a non-string iterable**, uses that in place of `sys.argv`."
+msgstr ""
+
+#: invoke.program.Program.normalize_argv:7 of
+msgid ""
+"**If a string**, performs a `str.split` and then executes with the "
+"result. (This is mostly a convenience; when in doubt, use a list.)"
+msgstr ""
+
+#: invoke.program.Program.normalize_argv:10 of
+msgid "Sets ``self.argv`` to the result."
+msgstr ""
+
+#: invoke.program.Program.parse_cleanup:1 of
+msgid "Post-parsing, pre-execution steps such as --help, --list, etc."
+msgstr ""
+
+#: invoke.program.Program.parse_collection:1 of
+msgid "Load a tasks collection & project-level config."
+msgstr ""
+
+#: invoke.program.Program.parse_core_args:1 of
+msgid "Filter out core args, leaving any tasks or their args for later."
+msgstr ""
+
+#: invoke.program.Program.parse_core_args:3 of
+msgid "Sets ``self.core`` to the `.ParseResult` from this step."
+msgstr ""
+
+#: invoke.program.Program.parse_tasks:1 of
+msgid "Parse leftover args, which are typically tasks & per-task args."
+msgstr ""
+
+#: invoke.program.Program.parse_tasks:3 of
+msgid ""
+"Sets ``self.parser`` to the parser used, ``self.tasks`` to the parsed "
+"per-task contexts, and ``self.core_via_tasks`` to a context holding any "
+"core flags seen within the task contexts."
+msgstr ""
+
+#: invoke.program.Program.parse_tasks:7 of
+msgid ""
+"Also modifies ``self.core`` to include the data from ``core_via_tasks`` "
+"(so that it correctly reflects any supplied core flags regardless of "
+"where they appeared)."
+msgstr ""
+
+#: invoke.program.Program.print_columns:1 of
+msgid "Print tabbed columns from (name, help) ``tuples``."
+msgstr ""
+
+#: invoke.program.Program.print_columns:3 of
+msgid "Useful for listing tasks + docstrings, flags + help strings, etc."
+msgstr ""
+
+#: invoke.program.Program.print_task_help:1 of
+msgid "Print help for a specific task, e.g. ``inv --help <taskname>``."
+msgstr ""
+
+#: invoke.program.Program.run:1 of
+msgid "Execute main CLI logic, based on ``argv``."
+msgstr ""
+
+#: invoke.program.Program.run:3 of
+msgid ""
+"The arguments to execute against. May be ``None``, a list of strings, or "
+"a string. See `.normalize_argv` for details."
+msgstr ""
+
+#: invoke.program.Program.run:7 of
+msgid ""
+"When ``False`` (default: ``True``), will ignore `.ParseError`, `.Exit` "
+"and `.Failure` exceptions, which otherwise trigger calls to `sys.exit`.  "
+".. note::     This is mostly a concession to testing. If you're setting "
+"this     to ``False`` in a production setting, you should probably be"
+"     using `.Executor` and friends directly instead!"
+msgstr ""
+
+#: invoke.program.Program.run:8 of
+msgid ""
+"When ``False`` (default: ``True``), will ignore `.ParseError`, `.Exit` "
+"and `.Failure` exceptions, which otherwise trigger calls to `sys.exit`."
+msgstr ""
+
+#: invoke.program.Program.run:13 of
+msgid ""
+"This is mostly a concession to testing. If you're setting this to "
+"``False`` in a production setting, you should probably be using "
+"`.Executor` and friends directly instead!"
+msgstr ""
+
+#: invoke.program.Program.task_args:1 of
+msgid "Return default task-related `.Argument` objects, as a list."
+msgstr ""
+
+#: invoke.program.Program.task_args:3 of
+msgid ""
+"These are only added to the core args in \"task runner\" mode (the "
+"default for ``invoke`` itself) - they are omitted when the constructor is"
+" given a non-empty ``namespace`` argument (\"bundled namespace\" mode)."
+msgstr ""
+
+#: invoke.program.Program.update_config:1 of
+msgid "Update the previously instantiated `.Config` with parsed data."
+msgstr ""
+
+#: invoke.program.Program.update_config:3 of
+msgid ""
+"For example, this is how ``--echo`` is able to override the default "
+"config value for ``run.echo``."
+msgstr ""
+
+#: invoke.program.Program.update_config:6 of
+msgid ""
+"Whether to merge at the end, or defer. Primarily useful for subclassers. "
+"Default: ``True``."
 msgstr ""
 

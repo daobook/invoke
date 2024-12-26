@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../concepts/watchers.rst:5
 msgid "Automatically responding to program output"
-msgstr ""
+msgstr "自动响应程序输出"
 
 #: ../../concepts/watchers.rst:8
 msgid "Background"
-msgstr ""
+msgstr "背景"
 
 #: ../../concepts/watchers.rst:10
 msgid ""
@@ -33,6 +33,8 @@ msgid ""
 "resulting in an easily automated workflow -- but with the rest, "
 "interactivity is unavoidable."
 msgstr ""
+"命令行程序往往是为交互式 shell 设计的，这通常表现为等待用户输入或‘提示’。"
+"设计良好的程序提供了预先应对此类提示的选项，从而实现易于自动化的工作流程——但对于其他程序，交互性是不可避免的。"
 
 #: ../../concepts/watchers.rst:16
 msgid ""
@@ -41,10 +43,11 @@ msgid ""
 "prompts) but it can also be configured to respond automatically on your "
 "behalf."
 msgstr ""
+"幸运的是，Invoke 的 `.Runner` 类不仅将你的标准输入转发给正在运行的程序（允许你手动响应提示），还可以配置为自动代表你进行响应。"
 
 #: ../../concepts/watchers.rst:21
 msgid "Basic use"
-msgstr ""
+msgstr "基本用法"
 
 #: ../../concepts/watchers.rst:23
 msgid ""
@@ -56,18 +59,23 @@ msgid ""
 "every time its pattern is seen; others can be found in the :doc:`watchers"
 " module </api/watchers>`."
 msgstr ""
+"这种自动化的机制是 `.Runner.run` 方法（及其在其他地方的包装器，如 `.Context.run` 和 `invoke.run`）的 ``watchers`` 关键字参数，"
+"它是 `.StreamWatcher` 子类实例的列表，配置为监视模式并相应地响应。其中最简单的是 `.Responder`，"
+"它每次看到其配置的模式时都会回复其配置的响应；其他的可以在 :doc:`watchers 模块 </api/watchers>` 中找到。"
 
 #: ../../concepts/watchers.rst:32
 msgid ""
 "As with all other arguments to ``run``, you can also set the default set "
 "of watchers globally via :doc:`configuration files <configuration>`."
 msgstr ""
+"与 ``run`` 的所有其他参数一样，你也可以通过 :doc:`配置文件 <configuration>` 全局设置默认的 watchers 集合。"
 
 #: ../../concepts/watchers.rst:35
 msgid ""
 "Take for example this program which expects a manual response to a yes/no"
 " prompt::"
 msgstr ""
+"以这个需要手动响应是/否提示的程序为例::"
 
 #: ../../concepts/watchers.rst:43
 msgid ""
@@ -75,6 +83,7 @@ msgid ""
 "prompt, and mash Y by hand. But if you instead supply a `.Responder` like"
 " so::"
 msgstr ""
+"你*可以*调用 ``run(\"excitable-program\")``，手动监视提示并手动按下 Y。但如果你像这样提供一个 `.Responder`::"
 
 #: ../../concepts/watchers.rst:54
 msgid ""
@@ -83,6 +92,8 @@ msgid ""
 "automatically writes ``y`` (plus ``\\n`` to simulate hitting "
 "Enter/Return) to the program's ``stdin``."
 msgstr ""
+"然后 `.Runner` 将程序的 ``stdout`` 和 ``stderr`` 传递给 ``responder``，"
+"它会监视 ``\"Are you ready? [Y/n] \"`` 并自动写入 ``y`` （加上 ``\\n`` 以模拟按下 Enter/Return）到程序的 ``stdin``。"
 
 #: ../../concepts/watchers.rst:60
 msgid ""
@@ -90,4 +101,5 @@ msgid ""
 "<re>`, requiring more care (note how we had to escape our square-brackets"
 " in the above example) but providing more power as well."
 msgstr ""
-
+"`.Responder` 的 pattern 参数被视为 `正则表达式 <re>`，"
+"需要更加小心（注意在上面的示例中我们如何转义方括号），但也提供了更强大的功能。"

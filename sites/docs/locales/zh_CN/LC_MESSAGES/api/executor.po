@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/executor.rst:3
 msgid "``executor``"
@@ -29,5 +29,157 @@ msgstr ""
 msgid ""
 "Subclasses may override various extension points to change, add or remove"
 " behavior."
+msgstr ""
+
+#: invoke.executor.Executor.__init__:1 of
+msgid "Initialize executor with handles to necessary data structures."
+msgstr ""
+
+#: ../../api/executor.rst
+msgid "参数"
+msgstr ""
+
+#: invoke.executor.Executor.__init__:3 of
+msgid ""
+"A `.Collection` used to look up requested tasks (and their default config"
+" data, if any) by name during execution."
+msgstr ""
+
+#: invoke.executor.Executor.__init__:7 of
+msgid ""
+"An optional `.Config` holding configuration state. Defaults to an empty "
+"`.Config` if not given."
+msgstr ""
+
+#: invoke.executor.Executor.__init__:11 of
+msgid ""
+"An optional `.ParseResult` holding parsed core program arguments. "
+"Defaults to ``None``."
+msgstr ""
+
+#: ../../../docstring invoke.executor.Executor.__weakref__:1 of
+msgid "list of weak references to the object"
+msgstr ""
+
+#: invoke.executor.Executor.dedupe:1 of
+msgid "Deduplicate a list of `tasks <.Call>`."
+msgstr ""
+
+#: invoke.executor.Executor.dedupe:3 of
+msgid "An iterable of `.Call` objects representing tasks."
+msgstr ""
+
+#: ../../api/executor.rst
+msgid "返回"
+msgstr ""
+
+#: invoke.executor.Executor.dedupe:5 of
+msgid "A list of `.Call` objects."
+msgstr ""
+
+#: invoke.executor.Executor.execute:1 of
+msgid "Execute one or more ``tasks`` in sequence."
+msgstr ""
+
+#: invoke.executor.Executor.execute:3 of
+msgid ""
+"An all-purpose iterable of \"tasks to execute\", each member of which may"
+" take one of the following forms:  **A string** naming a task from the "
+"Executor's `.Collection`. This name may contain dotted syntax appropriate"
+" for calling namespaced tasks, e.g. ``subcollection.taskname``. Such "
+"tasks are executed without arguments.  **A two-tuple** whose first "
+"element is a task name string (as above) and whose second element is a "
+"dict suitable for use as ``**kwargs`` when calling the named task. E.g.::"
+"      [         ('task1', {}),         ('task2', {'arg1': 'val1'}),"
+"         ...     ]  is equivalent, roughly, to::      task1()     "
+"task2(arg1='val1')  **A `.ParserContext`** instance, whose ``.name`` "
+"attribute is used as the task name and whose ``.as_kwargs`` attribute is "
+"used as the task kwargs (again following the above specifications).  .. "
+"note::     When called without any arguments at all (i.e. when ``*tasks``"
+"     is empty), the default task from ``self.collection`` is used     "
+"instead, if defined."
+msgstr ""
+
+#: invoke.executor.Executor.execute:4 of
+msgid ""
+"An all-purpose iterable of \"tasks to execute\", each member of which may"
+" take one of the following forms:"
+msgstr ""
+
+#: invoke.executor.Executor.execute:7 of
+msgid ""
+"**A string** naming a task from the Executor's `.Collection`. This name "
+"may contain dotted syntax appropriate for calling namespaced tasks, e.g. "
+"``subcollection.taskname``. Such tasks are executed without arguments."
+msgstr ""
+
+#: invoke.executor.Executor.execute:12 of
+msgid ""
+"**A two-tuple** whose first element is a task name string (as above) and "
+"whose second element is a dict suitable for use as ``**kwargs`` when "
+"calling the named task. E.g.::"
+msgstr ""
+
+#: invoke.executor.Executor.execute:22 of
+msgid "is equivalent, roughly, to::"
+msgstr ""
+
+#: invoke.executor.Executor.execute:27 of
+msgid ""
+"**A `.ParserContext`** instance, whose ``.name`` attribute is used as the"
+" task name and whose ``.as_kwargs`` attribute is used as the task kwargs "
+"(again following the above specifications)."
+msgstr ""
+
+#: invoke.executor.Executor.execute:32 of
+msgid ""
+"When called without any arguments at all (i.e. when ``*tasks`` is empty),"
+" the default task from ``self.collection`` is used instead, if defined."
+msgstr ""
+
+#: invoke.executor.Executor.execute:36 of
+msgid ""
+"A dict mapping task objects to their return values.  This dict may "
+"include pre- and post-tasks if any were executed. For example, in a "
+"collection with a ``build`` task depending on another task named "
+"``setup``, executing ``build`` will result in a dict with two keys, one "
+"for ``build`` and one for ``setup``."
+msgstr ""
+
+#: invoke.executor.Executor.execute:37 of
+msgid "A dict mapping task objects to their return values."
+msgstr ""
+
+#: invoke.executor.Executor.execute:39 of
+msgid ""
+"This dict may include pre- and post-tasks if any were executed. For "
+"example, in a collection with a ``build`` task depending on another task "
+"named ``setup``, executing ``build`` will result in a dict with two keys,"
+" one for ``build`` and one for ``setup``."
+msgstr ""
+
+#: invoke.executor.Executor.expand_calls:1 of
+msgid "Expand a list of `.Call` objects into a near-final list of same."
+msgstr ""
+
+#: invoke.executor.Executor.expand_calls:3 of
+msgid ""
+"The default implementation of this method simply adds a task's pre/post-"
+"task list before/after the task itself, as necessary."
+msgstr ""
+
+#: invoke.executor.Executor.expand_calls:6 of
+msgid ""
+"Subclasses may wish to do other things in addition (or instead of) the "
+"above, such as multiplying the `calls <.Call>` by argument vectors or "
+"similar."
+msgstr ""
+
+#: invoke.executor.Executor.normalize:1 of
+msgid "Transform arbitrary task list w/ various types, into `.Call` objects."
+msgstr ""
+
+#: invoke.executor.Executor.normalize:3 of
+msgid "See docstring for `~.Executor.execute` for details."
 msgstr ""
 

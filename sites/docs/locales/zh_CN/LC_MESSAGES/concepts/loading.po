@@ -8,18 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../concepts/loading.rst:5
 msgid "Loading collections"
-msgstr ""
+msgstr "加载集合"
 
 #: ../../concepts/loading.rst:7
 msgid ""
@@ -28,10 +28,12 @@ msgid ""
 "Invoke will create them for you from Python modules it finds or is told "
 "to use."
 msgstr ""
+"Invoke 执行模型的核心涉及一个或多个 Collection 对象。"
+"虽然这些对象可以通过编程方式创建，但在典型使用中，Invoke 会从它找到或被告知使用的 Python 模块中为你创建它们。"
 
 #: ../../concepts/loading.rst:15
 msgid "Task module discovery"
-msgstr ""
+msgstr "任务模块的发现"
 
 #: ../../concepts/loading.rst:17
 msgid ""
@@ -41,22 +43,29 @@ msgid ""
 "configuration options <configuring-loading>`) is searched for in the "
 "following ways:"
 msgstr ""
+"在没有其他配置的情况下，简单地调用 ``invoke`` 会查找名为 ``tasks`` 的单个 Python 模块或包，并将其视为根命名空间。"
+"``tasks``（或通过 :ref:`加载配置选项 <configuring-loading>` 提供的任何其他名称）会通过以下方式搜索："
 
 #: ../../concepts/loading.rst:22
 msgid ""
 "First, if a valid tasks module by that name already exists on Python's "
 "`sys.path "
-"<http://docs.python.org/release/2.7/library/sys.html#sys.path>`_, no more"
-" searching is done -- that module is selected."
+"<https://docs.python.org/release/2.7/library/sys.html#sys.path>`_, no "
+"more searching is done -- that module is selected."
 msgstr ""
+"首先，如果 Python 的 `sys.path <https://docs.python.org/release/2.7/library/sys.html#sys.path>`_ "
+"上已经存在一个有效的同名任务模块，则不再进行更多搜索——该模块被选中。"
 
 #: ../../concepts/loading.rst:25
 msgid ""
 "Failing that, search towards the root of the local filesystem, starting "
 "with the user's current working directory (`os.getcwd "
-"<http://docs.python.org/release/2.7/library/os.html#os.getcwd>`_) and try"
-" importing again with each directory temporarily added to ``sys.path``."
+"<https://docs.python.org/release/2.7/library/os.html#os.getcwd>`_) and "
+"try importing again with each directory temporarily added to "
+"``sys.path``."
 msgstr ""
+"如果找不到，则从用户的当前工作目录（`os.getcwd <https://docs.python.org/release/2.7/library/os.html#os.getcwd>`_）开始，"
+"向本地文件系统的根目录搜索，并尝试将每个目录临时添加到 ``sys.path`` 后再次导入。"
 
 #: ../../concepts/loading.rst:30
 msgid ""
@@ -64,6 +73,8 @@ msgid ""
 "favor a package directory (``tasks/`` containing an ``__init__.py``) over"
 " a module file (``tasks.py``) in the same location."
 msgstr ""
+"由于 Python 的导入机制的工作方式，"
+"这种方法总是优先选择包目录（包含 ``__init__.py`` 的 ``tasks/``）而不是同一位置的模块文件（``tasks.py``）。"
 
 #: ../../concepts/loading.rst:33
 msgid ""
@@ -72,6 +83,8 @@ msgid ""
 "this allows task code to make convenient assumptions concerning sibling "
 "modules' importability."
 msgstr ""
+"如果找到候选模块并成功导入，"
+"其父目录将在 Python 会话的其余部分**保留**在 ``sys.path`` 上——这使得任务代码可以方便地假设兄弟模块的可导入性。"
 
 #: ../../concepts/loading.rst:38
 msgid ""
@@ -80,10 +93,12 @@ msgid ""
 "the ``sys.path`` munging done to import them is reverted, and the search "
 "continues."
 msgstr ""
+"候选模块/包会被内省以确保它们实际上可以作为有效的任务集合使用。"
+"任何失败的模块都会被丢弃，导入它们时对 ``sys.path`` 的修改会被撤销，搜索继续。"
 
 #: ../../concepts/loading.rst:46
 msgid "Configuring the loading process"
-msgstr ""
+msgstr "配置加载过程"
 
 #: ../../concepts/loading.rst:48
 msgid ""
@@ -91,6 +106,7 @@ msgid ""
 "collection name searched for and/or the path where filesystem-level "
 "loading starts looking."
 msgstr ""
+"你可以配置上述行为，要求 Invoke 更改搜索的集合名称和/或文件系统级加载开始查找的路径。"
 
 #: ../../concepts/loading.rst:52
 msgid ""
@@ -99,6 +115,8 @@ msgid ""
 "collections stored outside the project root and make it easy to switch "
 "between them; or any number of reasons."
 msgstr ""
+"例如，你可能已经有一个项目级的 ``tasks.py``，无法轻易重命名；"
+"或者你可能希望托管存储在项目根目录之外的多个任务集合，并方便地在它们之间切换；或者任何其他原因。"
 
 #: ../../concepts/loading.rst:57
 msgid ""
@@ -106,6 +124,7 @@ msgid ""
 ":ref:`configuration file options <config-files>` or as :doc:`runtime CLI "
 "flags </invoke>`:"
 msgstr ""
+"可以通过 :ref:`配置文件选项 <config-files>` 或 :doc:`运行时 CLI 标志 </invoke>` 指定要搜索的集合名称和搜索根目录："
 
 #: ../../concepts/loading.rst:61
 msgid ""
@@ -114,10 +133,32 @@ msgid ""
 "Python module name and not a file name (so ``mytasks``, not "
 "``mytasks.py`` or ``mytasks/``.)"
 msgstr ""
+"**更改集合名称**：设置 ``tasks.collection_name`` 配置选项，或使用 :option:`--collection`。"
+"它应该是一个 Python 模块名称，而不是文件名（因此是 ``mytasks``，而不是 ``mytasks.py`` 或 ``mytasks/``。）"
 
 #: ../../concepts/loading.rst:65
 msgid ""
 "**Change the root search path**: Configure ``tasks.search_root`` or use "
 ":option:`--search-root`. This value may be any valid directory path."
 msgstr ""
+"**更改根搜索路径**：配置 ``tasks.search_root`` 或使用 :option:`--search-root`。该值可以是任何有效的目录路径。"
+
+#~ msgid ""
+#~ "First, if a valid tasks module by"
+#~ " that name already exists on Python's"
+#~ " `sys.path "
+#~ "<http://docs.python.org/release/2.7/library/sys.html#sys.path>`_, "
+#~ "no more searching is done -- that"
+#~ " module is selected."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Failing that, search towards the root"
+#~ " of the local filesystem, starting "
+#~ "with the user's current working "
+#~ "directory (`os.getcwd "
+#~ "<http://docs.python.org/release/2.7/library/os.html#os.getcwd>`_) "
+#~ "and try importing again with each "
+#~ "directory temporarily added to ``sys.path``."
+#~ msgstr ""
 

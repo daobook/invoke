@@ -8,16 +8,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 10:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../api/__init__.rst:3
 msgid "``__init__``"
+msgstr ""
+
+#: invoke.run:1 of
+msgid "Run ``command`` in a subprocess and return a `.Result` object."
+msgstr ""
+
+#: invoke.run:3 of
+msgid "See `.Runner.run` for API details."
+msgstr ""
+
+#: invoke.run:6 invoke.sudo:6 of
+msgid ""
+"This function is a convenience wrapper around Invoke's `.Context` and "
+"`.Runner` APIs."
+msgstr ""
+
+#: invoke.run:9 of
+msgid ""
+"Specifically, it creates an anonymous `.Context` instance and calls its "
+"`~.Context.run` method, which in turn defaults to using a `.Local` runner"
+" subclass for command execution."
+msgstr ""
+
+#: invoke.sudo:1 of
+msgid "Run ``command`` in a ``sudo`` subprocess and return a `.Result` object."
+msgstr ""
+
+#: invoke.sudo:3 of
+msgid "See `.Context.sudo` for API details, such as the ``password`` kwarg."
+msgstr ""
+
+#: invoke.sudo:9 of
+msgid ""
+"Specifically, it creates an anonymous `.Context` instance and calls its "
+"`~.Context.sudo` method, which in turn defaults to using a `.Local` "
+"runner subclass for command execution (plus sudo-related bits & pieces)."
 msgstr ""
 

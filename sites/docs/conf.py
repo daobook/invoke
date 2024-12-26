@@ -18,6 +18,6 @@ autodoc_default_options = {
 html_theme_options["extra_nav_links"] = {
     "主页": "https://daobook.github.io/invoke"
 }
-locale_dirs = ['locales/']
+locale_dirs = ['./locales/']
 gettext_compact = False
 language = 'zh_CN'

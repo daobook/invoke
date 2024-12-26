@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Invoke \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"POT-Creation-Date: 2024-12-26 09:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: ../../invoke.rst:5
 msgid "``inv[oke]`` core usage"
@@ -28,9 +28,9 @@ msgid ""
 "<reusing-as-a-binary>`). For details on invoking user-specified tasks and"
 " other parser-related details, see :doc:`/concepts/invoking-tasks`."
 msgstr ""
-"这个页面记录了 ``invoke`` 的核心参数、选项和行为"
-"（其中包括 :ref:`基于 invoke 的自定义二进制文件 <reusing-as-a-binary>` 中的选项）。"
-"有关调用用户指定的任务和其他解析器相关的详细信息，请参见 :doc:`/concepts/invoking-tasks`。"
+"这个页面记录了 ``invoke`` 的核心参数、选项和行为（其中包括 :ref:`基于 invoke 的自定义二进制文件 <reusing-"
+"as-a-binary>` 中的选项）。有关调用用户指定的任务和其他解析器相关的详细信息，请参见 :doc:`/concepts"
+"/invoking-tasks`。"
 
 #: ../../invoke.rst:15
 msgid "Core options and flags"
@@ -47,9 +47,8 @@ msgid ""
 "specially looked for anywhere in the command line. (For parsing details, "
 "see :ref:`basic-cli-layout`.)"
 msgstr ""
-"所有核心选项和标志如下；几乎所有这些都必须在任何任务名称之前给出，"
-"其中一些（如 :option:`--help` ）是在命令行中的任何地方专门查找的。"
-"（有关解析的详细信息，请参见 :ref:`basic-cli-layout`。）"
+"所有核心选项和标志如下；几乎所有这些都必须在任何任务名称之前给出，其中一些（如 :option:`--help` "
+"）是在命令行中的任何地方专门查找的。（有关解析的详细信息，请参见 :ref:`basic-cli-layout`。）"
 
 #: ../../invoke.rst:28
 msgid ""
@@ -57,6 +56,8 @@ msgid ""
 " line given as the 'remainder' (i.e. after a ``--``). Used for building "
 ":ref:`shell completion scripts <tab-completion>`."
 msgstr ""
+"打印（以换行符分隔）有效的制表符补全选项，适用于作为 'remainder'（即在 ``--`` 之后）提供的 Invoke 命令。"
+"用于构建 :ref:`shell 补全脚本 <tab-completion>`。"
 
 #: ../../invoke.rst:32
 msgid ""
@@ -64,20 +65,22 @@ msgid ""
 "``bar``, and when ``foo`` takes flags ``--foo-arg`` and ``--foo-arg-2``, "
 "you might use it like this::"
 msgstr ""
+"例如，当本地任务树包含名为 ``foo`` 和 ``bar`` 的任务，并且 ``foo`` 接受标志 ``--foo-arg`` 和 ``--foo-arg-2`` 时，您可以像这样使用它::"
 
 #: ../../invoke.rst:51
 msgid ""
 "For more details on how to make best use of this option, see :option"
 ":`--print-completion-script`."
 msgstr ""
+"有关如何最好地使用此选项的详细信息，请参阅 :option:`--print-completion-script`。"
 
 #: ../../invoke.rst:56
 msgid "Set default value of run()'s 'hide' kwarg."
-msgstr ""
+msgstr "设置默认值 run() 的 'hide' 关键字参数。"
 
 #: ../../invoke.rst:60
 msgid "Disable task deduplication."
-msgstr ""
+msgstr "禁用任务去重。"
 
 #: ../../invoke.rst:66
 msgid ""
@@ -85,12 +88,15 @@ msgid ""
 "etc). This can be sourced into the current session in order to enjoy :ref"
 ":`tab-completion for tasks and options <tab-completion>`."
 msgstr ""
+"为指定的 ``SHELL``（例如 ``bash``、``zsh`` 等）打印补全脚本。"
+"可以将此脚本加载到当前会话中，以便享受 :ref:`任务和选项的制表符补全功能 <tab-completion>`。"
 
 #: ../../invoke.rst:70
 msgid ""
 "These scripts are bundled with Invoke's distributed codebase, and "
 "internally make use of :option:`--complete`."
 msgstr ""
+"这些脚本包含在 Invoke 的分布式代码库中，并且内部使用 :option:`--complete`。"
 
 #: ../../invoke.rst:77
 msgid ""
@@ -100,6 +106,8 @@ msgid ""
 "environment to rely on user input, without otherwise interrupting the "
 "flow of the program."
 msgstr ""
+"在会话开始时（在执行任何任务之前），提示输入 ``sudo.password`` 配置值。"
+"这使得不希望将敏感信息存储在配置系统或 shell 环境中的用户可以依赖用户输入，而不会中断程序的正常流程。"
 
 #: ../../invoke.rst:84
 msgid ""
@@ -108,44 +116,51 @@ msgid ""
 "typically used for) offers no noticeable speed benefit. If you really "
 "want your ``.pyc`` files back, give this option."
 msgstr ""
+"默认情况下，Invoke 禁用了字节码缓存，因为它可能会导致任务文件出现难以调试的问题，并且（对于 Invoke 通常使用的场景）不会带来明显的速度提升。"
+"如果你确实希望恢复 ``.pyc`` 文件，请使用此选项。"
 
 #: ../../invoke.rst:91
 msgid "Specify collection name to load."
-msgstr ""
+msgstr "指定要加载的集合名称。"
 
 #: ../../invoke.rst:95
 msgid "Enable debug output."
-msgstr ""
+msgstr "启用调试输出。"
 
 #: ../../invoke.rst:99
 msgid ""
 "Echo commands instead of actually running them; specifically, causes any "
 "``run`` calls to:"
 msgstr ""
+"回显命令而不是实际运行它们；具体来说，会导致任何 ``run`` 调用："
 
 #: ../../invoke.rst:102
 msgid ""
 "Act as if the ``echo`` option has been turned on, printing the command-"
 "to-be-run to stdout;"
 msgstr ""
+"表现得好像 ``echo`` 选项已打开，将要运行的命令打印到 stdout；"
 
 #: ../../invoke.rst:104
 msgid ""
 "Skip actual subprocess invocation (returning before any of that machinery"
 " starts running);"
 msgstr ""
+"跳过实际的子进程调用（在该机制开始运行之前返回）；"
 
 #: ../../invoke.rst:106
 msgid ""
 "Return a dummy `~invoke.runners.Result` object with 'blank' values (empty"
 " stdout/err strings, ``0`` exit code, etc)."
 msgstr ""
+"返回具有‘空白’值的虚拟 `~invoke.runners.Result` 对象（空的 stdout/err 字符串，``0`` 退出代码等）。"
 
 #: ../../invoke.rst:111
 msgid ""
 "Limit :option:`--list` display to the specified number of levels, e.g. "
 "``--list-depth 1`` to show only top-level tasks and namespaces."
 msgstr ""
+"将 :option:`--list` 显示限制为指定的层级数，例如 ``--list-depth 1`` 仅显示顶层任务和命名空间。"
 
 #: ../../invoke.rst:114
 msgid ""
@@ -153,20 +168,22 @@ msgid ""
 "``--list build --list-depth 1`` shows everything at the top level of the "
 "``build`` subtree."
 msgstr ""
+"如果给 ``--list`` 提供了参数，则此深度是相对的；因此 ``--list build --list-depth 1`` 显示 ``build`` 子树顶层的所有内容。"
 
 #: ../../invoke.rst:118
 msgid ""
 "Default behavior if this is not given is to show all levels of the entire"
 " task tree."
 msgstr ""
+"如果未提供此选项，则默认行为是显示整个任务树的所有层级。"
 
 #: ../../invoke.rst:123
 msgid "Echo executed commands before running."
-msgstr ""
+msgstr "在运行之前回显执行的命令。"
 
 #: ../../invoke.rst:127
 msgid "Specify a :ref:`runtime configuration file <config-hierarchy>` to load."
-msgstr ""
+msgstr "指定要加载的 :ref:`运行时配置文件 <config-hierarchy>`。"
 
 #: ../../invoke.rst:129
 msgid ""
@@ -174,16 +191,18 @@ msgid ""
 "variable in place of this option. If both are given, the CLI option will "
 "win out."
 msgstr ""
+"请注意，你可以使用 ``INVOKE_RUNTIME_CONFIG`` 环境变量代替此选项。如果两者都提供，CLI 选项将优先。"
 
 #: ../../invoke.rst:135
 msgid ""
 "Change the format used to display the output of :option:`--list`; may be "
 "one of:"
 msgstr ""
+"更改用于显示 :option:`--list` 输出的格式；可以是以下之一："
 
 #: ../../invoke.rst:138
 msgid "``flat`` (the default): single, flat vertical list with dotted task names."
-msgstr ""
+msgstr "``flat`` （默认）：单行、点分隔的任务名称列表。"
 
 #: ../../invoke.rst:140
 msgid ""
@@ -191,6 +210,7 @@ msgid ""
 "implicitly includes its parent (with leading dots as a strong visual clue"
 " that these are still subcollection tasks.)"
 msgstr ""
+"``nested``：嵌套的（4 空格缩进）垂直列表，其中每个层级隐式包含其父级（带有前导点作为强烈的视觉提示，表明这些仍然是子集合任务。）"
 
 #: ../../invoke.rst:143
 msgid ""
@@ -199,6 +219,7 @@ msgid ""
 "tree (the outermost document being the root node, and thus a JSON object)"
 " consisting of the following keys:"
 msgstr ""
+"``json``：旨在供脚本或其他程序使用，此格式发出表示任务树的 JSON，树中的每个‘节点’（最外层的文档是根节点，因此是一个 JSON 对象）由以下键组成："
 
 #: ../../invoke.rst:148
 msgid ""
@@ -207,18 +228,21 @@ msgid ""
 "collection name to the load process, it's usually ``\"tasks\"`` (from "
 "``tasks.py``.)"
 msgstr ""
+"``name``：集合的字符串名称；对于根集合，这通常是模块名称，因此除非你在加载过程中提供替代的集合名称，否则它通常是 ``\"tasks\"`` （来自 ``tasks.py``。）"
 
 #: ../../invoke.rst:152
 msgid ""
 "``help``: First line of collection's docstring, if it came from a module;"
 " null otherwise (or if module lacked a docstring.)"
 msgstr ""
+"``help``：集合文档字符串的第一行，如果它来自模块；否则为 null（或者如果模块缺少文档字符串。）"
 
 #: ../../invoke.rst:154
 msgid ""
 "``tasks``: Immediate children of this collection; an array of objects of "
 "the following form:"
 msgstr ""
+"``tasks``：此集合的直接子项；包含以下形式对象的数组："
 
 #: ../../invoke.rst:157
 msgid ""
@@ -226,20 +250,22 @@ msgid ""
 "dotted path you might see with the ``flat`` format; reconstructing that "
 "path is left up to the consumer.)"
 msgstr ""
+"``name``：任务在其集合中的本地名称（即不是你在 ``flat`` 格式中可能看到的完整点路径；重建该路径留给使用者处理。）"
 
 #: ../../invoke.rst:160
 msgid "``help``: First line of task's docstring, or null if it had none."
-msgstr ""
+msgstr "``help``：任务文档字符串的第一行，如果没有则为 null。"
 
 #: ../../invoke.rst:161
 msgid "``aliases``: An array of string aliases for this task."
-msgstr ""
+msgstr "``aliases``：此任务的字符串别名数组。"
 
 #: ../../invoke.rst:163
 msgid ""
 "``default``: String naming which task within this collection, if any, is "
 "the default task. Is null if no task is the default."
 msgstr ""
+"``default``：字符串命名此集合中的哪个任务（如果有）是默认任务。如果没有任务为默认任务，则为 null。"
 
 #: ../../invoke.rst:165
 msgid ""
@@ -247,12 +273,14 @@ msgid ""
 "members of which which will have the same structure as this outermost "
 "document, recursively."
 msgstr ""
+"``collections``：此集合内任何子集合的数组，其成员将递归地具有与此最外层文档相同的结构。"
 
 #: ../../invoke.rst:169
 msgid ""
 "The JSON emitted is not pretty-printed, but does end with a trailing "
 "newline."
 msgstr ""
+"发出的 JSON 没有进行美化打印，但末尾有换行符。"
 
 #: ../../invoke.rst:174
 msgid ""
@@ -260,6 +288,7 @@ msgid ""
 "task name (may come before *or* after the task name) displays help for "
 "that particular task."
 msgstr ""
+"当不带任何任务名称时，显示核心帮助；当带有任务名称时（可以在任务名称之前 *或* 之后），显示该特定任务的帮助。"
 
 #: ../../invoke.rst:180
 msgid ""
@@ -268,36 +297,40 @@ msgid ""
 " argument may contain periods, as with task names, so it's possible to "
 "show only a small, deep portion of the overall tree if desired.)"
 msgstr ""
+"列出可用任务。"
+"默认显示所有任务；可以提供明确的命名空间，将显示的任务树‘根’仅限制在该命名空间内。"
+"（此参数可以包含句点，如任务名称一样，因此如果需要，可以仅显示整个树的一小部分深层内容。）"
 
 #: ../../invoke.rst:187
 msgid "Use a pty when executing shell commands."
-msgstr ""
+msgstr "在执行 shell 命令时使用 pty。"
 
 #: ../../invoke.rst:191
 msgid "Change root directory used for finding task modules."
-msgstr ""
+msgstr "更改用于查找任务模块的根目录。"
 
 #: ../../invoke.rst:195
 msgid ""
 "Set a default command execution timeout of INT seconds. Maps to the "
 "``timeouts.command`` config setting."
 msgstr ""
+"设置默认的命令执行超时时间为 INT 秒。映射到 ``timeouts.command`` 配置设置。"
 
 #: ../../invoke.rst:200
 msgid "Show version and exit."
-msgstr ""
+msgstr "显示版本并退出。"
 
 #: ../../invoke.rst:204
 msgid "Warn, instead of failing, when shell commands fail."
-msgstr ""
+msgstr "当 shell 命令失败时，警告而不是失败。"
 
 #: ../../invoke.rst:210
 msgid "Shell tab completion"
-msgstr ""
+msgstr "Shell 制表符补全"
 
 #: ../../invoke.rst:213
 msgid "Generating a completion script"
-msgstr ""
+msgstr "生成补全脚本"
 
 #: ../../invoke.rst:215
 msgid ""
@@ -307,6 +340,8 @@ msgid ""
 "compatible list of completion tokens for a given command line context) is"
 " provided by the :option:`--complete` core CLI option described above."
 msgstr ""
+"Invoke 的理念是实现通用 API，然后‘内置’一些基于这些 API 的常见用例；制表符补全也不例外。"
+"通用的制表符补全功能（为给定的命令行上下文输出与 shell 兼容的补全标记列表）由上述 :option:`--complete` 核心 CLI 选项提供。"
 
 #: ../../invoke.rst:221
 msgid ""
@@ -318,6 +353,9 @@ msgid ""
 "script`; the printed scripts will contain the correct binary name(s) for "
 "the program generating them."
 msgstr ""
+"然而，你可能不需要自己使用该标志：我们分发了一些针对最常见 shell（如 ``bash`` 和 ``zsh``）的现成包装脚本（以及其他 shell）。"
+"这些脚本可以使用 :option:`--print-completion-script` 从 Invoke 或 :ref:`任何 Invoke 驱动的命令行工具 <reusing-as-a-binary>` 自动生成；"
+"打印的脚本将包含生成它们的程序的正确二进制名称。"
 
 #: ../../invoke.rst:229
 msgid ""
@@ -326,19 +364,22 @@ msgid ""
 "``invoke`` programs, and calls ``invoke --complete`` at runtime to get "
 "dynamic completion information::"
 msgstr ""
+"例如，以下命令打印（到 stdout）一个适用于 ``zsh`` 的脚本，指示 ``zsh`` 将其用于 ``inv`` 和 ``invoke`` 程序，并在运行时调用 ``invoke --complete`` 以获取动态补全信息::"
 
 #: ../../invoke.rst:237
 msgid ""
 "You'll probably want to source this command or store its output somewhere"
 " permanently; more on that in the next section."
 msgstr ""
+"你可能希望获取此命令的输出或将其永久存储在某个地方；下一节将详细介绍。"
 
 #: ../../invoke.rst:240
 msgid ""
-"Similarly, the `Fabric <http://fabfile.org>`_ tool inherits from Invoke, "
-"and only has a single binary name (``fab``); if you wanted to get Fabric "
-"completion in ``bash``, you would say::"
+"Similarly, the `Fabric <https://fabfile.org>`_ tool inherits from Invoke,"
+" and only has a single binary name (``fab``); if you wanted to get Fabric"
+" completion in ``bash``, you would say::"
 msgstr ""
+"同样，`Fabric <https://fabfile.org>`_ 工具继承自 Invoke，并且只有一个二进制名称（``fab``）；如果你想在 ``bash`` 中获得 Fabric 补全，你可以说::"
 
 #: ../../invoke.rst:246
 msgid ""
@@ -346,16 +387,18 @@ msgid ""
 "remember to replace it with the program you're actually using, if it's "
 "not Invoke itself!"
 msgstr ""
+"在本节的其余部分，将在示例中使用 ``inv``，但请记住，如果你使用的不是 Invoke 本身，请将其替换为你实际使用的程序！"
 
 #: ../../invoke.rst:251
 msgid "Sourcing the script"
-msgstr ""
+msgstr "获取脚本"
 
 #: ../../invoke.rst:253
 msgid ""
 "There are a few ways to utilize the output of the above commands, "
 "depending on your needs, where the program is installed, and your shell:"
 msgstr ""
+"根据你的需求、程序安装的位置以及你的 shell，有几种方法可以利用上述命令的输出："
 
 #: ../../invoke.rst:256
 msgid ""
@@ -363,6 +406,7 @@ msgid ""
 "completion script inline, which doesn't place anything on disk, and will "
 "only affect the current shell session::"
 msgstr ""
+"最简单且干扰最小的方法是内联 ``source`` 打印的补全脚本，这不会在磁盘上放置任何内容，并且只会影响当前的 shell 会话::"
 
 #: ../../invoke.rst:262
 msgid ""
@@ -372,6 +416,8 @@ msgid ""
 "you could add that snippet to your shell's startup file, such as "
 "``~/.zshrc`` or ``~/.bashrc``."
 msgstr ""
+"如果你的系统全局 Python 解释器中提供了该程序（并且你不介意在每个 shell 会话启动时运行该程序——Python 的速度确实不是其强项），"
+"你可以将该代码片段添加到你的 shell 启动文件中，例如 ``~/.zshrc`` 或 ``~/.bashrc``。"
 
 #: ../../invoke.rst:267
 msgid ""
@@ -381,14 +427,16 @@ msgid ""
 " how your shell is configured. For example, you might just drop it into "
 "your home directory as a hidden file::"
 msgstr ""
+"如果该程序在全局范围内可用，但你 *希望* 避免在 shell 启动时运行额外的 Python 程序，你可以将命令的输出缓存到自己的文件中；"
+"此文件的位置完全取决于你以及你的 shell 配置。例如，你可以将其作为隐藏文件放入你的主目录::"
 
 #: ../../invoke.rst:275
 msgid "and then perhaps add the following to the end of ``~/.zshrc``::"
-msgstr ""
+msgstr "然后可能将以下内容添加到 ``~/.zshrc`` 的末尾::"
 
 #: ../../invoke.rst:279
 msgid "But again, this is entirely up to you and your shell."
-msgstr ""
+msgstr "但再次强调，这完全取决于你以及你的 shell。"
 
 #: ../../invoke.rst:282
 msgid ""
@@ -397,6 +445,8 @@ msgid ""
 "should direct the output of the command to a file in the "
 "``~/.config/fish/completions/`` directory."
 msgstr ""
+"如果你使用的是 ``fish``，你*必须*使用此策略，因为我们的 fish 补全脚本不适合直接获取。"
+"Fish shell 用户应将命令的输出定向到 ``~/.config/fish/completions/`` 目录中的一个文件。"
 
 #: ../../invoke.rst:287
 msgid ""
@@ -404,6 +454,7 @@ msgid ""
 " in a specific environment like a virtualenv, you can use either of the "
 "above techniques:"
 msgstr ""
+"最后，如果你需要补全的程序仅安装在特定环境中（如 virtualenv），你可以使用上述任何一种技术："
 
 #: ../../invoke.rst:291
 msgid ""
@@ -412,6 +463,7 @@ msgid ""
 "available when the shell loads -- only when you actually attempt to tab "
 "complete."
 msgstr ""
+"在这种情况下，缓存输出并在全局 shell 启动文件中引用它仍然有效，因为它不需要在 shell 加载时提供程序——仅在你实际尝试制表符补全时才需要。"
 
 #: ../../invoke.rst:295
 msgid ""
@@ -421,22 +473,26 @@ msgid ""
 "environments. For example, if you use ``virtualenvwrapper``, you could "
 "append the ``source`` line in ``/path/to/virtualenv/bin/postactivate``."
 msgstr ""
+"使用 ``source <(inv --print-completion-script yourshell)`` 方法*只要*你将其放在某个适当的每个环境启动文件中即可，这将根据你管理 Python 环境的方式而有所不同。"
+"例如，如果你使用 ``virtualenvwrapper``，你可以在 ``/path/to/virtualenv/bin/postactivate`` 中附加 ``source`` 行。"
 
 #: ../../invoke.rst:302
 msgid "Utilizing tab completion itself"
-msgstr ""
+msgstr "利用制表符补全本身"
 
 #: ../../invoke.rst:304
 msgid ""
 "You've ensured that the completion script is active in your environment -"
 " what have you gained?"
 msgstr ""
+"你已经确保补全脚本在你的环境中激活——你获得了什么？"
 
 #: ../../invoke.rst:307
 msgid ""
 "By default, tabbing after typing ``inv`` or ``invoke`` will display task "
 "names from your current directory/project's tasks file."
 msgstr ""
+"默认情况下，在输入 ``inv`` 或 ``invoke`` 后按 Tab 键将显示当前目录/项目任务文件中的任务名称。"
 
 #: ../../invoke.rst:309
 msgid ""
@@ -445,6 +501,7 @@ msgid ""
 "task names have been typed yet; options for the most recently typed task "
 "otherwise."
 msgstr ""
+"在输入短横线（``-``）或双短横线（``--``）后按 Tab 键将显示当前上下文的有效选项/标志：如果尚未输入任务名称，则显示核心 Invoke 选项；否则显示最近输入任务的选项。"
 
 #: ../../invoke.rst:314
 msgid ""
@@ -453,6 +510,7 @@ msgid ""
 "names have been typed yet, ``--e<tab>`` will offer ``--echo`` as a "
 "completion option."
 msgstr ""
+"=在输入部分长选项时按 Tab 键将使用你的 shell 的本地子字符串补全功能完成匹配的长选项。例如，如果尚未输入任务名称，``--e<tab>`` 将提供 ``--echo`` 作为补全选项。"
 
 #: ../../invoke.rst:319
 msgid ""
@@ -460,10 +518,20 @@ msgid ""
 "takes a value, will 'fall through' to your shell's native filename "
 "completion."
 msgstr ""
+"当最近输入/完成的标记是需要值的标志时，按 Tab 键将‘回退’到你的 shell 的本地文件名补全。"
 
 #: ../../invoke.rst:322
 msgid ""
 "For example, prior to typing a task name, ``--config <tab>`` will "
 "complete local file paths to assist in filling in a config file."
 msgstr ""
+"例如，在输入任务名称之前，``--config <tab>`` 将补全本地文件路径以帮助填写配置文件。"
+
+#~ msgid ""
+#~ "Similarly, the `Fabric <http://fabfile.org>`_ "
+#~ "tool inherits from Invoke, and only "
+#~ "has a single binary name (``fab``); "
+#~ "if you wanted to get Fabric "
+#~ "completion in ``bash``, you would say::"
+#~ msgstr ""
 
