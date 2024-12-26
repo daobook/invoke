@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# xinetzone <735613050@qq.com>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-28 10:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../prior-art.rst:3
+msgid "Prior art"
+msgstr "现有技术"
+
+#: ../../prior-art.rst:5
+#, python-format
+msgid ""
+"Why another task-running/subprocess-spawning Python library? As usual, "
+"the short answer is \"there were already great 80-90% solutions out "
+"there, but none that fit our needs 100%.\" Specifically:"
+msgstr ""
+"为什么又是一个任务运行/子进程触发的 Python 库？"
+"像往常一样，简短的回答是：\"现在已经有 80-90% 的优秀解决方案了，但没有一个能 100% 满足我们的需求。\" 具体来说："
+
+#: ../../prior-art.rst:9
+msgid ""
+"**Multiple tasks at once** - almost no other Python command-line oriented"
+" libraries allow for invocations like::"
+msgstr ""
+"**一次完成多个任务** -- 几乎没有其他面向 Python 命令行的库允许 invocations 像 ::"
+
+#: ../../prior-art.rst:14
+msgid ""
+"and the few that do have half-baked implementations of the feature or are"
+" lacking in other ways."
+msgstr ""
+"而为数不多的是对该功能的半生不熟的实现，或在其他方面有所欠缺。"
+
+#: ../../prior-art.rst:16
+msgid ""
+"**Ability to mirror and capture subprocess output simultaneously** (in "
+"addition to everything flowing from that, like the ability to "
+"transparently auto-respond) - the standard library's ``subprocess`` can't"
+" do this and most other tools choose one or the other, or have other "
+"tradeoffs such as not supporting (or *only* supporting!) pseudoterminals."
+msgstr ""
+"**能够同时镜像和捕获子进程的输出** （除了由此产生的一切，如透明的自动响应能力）-- "
+"标准库的 ``subprocess`` 不能做到这一点，大多数其他工具选择一个或另一个，或有其他权衡，如不支持（或只支持！）伪终端。"
+
+#: ../../prior-art.rst:21
+msgid ""
+"**Simplicity** - tools that try to do many things often suffer for it due"
+" to lack of focus. We wanted to build something clean and simple that "
+"just did one thing (ok...two things) well."
+msgstr ""
+"**简单性** -- 试图做很多事情的工具往往会因此受到影响，因为缺乏重点。我们想建立一些干净和简单的东西，"
+"只做一件事（好吧......两件事）就好。"
+
+#: ../../prior-art.rst:24
+msgid ""
+"**Customizability/control** - Invoke was designed to work well with (and "
+"be a foundation for) other tools such as `Fabric <http://fabfile.org>`_'s"
+" second version, and we felt that the work needed to adapt existing tools"
+" towards this goal would impede progress."
+msgstr ""
+"**可定制性/控制** -- Invoke 被设计为与其他工具（并成为其基础）很好地合作，"
+"如 `Fabric <http://fabfile.org>`_ 的第二个版本，我们认为为实现这一目标而调整现有工具所需的工作将阻碍进展。"
+
+#: ../../prior-art.rst:29
+msgid ""
+"Some of the pre-existing solutions in this space in the Python world "
+"include:"
+msgstr ""
+"在 Python 世界中，这一领域的一些预先存在的解决方案包括："
+
+#: ../../prior-art.rst:31
+msgid ""
+"`Argh <http://packages.python.org/argh/index.html>`_: One of the more "
+"appealing options, but being built on argparse it doesn't support the "
+"multi-task invocation we needed. Also has its own \"prior art\" list "
+"which is worth your time."
+msgstr ""
+"`Argh <http://packages.python.org/argh/index.html>`_： "
+"这是一个比较吸引人的选择，但由于它是建立在 argparse 上的，所以不支持我们需要的多任务调用。"
+"它也有自己的 \"prior art\" 列表，值得你花点时间。"
+
+#: ../../prior-art.rst:35
+msgid ""
+"`Baker <http://pypi.python.org/pypi/Baker/1.02>`_: Nice and simple, but "
+"unfortunately too much so for our needs."
+msgstr ""
+"`Baker <http://pypi.python.org/pypi/Baker/1.02>`_：不错，很简单，但不幸的是，对我们的需求来说，太简单了。"
+
+#: ../../prior-art.rst:37
+msgid ""
+"`Paver <http://paver.github.com/paver/>`_: Tries to do too much, clunky "
+"API, user-hostile error messages, multi-task feature existed but was "
+"lacking."
+msgstr ""
+"`Paver <http://paver.github.com/paver/>`_：试图做太多的事情，笨重的 API，用户讨厌的错误信息，多任务功能存在但缺乏。"
+
+#: ../../prior-art.rst:39
+msgid ""
+"`Argparse <http://docs.python.org/library/argparse.html>`_: The modern "
+"gold standard for CLI parsing (albeit without command execution). "
+"Unfortunately, we were unable to get multiple tasks working despite lots "
+"of experimentation. Multiple tasks with their own potentially overlapping"
+" argument names, simply doesn't mesh with how ``argparse`` thinks about "
+"the command line."
+msgstr ""
+"`Argparse <http://docs.python.org/library/argparse.html>`_：现代 CLI 解析的黄金标准（尽管没有命令执行）。"
+"不幸的是，尽管做了很多实验，我们还是无法让多个任务工作。"
+"多个任务的参数名称有可能重叠，这与 ``argparse`` 对命令行的思考方式不一致。"
+
+#: ../../prior-art.rst:44
+msgid ""
+"`Click <https://github.com/pallets/click>`_: is actually not pre-existing"
+" (Invoke's first public releases predate Click by a number of years) but "
+"it deserves mention anyway, as it's become popular in this particular "
+"niche."
+msgstr ""
+"`Click <https://github.com/pallets/click>`_:  "
+"实际上并不存在（Invoke 的第一次公开发布比 Click 早了好几年），但它还是值得一提，因为它在这个特殊的利基市场上已经很受欢迎。"

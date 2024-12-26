@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../concepts/loading.rst:5
+msgid "Loading collections"
+msgstr ""
+
+#: ../../concepts/loading.rst:7
+msgid ""
+"The core of Invoke's execution model involves one or more Collection "
+"objects. While these may be created programmatically, in typical use "
+"Invoke will create them for you from Python modules it finds or is told "
+"to use."
+msgstr ""
+
+#: ../../concepts/loading.rst:15
+msgid "Task module discovery"
+msgstr ""
+
+#: ../../concepts/loading.rst:17
+msgid ""
+"With no other configuration, simply calling ``invoke`` will look for a "
+"single Python module or package named ``tasks``, and will treat it as the"
+" root namespace. ``tasks`` (or any other name given via :ref:`loading "
+"configuration options <configuring-loading>`) is searched for in the "
+"following ways:"
+msgstr ""
+
+#: ../../concepts/loading.rst:22
+msgid ""
+"First, if a valid tasks module by that name already exists on Python's "
+"`sys.path "
+"<http://docs.python.org/release/2.7/library/sys.html#sys.path>`_, no more"
+" searching is done -- that module is selected."
+msgstr ""
+
+#: ../../concepts/loading.rst:25
+msgid ""
+"Failing that, search towards the root of the local filesystem, starting "
+"with the user's current working directory (`os.getcwd "
+"<http://docs.python.org/release/2.7/library/os.html#os.getcwd>`_) and try"
+" importing again with each directory temporarily added to ``sys.path``."
+msgstr ""
+
+#: ../../concepts/loading.rst:30
+msgid ""
+"Due to how Python's import machinery works, this approach will always "
+"favor a package directory (``tasks/`` containing an ``__init__.py``) over"
+" a module file (``tasks.py``) in the same location."
+msgstr ""
+
+#: ../../concepts/loading.rst:33
+msgid ""
+"If a candidate is found and successfully imported, its parent directory "
+"will **stay** on ``sys.path`` during the rest of the Python session -- "
+"this allows task code to make convenient assumptions concerning sibling "
+"modules' importability."
+msgstr ""
+
+#: ../../concepts/loading.rst:38
+msgid ""
+"Candidate modules/packages are introspected to make sure they can "
+"actually be used as valid task collections. Any that fail are discarded, "
+"the ``sys.path`` munging done to import them is reverted, and the search "
+"continues."
+msgstr ""
+
+#: ../../concepts/loading.rst:46
+msgid "Configuring the loading process"
+msgstr ""
+
+#: ../../concepts/loading.rst:48
+msgid ""
+"You can configure the above behavior, requesting that Invoke alter the "
+"collection name searched for and/or the path where filesystem-level "
+"loading starts looking."
+msgstr ""
+
+#: ../../concepts/loading.rst:52
+msgid ""
+"For example, you may already have a project-level ``tasks.py`` that you "
+"can't easily rename; or you may want to host a number of tasks "
+"collections stored outside the project root and make it easy to switch "
+"between them; or any number of reasons."
+msgstr ""
+
+#: ../../concepts/loading.rst:57
+msgid ""
+"Both the sought collection name and the search root can be specified via "
+":ref:`configuration file options <config-files>` or as :doc:`runtime CLI "
+"flags </invoke>`:"
+msgstr ""
+
+#: ../../concepts/loading.rst:61
+msgid ""
+"**Change the collection name**: Set the ``tasks.collection_name`` "
+"configuration option, or use :option:`--collection`. It should be a "
+"Python module name and not a file name (so ``mytasks``, not "
+"``mytasks.py`` or ``mytasks/``.)"
+msgstr ""
+
+#: ../../concepts/loading.rst:65
+msgid ""
+"**Change the root search path**: Configure ``tasks.search_root`` or use "
+":option:`--search-root`. This value may be any valid directory path."
+msgstr ""
+

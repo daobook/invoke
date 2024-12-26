@@ -1,0 +1,344 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# xinetzone <735613050@qq.com>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-28 10:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: xinetzone <735613050@qq.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../faq.rst:3
+msgid "Frequently asked questions"
+msgstr "常见问题"
+
+#: ../../faq.rst:7
+msgid "General project questions"
+msgstr "一般项目问题"
+
+#: ../../faq.rst:12
+msgid "Why was Invoke split off from the `Fabric <http://fabfile.org>`_ project?"
+msgstr "为什么 Invoke 从 `Fabric <http://fabfile.org>`_ 项目中分离出来？"
+
+#: ../../faq.rst:14
+msgid ""
+"Fabric (1.x and earlier) was a hybrid project implementing two feature "
+"sets: task execution (organization of task functions, execution of them "
+"via CLI, and local shell commands) and high level SSH actions "
+"(organization of servers/hosts, remote shell commands, and file "
+"transfer)."
+msgstr ""
+"Fabric（1.x 和更早）是一个混合项目，实现了两个功能集： "
+"任务执行（组织任务功能，通过 CLI 执行它们，以及本地 shell 命令）和高水平的 SSH 行动（组织服务器/主机，远程 shell 命令，以及文件传输）。"
+
+#: ../../faq.rst:19
+msgid ""
+"For use cases requiring both feature sets, this arrangement worked well. "
+"However, over time it became clear many users only needed one or the "
+"other, with local-only users resenting heavy SSH/crypto install "
+"requirements, and remote-focused users struggling with API limitations "
+"caused by the hybrid codebase."
+msgstr ""
+"对于需要这两套功能的用例，这种安排效果很好。"
+"然而，随着时间的推移，人们发现许多用户只需要一个或另一个，只在本地使用的用户对沉重的SSH/密码安装要求感到不满，而专注于远程的用户则对混合代码库造成的API限制感到挣扎。"
+
+#: ../../faq.rst:25
+msgid ""
+"When planning Fabric 2.x, having the \"local\" feature set as a "
+"standalone library made sense, and it seemed plausible to design the SSH "
+"component as a separate layer above. Thus, Invoke was created to focus "
+"exclusively on local and abstract concerns, leaving Fabric 2.x concerned "
+"only with servers and network commands."
+msgstr ""
+"在规划 Fabric 2.x 时，将 \"local\" 功能集作为一个独立的库是有意义的，而将 SSH 组件设计成上面的一个独立层似乎是合理的。"
+"因此，Invoke 的创建是为了专门关注本地和抽象的问题，让 Fabric 2.x 只关注服务器和网络命令。
+
+#: ../../faq.rst:31
+msgid ""
+"Fabric 2 leverages many parts of Invoke's API, and allows (but does not "
+"require!) use of Invoke's CLI features, allowing multiple use cases "
+"(build tool, high level SSH lib, hybrid build/orchestration tool) to "
+"coexist without negatively impacting each other."
+msgstr ""
+"Fabric 2 利用了 Invoke 的 API 的许多部分，并允许（但不要求！）"
+"使用 Invoke 的 CLI 功能，允许多种用例（构建工具、高级 SSH 库、混合构建/编排工具）共存，而不会对彼此产生负面影响。"
+
+#: ../../faq.rst:38
+msgid "Defining/executing tasks"
+msgstr "定义/执行任务"
+
+#: ../../faq.rst:43
+msgid "My task's first argument isn't showing up in ``--help``!"
+msgstr "我的任务的第一个参数没有显示在 ``--help`` 中！"
+
+#: ../../faq.rst:45
+msgid ""
+"This problem pops up if you forget to define an initial context argument "
+"for your task."
+msgstr ""
+"如果你忘记为你的任务定义一个初始上下文参数，这个问题就会冒出来。"
+
+#: ../../faq.rst:48
+msgid "For example, can you spot the problem in this sample task file?"
+msgstr "例如，你能发现这个任务文件样本中的问题吗？"
+
+#: ../../faq.rst:62
+msgid ""
+"This task file doesn't cause obvious errors when sanity-checking it with "
+"``inv --list`` or ``inv --help``. However, ``clean`` forgot to set aside "
+"its first argument for the context - so Invoke is treating ``what`` as "
+"the context argument! This means it doesn't show up in help output or "
+"other command-line parsing stages."
+msgstr ""
+"当用 ``inv --list`` 或 ``inv --help`` 检查这个任务文件时，并没有引起明显的错误。"
+"然而，``clean`` 忘记了为上下文预留第一个参数 -- 所以 Invoke 把 ``what`` 当作上下文参数！"
+"这意味着它没有显示在帮助中。这意味着它不会出现在帮助输出或其他命令行解析阶段"。
+
+#: ../../faq.rst:69
+msgid "The command line says my task's first argument is invalid!"
+msgstr "命令行说我的任务的第一个参数是无效的！"
+
+#: ../../faq.rst:71
+msgid "See :ref:`bad-first-arg` - it's probably the same issue."
+msgstr "参见 :ref:`bad-first-arg` - 这可能是同一个问题。"
+
+#: ../../faq.rst:75
+msgid "Running local shell commands (``run``)"
+msgstr "运行本地shell命令（``run``）"
+
+#: ../../faq.rst:80
+msgid ""
+"Why is my command behaving differently under Invoke versus being run by "
+"hand?"
+msgstr ""
+"为什么我的命令在 Invoke 下的表现与手动运行的表现不同？"
+
+#: ../../faq.rst:82
+#, python-format
+msgid ""
+"99% of the time, adding ``pty=True`` to your ``run`` call will make "
+"things work as you were expecting. Read on for why this is (and why "
+"``pty=True`` is not the default)."
+msgstr ""
+"99% 的情况下，在你的 ``run`` 调用中加入 ``pty=True`` 会使事情如你所期望的那样运行。"
+"请继续阅读为什么会这样（以及为什么 ``pty=True`` 不是默认的）。"
+
+#: ../../faq.rst:86
+msgid ""
+"Command-line programs often change behavior depending on whether a "
+"controlling terminal is present; a common example is the use or disuse of"
+" colored output. When the recipient of your output is a human at a "
+"terminal, you may want to use color, tailor line length to match terminal"
+" width, etc."
+msgstr ""
+"命令行程序经常根据控制终端是否存在而改变行为；一个常见的例子是使用或不使用彩色输出。"
+"当你的输出接收者是终端上的人时，你可能想使用颜色，调整行长以匹配终端宽度，等等。"
+
+#: ../../faq.rst:91
+msgid ""
+"Conversely, when your output is being sent to another program (shell "
+"pipe, CI server, file, etc) color escape codes and other terminal-"
+"specific behaviors can result in unwanted garbage."
+msgstr ""
+"相反，当你的输出被发送到另一个程序（shell 管道、CI 服务器、文件等）时，颜色转义代码和其他终端特有的行为会导致不必要的垃圾。"
+
+#: ../../faq.rst:95
+msgid ""
+"Invoke's use cases span both of the above - sometimes you only want data "
+"displayed directly, sometimes you only want to capture it as a string; "
+"often you want both. Because of this, there is no \"correct\" default "
+"behavior re: use of a pseudo-terminal - some large chunk of use cases "
+"will be inconvenienced either way."
+msgstr ""
+"Invoke 的用例跨越了上述两种情况 -- 有时你只想直接显示数据，有时你只想把它抓成一个字符串；往往你想两者兼得。"
+"正因为如此，对于伪终端的使用，没有任何默认行为 -- 一些大块的用例无论如何都会带来不便。"
+
+#: ../../faq.rst:101
+msgid ""
+"For use cases which don't care, direct invocation without a pseudo-"
+"terminal is faster & cleaner, so it is the default."
+msgstr ""
+"对于不关心的用例，没有伪终端的直接调用更快、更干净，所以它是默认的。"
+
+#: ../../faq.rst:105
+msgid ""
+"Calling Python or Python scripts prints all the output at the end of the "
+"run!"
+msgstr ""
+"调用 Python 或 Python 脚本在运行结束时打印出所有的输出！"
+
+#: ../../faq.rst:108
+msgid "This is typically a problem under Python 3 only."
+msgstr "这通常只是 Python 3 下的一个问题。"
+
+#: ../../faq.rst:110
+msgid ""
+"The symptom is easy to spot - you're running a command that takes a few "
+"seconds or more to execute, it usually prints lines of text as it goes, "
+"but via `~invoke.run` nothing appears to happen at first, and then all "
+"the output prints once it's done executing."
+msgstr ""
+"症状很容易发现--你正在运行一个需要几秒钟或更长时间才能执行的命令，"
+"它通常会在执行过程中打印出几行文字，但通过 `~invoke.run` 开始时似乎什么都没有发生，一旦执行完毕，所有的输出都会打印出来。"
+
+#: ../../faq.rst:115
+msgid ""
+"This is usually due to Python - the \"inner\" Python executable you're "
+"invoking, not the one Invoke is running under - performing unwanted "
+"buffering of its output streams. It does this when it thinks it's being "
+"called in a non-interactive fashion."
+msgstr ""
+"这通常是由于Python--你所调用的Python内部可执行程序，而不是Invoke运行的那个--对其输出流进行了不必要的缓冲。"
+"当它认为它是以非交互式方式被调用时，它就会这样做。"
+
+#: ../../faq.rst:120
+msgid ""
+"The fix is to force Invoke to run the command in a pseudoterminal by "
+"saying ``pty=True`` (e.g. ``run(\"python foo\", pty=True)``)."
+msgstr ""
+"修复方法是通过说 ``pty=True`` 来强制 Invoke 在伪终端中运行命令（例如，``run(\"python foo\", pty=True)``）。"
+
+#: ../../faq.rst:123
+msgid ""
+"Alternately, since both Invoke and the inner command are Python, you "
+"could try loading the inner Python module directly in your Invoke-using "
+"code, and call whichever methods its command-line stub is using - instead"
+" of using `~invoke.run`. This can often have other benefits too."
+msgstr ""
+"另外，由于 Invoke 和内部命令都是 Python，"
+"你可以尝试在使用 Invoke 的代码中直接加载内部 Python 模块，"
+"并调用其命令行存根使用的任何方法--而不是使用 `~invoke.run`。这通常也有其他好处。"
+
+#: ../../faq.rst:131
+msgid "Why do I sometimes see ``err: stdin: is not a tty``?"
+msgstr "为什么我有时会看到 ``err: stdin: is not a tty`` ？"
+
+#: ../../faq.rst:133
+msgid ""
+"See :ref:`program-behavior-ptys` - the same root cause (lack of a PTY by "
+"default) is probably what's going on. In some cases (such as via the "
+"Fabric library) it's happening because a shell's login files are calling "
+"programs that require a PTY (e.g. ``biff`` or ``mesg``) so make sure to "
+"look there if the actual foreground command doesn't seem at fault."
+msgstr ""
+"参见 :ref:`program-behavior-ptys` -- 同样的根本原因（默认缺乏 PTY）可能是怎么回事。"
+"在某些情况下（例如通过 Fabric 库），它的发生是因为 shell 的登录文件调用了需要 PTY 的程序（例如 ``biff`` 或 ``mesg``），"
+"所以如果实际的前台命令似乎没有问题，请确保在那里查看。"
+
+#: ../../faq.rst:140
+msgid "Everything just exits silently after I run a command!"
+msgstr "在我运行命令后，所有的东西都默默地退出了！"
+
+#: ../../faq.rst:142
+msgid ""
+"Double check the command's exit code! By default, receiving nonzero exit "
+"codes at the end of a `~invoke.run` call will result in Invoke halting "
+"execution & exiting with that same code. Some programs (pylint, Nagios "
+"check scripts, etc) use exit codes to indicate non-fatal status, which "
+"can be confusing."
+msgstr ""
+"仔细检查命令的退出代码！默认情况下，在 `~invoke.run` 调用结束时收到非零的退出代码将导致 Invoke 停止执行并以相同的代码退出。"
+"一些程序（pylint、Nagios 检查脚本等）使用退出代码来表示非致命状态，这可能会造成混淆。"
+
+#: ../../faq.rst:147
+msgid ""
+"The solution here is to add ``warn=True`` to your `~invoke.run` call, "
+"which disables the automatic exit behavior. Then you can check the "
+"result's ``.exited`` attribute by hand to determine if it truly "
+"succeeded."
+msgstr ""
+"这里的解决方案是在你的 `~invoke.run` 调用中添加 ``warn=True``，这将禁用自动退出行为。"
+"然后你可以手工检查结果的 ``.exited`` 属性，以确定它是否真的成功了。"
+
+#: ../../faq.rst:152
+msgid "The auto-responder functionality isn't working for my password prompts!"
+msgstr "自动回复功能对我的密码提示不起作用！"
+
+#: ../../faq.rst:154
+msgid ""
+"Some programs write password prompts or other output *directly* to the "
+"local terminal (the operating-system-level TTY device), bypassing the "
+"usual stdout/stderr streams. For example, this is exactly what `the "
+"stdlib's getpass module <getpass.getpass>` does, if you're calling a "
+"program that happens to be written in Python."
+msgstr ""
+"有些程序将密码提示或其他输出直接写到本地终端（操作系统级的TTY设备），绕过了通常的 stdout/stderr 流。"
+"例如，这正是 `stdlib 的 getpass 模块 <getpass.getpass>` 所做的，如果你正在调用一个恰好用 Python 编写的程序的话。"
+
+#: ../../faq.rst:160
+msgid ""
+"When this happens, we're powerless, because all we get to see is the "
+"subprocess' regular output streams. Thankfully, the solution is usually "
+"easy: just add ``pty=True`` to your `~invoke.run` call. Forcing use of an"
+" explicit pseudo-terminal usually tricks these kinds of programs into "
+"writing prompts to stderr."
+msgstr ""
+"当这种情况发生时，我们无能为力，因为我们所能看到的只是子进程的常规输出流。"
+"值得庆幸的是，解决方案通常很简单：只要在你的 `~invoke.run` 调用中加入 ``pty=True``。"
+"强制使用一个明确的伪终端，通常会诱使这类程序向 stderr 写入提示信息。
+
+#: ../../faq.rst:167
+msgid ""
+"I'm getting ``IOError: Inappropriate ioctl for device`` when I run "
+"commands!"
+msgstr ""
+"当我运行命令时，我得到 ``IOError: Inappropriate ioctl for device``！"
+
+#: ../../faq.rst:169
+msgid ""
+"This error typically means some code in your project or its dependencies "
+"has replaced one of the process streams (``sys.stdin``, ``sys.stdout`` or"
+" ``sys.stderr``) with an object that isn't actually hooked up to a "
+"terminal, but which pretends that it is. For example, test runners or "
+"build systems often do this."
+msgstr ""
+"这个错误通常意味着你的项目或其依赖的某些代码用一个实际上没有连接到终端的对象"
+"（``sys.stdin``, ``sys.stdout`` 或 ``sys.stderr``）替换了一个进程流，但它假装自己是终端。"
+"例如，测试运行程序或构建系统经常这样做"。
+
+#: ../../faq.rst:175
+#, python-format
+msgid ""
+"99% of the time, this pops up for stdin only, in which case you may be "
+"able to work around it by specifying ``in_stream=False`` to `~invoke.run`"
+" (note: ``False``, **not** ``None``!)"
+msgstr ""
+"99% 的时候，这只对 stdin 弹出，在这种情况下，你可以通过在 `~invoke.run` 中指定 ``in_stream=False`` 来解决（注意：``False``，**不是 ``None`` ！）"
+
+#: ../../faq.rst:180
+msgid "Gory details"
+msgstr "Gory 细节"
+
+#: ../../faq.rst:182
+msgid ""
+"Technically, what's happened is that the object handed to Invoke's "
+"command executor as e.g. ``run('command', in_stream=xxx)`` (or "
+"``out_stream`` or etc; and these all default to the ``sys`` members "
+"listed above) implements a ``fileno`` method that is not returning the ID"
+" of a real terminal file descriptor. Breaking the contract in this way is"
+" what's leading Invoke to do things the OS doesn't like."
+msgstr ""
+"从技术上讲，发生的事情是交给 Invoke 的命令执行器的对象，"
+"例如 ``run('command', in_stream=xxx)`` （或 ``out_stream`` 或等；这些都默认为上面列出的 ``sys`` 成员）"
+"实现了 ``fileno`` 方法，但没有返回真正终端文件描述符的 ID。以这种方式破坏合同是导致 Invoke 做操作系统不喜欢的事情的原因。"
+
+#: ../../faq.rst:189
+msgid ""
+"We're always trying to make this detection smarter; if upgrading to the "
+"latest version of Invoke doesn't fix the problem for you, please submit a"
+" bug report including details about the values and types of "
+"``sys.stdin/stdout/stderr``. Hopefully we'll find another heuristic we "
+"can use!"
+msgstr ""
+"我们一直在努力使这个检测更加智能；如果升级到最新版本的 Invoke 还不能解决你的问题，"
+"请提交一份错误报告，包括关于 ``sys.stdin/stdout/stderr`` 的值和类型的细节。"
+"希望我们能找到另一个可以使用的启发式方法！"

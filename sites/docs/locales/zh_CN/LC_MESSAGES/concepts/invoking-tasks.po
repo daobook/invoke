@@ -1,0 +1,598 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../concepts/invoking-tasks.rst:5
+msgid "Invoking tasks"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:7
+msgid ""
+"This page explains how to invoke your tasks on the CLI, both in terms of "
+"parser mechanics (how your tasks' arguments are exposed as command-line "
+"options) and execution strategies (which tasks actually get run, and in "
+"what order)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:11
+msgid "(For details on Invoke's core flags and options, see :doc:`/invoke`.)"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:20
+msgid "Basic command line layout"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:22
+msgid ""
+"Invoke may be executed as ``invoke`` (or ``inv`` for short) and its "
+"command line layout looks like this::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:27
+msgid ""
+"Put plainly, Invoke's `CLI parser <.Parser>` splits your command line up "
+"into multiple \"`parser contexts <.ParserContext>`\" which allows it to "
+"reason about the args and options it will accept:"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:31
+msgid ""
+"Before any task names are given, the parser is in the \"core\" parse "
+"context, and looks for core options and flags such as :option:`--echo`, "
+":option:`--list` or :option:`--help`."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:34
+msgid ""
+"Any non-argument-like token (such as ``mytask``) causes a switch into a "
+"per-task context (or an error, if no task matching that name seems to "
+"exist in the :doc:`loaded collection </concepts/loading>`)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:37
+msgid ""
+"At this point, argument-like tokens are expected to correspond to the "
+"arguments for the previously named task (see :ref:`task-arguments`)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:39
+msgid ""
+"Then this cycle repeats infinitely, allowing chained execution of "
+"arbitrary numbers of tasks. (In practice, most users only execute one or "
+"two at a time.)"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:43
+msgid ""
+"For the core arguments and flags, see :doc:`/invoke`; for details on how "
+"your tasks affect the CLI, read onwards."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:47
+msgid ""
+"There is a minor convenience-minded exception to how parse contexts "
+"behave: core options *may* also be given inside per-task contexts, *if "
+"and only if* there is no conflict with similarly-named/prefixed arguments"
+" of the being-parsed task."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:52
+msgid ""
+"For example, ``invoke mytask --echo`` will behave identically to ``invoke"
+" --echo mytask``, *unless* ``mytask`` has its own ``echo`` flag (in which"
+" case that flag is handed to the task context, as normal)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:56
+msgid ""
+"Similarly, ``invoke mytask -e`` will turn on command echoing too, unless "
+"``mytask`` has its own argument whose shortflag ends up set to ``-e`` "
+"(e.g. ``def mytask(env)``)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:64
+msgid "Task command-line arguments"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:66
+msgid "The simplest task invocation, for a task requiring no parameterization::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:70
+msgid "Tasks may take parameters in the form of flag arguments::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:77
+msgid ""
+"Note that both long and short style flags are supported, and that equals "
+"signs are optional in both cases."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:80
+msgid "Boolean options are simple flags with no arguments::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:84
+msgid "Naturally, more than one flag may be given at a time::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:89
+msgid "Type casting"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:91
+msgid ""
+"Natively, a command-line string is just that -- a string -- requiring "
+"some leaps of logic to arrive at any non-string values on the Python end."
+" Invoke has a number of these tricks already at hand, and more will be "
+"implemented in the future. Currently:"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:96
+msgid ""
+"Arguments with default values use those default values as a type hint, so"
+" ``def mytask(c, count=1)`` will see ``inv mytask --count=5`` and result "
+"in the Python integer value ``5`` instead of the string ``\"5\"``."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:100
+msgid ""
+"Default values of ``None`` are effectively the same as having no default "
+"value at all - no type casting occurs and you're left with a string."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:103
+msgid ""
+"The primary exception to the previous rule is booleans: default values of"
+" ``True`` or ``False`` cause those arguments to show up as actual non-"
+"value-taking flags (``--argname`` to set the value to ``True`` if the "
+"default was ``False``, or ``--no-argment`` in the opposite case). See "
+":ref:`boolean-flags` for more examples."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:108
+msgid ""
+"List values (which you wouldn't want to set as an argument's default "
+"value anyways -- it's a common Python misstep) are served by a special "
+"``@task`` flag - see :ref:`iterable-flag-values` below."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:111
+msgid ""
+"There's currently no way to set other compound values (such as dicts) on "
+"the command-line; solving this more complex problem is left as an "
+"exercise to the reader (though we may add helpers for such things in the "
+"future)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:116
+msgid "Per-task help / printing available flags"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:118
+msgid ""
+"To get help for a specific task, you can give the task name as an "
+"argument to the core ``--help``/``-h`` option, or give ``--help``/``-h`` "
+"after the task (which will trigger custom-to-``help`` behavior where the "
+"task name itself is given to ``--help`` as its argument value)."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:123
+msgid ""
+"When help is requested, you'll see the task's docstring (if any) and per-"
+"argument/flag help output::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:136
+msgid "Globbed short flags"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:138
+msgid ""
+"Boolean short flags may be combined into one flag expression, so that "
+"e.g.::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:142
+msgid "is equivalent to (and expanded into, during parsing)::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:146
+msgid ""
+"If the first flag in a globbed short flag token is not a boolean but "
+"takes a value, the rest of the glob is taken to be the value instead. "
+"E.g.::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:151
+msgid "is expanded into::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:155
+msgid "and **not**::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:162
+msgid "Optional flag values"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:164
+msgid ""
+"You saw a hint of this with ``--help`` specifically, but non-core options"
+" may also take optional values, if declared as ``optional``. For example,"
+" say your task has a ``--log`` flag that activates logging::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:170
+msgid "but you also want it to be configurable regarding *where* to log::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:174
+msgid ""
+"You could implement this with an additional argument (e.g. ``--log`` and "
+"``--log-location``) but sometimes the concise API is the more useful one."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:177
+msgid ""
+"To enable this, specify which arguments are of this 'hybrid' optional-"
+"value type inside ``@task``::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:191
+msgid ""
+"When optional flag values are used, the values seen post-parse follow "
+"these rules:"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:194
+msgid ""
+"If the flag is not given at all (``invoke compile``) the default value is"
+" filled in as normal."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:196
+msgid ""
+"If it is given with a value (``invoke compile --log=foo.log``) then the "
+"value is stored normally."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:198
+msgid ""
+"If the flag is given with no value (``invoke compile --log``), it is "
+"treated as if it were a ``bool`` and set to ``True``."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:202
+msgid "Resolving ambiguity"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:204
+msgid ""
+"There are a number of situations where ambiguity could arise for a flag "
+"that takes an optional value:"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:207
+msgid ""
+"When a task takes positional arguments and they haven't all been filled "
+"in by the time the parser arrives at the optional-value flag;"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:209
+msgid ""
+"When the token following one of these flags looks like it is itself a "
+"flag; or"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:211
+msgid "When that token has the same name as another task."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:213
+msgid ""
+"In most of these situations, Invoke's parser will `refuse the temptation "
+"to guess <http://zen-of-python.info/in-the-face-of-ambiguity-refuse-the-"
+"temptation-to-guess.html#12>`_ and raise an error."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:218
+msgid ""
+"However, in the case where the ambiguous token is flag-like, the current "
+"parse context is checked to resolve the ambiguity:"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:221
+msgid ""
+"If the token is an otherwise legitimate argument, it is assumed that the "
+"user meant to give that argument immediately after the current one, and "
+"no optional value is set."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:225
+msgid ""
+"E.g. in ``invoke compile --log --verbose`` (assuming ``--verbose`` is "
+"another legit argument for ``compile``) the parser decides the user meant"
+" to give ``--log`` without a value, and followed it up with the "
+"``--verbose`` flag."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:230
+msgid ""
+"Otherwise, the token is interpreted literally and stored as the value for"
+" the current flag."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:233
+msgid ""
+"E.g. if ``--verbose`` is *not* a legitimate argument for ``compile``, "
+"then ``invoke compile --log --verbose`` causes the parser to assign ``\""
+"--verbose\"`` as the value given to ``--log``. (This will probably cause "
+"other problems in our contrived use case, but it illustrates our point.)"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:242
+msgid "Iterable flag values"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:244
+msgid ""
+"A not-uncommon use case for CLI programs is the desire to build a list of"
+" values for a given option, instead of a single value. While this *can* "
+"be done via sub-string parsing -- e.g. having users invoke a command with"
+" ``--mylist item1,item2,item3`` and splitting on the comma -- it's often "
+"preferable to specify the option multiple times and store the values in a"
+" list (instead of overwriting or erroring.)"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:251
+msgid ""
+"In Invoke, this is enabled by hinting to the parser that one or more task"
+" arguments are ``iterable`` in nature (similar to how one specifies "
+"``optional`` or ``positional``)::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:259
+msgid ""
+"When not given at all, the default value for ``my_list`` will be an empty"
+" list; otherwise, the result is a list, appending each value seen, in "
+"order, without any other manipulation (so no deduplication, etc)::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:275
+msgid "Incrementable flag values"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:277
+msgid ""
+"This is arguably a sub-case of :ref:`iterable flag values <iterable-flag-"
+"values>` (seen above) - it has the same core interface of \"give a CLI "
+"argument multiple times, and have that do something other than error or "
+"overwrite a single value.\" However, 'incrementables' (as you may have "
+"guessed) increment an integer instead of building a list of strings. This"
+" is commonly found in verbosity flags and similar functionality."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:284
+msgid "An example of exactly that::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:290
+msgid "And its use::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:301
+msgid ""
+"Happily, because in Python ``0`` is 'falsey' and ``1`` (or any other "
+"number) is 'truthy', this functions a lot like a boolean flag as well, at"
+" least if one defaults it to ``0``."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:306
+msgid ""
+"You may supply any integer default value for such arguments (it simply "
+"serves as the starting value), but take care that consumers of the "
+"argument are written understanding that it is always going to appear "
+"'truthy' unless it's ``0``!"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:312
+msgid "Dashes vs underscores in flag names"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:314
+msgid ""
+"In Python, it's common to use ``underscored_names`` for keyword "
+"arguments, e.g.::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:321
+msgid ""
+"However, the typical convention for command-line flags is dashes, which "
+"aren't valid in Python identifiers::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:326
+msgid ""
+"Invoke works around this by automatically generating dashed versions of "
+"underscored names, when it turns your task function signatures into "
+"command-line parser flags."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:330
+msgid ""
+"Therefore, the two examples above actually work fine together -- "
+"``my_option`` ends up mapping to ``--my-option``."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:333
+msgid ""
+"In addition, leading (``_myopt``) and trailing (``myopt_``) underscores "
+"are ignored, since ``invoke ---myopt`` and ``invoke --myopt-`` don't make"
+" much sense."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:340
+msgid "Automatic Boolean inverse flags"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:342
+msgid ""
+"Boolean flags tend to work best when setting something that is normally "
+"``False``, to ``True``::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:347
+msgid ""
+"However, in some cases, you want the opposite - a default of ``True``, "
+"which can be easily disabled. For example, colored output::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:354
+msgid ""
+"Here, what we really want on the command line is a ``--no-color`` flag "
+"that sets ``color=False``. Invoke handles this for you: when setting up "
+"CLI flags, booleans which default to ``True`` generate a ``--no-<name>`` "
+"flag instead."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:362
+msgid "How tasks run"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:365
+msgid "Base case"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:367
+msgid ""
+"In the simplest case, a task with no pre- or post-tasks runs one time. "
+"Example::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:374 ../../concepts/invoking-tasks.rst:399
+msgid "Execution::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:382
+msgid "Pre- and post-tasks"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:384
+msgid ""
+"Tasks that should always have another task executed before or after them,"
+" may use the ``@task`` deocator's ``pre`` and/or ``post`` kwargs, like "
+"so::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:406
+msgid ""
+"These keyword arguments always take iterables. As a convenience, pre-"
+"tasks (and pre-tasks only) may be given as positional arguments, in a "
+"manner similar to build systems like ``make``. E.g. we could present part"
+" of the above example as::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:419
+msgid "As before, ``invoke build`` would cause ``clean`` to run, then ``build``."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:422
+msgid "Recursive/chained pre/post-tasks"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:424
+msgid ""
+"Pre-tasks of pre-tasks will also be invoked (as will post-tasks of pre-"
+"tasks, pre-tasks of post-tasks, etc) in a depth-first manner, "
+"recursively. Here's a more complex (if slightly contrived) tasks file::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:452
+msgid ""
+"With a depth-first behavior, the below is hopefully intuitive to most "
+"users::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:466
+msgid "Parameterizing pre/post-tasks"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:468
+msgid ""
+"By default, pre- and post-tasks are executed with no arguments, even if "
+"the task triggering their execution was given some. When this is not "
+"suitable, you can wrap the task objects with `~.tasks.call` objects which"
+" allow you to specify a call signature::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:482
+msgid "Example output::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:492
+msgid "Task deduplication"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:494
+msgid ""
+"By default, any task that would run more than once during a session (due "
+"e.g. to inclusion in pre/post tasks), will only be run once. Example task"
+" file::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:509
+msgid ""
+"With deduplication turned off (see below), the above would execute "
+"``clean`` -> ``build`` -> ``build`` again -> ``package``. With "
+"deduplication, the double ``build`` does not occur::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:519
+msgid ""
+"Parameterized pre-tasks (using `~.tasks.call`) are deduped based on their"
+" argument lists. For example, if ``clean`` was parameterized and hooked "
+"up as a pre-task in two different ways - e.g. ``call(clean, 'html')`` and"
+" ``call(clean, 'all')`` - they would not get deduped should both end up "
+"running in the same session."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:525
+msgid ""
+"However, two separate references to ``call(clean, 'html')`` *would* "
+"become deduplicated."
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:529
+msgid "Disabling deduplication"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:531
+msgid ""
+"If you prefer your tasks to run every time no matter what, you can give "
+"the ``--no-dedupe`` core CLI option at runtime, or set the "
+"``tasks.dedupe`` :doc:`config setting </concepts/configuration>` to "
+"``False``. While it doesn't make a ton of real-world sense, let's imagine"
+" we wanted to apply ``--no-dedupe`` to the above example; we'd see the "
+"following output::"
+msgstr ""
+
+#: ../../concepts/invoking-tasks.rst:543
+msgid "The build step is now running twice."
+msgstr ""
+

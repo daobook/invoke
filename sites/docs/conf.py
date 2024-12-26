@@ -16,5 +16,8 @@ autodoc_default_options = {
 
 # Sister-site links to WWW
 html_theme_options["extra_nav_links"] = {
-    "Main website": "https://www.pyinvoke.org"
+    "主页": "https://daobook.github.io/invoke"
 }
+locale_dirs = ['locales/']
+gettext_compact = False
+language = 'zh_CN'

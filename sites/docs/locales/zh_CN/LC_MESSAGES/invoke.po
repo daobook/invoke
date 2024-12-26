@@ -1,0 +1,469 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022 Jeff Forcier
+# This file is distributed under the same license as the Invoke package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Invoke \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 16:23+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../invoke.rst:5
+msgid "``inv[oke]`` core usage"
+msgstr "``inv[oke]`` 核心用法"
+
+#: ../../invoke.rst:8
+msgid ""
+"This page documents ``invoke``'s core arguments, options and behavior "
+"(which includes options present in :ref:`custom Invoke-based binaries "
+"<reusing-as-a-binary>`). For details on invoking user-specified tasks and"
+" other parser-related details, see :doc:`/concepts/invoking-tasks`."
+msgstr ""
+"这个页面记录了 ``invoke`` 的核心参数、选项和行为"
+"（其中包括 :ref:`基于 invoke 的自定义二进制文件 <reusing-as-a-binary>` 中的选项）。"
+"有关调用用户指定的任务和其他解析器相关的详细信息，请参见 :doc:`/concepts/invoking-tasks`。"
+
+#: ../../invoke.rst:15
+msgid "Core options and flags"
+msgstr "核心选项和旗标"
+
+#: ../../invoke.rst:17
+msgid "``invoke``'s usage looks like::"
+msgstr "``invoke`` 用法看起来像 ::"
+
+#: ../../invoke.rst:21
+msgid ""
+"All core options & flags are below; almost all of them must be given "
+"*before* any task names, with a few (such as :option:`--help`) being "
+"specially looked for anywhere in the command line. (For parsing details, "
+"see :ref:`basic-cli-layout`.)"
+msgstr ""
+"所有核心选项和标志如下；几乎所有这些都必须在任何任务名称之前给出，"
+"其中一些（如 :option:`--help` ）是在命令行中的任何地方专门查找的。"
+"（有关解析的详细信息，请参见 :ref:`basic-cli-layout`。）"
+
+#: ../../invoke.rst:28
+msgid ""
+"Print (line-separated) valid tab-completion options for an Invoke command"
+" line given as the 'remainder' (i.e. after a ``--``). Used for building "
+":ref:`shell completion scripts <tab-completion>`."
+msgstr ""
+
+#: ../../invoke.rst:32
+msgid ""
+"For example, when the local tasks tree contains tasks named ``foo`` and "
+"``bar``, and when ``foo`` takes flags ``--foo-arg`` and ``--foo-arg-2``, "
+"you might use it like this::"
+msgstr ""
+
+#: ../../invoke.rst:51
+msgid ""
+"For more details on how to make best use of this option, see :option"
+":`--print-completion-script`."
+msgstr ""
+
+#: ../../invoke.rst:56
+msgid "Set default value of run()'s 'hide' kwarg."
+msgstr ""
+
+#: ../../invoke.rst:60
+msgid "Disable task deduplication."
+msgstr ""
+
+#: ../../invoke.rst:66
+msgid ""
+"Print a completion script for desired ``SHELL`` (e.g. ``bash``, ``zsh``, "
+"etc). This can be sourced into the current session in order to enjoy :ref"
+":`tab-completion for tasks and options <tab-completion>`."
+msgstr ""
+
+#: ../../invoke.rst:70
+msgid ""
+"These scripts are bundled with Invoke's distributed codebase, and "
+"internally make use of :option:`--complete`."
+msgstr ""
+
+#: ../../invoke.rst:77
+msgid ""
+"Prompt at the start of the session (before executing any tasks) for the "
+"``sudo.password`` configuration value. This allows users who don't want "
+"to keep sensitive material in the config system or their shell "
+"environment to rely on user input, without otherwise interrupting the "
+"flow of the program."
+msgstr ""
+
+#: ../../invoke.rst:84
+msgid ""
+"By default, Invoke disables bytecode caching as it can cause hard-to-"
+"debug problems with task files and (for the kinds of things Invoke is "
+"typically used for) offers no noticeable speed benefit. If you really "
+"want your ``.pyc`` files back, give this option."
+msgstr ""
+
+#: ../../invoke.rst:91
+msgid "Specify collection name to load."
+msgstr ""
+
+#: ../../invoke.rst:95
+msgid "Enable debug output."
+msgstr ""
+
+#: ../../invoke.rst:99
+msgid ""
+"Echo commands instead of actually running them; specifically, causes any "
+"``run`` calls to:"
+msgstr ""
+
+#: ../../invoke.rst:102
+msgid ""
+"Act as if the ``echo`` option has been turned on, printing the command-"
+"to-be-run to stdout;"
+msgstr ""
+
+#: ../../invoke.rst:104
+msgid ""
+"Skip actual subprocess invocation (returning before any of that machinery"
+" starts running);"
+msgstr ""
+
+#: ../../invoke.rst:106
+msgid ""
+"Return a dummy `~invoke.runners.Result` object with 'blank' values (empty"
+" stdout/err strings, ``0`` exit code, etc)."
+msgstr ""
+
+#: ../../invoke.rst:111
+msgid ""
+"Limit :option:`--list` display to the specified number of levels, e.g. "
+"``--list-depth 1`` to show only top-level tasks and namespaces."
+msgstr ""
+
+#: ../../invoke.rst:114
+msgid ""
+"If an argument is given to ``--list``, then this depth is relative; so "
+"``--list build --list-depth 1`` shows everything at the top level of the "
+"``build`` subtree."
+msgstr ""
+
+#: ../../invoke.rst:118
+msgid ""
+"Default behavior if this is not given is to show all levels of the entire"
+" task tree."
+msgstr ""
+
+#: ../../invoke.rst:123
+msgid "Echo executed commands before running."
+msgstr ""
+
+#: ../../invoke.rst:127
+msgid "Specify a :ref:`runtime configuration file <config-hierarchy>` to load."
+msgstr ""
+
+#: ../../invoke.rst:129
+msgid ""
+"Note that you may instead use the ``INVOKE_RUNTIME_CONFIG`` environment "
+"variable in place of this option. If both are given, the CLI option will "
+"win out."
+msgstr ""
+
+#: ../../invoke.rst:135
+msgid ""
+"Change the format used to display the output of :option:`--list`; may be "
+"one of:"
+msgstr ""
+
+#: ../../invoke.rst:138
+msgid "``flat`` (the default): single, flat vertical list with dotted task names."
+msgstr ""
+
+#: ../../invoke.rst:140
+msgid ""
+"``nested``: a nested (4-space indented) vertical list, where each level "
+"implicitly includes its parent (with leading dots as a strong visual clue"
+" that these are still subcollection tasks.)"
+msgstr ""
+
+#: ../../invoke.rst:143
+msgid ""
+"``json``: intended for consumption by scripts or other programs, this "
+"format emits JSON representing the task tree, with each 'node' in the "
+"tree (the outermost document being the root node, and thus a JSON object)"
+" consisting of the following keys:"
+msgstr ""
+
+#: ../../invoke.rst:148
+msgid ""
+"``name``: String name of collection; for the root collection this is "
+"typically the module name, so unless you're supplying alternate "
+"collection name to the load process, it's usually ``\"tasks\"`` (from "
+"``tasks.py``.)"
+msgstr ""
+
+#: ../../invoke.rst:152
+msgid ""
+"``help``: First line of collection's docstring, if it came from a module;"
+" null otherwise (or if module lacked a docstring.)"
+msgstr ""
+
+#: ../../invoke.rst:154
+msgid ""
+"``tasks``: Immediate children of this collection; an array of objects of "
+"the following form:"
+msgstr ""
+
+#: ../../invoke.rst:157
+msgid ""
+"``name``: Task's local name within its collection (i.e. not the full "
+"dotted path you might see with the ``flat`` format; reconstructing that "
+"path is left up to the consumer.)"
+msgstr ""
+
+#: ../../invoke.rst:160
+msgid "``help``: First line of task's docstring, or null if it had none."
+msgstr ""
+
+#: ../../invoke.rst:161
+msgid "``aliases``: An array of string aliases for this task."
+msgstr ""
+
+#: ../../invoke.rst:163
+msgid ""
+"``default``: String naming which task within this collection, if any, is "
+"the default task. Is null if no task is the default."
+msgstr ""
+
+#: ../../invoke.rst:165
+msgid ""
+"``collections``: An array of any sub-collections within this collection, "
+"members of which which will have the same structure as this outermost "
+"document, recursively."
+msgstr ""
+
+#: ../../invoke.rst:169
+msgid ""
+"The JSON emitted is not pretty-printed, but does end with a trailing "
+"newline."
+msgstr ""
+
+#: ../../invoke.rst:174
+msgid ""
+"When given without any task names, displays core help; when given with a "
+"task name (may come before *or* after the task name) displays help for "
+"that particular task."
+msgstr ""
+
+#: ../../invoke.rst:180
+msgid ""
+"List available tasks. Shows all tasks by default; may give an explicit "
+"namespace to 'root' the displayed task tree to only that namespace. (This"
+" argument may contain periods, as with task names, so it's possible to "
+"show only a small, deep portion of the overall tree if desired.)"
+msgstr ""
+
+#: ../../invoke.rst:187
+msgid "Use a pty when executing shell commands."
+msgstr ""
+
+#: ../../invoke.rst:191
+msgid "Change root directory used for finding task modules."
+msgstr ""
+
+#: ../../invoke.rst:195
+msgid ""
+"Set a default command execution timeout of INT seconds. Maps to the "
+"``timeouts.command`` config setting."
+msgstr ""
+
+#: ../../invoke.rst:200
+msgid "Show version and exit."
+msgstr ""
+
+#: ../../invoke.rst:204
+msgid "Warn, instead of failing, when shell commands fail."
+msgstr ""
+
+#: ../../invoke.rst:210
+msgid "Shell tab completion"
+msgstr ""
+
+#: ../../invoke.rst:213
+msgid "Generating a completion script"
+msgstr ""
+
+#: ../../invoke.rst:215
+msgid ""
+"Invoke's philosophy is to implement generic APIs and then \"bake in\" a "
+"few common use cases built on top of those APIs; tab completion is no "
+"different. Generic tab completion functionality (outputting a shell-"
+"compatible list of completion tokens for a given command line context) is"
+" provided by the :option:`--complete` core CLI option described above."
+msgstr ""
+
+#: ../../invoke.rst:221
+msgid ""
+"However, you probably won't need to use that flag yourself: we distribute"
+" a handful of ready-made wrapper scripts aimed at the most common shells "
+"like ``bash`` and ``zsh`` (plus others). These scripts can be "
+"automatically generated from Invoke or :ref:`any Invoke-driven command-"
+"line tool <reusing-as-a-binary>`, using :option:`--print-completion-"
+"script`; the printed scripts will contain the correct binary name(s) for "
+"the program generating them."
+msgstr ""
+
+#: ../../invoke.rst:229
+msgid ""
+"For example, the following command prints (to stdout) a script which "
+"works for ``zsh``, instructs ``zsh`` to use it for the ``inv`` and "
+"``invoke`` programs, and calls ``invoke --complete`` at runtime to get "
+"dynamic completion information::"
+msgstr ""
+
+#: ../../invoke.rst:237
+msgid ""
+"You'll probably want to source this command or store its output somewhere"
+" permanently; more on that in the next section."
+msgstr ""
+
+#: ../../invoke.rst:240
+msgid ""
+"Similarly, the `Fabric <http://fabfile.org>`_ tool inherits from Invoke, "
+"and only has a single binary name (``fab``); if you wanted to get Fabric "
+"completion in ``bash``, you would say::"
+msgstr ""
+
+#: ../../invoke.rst:246
+msgid ""
+"In the rest of this section, we'll use ``inv`` in examples, but please "
+"remember to replace it with the program you're actually using, if it's "
+"not Invoke itself!"
+msgstr ""
+
+#: ../../invoke.rst:251
+msgid "Sourcing the script"
+msgstr ""
+
+#: ../../invoke.rst:253
+msgid ""
+"There are a few ways to utilize the output of the above commands, "
+"depending on your needs, where the program is installed, and your shell:"
+msgstr ""
+
+#: ../../invoke.rst:256
+msgid ""
+"The simplest and least disruptive method is to ``source`` the printed "
+"completion script inline, which doesn't place anything on disk, and will "
+"only affect the current shell session::"
+msgstr ""
+
+#: ../../invoke.rst:262
+msgid ""
+"If you've got the program available in your system's global Python "
+"interpreter (and you're okay with running the program at the startup of "
+"each shell session - Python's speed is admittedly not its strong point) "
+"you could add that snippet to your shell's startup file, such as "
+"``~/.zshrc`` or ``~/.bashrc``."
+msgstr ""
+
+#: ../../invoke.rst:267
+msgid ""
+"If the program's available globally but you'd prefer to *avoid* running "
+"an extra Python program at shell startup, you can cache the output of the"
+" command in its own file; where this file lives is entirely up to you and"
+" how your shell is configured. For example, you might just drop it into "
+"your home directory as a hidden file::"
+msgstr ""
+
+#: ../../invoke.rst:275
+msgid "and then perhaps add the following to the end of ``~/.zshrc``::"
+msgstr ""
+
+#: ../../invoke.rst:279
+msgid "But again, this is entirely up to you and your shell."
+msgstr ""
+
+#: ../../invoke.rst:282
+msgid ""
+"If you're using ``fish``, you *must* use this tactic, as our fish "
+"completion script is not suitable for direct sourcing. Fish shell users "
+"should direct the output of the command to a file in the "
+"``~/.config/fish/completions/`` directory."
+msgstr ""
+
+#: ../../invoke.rst:287
+msgid ""
+"Finally, if your copy of the needing-completion program is only installed"
+" in a specific environment like a virtualenv, you can use either of the "
+"above techniques:"
+msgstr ""
+
+#: ../../invoke.rst:291
+msgid ""
+"Caching the output and referencing it in a global shell startup file will"
+" still work in this case, as it does not require the program to be "
+"available when the shell loads -- only when you actually attempt to tab "
+"complete."
+msgstr ""
+
+#: ../../invoke.rst:295
+msgid ""
+"Using the ``source <(inv --print-completion-script yourshell)`` approach "
+"will work *as long as* you place it in some appropriate per-environment "
+"startup file, which will vary depending on how you manage Python "
+"environments. For example, if you use ``virtualenvwrapper``, you could "
+"append the ``source`` line in ``/path/to/virtualenv/bin/postactivate``."
+msgstr ""
+
+#: ../../invoke.rst:302
+msgid "Utilizing tab completion itself"
+msgstr ""
+
+#: ../../invoke.rst:304
+msgid ""
+"You've ensured that the completion script is active in your environment -"
+" what have you gained?"
+msgstr ""
+
+#: ../../invoke.rst:307
+msgid ""
+"By default, tabbing after typing ``inv`` or ``invoke`` will display task "
+"names from your current directory/project's tasks file."
+msgstr ""
+
+#: ../../invoke.rst:309
+msgid ""
+"Tabbing after typing a dash (``-``) or double dash (``--``) will display "
+"valid options/flags for the current context: core Invoke options if no "
+"task names have been typed yet; options for the most recently typed task "
+"otherwise."
+msgstr ""
+
+#: ../../invoke.rst:314
+msgid ""
+"Tabbing while typing a partial long option will complete matching long "
+"options, using your shell's native substring completion. E.g. if no task "
+"names have been typed yet, ``--e<tab>`` will offer ``--echo`` as a "
+"completion option."
+msgstr ""
+
+#: ../../invoke.rst:319
+msgid ""
+"Hitting tab when the most recent typed/completed token is a flag which "
+"takes a value, will 'fall through' to your shell's native filename "
+"completion."
+msgstr ""
+
+#: ../../invoke.rst:322
+msgid ""
+"For example, prior to typing a task name, ``--config <tab>`` will "
+"complete local file paths to assist in filling in a config file."
+msgstr ""
+
