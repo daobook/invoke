@@ -103,7 +103,7 @@ msgid ""
 "``/home/user/myproject/invoke.yaml``."
 msgstr ""
 "位于顶层 ``tasks.py`` 旁边的 **项目级配置文件**。例如，如果你的 Invoke 运行加载了 "
-"``/home/user/myproject/tasks.py``（请参阅关于 :doc:`加载过程 </concepts/loading>` "
+"``/home/user/myproject/tasks.py`` （请参阅关于 :doc:`加载过程 </concepts/loading>` "
 "的文档），那么该配置文件可能是 ``/home/user/myproject/invoke.yaml``。"
 
 #: ../../concepts/configuration.rst:48

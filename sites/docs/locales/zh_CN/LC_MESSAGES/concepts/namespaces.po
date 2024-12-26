@@ -314,7 +314,7 @@ msgid ""
 " tasks in a namespace but one of them is the most commonly used, and maps"
 " well to the namespace as a whole."
 msgstr ""
-"任务可以被声明为其所属集合的默认任务，例如通过将 ``default=True`` 传递给 `@task <.task>`（或传递给 `.Collection.add_task`）。"
+"任务可以被声明为其所属集合的默认任务，例如通过将 ``default=True`` 传递给 `@task <.task>` （或传递给 `.Collection.add_task`）。"
 "当你在一个命名空间中有一堆相关任务，但其中一个是最常用的，并且与整个命名空间很好地映射时，这非常有用。"
 
 #: ../../concepts/namespaces.rst:283

@@ -24,7 +24,7 @@ msgstr ""
 #: ../../../docstring invoke.config.AmbiguousMergeError.__weakref__:1
 #: invoke.config.DataProxy.__weakref__:1 of
 msgid "list of weak references to the object"
-msgstr ""
+msgstr "对象的弱引用列表"
 
 #: invoke.config.Config:1 of
 msgid "Invoke's primary configuration handling class."

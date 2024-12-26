@@ -23,7 +23,7 @@ msgstr ""
 
 #: invoke.collection.Collection:1 of
 msgid "A collection of executable tasks. See :doc:`/concepts/namespaces`."
-msgstr ""
+msgstr "可执行任务的集合。请参阅 :doc:`/concepts/namespaces`。"
 
 #: invoke.collection.Collection.__eq__:1 of
 msgid "Return self==value."
@@ -31,7 +31,7 @@ msgstr ""
 
 #: invoke.collection.Collection.__getitem__:1 of
 msgid "Returns task named ``name``. Honors aliases and subcollections."
-msgstr ""
+msgstr "返回名为 ``name`` 的任务。支持别名和子集合。"
 
 #: invoke.collection.Collection.__getitem__:3 of
 msgid ""
@@ -39,6 +39,8 @@ msgid ""
 "empty or ``None``. If empty input is given and no task has been selected "
 "as the default, ValueError will be raised."
 msgstr ""
+"如果此集合有默认任务，则在 ``name`` 为空或 ``None`` 时返回该任务。"
+"如果输入为空且未选择任何任务作为默认任务，将引发 ValueError。"
 
 #: invoke.collection.Collection.__getitem__:7 of
 msgid ""
@@ -46,6 +48,7 @@ msgid ""
 "'foo.bar'. Subcollection default tasks will be returned on the "
 "subcollection's name."
 msgstr ""
+"子集合中的任务应以点形式给出，例如 'foo.bar'。子集合的默认任务将在子集合的名称上返回。"
 
 #: invoke.collection.Collection.__repr__:1 of
 msgid "Return repr(self)."
@@ -53,7 +56,7 @@ msgstr ""
 
 #: invoke.collection.Collection.add_collection:1 of
 msgid "Add `.Collection` ``coll`` as a sub-collection of this one."
-msgstr ""
+msgstr "将 `.Collection` ``coll`` 添加为此集合的子集合。"
 
 #: ../../api/collection.rst
 msgid "参数"
@@ -61,37 +64,40 @@ msgstr ""
 
 #: invoke.collection.Collection.add_collection:3 of
 msgid "The `.Collection` to add."
-msgstr ""
+msgstr "要添加的 `.Collection`。"
 
 #: invoke.collection.Collection.add_collection:5 of
 msgid ""
 "The name to attach the collection as. Defaults to the collection's own "
 "internal name."
 msgstr ""
+"附加集合的名称。默认为集合自己的内部名称。"
 
 #: invoke.collection.Collection.add_collection:9 of
 msgid ""
 "Whether this sub-collection('s default task-or-collection) should be the "
 "default invocation of the parent collection."
 msgstr ""
+"此子集合（的默认任务或集合）是否应作为父集合的默认调用。"
 
 #: invoke.collection.Collection.add_collection:14 of
 msgid "Added the ``default`` parameter."
-msgstr ""
+msgstr "添加了 ``default`` 参数。"
 
 #: invoke.collection.Collection.add_task:1 of
 msgid "Add `.Task` ``task`` to this collection."
-msgstr ""
+msgstr "将 `.Task` ``task`` 添加到此集合中。"
 
 #: invoke.collection.Collection.add_task:3 of
 msgid "The `.Task` object to add to this collection."
-msgstr ""
+msgstr "要添加到此集合中的 `.Task` 对象。"
 
 #: invoke.collection.Collection.add_task:5 of
 msgid ""
 "Optional string name to bind to (overrides the task's own self-defined "
 "``name`` attribute and/or any Python identifier (i.e. ``.func_name``.)"
 msgstr ""
+"可选的字符串名称绑定（覆盖任务自己的 ``name`` 属性和/或任何 Python 标识符（即 ``.func_name``。）"
 
 #: invoke.collection.Collection.add_task:10 of
 msgid ""
@@ -99,14 +105,15 @@ msgid ""
 "primary name. These will be used in addition to any aliases the task "
 "itself declares internally."
 msgstr ""
+"除了主名称之外，可选的迭代器，用于将任务绑定为其他名称。这些将用于任务本身在内部声明的任何别名之外。"
 
 #: invoke.collection.Collection.add_task:15 of
 msgid "Whether this task should be the collection default."
-msgstr ""
+msgstr "此任务是否应作为集合的默认任务。"
 
 #: invoke.collection.Collection.configuration:1 of
 msgid "Obtain merged configuration values from collection & children."
-msgstr ""
+msgstr "从集合及其子集合中获取合并的配置值。"
 
 #: invoke.collection.Collection.configuration:3 of
 msgid ""
@@ -115,6 +122,8 @@ msgid ""
 "Used to decide which path to follow in the collection tree when merging "
 "config values."
 msgstr ""
+"（可选）任务名称/路径，与 `~.Collection.__getitem__` 使用的相同（例如，可以为嵌套任务使用点形式等）。"
+"用于在合并配置值时决定在集合树中遵循的路径。"
 
 #: ../../api/collection.rst
 msgid "返回"
@@ -122,11 +131,11 @@ msgstr ""
 
 #: invoke.collection.Collection.configuration:9 of
 msgid "A `dict` containing configuration values."
-msgstr ""
+msgstr "包含配置值的 `dict`。"
 
 #: invoke.collection.Collection.configure:1 of
 msgid "(Recursively) merge ``options`` into the current `.configuration`."
-msgstr ""
+msgstr "（递归地）将 ``options`` 合并到当前的 `.configuration` 中。"
 
 #: invoke.collection.Collection.configure:3 of
 msgid ""
@@ -134,6 +143,7 @@ msgid ""
 "recommended to use unique keys to avoid potential clashes with other "
 "config options"
 msgstr ""
+"以这种方式配置的选项将对所有任务可用。建议使用唯一的键以避免与其他配置选项发生潜在冲突。"
 
 #: invoke.collection.Collection.configure:7 of
 msgid ""
@@ -141,10 +151,11 @@ msgid ""
 "directory, it's better to use a key like ``'sphinx.target'`` than simply "
 "``'target'``."
 msgstr ""
+"例如，如果你正在配置 Sphinx 文档构建目标目录，最好使用像 ``'sphinx.target'`` 这样的键，而不是简单的 ``'target'``。"
 
 #: invoke.collection.Collection.configure:11 of
 msgid "An object implementing the dictionary protocol."
-msgstr ""
+msgstr "实现字典协议的对象。"
 
 #: invoke.collection.Collection.configure:12 of
 msgid "``None``."
@@ -152,7 +163,7 @@ msgstr ""
 
 #: invoke.collection.Collection.from_module:1 of
 msgid "Return a new `.Collection` created from ``module``."
-msgstr ""
+msgstr "返回从 ``module`` 创建的新 `.Collection`。"
 
 #: invoke.collection.Collection.from_module:3 of
 msgid ""
@@ -161,6 +172,8 @@ msgid ""
 "(named ``ns`` or ``namespace``) a copy of that collection object is "
 "preferentially loaded instead."
 msgstr ""
+"检查 ``module`` 中的任何 `.Task` 实例并将它们添加到新的 `.Collection` 中，然后返回它。"
+"如果存在任何显式的命名空间集合（名为 ``ns`` 或 ``namespace``），则优先加载该集合对象的副本。"
 
 #: invoke.collection.Collection.from_module:8 of
 msgid ""
@@ -168,18 +181,22 @@ msgid ""
 " the module's ``__name__`` attribute, or its last dotted section if it's "
 "a submodule. (I.e. it should usually map to the actual ``.py`` filename.)"
 msgstr ""
+"当生成隐式/默认集合时，它将根据模块的 ``__name__`` 属性命名，"
+"或者如果它是子模块，则根据其最后一个点部分命名。（即它通常应映射到实际的 ``.py`` 文件名。）"
 
 #: invoke.collection.Collection.from_module:13 of
 msgid ""
 "Explicitly given collections will only be given that module-derived name "
 "if they don't already have a valid ``.name`` attribute."
 msgstr ""
+"显式给定的集合只有在没有有效的 ``.name`` 属性时才会被赋予该模块派生的名称。"
 
 #: invoke.collection.Collection.from_module:16 of
 msgid ""
 "If the module has a docstring (``__doc__``) it is copied onto the "
 "resulting `.Collection` (and used for display in help, list etc output.)"
 msgstr ""
+"如果模块有文档字符串（ ``__doc__`` ），它将被复制到生成的 `.Collection` 上（并用于在帮助、列表等输出中显示。）"
 
 #: invoke.collection.Collection.from_module:20 of
 msgid ""
@@ -187,6 +204,7 @@ msgid ""
 "collection name (or name set on the module's root namespace, if it has "
 "one.)"
 msgstr ""
+"字符串，如果提供，将覆盖任何自动派生的集合名称（或模块根命名空间上设置的名称，如果有的话。）"
 
 #: invoke.collection.Collection.from_module:25 of
 msgid ""
@@ -195,54 +213,62 @@ msgid ""
 " had a root namespace object, ``config`` is merged on top of it (i.e. "
 "overriding any conflicts.)"
 msgstr ""
+"用于在返回新创建的 `.Collection` 之前设置配置选项（节省你调用 `.configure` 的时间。）"
+"如果导入的模块有根命名空间对象，``config`` 将合并到其上（即覆盖任何冲突。）"
 
 #: invoke.collection.Collection.from_module:26 of
 msgid ""
 "Used to set config options on the newly created `.Collection` before "
 "returning it (saving you a call to `.configure`.)"
 msgstr ""
+"用于在返回新创建的 `.Collection` 之前设置配置选项（节省你调用 `.configure` 的时间。）"
 
 #: invoke.collection.Collection.from_module:29 of
 msgid ""
 "If the imported module had a root namespace object, ``config`` is merged "
 "on top of it (i.e. overriding any conflicts.)"
 msgstr ""
+"如果导入的模块有根命名空间对象，``config`` 将合并到其上（即覆盖任何冲突。）"
 
 #: invoke.collection.Collection.from_module:32 of
 msgid ""
 "Identical to the same-named kwarg from the regular class constructor - "
 "should be the path where the module was found."
 msgstr ""
+"与常规类构造函数中的同名关键字参数相同——应该是找到模块的路径。"
 
 #: invoke.collection.Collection.from_module:37 of
 msgid ""
 "Identical to the same-named kwarg from the regular class constructor - "
 "determines whether emitted names are auto-dashed."
 msgstr ""
+"与常规类构造函数中的同名关键字参数相同——决定发出的名称是否自动添加短横线。"
 
 #: invoke.collection.Collection.serialized:1 of
 msgid "Return an appropriate-for-serialization version of this object."
-msgstr ""
+msgstr "返回适合序列化的此对象的版本。"
 
 #: invoke.collection.Collection.serialized:3 of
 msgid ""
 "See the documentation for `.Program` and its ``json`` task listing "
 "format; this method is the driver for that functionality."
 msgstr ""
+"请参阅 `.Program` 及其 ``json`` 任务列表格式的文档；此方法是该功能的驱动。"
 
 #: invoke.collection.Collection.subcollection_from_path:1 of
 msgid "Given a ``path`` to a subcollection, return that subcollection."
-msgstr ""
+msgstr "给定子集合的 ``path``，返回该子集合。"
 
 #: invoke.collection.Collection.task_names:1 of
 msgid "Return all task identifiers for this collection as a one-level dict."
-msgstr ""
+msgstr "将此集合的所有任务标识符作为一级字典返回。"
 
 #: invoke.collection.Collection.task_names:3 of
 msgid ""
 "Specifically, a dict with the primary/\"real\" task names as the key, and"
 " any aliases as a list value."
 msgstr ""
+"具体来说，字典，其中主/\"real\"任务名称作为键，任何别名作为列表值。"
 
 #: invoke.collection.Collection.task_names:6 of
 msgid ""
@@ -250,10 +276,11 @@ msgid ""
 "collection of invocation strings, and is thus suitable for things like "
 "flat-style task listings or transformation into parser contexts."
 msgstr ""
+"它基本上将命名空间树折叠成一个易于扫描的调用字符串集合，因此适用于平面样式任务列表或转换为解析器上下文等用途。"
 
 #: invoke.collection.Collection.task_with_config:1 of
 msgid "Return task named ``name`` plus its configuration dict."
-msgstr ""
+msgstr "返回名为 ``name`` 的任务及其配置字典。"
 
 #: invoke.collection.Collection.task_with_config:3 of
 msgid ""
@@ -262,10 +289,11 @@ msgid ""
 "nested `Collections <.Collection>`, up through the one actually holding "
 "the `.Task`."
 msgstr ""
+"例如，在深度嵌套的树中，此方法返回 `.Task` 和通过合并此 `.Collection` 和任何嵌套的 `Collections <.Collection>` 创建的配置字典，直到实际持有 `.Task` 的集合。"
 
 #: invoke.collection.Collection.task_with_config:8 of
 msgid "See `~.Collection.__getitem__` for semantics of the ``name`` argument."
-msgstr ""
+msgstr "有关 ``name`` 参数的语义，请参阅 `~.Collection.__getitem__`。"
 
 #: invoke.collection.Collection.task_with_config:10 of
 msgid "Two-tuple of (`.Task`, `dict`)."
@@ -273,21 +301,22 @@ msgstr ""
 
 #: invoke.collection.Collection.to_contexts:1 of
 msgid "Returns all contained tasks and subtasks as a list of parser contexts."
-msgstr ""
+msgstr "将所有包含的任务和子任务作为解析器上下文列表返回。"
 
 #: invoke.collection.Collection.to_contexts:3 of
 msgid ""
 "Passed on to each task's ``get_arguments()`` method. See the config "
 "option by the same name for details."
 msgstr ""
+"传递给每个任务的 ``get_arguments()`` 方法。有关详细信息，请参阅同名的配置选项。"
 
 #: invoke.collection.Collection.to_contexts:8 of
 msgid "Added the ``ignore_unknown_help`` kwarg."
-msgstr ""
+msgstr "添加了 ``ignore_unknown_help`` 关键字参数。"
 
 #: invoke.collection.Collection.transform:1 of
 msgid "Transform ``name`` with the configured auto-dashes behavior."
-msgstr ""
+msgstr "使用配置的自动短横线行为转换 ``name``。"
 
 #: invoke.collection.Collection.transform:3 of
 msgid ""
@@ -296,10 +325,11 @@ msgid ""
 "(Leading/trailing underscores tend to get stripped elsewhere in the "
 "stack.)"
 msgstr ""
+"如果集合的 ``auto_dash_names`` 属性为 ``True``（默认），所有非前导/尾随下划线将转换为短横线。（前导/尾随下划线往往会在堆栈的其他地方被剥离。）"
 
 #: invoke.collection.Collection.transform:8 of
 msgid ""
 "If it is ``False``, the inverse is applied - all dashes are turned into "
 "underscores."
 msgstr ""
-
+"如果它为 ``False``，则应用相反的操作——所有短横线将转换为下划线。"

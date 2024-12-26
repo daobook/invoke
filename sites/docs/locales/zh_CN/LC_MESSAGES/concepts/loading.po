@@ -44,7 +44,7 @@ msgid ""
 "following ways:"
 msgstr ""
 "在没有其他配置的情况下，简单地调用 ``invoke`` 会查找名为 ``tasks`` 的单个 Python 模块或包，并将其视为根命名空间。"
-"``tasks``（或通过 :ref:`加载配置选项 <configuring-loading>` 提供的任何其他名称）会通过以下方式搜索："
+"``tasks`` （或通过 :ref:`加载配置选项 <configuring-loading>` 提供的任何其他名称）会通过以下方式搜索："
 
 #: ../../concepts/loading.rst:22
 msgid ""
